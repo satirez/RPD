@@ -115,6 +115,12 @@
                                             <a href="{{ url ('formats') }}"><i class="fa fa-tree"></i>Formato</a>
                                         </li>
                                         @endcan
+                                         <!-- Estatus -->
+                                        @can('admin.statuses.index')
+                                          <li {{ (Request::is('/') ? 'class="active"' : '') }}>
+                                            <a href="{{ url ('statuses') }}"><i class="fa fa-tree"></i>Estatus</a>
+                                        </li>
+                                        @endcan
                                      
                                         <!-- Tipos Frutas -->
                                         @can('admin.providers.index')

@@ -109,7 +109,12 @@
                                             <a href="{{ url ('exporters') }}"><i class="fa fa-truck"></i> Exportadores</a>
                                         </li>
                                         @endcan
-                                        
+                                         <!-- Tipos Formato -->
+                                        @can('admin.formats.index')
+                                          <li {{ (Request::is('/') ? 'class="active"' : '') }}>
+                                            <a href="{{ url ('formats') }}"><i class="fa fa-tree"></i>Formato</a>
+                                        </li>
+                                        @endcan
                                      
                                         <!-- Tipos Frutas -->
                                         @can('admin.providers.index')

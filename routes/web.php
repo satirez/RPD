@@ -116,7 +116,7 @@ Route::middleware('auth')->group(function(){
 	Route::get('/supplies/{supplie}/edit', 'SuppliesController@edit')->name('admin.supplies.edit')
 								->middleware('permission:admin.supplies.edit');
 
-//Supplies
+//Rechazado
 	//ruta 		//nombre de ruta 	//Permiso
 	Route::post('/rejecteds/store', 'RejectedController@store')->name('admin.rejecteds.store')
 								->middleware('permission:admin.rejecteds.create');
@@ -238,6 +238,33 @@ Route::middleware('auth')->group(function(){
 								
 	Route::get('/fruits/{fruit}/edit', 'FruitController@edit')->name('admin.fruits.edit')
 								->middleware('permission:admin.fruits.edit');
+
+//Formato
+	Route::post('/formats/store', 'FormatController@store')
+					->name('admin.formats.store')
+								->middleware('permission:admin.formats.create');
+
+	Route::get('/formats/', 'FormatController@index')
+					->name('admin.formats.index')
+								->middleware('permission:admin.formats.index');
+
+	Route::get('/formats/create', 'FormatController@create')
+					->name('admin.formats.create')
+								->middleware('permission:admin.formats.create');
+
+	Route::put('/formats/{format}', 'FormatController@update')
+					->name('admin.formats.update')
+								->middleware('permission:admin.formats.edit');
+
+	Route::get('/formats/{format}', 'FormatController@show')
+					->name('admin.formats.show')
+								->middleware('permission:admin.formats.show');
+
+	Route::delete('/formats/{format}', 'FormatController@destroy')->name('admin.formats.destroy')
+								->middleware('permission:admin.formats.destroy');
+								
+	Route::get('/formats/{format}/edit', 'FormatController@edit')->name('admin.formats.edit')
+								->middleware('permission:admin.formats.edit');
 
 //Quality
 Route::post('/quality/store', 'QualityController@store')

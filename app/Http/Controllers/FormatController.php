@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Format;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreFormat;
+use App\Http\Requests\UpdateFormat;
 
 class FormatController extends Controller
 {
@@ -14,7 +16,8 @@ class FormatController extends Controller
      */
     public function index()
     {
-        //
+        $formats = Format::paginate();
+        return view('admin.formats.index', compact('formats')); 
     }
 
     /**
@@ -24,7 +27,7 @@ class FormatController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.formats.create');
     }
 
     /**
@@ -35,51 +38,55 @@ class FormatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $formats = Format::create($request->all());
+        
+        return redirect()->route('admin.formats.index', $formats->id)->with('info','Tipo de formato agregado con exito'); 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Format  $format
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show(Format $format)
     {
-        //
+        return view('admin.formats.show', compact('format'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Format  $format
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Format $format)
     {
-        //
+        return view('admin.formats.edit', compact('format'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Format  $format
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Format $format)
+    public function update(UpdateFormat $request, Format $format)
     {
-        //
+        $format->update($request->all()); 
+        return redirect()->route('admin.formats.index', $format->id)->with('info', 'Formato actualizada con exito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Format  $format
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Format $format)
     {
-        //
+        $format->delete();
+        return back()->with('info', 'Eliminacion de formato con exito'); 
     }
 }

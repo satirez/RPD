@@ -25,7 +25,9 @@ class CreateRejectedsTable extends Migration
             $table->integer('dispatch')->unsigned()->nullable();
             $table->foreign('dispatch')->references('id')->on('dispatches');
 
+            $table->String('reason');
             $table->String('description');
+            
             $table->timestamps();
         });
     }

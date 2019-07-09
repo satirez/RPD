@@ -22,6 +22,9 @@ class Process extends Model
     {
         return $this->belongsToMany(Dispatch::class);
     }
+    public function rejected(){
+        return $this->belongsTo(Rejected::class);
+    }
 
 }
 

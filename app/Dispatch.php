@@ -17,6 +17,8 @@ class Dispatch extends Model
     {
         return $this->belongsToMany(Process::class);
     }
-
+	public function rejected(){
+        return $this->belongsTo(Rejected::class);
+    }
 }
 

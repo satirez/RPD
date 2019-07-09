@@ -31,7 +31,9 @@ class CreateReceptionsTable extends Migration
                 $table->foreign('season_id')->references('id')->on('seasons')->onDelete('cascade');     
            
             $table->Integer('status_id')->unsigned();
-            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');                
+            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
+                
+            
                       
            
             $table->String('netweight');

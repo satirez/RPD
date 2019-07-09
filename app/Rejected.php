@@ -16,4 +16,10 @@ class Rejected extends Model
    public function receptions(){
         return $this->hasMany(Reception::class);
     }
+     public function processes(){
+        return $this->hasMany(Proccess::class);
+    }
+     public function dispatches(){
+        return $this->hasMany(Dispatch::class);
+    }
 }

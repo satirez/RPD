@@ -15,8 +15,6 @@
 
 	} 
 
-
-
   		
     	function rest() {
         var txtFirstNo = document.getElementById('grossweight').value;
@@ -40,10 +38,6 @@
            }
        	}
 </script>
-
-
-
-
 
 
 

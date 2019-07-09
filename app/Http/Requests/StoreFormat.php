@@ -27,9 +27,9 @@ class StoreFormat extends FormRequest
     {
        return [
              'name' => 'required|max:20',
-            'largo' => 'required|max:20'
-            'alto' => 'required|max:20'
-            'ancho' => 'required|max:20'
+            'largo' => 'required|max:20',
+            'alto' => 'required|max:20',
+            'ancho' => 'required|max:20',
   
         ];
     }
@@ -37,9 +37,9 @@ class StoreFormat extends FormRequest
     public function messages(){
         return [
             'name.required' => 'Falta un campo obligatorio',
-            'largo.required' => 'Falta un campo obligatorio'
-            'alto.required' => 'Falta un campo obligatorio'
-            'ancho.required' => 'Falta un campo obligatorio'
+            'largo.required' => 'Falta un campo obligatorio',
+            'alto.required' => 'Falta un campo obligatorio',
+            'ancho.required' => 'Falta un campo obligatorio',
             ];
     }
 }

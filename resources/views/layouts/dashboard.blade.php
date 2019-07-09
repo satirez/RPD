@@ -1,231 +1,312 @@
 @extends('layouts.plane')
 
 @section('body')
- <div id="wrapper">
+<!DOCTYPE html>
+<html lang="en">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand"  href="{{ url ('/') }}">
-                    Software RPD |     
-                </a>
-                <img src="{{ asset('images/logo.png') }}" width="100" height="100" class="img-responsive" >
-            </div>
-            <!-- /.navbar-header -->
+<head>
 
-            <ul class="nav navbar-top-links navbar-right">
-                <label >Trabajador en sesión: {{ Auth::user()->name }}</label>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-                        <!-- Salir -->
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-                        <li> <a href="{{ url('logout') }}" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                        <i class="fa fa-sign-out fa-fw"></i> Salir</a>
-                        <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                            </form>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- /.navbar-top-links -->
+</head>
 
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="BUSCAR...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('home') }}"><i class="fa fa-home fa-fw"></i> Principal</a>
-                        </li>
-                        <!-- Usuarios -->
-                        @can('users.index')
-                        <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('users') }}"><i class="fa fa-user fa-fw"></i> Usuarios</a>
-                        </li>
-                        @endcan
-                         <!-- Roles -->
-                         @can('roles.index')
-                        <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('roles') }}"><i class="fa fa-users fa-fw"></i> Roles de usuario</a>
-                        </li>
-                        @endcan
-                        
-                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i>Panel Administrativo<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                               
-                                        <!-- Isumos -->
-                                        @can('admin.supplies.index')
-                                          <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                                            <a href="{{ url ('supplies') }}"><i class="fa fa-cube"></i> Insumos</a>
-                                        </li>
-                                        @endcan
-                                         <!-- Motivos de rechazo -->
-                                        @can('admin.rejecteds.index')
-                                          <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                                            <a href="{{ url ('rejecteds') }}"><i class="fa fa-cube"></i> Rechazos</a>
-                                        </li>
-                                        @endcan
+<body id="page-top">
 
-                                        <!-- Proveedores -->
-                                        @can('admin.providers.index')
-                                          <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                                            <a href="{{ url ('providers') }}"><i class="fa fa-truck"></i> Productores</a>
-                                        </li>
-                                        @endcan
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
-                                         <!-- Quality -->
-                                         @can('admin.providers.index')
-                                          <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                                            <a href="{{ url ('quality') }}"><i class="fa fa-check"></i>Calidad</a>
-                                        </li>
-                                        @endcan
-                                        
-                                        <!-- Exportadores -->
-                                        @can('admin.providers.index')
-                                          <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                                            <a href="{{ url ('exporters') }}"><i class="fa fa-truck"></i> Exportadores</a>
-                                        </li>
-                                        @endcan
-                                         <!-- Tipos Formato -->
-                                        @can('admin.formats.index')
-                                          <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                                            <a href="{{ url ('formats') }}"><i class="fa fa-tree"></i>Formato</a>
-                                        </li>
-                                        @endcan
-                                         <!-- Estatus -->
-                                        @can('admin.statuses.index')
-                                          <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                                            <a href="{{ url ('statuses') }}"><i class="fa fa-tree"></i>Estatus</a>
-                                        </li>
-                                        @endcan
-                                     
-                                        <!-- Tipos Frutas -->
-                                        @can('admin.providers.index')
-                                          <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                                            <a href="{{ url ('fruits') }}"><i class="fa fa-tree"></i>Fruta</a>
-                                        </li>
-                                        @endcan
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-                                     <!--  Temporada -->
-                                     @can('admin.providers.index')
-                                          <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                                        <a href="{{ url ('seasons') }}"> <i class="fa fa-sun-o"></i>Temporada</a>       
-                                        </li>
-                                        @endcan
-                                        
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        
-                       
-
-                        <!-- Recepción -->
-                <li>
-                    <a href="#"><i class="fa fa-database"></i> Panel de Recepciones<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                        @can('receptions.index')
-                          <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('receptions') }}">
-                                Recepciones disponibles</a>
-                            <a href="{{ url ('inprocess') }}">
-                                Recepciones procesadas
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                        @endcan
-
-                        <!-- Proceso -->
-                        @can('process.processes.index')
-
-                         <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('processes') }}"><i class="fa fa-gears fa-fw"></i> Proceso</a>
-                        </li>
-                        @endcan
-
-                           <!-- Despacho -->
-                        @can('dispatch.index')
-                        <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('dispatch') }}">
-                                <i class="fa fa-database" ></i> Despacho</a>
-                        </li>
-                        @endcan
-                        
-                        <li>
-                            <a href="#"><i class="fa fa-info"></i> Reportes <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-second-level">
-                            
-                                @can('receptions.reportsdaily')
-                                  <li {{ (Request::is('/') ? 'class="active"' : '') }}>
-
-                                    <a href="{{ url ('receptionsdaily') }}">
-                                        Reporte Diario</a>
-
-                                    <a href="{{ url ('receptionsperfruit') }}">
-                                        Reporte por Fruta
-                                    </a>
-
-                                    <a href="{{ url ('receptionsperproductor') }}">
-                                        Reporte por productor
-                                    </a>
-                                </li>
-                                @endcan
-                            </ul>
-                        </li>
-
-
-                        <!-- Fin -->
-
-
-                   
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-
-        <div id="page-wrapper">
-			 <div class="row">
-                <div class="col-lg-12">
-                    <br>
-                    <br>
-                </div>
-                <!-- /.col-lg-12 -->
-           </div>
-			<div class="row">  
-				@yield('section')
-
-            </div>
-
-                @section('scripts')
-                
-                @show
-            <!-- /#page-wrapper -->
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-laugh-wink"></i>
         </div>
+        <div class="sidebar-brand-text mx-3">BioBerries <sup>BB</sup></div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+       <!-- Nav Item -->
+       <li class="nav-item">
+        <a class="nav-link" href="{{ url ('home') }}">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Principal</span></a>
+
+
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Panel Administrativo
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Recursos Humanos</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Custom Components:</h6>
+
+            <!-- Usuarios -->
+            @can('users.index')
+            <a class="collapse-item" href="{{ url ('users') }}">Usuarios</a>
+
+            @endcan
+             <!-- Roles -->
+             @can('roles.index')
+             <a class="collapse-item" href="{{ url ('roles') }}">Roles de usuario</a>
+
+            @endcan
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Autocompletados</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Custom Utilities:</h6>
+
+
+            <!-- Isumos -->
+            @can('admin.supplies.index')
+                <a class="collapse-item" href="{{ url ('supplies') }}">Insumos</a>
+            @endcan
+
+             <!-- Motivos de rechazo -->
+            @can('admin.rejecteds.index')
+                <a class="collapse-item" href="{{ url ('rejecteds') }}">Rechazos</a>
+            @endcan
+
+            <!-- Proveedores -->
+            @can('admin.providers.index')
+            <a class="collapse-item" href="{{ url ('providers') }}">Productores</a>
+
+            @endcan
+
+             <!-- Quality -->
+             @can('admin.providers.index')
+
+            <a class="collapse-item" href="{{ url ('quality') }}">Calidad</a>
+
+            @endcan
+            
+            <!-- Exportadores -->
+            @can('admin.providers.index')
+
+            <a class="collapse-item" href="{{ url ('exporters') }}">Exportadores</a>
+
+            @endcan
+             <!-- Tipos Formato -->
+            @can('admin.formats.index')
+            <a class="collapse-item" href="{{ url ('formats') }}">Formato</a>
+
+            @endcan
+             <!-- Estatus -->
+            @can('admin.statuses.index')
+                <a class="collapse-item" href="{{ url ('statuses') }}">statuses</a>
+            @endcan
+         
+            <!-- Tipos Frutas -->
+            @can('admin.providers.index')
+                <a class="collapse-item" href="{{ url ('fruits') }}">Fruta</a>
+            @endcan
+
+         <!--  Temporada -->
+             @can('admin.providers.index')
+                <a class="collapse-item" href="{{ url ('seasons') }}">Temporada</a>
+            @endcan
+
+          </div>
+        </div>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Addons
+      </div>
+
+      <!-- Nav Item -->
+      @can('receptions.index')
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url ('receptions') }}">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Recepción</span></a>
+      </li>
+      @endcan
+
+         <!-- Nav Item -->
+         @can('process.processes.index')
+
+         <li class="nav-item">
+          <a class="nav-link" href="{{ url ('processes') }}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Proceso</span></a>
+        </li>
+
+        @endcan
+
+           <!-- Nav Item -->
+
+           @can('dispatch.index')
+           <li class="nav-item">
+                <a class="nav-link" href="{{ url ('dispatch') }}">
+                  <i class="fas fa-fw fa-chart-area"></i>
+                  <span>Despacho</span></a>
+              </li>
+           @endcan
+     
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">      
+          
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ Auth::user()->name }} </span>
+                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+            
+                <a class="dropdown-item" 
+                        href="{{ url('logout') }}" 
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" 
+                        data-toggle="modal" 
+                        data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Salir
+                </a>
+
+                <form id="logout-form" 
+                    action="{{ url('logout') }}" 
+                    method="POST" 
+                    style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+                <a >
+
+                     <div class="dropdown-divider"></div>
+
+
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"></h1>
+          </div>
+            
+
+           <div class="row">  
+             @yield('section')
+     
+          </div>
+     
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; TriBrains 2019</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
     </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="/webcss/vendor/jquery/jquery.min.js"></script>
+  <script src="/webcss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/webcss/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/webcss/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/webcss/vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/webcss/js/demo/chart-area-demo.js"></script>
+  <script src="/webcss/js/demo/chart-pie-demo.js"></script>
+
+</body>
+
+</html>
 @stop
 

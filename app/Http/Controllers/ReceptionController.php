@@ -7,9 +7,11 @@ use App\Supplies;
 use App\Providers;
 use App\Fruit;
 use App\Quality;
+use App\Status;
 use App\Rejected;
 use App\Season;
 use App\Rate;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateReception;
 use Carbon\Carbon;
@@ -89,7 +91,18 @@ class ReceptionController extends Controller
 
         $listSeasons = Season::OrderBy('id', 'DES')->pluck('name', 'id');
 
-        return view('receptions.create', compact('receptionslist', 'listSupplies', 'listProviders', 'listQualities', 'listFruits', 'listSeasons', 'listRejecteds'));
+        $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
+
+        $last = reception::OrderBy('id', 'DES')->first();
+    
+        if($last == null){
+            $lastid = 1; 
+
+        }else{
+            $lastid = $last->id +1; 
+        }
+
+        return view('receptions.create', compact('lastid','receptionslist','listStatus' , 'listSupplies', 'listProviders', 'listQualities', 'listFruits', 'listSeasons', 'listRejecteds'));
     }
 
     /**
@@ -101,36 +114,38 @@ class ReceptionController extends Controller
      */
     public function store(Request $request)
     {
+
         //Obtener datos del request
         $id = $request->get('provider_id');
-       
-
         $rate = $request->get('rate');
       
-
         //array que envia a tablas
         $rate = ['provider_id' => $id, 'rate' => $rate];
       
-
         //Guarda la calificación
         $rate = Rate::create($rate);
-     
 
-        // OBTENGO TODO EL ARRAY DEL REQUEST
-        $request = $request->all();
+        // RECHADOS
 
-        //quitar rate del array reception
-        unset($request['rate']);
-        
-        if($request->get('rejected')==1){
-            $rejected = ['reception_id' => $request->get('id'), 'reason' => $request->get('reason'), 'description' => $request->get('description')];
+        //instancio el radio button
+        $rejected = $request->get('rejected');
+
+        if($rejected==1){
+            $rejected = ['reception_id' => $request->get('id'), 
+            'reason' => $request->get('reason')];
             $rejected = Rejected::create($rejected);
             
-        }else{}
+        }else{
+        }
+        
+        $request = $request->all();
 
-         unset($request['rejected_id']);
+        //quitar rate y reason  del array reception
+        unset($request['rate']);
+        unset($request['reason']);
 
-         dd($request);
+
+     //    dd($request);
 
         //Guarda la Recepción
         $reception = Reception::create($request);

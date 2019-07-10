@@ -145,7 +145,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Addons
+        Linea Principal
       </div>
 
       <!-- Nav Item -->

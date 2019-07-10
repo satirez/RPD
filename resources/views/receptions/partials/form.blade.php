@@ -40,14 +40,13 @@
 </script>
 
 
-
 <div class="row">
 
 
 	<div class="col-md-4">
 		<div class="form-group">
 			{{ Form::label('tarja', 'Numero de Tarja') }}
-			{{ Form::text('tarja', null, ['class' => 'form-control ']) }}
+			{{ Form::text('tarja', $lastid, null, ['class' => 'form-control ']) }}
 		</div>
 	</div>
 
@@ -71,6 +70,13 @@
 	</div>
 
 	<div class="col-md-4">
+			<div class="form-group">
+			{{ Form::label('status_id', 'Selecciona un estado') }}
+			{{Form::select('status_id', $listProviders, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+			</div>
+		</div>
+
+	<div class="col-md-4">
 		<div class="form-group">
 		{{ Form::label('fruit_id', 'Selecciona un tipo de fruta') }}
 		{{Form::select('fruit_id', $listFruits, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
@@ -86,6 +92,7 @@
 		</div>
 	</div>
 </div>
+
 <div class="row">
 	<div class="col-md-4">
 		<div class="form-group">
@@ -147,11 +154,7 @@
 		</div>
 	</div>
 </div>		
-	
 
-
-
-	
 <div class="row">
 	<div class="col-md-4">
 		<div class="form-group">
@@ -195,30 +198,40 @@
 		</div>
 	</div>
 
-<div></div>	
+</div>
+
 
 <div class="row">
 
 <div class="col-md-12">
-		<div class="form-group">
-	
-<p>
-  <input id="rejected" type="checkbox" data-toggle="collapse" data-target="#CollapseRejected" aria-expanded="false" aria-controls="CollapseRejected">Producto Rechazado </>
-</p>
-			<div class="col-md-4">
-			    <div class="collapse multi-collapse" id="CollapseRejected">
-			      	<div class="card card-body">
-				 	{{Form::label('reason', 'Selecciona motivo de rechazo') }}
-					{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
+	<div class="form-group">
+		<div class="bs-example">
+				<input type="radio" name="rejected" value="0" data-toggle="collapse" data-parent="#accordion" checked> Bueno
+
+			<input type="radio" name="rejected" value="1" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Rechazado
+			
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div id="collapseOne" class="panel-collapse collapse in">
+						<div class="panel-body">
+							<div class="card">
+								<div class="card-body">
+										{{Form::label('reason', 'Selecciona motivo de rechazo') }}
+										{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
+								</div>
+							</div>
+						</div>
 					</div>
-    			</div>
-  			</div>
+				</div>
+			</div>
 		</div>
+	  </div>
+	 
 </div>
 
 			<div class="col-md-8">
 				<div class="form-group">
-				{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
+				{{ Form::submit('Guardar', ['class' => 'btn btn-lg btn-primary']) }}
 				</div>
 			</div>
 </div>

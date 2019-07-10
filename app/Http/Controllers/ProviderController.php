@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Providers;
+use App\Rate;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProviders;
 use App\Http\Requests\UpdateProviders;
@@ -54,7 +56,11 @@ class ProviderController extends Controller
      */
     public function show(Providers $provider)
     {
-        return view('admin.providers.show', compact('provider'));
+        $id = $provider->id;
+        $rate = Rate::get()->where('provider_id',$id)->SUM('rate');
+        $prom = ($rate/8);
+
+        return view('admin.providers.show', compact('provider', 'prom'));
     }
 
     /**

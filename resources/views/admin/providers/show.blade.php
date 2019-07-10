@@ -14,7 +14,12 @@
                     <p><strong>Rut de guia</strong> {{ $provider->rut    }}</p>
                     <p><strong>Direccion</strong> {{ $provider->address }}</p>
                     <p><strong>Numero Telefonico</strong> {{ $provider->number_phone }}</p>
+
                    
+                    <p><strong>Calificación</strong> {{$prom }}
+
+                    
+                </p>
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@ use App\Http\Requests\StoreProviders;
 use App\Http\Requests\UpdateProviders;
 
 class ProviderController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      *
@@ -54,7 +54,15 @@ class ProviderController extends Controller
      */
     public function show(Providers $provider)
     {
-        return view('admin.providers.show', compact('provider'));
+
+        $id = $provider->id;
+
+        $rate= Rate::avg('rate')->where($id, 'provider_id')->count();
+        $prom = ($rate/8);
+
+        dd($prom);
+
+        return view('admin.providers.show', compact('provider', 'rate'));
     }
 
     /**

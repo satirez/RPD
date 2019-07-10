@@ -14,7 +14,11 @@ class RateController extends Controller
      */
     public function index()
     {
-        //
+        $rate = Rate::paginate();
+        return view('#', compact('rate'));
+
+        $averagerate = Rate::avg('rate');
+        
     }
 
     /**
@@ -24,62 +28,61 @@ class RateController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Rate  $rate
+     * @param \App\Rate $rate
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Rate $rate)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Rate  $rate
+     * @param \App\Rate $rate
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Rate $rate)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Rate  $rate
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Rate                $rate
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Rate $rate)
     {
-        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Rate  $rate
+     * @param \App\Rate $rate
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Rate $rate)
     {
-        //
     }
 }

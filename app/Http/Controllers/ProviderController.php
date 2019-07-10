@@ -10,7 +10,7 @@ use App\Http\Requests\StoreProviders;
 use App\Http\Requests\UpdateProviders;
 
 class ProviderController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      *
@@ -61,6 +61,7 @@ class ProviderController extends Controller
         $prom = ($rate/8);
 
         return view('admin.providers.show', compact('provider', 'prom'));
+
     }
 
     /**

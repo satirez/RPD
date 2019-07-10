@@ -89,7 +89,7 @@
 
             <!-- Isumos -->
             @can('admin.supplies.index')
-                <a class="collapse-item" href="{{ url ('supplies') }}">Insumos</a>
+                <a class="collapse-item" href="{{ url ('supplies') }}">Bandejas</a>
             @endcan
 
              <!-- Motivos de rechazo -->
@@ -118,12 +118,12 @@
             @endcan
              <!-- Tipos Formato -->
             @can('admin.formats.index')
-            <a class="collapse-item" href="{{ url ('formats') }}">Formato</a>
+            <a class="collapse-item" href="{{ url ('formats') }}">Formato de Caja</a>
 
             @endcan
              <!-- Estatus -->
             @can('admin.statuses.index')
-                <a class="collapse-item" href="{{ url ('statuses') }}">statuses</a>
+                <a class="collapse-item" href="{{ url ('statuses') }}">Estatus de Fruta</a>
             @endcan
          
             <!-- Tipos Frutas -->

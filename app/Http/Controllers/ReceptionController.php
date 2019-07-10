@@ -93,13 +93,13 @@ class ReceptionController extends Controller
 
         $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
 
-        $last = reception::OrderBy('id', 'DES')->first();
+        $last = Reception::OrderBy('id', 'DES')->first();
     
         if($last == null){
             $lastid = 1; 
 
         }else{
-            $lastid = $last->id +1; 
+            $lastid = $last->id +1;
         }
 
         return view('receptions.create', compact('lastid','receptionslist','listStatus' , 'listSupplies', 'listProviders', 'listQualities', 'listFruits', 'listSeasons', 'listRejecteds'));

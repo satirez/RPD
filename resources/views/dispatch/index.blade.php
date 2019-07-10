@@ -51,7 +51,7 @@
                        <tbody>
                         @foreach($listdispatches as $listdispatch)
                            <tr>
-                                <td>{{ $listdispatch->exporter_id-6  }}</td>
+                                <td>{{ $listdispatch->exporter_id  }}</td>
                                 <td>{{ $listdispatch->patentNo  }}</td>
                                 <td>{{ $listdispatch->created_at }}</td>
                                 

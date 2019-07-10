@@ -24,7 +24,7 @@ class CreateDispatchesTable extends Migration
 
 
             $table->String('patentNo');
-
+            $table->boolean('rejected');
 
             $table->timestamps();
         });

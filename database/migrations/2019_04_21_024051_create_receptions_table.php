@@ -32,9 +32,6 @@ class CreateReceptionsTable extends Migration
            
             $table->Integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
-                
-            
-                      
            
             $table->String('netweight');
             $table->boolean('rejected');

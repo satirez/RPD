@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateDispatch;
 use App\Exporter;
 use App\Process;
 use App\Dispatch;
+use App\Rejected;
 
 class DispatchController extends Controller
 {
@@ -36,8 +37,9 @@ class DispatchController extends Controller
         $processes = Process::orderBy('id', 'DES')->where('available', 1)->get();
 
         $listexporter = Exporter::OrderBy('id', 'DES')->pluck('name', 'id');
+        $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
 
-        return view('dispatch.create', compact('listexporter', 'processes'));
+        return view('dispatch.create', compact('listexporter', 'processes','listRejecteds'));
     }
 
     /**
@@ -48,7 +50,24 @@ class DispatchController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreDispatch $request)
-    {
+    {   
+      
+          //instancio el radio button
+          $rejected = $request->get('rejected');
+ 
+          if($rejected==1){
+              $rejected = ['reception_id' => $request->get('id'), 
+              'reason' => $request->get('reason')];
+              $rejected = Rejected::create($rejected);
+              
+          }else{
+          }
+            
+          //quitar rate y reason  del array reception
+          unset($request['reason']);
+  
+  
+          //Guarda la despacho
         $dispatch = Dispatch::create($request->all());
 
         $dispatch->processes()->attach($request->get('process'));

@@ -35,7 +35,16 @@ class ProcessController extends Controller
         $receptions = Reception::orderBy('tarja', 'ASC')->where('available', 1)->get();
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
 
-        return view('process.processes.create', compact('receptions', 'processeslist','listRejecteds'));
+        $last = Process::OrderBy('id', 'DES')->first();
+    
+        if($last == null){
+            $lastid = 1; 
+
+        }else{
+            $lastid = $last->id +1;
+        }
+
+        return view('process.processes.create', compact('lastid','receptions', 'processeslist','listRejecteds'));
     }
 
     /**
@@ -47,7 +56,24 @@ class ProcessController extends Controller
      */
     public function store(StoreProcess $request)
     {
-        $process = Process::create($request->all());
+ 
+         //instancio el radio button
+         $rejected = $request->get('rejected');
+ 
+         if($rejected==1){
+             $rejected = ['process_id' => $request->get('id'), 
+             'reason' => $request->get('reason')];
+             $rejected = Rejected::create($rejected);
+             
+         }else{
+         }
+         
+         
+         //quitar rate y reason  del array reception
+         unset($request['reason']);
+    
+         //Guarda la Recepción
+         $process = Process::create($request->all());
 
         $process->receptions()->attach($request->get('receptions'));
 
@@ -57,6 +83,7 @@ class ProcessController extends Controller
             $cualquiercosa = Reception::where('id', $key)->first();
             Reception::where('id', $key)->update(['available' => 0]);
         }
+
 
         return redirect()->route('process.processes.index', $process->id)->with('info', 'Proceso guardado con exito');
     }

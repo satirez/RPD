@@ -46,7 +46,7 @@
 	<div class="col-md-4">
 		<div class="form-group">
 			{{ Form::label('tarja', 'Numero de Tarja') }}
-			{{ Form::text('tarja', $lastid, null, ['class' => 'form-control ']) }}
+			{{ Form::text('tarja', 'RE00'.$lastid, null, ['class' => 'form-control','readonly']) }}
 		</div>
 	</div>
 
@@ -206,9 +206,20 @@
 <div class="col-md-12">
 	<div class="form-group">
 		<div class="bs-example">
-				<input type="radio" name="rejected" value="0" data-toggle="collapse" data-parent="#accordion" checked> Bueno
+			
+			<input type="radio" 
+				name="rejected" 
+				value="0" 
+				data-toggle="collapse" 
+				data-parent="#accordion" 
+				checked> Bueno
 
-			<input type="radio" name="rejected" value="1" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Rechazado
+			<input type="radio" 
+				name="rejected" 
+				value="1" 
+				data-toggle="collapse" 
+				data-parent="#accordion" 
+				href="#collapseOne"> Rechazado
 			
 			<div class="panel-group" id="accordion">
 				<div class="panel panel-default">
@@ -224,6 +235,8 @@
 					</div>
 				</div>
 			</div>
+
+
 		</div>
 	  </div>
 	 

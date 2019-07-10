@@ -17,13 +17,11 @@ class CreateProcessesTable extends Migration
             $table->increments('id');
                  
             $table->String('tarja_proceso');
-            $table->String('Box_out');
+            $table->integer('Box_out');
             $table->Boolean('available')->default('1');
-            $table->Boolean('dejected')->default('0');
-
+            $table->Boolean('rejected')->default('0');
+            
             $table->Boolean('wash')->default('1');
-
-
 
             $table->timestamps();
         });

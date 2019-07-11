@@ -16,7 +16,10 @@ class CreateExportersTable extends Migration
         Schema::create('exporters', function (Blueprint $table) {
             $table->increments('id');
             $table->String('name'); 
-            $table->String('patent');
+            $table->String('rut');
+            $table->String('phone');
+            $table->String('email')->nullable();
+
            
             $table->timestamps();
             

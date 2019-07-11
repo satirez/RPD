@@ -29,6 +29,7 @@ class CreateRejectedsTable extends Migration
             $table->integer('reason')->unsigned()->nullable();
             $table->foreign('reason')->references('id')->on('rejecteds');
             
+            $table->integer('comment')->nullable();
             $table->timestamps();
         });
     }

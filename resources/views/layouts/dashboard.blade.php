@@ -153,8 +153,11 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url ('receptions') }}">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Recepción</span></a>
+          <span>Recepción </span>
+          
+        </a>  
       </li>
+      
       @endcan
 
          <!-- Nav Item -->

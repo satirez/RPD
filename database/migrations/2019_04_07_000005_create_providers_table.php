@@ -19,6 +19,8 @@ class CreateProvidersTable extends Migration
             $table->String('rut');
             $table->String('address');
             $table->String('number_phone');
+            $table->String('email')->nullable();
+
             $table->timestamps(); 
         });
     }

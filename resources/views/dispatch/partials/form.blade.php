@@ -56,7 +56,8 @@
 				name="rejected" 
 				value="0" 
 				data-toggle="collapse" 
-				data-parent="#accordion" 
+				data-parent="#accordion"
+				href="#collapseOne" 
 				checked> Bueno
 
 			<input type="radio" 

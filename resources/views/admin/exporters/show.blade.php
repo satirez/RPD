@@ -12,8 +12,9 @@
 
                 <div class="panel-body">
                 	<p><strong>Nombre</strong> {{ $exporter->name   }}</p>
-                    <p><strong>Patente</strong> {{ $exporter->nPatent  }}</p>
-                   
+                    <p><strong>Rut</strong> {{ $exporter->rut  }}</p>
+                    <p><strong>phone</strong> {{ $exporter->phone  }}</p>
+                    <p><strong>email</strong> {{ $exporter->email  }}</p>
                    
                 </div>
             </div>

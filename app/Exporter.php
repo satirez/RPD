@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Exporter extends Model
 {
     protected $primaryKey = 'id';
-    
+
     protected $fillable = [
-        'name', 'patent'
+        'name', 'rut', 'phone', 'email'
     ];
 }

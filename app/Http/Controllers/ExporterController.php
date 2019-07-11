@@ -17,7 +17,8 @@ class ExporterController extends Controller
     public function index()
     {
         $exporters = Exporter::paginate();
-        return view('admin.exporters.index', compact('exporters')); 
+
+        return view('admin.exporters.index', compact('exporters'));
     }
 
     /**
@@ -33,62 +34,68 @@ class ExporterController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreExporter $request)
     {
+       
         $exporter = Exporter::create($request->all());
-        
-        return redirect()->route('admin.exporters.index', $exporter->id)->with('info','Exportador guardado con exito'); 
+       
+        return redirect()->route('admin.exporters.index', $exporter->id)->with('info', 'Exportador guardado con exito');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Exporter $exporter)
     {
         return view('admin.exporters.show', compact('exporter'));
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Exporter $exporter)
     {
         return view('admin.exporters.edit', compact('exporter'));
-
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateExporter $request, Exporter $exporter)
     {
-        $exporter->update($request->all()); 
+        $exporter->update($request->all());
+
         return redirect()->route('admin.exporters.index', $exporter->id)->with('info', 'Exportador actualizado con exito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Exporter $exporter)
     {
         $exporter->delete();
-        return back()->with('info', 'Eliminado el exportador con exito'); 
+
+        return back()->with('info', 'Eliminado el exportador con exito');
     }
 }

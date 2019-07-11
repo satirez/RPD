@@ -3,12 +3,20 @@
 	{{ Form::text('name', null, ['class' => 'form-control ']) }}
 </div>
 <div class="form-group">
-	{{ Form::label('patent', 'Patente Del exportador') }}
-	{{ Form::text('patent', null, ['class' => 'form-control ']) }}
+	{{ Form::label('rut', 'Rut') }}
+	{{ Form::text('rut', null, ['class' => 'form-control ']) }}
 </div>
-
+<div class="form-group">
+	{{ Form::label('phone', 'Numero de contacto') }}
+	{{ Form::text('phone', null, ['class' => 'form-control ']) }}
+</div>
+<div class="form-group">
+	{{ Form::label('email', 'email') }}
+	{{ Form::text('email', null, ['class' => 'form-control ']) }}
+</div>
 
 <div class="form-group">
 	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
 </div>
 
+ 

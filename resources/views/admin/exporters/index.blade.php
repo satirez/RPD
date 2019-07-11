@@ -16,8 +16,10 @@
                    <table class="table table-striped table-hover"> 
                        <thead>
                            <tr>
-                               <th>Nombre</th>
-                              <th>Patente</th>
+                                <th>Nombre</th>
+                                <th>Rut</th>
+                                <th>Numero Telefónico</th>
+                                <th>e-mail</th>
                                
                                <th colspan="3">&nbsp;</th>
                            </tr>
@@ -25,8 +27,11 @@
                        <tbody>
                         @foreach($exporters as $exporter)
                            <tr>
+                            
                                 <td>{{ $exporter->name   }}</td>
-                                <td>{{ $exporter->patent   }}</td>
+                                <td>{{ $exporter->rut   }}</td>
+                                <td>{{ $exporter->phone   }}</td>
+                                <td>{{ $exporter->email   }}</td>
                         
                     
                                 <td width="10px">

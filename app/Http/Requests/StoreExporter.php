@@ -4,8 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use ValidateRequests;
-
 class StoreExporter extends FormRequest
 {
     /**
@@ -23,20 +21,21 @@ class StoreExporter extends FormRequest
      *
      * @return array
      */
-       public function rules()
+    public function rules()
     {
-       return [
+        return [
             'name' => 'required|max:20',
-            'patent' => 'required|max:6',
-            
+            'phone' => 'required|max:8',
+            'rut' => 'required|max:10',
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
-            'name.required' => 'Falta un campo obligatorio',
-            'patent.required' => 'Falta un campo obligatorio',
-            
+            'name.required' => 'Falta el rut del exportador',
+            'phone.required' => 'Falta el numero de contacto',
+            'rut.required' => 'Falta rut del exportador',
         ];
     }
 }

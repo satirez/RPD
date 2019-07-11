@@ -36,7 +36,7 @@ class StoreReception extends FormRequest
             'tray_out' => 'required|max:10',
             'name_driver' => 'required|max:120',
             'number_guide' => 'required|max:10',
-            'comment' => 'required|max:120',
+            'comment' => 'max:120',
             'temperature' => 'required|max:2',
             'tarja' => 'required|max:20',
            

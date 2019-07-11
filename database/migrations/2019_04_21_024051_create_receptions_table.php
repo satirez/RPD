@@ -38,7 +38,7 @@ class CreateReceptionsTable extends Migration
             $table->String('middleweight_trays');
             $table->String('name_driver');
             $table->String('number_guide');
-            $table->String('comment');
+            $table->String('comment')->nullable();
             $table->String('temperature');
             $table->String('tarja');
             $table->Boolean('available')->default('1');

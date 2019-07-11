@@ -26,17 +26,17 @@
                        </thead>
                        <tbody>
                        	
-                        @foreach($rejecteds as $rejected)
+                        @foreach($motivorejecteds as $motivorejected)
                            
                            <tr>
-                                <td>{{ $rejected->name   }}</td>
+                                <td>{{ $motivorejected->name   }}</td>
                                 
                     
                     			
                                 <td width="10px">
                                     @can('admin.rejecteds.show')
                                     <a 
-                                    href="{{ Route('admin.rejecteds.show', $rejected->id) }}" 
+                                    href="{{ Route('admin.rejecteds.show', $motivorejected->id) }}" 
                                     class="btn btn-sm btn-default">
                                           Ver
                                     </a>
@@ -45,7 +45,7 @@
                                 <td width="10px">
                                     @can('admin.rejecteds.edit')
                                     <a 
-                                    href="{{ Route('admin.rejecteds.edit', $rejected->id) }}" 
+                                    href="{{ Route('admin.rejecteds.edit', $motivorejected->id) }}" 
                                     class="btn btn-sm btn-info">
                                           Editar
                                     </a>
@@ -53,7 +53,7 @@
                                 </td>
                                 <td width="10px">
                                     @can('admin.rejecteds.destroy')
-                                    {!! Form::open(['route' => ['admin.rejecteds.destroy', $rejected->id],
+                                    {!! Form::open(['route' => ['admin.rejecteds.destroy', $motivorejected->id],
                                     'method' => 'DELETE' ]) !!}
                                         <button class="btn btn-sm btn-danger">Eliminar</button>
                                     {!! Form::close() !!}
@@ -65,7 +65,7 @@
 
                        </tbody>
                    </table>
-                   {{$rejecteds->render()}}
+                   {{$motivorejecteds->render()}}
                 </div>
             </div>
         </div>

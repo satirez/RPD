@@ -39,13 +39,18 @@
 														{{ $reception->tarja }}
 														
 													</label>
-					
+													@php
+														$uno = false;
+													@endphp
 													
 												</li>
 						
 												@empty
 						
-												<p>Sin registros</p>
+												<h4> Sin Registros </h4>
+													@php
+														$uno = true;
+													@endphp
 						
 												@endforelse
 									   </tbody>
@@ -99,11 +104,17 @@
 
 
 <br>
-	<div class="col-md-4">
-		<div class="form-group">
-	{{ Form::submit('Guardar', ['class' => 'btn btn-sm  btn-primary']) }}
+	@if($uno == false)
+		<div class="col-md-4">
+			<div class="form-group">
+		{{ Form::submit('Guardar', ['class' => 'btn btn-sm  btn-primary']) }}
+			</div>
 		</div>
-	</div>
+	@else
+	
+		<H4> No se puede ingresar </H4>
+
+	@endif
 	<br>
 	<br>
 

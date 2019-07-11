@@ -37,14 +37,27 @@
     <h3>Procesos para despacho</h3>
 <div class="form-group">
 	<ul class="list-unstyled">
-		@foreach($processes as $process)
+		@forelse($processes as $process)
 		<li>
 			<label>
 				{{ Form::checkbox('process[]', $process->id) }}
 				{{ $process->tarja_proceso }}
 			</label>
 		</li>
-		@endforeach 
+
+		@php
+			$uno = false;
+		@endphp
+
+		@empty
+
+		@php
+			$uno = true;
+		@endphp
+
+		<h4> No existen Registros </h4>
+
+		@endforelse 
 	</ul>
 </div>
 
@@ -89,13 +102,18 @@
 </div>
 
 
-
+	@if($uno == false)
 	<div class="col-md-4">
 		<div class="form-group">
 	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
 		</div>
 	</div>
+	@else
 
+	<h4>
+		No se puede guardar
+	</h4>
+	@endif
 
 
 

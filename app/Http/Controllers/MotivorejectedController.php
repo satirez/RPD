@@ -14,6 +14,10 @@ class MotivorejectedController extends Controller
      */
     public function index()
     {
+        $motivorejecteds = motivorejected::paginate();
+
+        return view('admin.rejecteds.index', compact('motivorejecteds'));
+
     }
 
     /**
@@ -22,7 +26,8 @@ class MotivorejectedController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {        
+        return view('admin.rejecteds.create');
     }
 
     /**
@@ -34,6 +39,9 @@ class MotivorejectedController extends Controller
      */
     public function store(Request $request)
     {
+        $motivorejected = motivorejected::create($request->all());
+        
+        return redirect()->route('admin.rejecteds.index', $motivorejected->id)->with('info','Tipo de fruta guardada con exito'); 
     }
 
     /**

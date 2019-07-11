@@ -104,11 +104,11 @@ Route::middleware('auth')->group(function () {
 
     //Rechazado
     //ruta 		//nombre de ruta 	//Permiso
-    Route::post('/rejecteds/store', 'RejectedController@store')->name('admin.rejecteds.store')
+    Route::post('/rejecteds/store', 'MotivorejectedController@store')->name('admin.rejecteds.store')
                                 ->middleware('permission:admin.rejecteds.create');
-    Route::get('/rejecteds/', 'RejectedController@index')->name('admin.rejecteds.index')
+    Route::get('/rejecteds/', 'MotivorejectedController@index')->name('admin.rejecteds.index')
                                 ->middleware('permission:admin.rejecteds.index');
-    Route::get('/rejecteds/create', 'RejectedController@create')->name('admin.rejecteds.create')
+    Route::get('/rejecteds/create', 'MotivorejectedController@create')->name('admin.rejecteds.create')
                                 ->middleware('permission:admin.rejecteds.create');
     Route::put('/rejecteds/{rejected}', 'RejectedController@update')->name('admin.rejecteds.update')
                                 ->middleware('permission:admin.rejecteds.edit');

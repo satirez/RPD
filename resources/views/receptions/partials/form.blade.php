@@ -46,7 +46,7 @@
 	<div class="col-md-4">
 		<div class="form-group">
 			{{ Form::label('tarja', 'Numero de Tarja') }}
-			{{ Form::text('tarja', 'RE00'.$lastid, null, ['class' => 'form-control','readonly']) }}
+			{{ Form::text('tarja', 'RE00'.$lastid, ['class' => 'form-control','readonly']) }}
 		</div>
 	</div>
 
@@ -185,7 +185,7 @@
 		<div class="form-group">
 		{{ Form::label('rate', 'Calidad de la fruta') }}
 		{{ Form::select('rate', array('1' => '10%', '2' => '20%', '3' => '30%', '4' => '40%', '5' => '50%', '6' => '60%', '7' => '70%', '8' => '80%'), 
-		null ,['class' => 'form-control','class' => 'col-md-7','required' ,'placeholder'=>'Seleccione una nota'])}}
+		null ,['class' => 'form-control','required' ,'placeholder'=>'Seleccione una nota'])}}
 		</div>
 	</div>
 	

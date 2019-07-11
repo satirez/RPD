@@ -61,8 +61,10 @@ class ProcessController extends Controller
          $rejected = $request->get('rejected');
  
          if($rejected==1){
-             $rejected = ['process_id' => $request->get('id'), 
-             'reason' => $request->get('reason')];
+             $rejected = [
+                 'process_id' => $request->get('id'), 
+                 'reason' => $request->get('reason'),
+                'comment' => $request->get('comment')];
              $rejected = Rejected::create($rejected);
              
          }else{

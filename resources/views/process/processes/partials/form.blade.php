@@ -1,6 +1,6 @@
 <div class="form-group">
 	{{ Form::label('tarja_proceso', 'Numero de tarja') }}
-	{{ Form::text('tarja_proceso','PRO0'.$lastid, null, ['class' => 'form-control ']) }}
+	{{ Form::text('tarja_proceso','PRO0'.$lastid, ['class' => 'form-control', 'readonly']) }}
 </div>
 
 <div class="form-group">
@@ -11,7 +11,7 @@
 <div class="form-group">
 	{{ Form::label('wash', 'Lavado') }}
 	{{ Form::select('wash', array('1' => 'Si', '2' => 'No'), 
-	null ,['class' => 'form-control','class' => 'col-md-7','required' ,'placeholder'=>'Seleccione si el proceso es lavado o no'])}}
+	null ,['class' => 'form-control','required' ,'placeholder'=>'Seleccione si el proceso es lavado o no'])}}
 </div>
 
 <div class="col-md-10">

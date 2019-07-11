@@ -132,7 +132,9 @@ class ReceptionController extends Controller
 
         if($rejected==1){
             $rejected = ['reception_id' => $request->get('id'), 
-            'reason' => $request->get('reason')];
+            'reason' => $request->get('reason'),
+            'comment' => $request->get('comment')];
+       
             $rejected = Rejected::create($rejected);
             
         }else{

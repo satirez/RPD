@@ -15,7 +15,6 @@
 
 	} 
 
-  		
     	function rest() {
         var txtFirstNo = document.getElementById('grossweight').value;
         var txtSecondNo = document.getElementById('supplie').value;
@@ -72,7 +71,7 @@
 	<div class="col-md-4">
 			<div class="form-group">
 			{{ Form::label('status_id', 'Selecciona un estado') }}
-			{{Form::select('status_id', $listProviders, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+			{{Form::select('status_id', $listStatus, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 			</div>
 		</div>
 

@@ -230,7 +230,7 @@
 										{{Form::label('reason', 'Selecciona motivo de rechazo') }}
 										{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
 										{{Form::label('commentrejected', 'Comentario Adicional') }}
-										{{ Form::textarea('commentrejected',null,['class'=>'form-control'])}}
+										{{ ::textarea('commentrejected',null,['class'=>'form-control'])}}
 
 								</div> 
 							</div>

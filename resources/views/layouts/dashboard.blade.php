@@ -37,7 +37,7 @@
        <!-- Nav Item -->
        <li class="nav-item">
         <a class="nav-link" href="{{ url ('home') }}">
-          <i class="fas fa-fw fa-home"></i>
+          <i class="fas fa-fw fa-home" style="color:#FF9E00" ></i>
           <span>Principal</span></a>
 
 
@@ -152,7 +152,7 @@
       @can('receptions.index')
       <li class="nav-item">
         <a class="nav-link" href="{{ url ('receptions') }}">
-          <i class="fas fa-fw fa-boxes"></i>
+          <i class="fas fa-fw fa-boxes" style="color:#00F0FF"></i>
           <span>Recepción </span>
           
         </a>  
@@ -165,7 +165,7 @@
 
          <li class="nav-item">
           <a class="nav-link" href="{{ url ('processes') }}">
-            <i class="fas fa-fw fa-pallet"></i>
+            <i class="fas fa-fw fa-pallet" style="color:#FFEC00"></i>
             <span>Proceso</span></a>
         </li>
 
@@ -176,7 +176,7 @@
            @can('dispatch.index')
            <li class="nav-item">
                 <a class="nav-link" href="{{ url ('dispatch') }}">
-                  <i class="fas fa-fw fa-truck-loading"></i>
+                  <i class="fas fa-fw fa-truck-loading" style="color:#55FF00"></i>
                   <span>Despacho</span></a>
               </li>
            @endcan
@@ -190,7 +190,7 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport" aria-expanded="true" aria-controls="collapseReport">
-          <i class="fas fa-fw fa-book-open"></i>
+          <i class="fas fa-fw fa-book-open" style="color:#FFFFFF"></i>
           <span>Reportes</span>
         </a>
         <div id="collapseReport" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">

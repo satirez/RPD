@@ -37,7 +37,7 @@
        <!-- Nav Item -->
        <li class="nav-item">
         <a class="nav-link" href="{{ url ('home') }}">
-          <i class="fas fa-fw fa-chart-area"></i>
+          <i class="fas fa-fw fa-home"></i>
           <span>Principal</span></a>
 
 
@@ -55,7 +55,7 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+          <i class="fas fa-fw fa-users"></i>
           <span>Recursos Humanos</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -152,7 +152,7 @@
       @can('receptions.index')
       <li class="nav-item">
         <a class="nav-link" href="{{ url ('receptions') }}">
-          <i class="fas fa-fw fa-chart-area"></i>
+          <i class="fas fa-fw fa-boxes"></i>
           <span>Recepción </span>
           
         </a>  
@@ -165,7 +165,7 @@
 
          <li class="nav-item">
           <a class="nav-link" href="{{ url ('processes') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-pallet"></i>
             <span>Proceso</span></a>
         </li>
 
@@ -176,14 +176,42 @@
            @can('dispatch.index')
            <li class="nav-item">
                 <a class="nav-link" href="{{ url ('dispatch') }}">
-                  <i class="fas fa-fw fa-chart-area"></i>
+                  <i class="fas fa-fw fa-truck-loading"></i>
                   <span>Despacho</span></a>
               </li>
            @endcan
+
+           
      
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport" aria-expanded="true" aria-controls="collapseReport">
+          <i class="fas fa-fw fa-book-open"></i>
+          <span>Reportes</span>
+        </a>
+        <div id="collapseReport" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Custom Components:</h6>
+
+            @can('receptions.receptionsdaily')
+            <a class="collapse-item" href="{{ url ('receptionsdaily') }}">Diario</a>
+            @endcan
+
+             @can('receptions.receptionsperfruit')
+             <a class="collapse-item" href="{{ url ('receptionsperfruit') }}">Por Fruta</a>
+            @endcan
+
+            @can('receptions.receptionsperproductor')
+             <a class="collapse-item" href="{{ url ('receptionsperproductor') }}">Por Productor</a>
+            @endcan
+
+          </div>
+        </div>
+      </li>
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
@@ -218,7 +246,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ Auth::user()->name }} </span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <img class="img-profile rounded-circle" src="https://static05.cminds.com/wp-content/uploads/computer-1331579_1280-1-300x300.png">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

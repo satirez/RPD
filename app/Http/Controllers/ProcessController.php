@@ -71,7 +71,8 @@ class ProcessController extends Controller
          
          //quitar rate y reason  del array reception
          unset($request['reason']);
-    
+         unset($request['comment']);
+
          //Guarda la Recepción
          $process = Process::create($request->all());
 

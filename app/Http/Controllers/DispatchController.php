@@ -65,6 +65,8 @@ class DispatchController extends Controller
             
           //quitar rate y reason  del array reception
           unset($request['reason']);
+          unset($request['comment']);
+
   
   
           //Guarda la despacho

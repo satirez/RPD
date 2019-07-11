@@ -229,8 +229,8 @@
 								<div class="card-body">
 										{{Form::label('reason', 'Selecciona motivo de rechazo') }}
 										{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
-										{{Form::label('comment', 'Comentario Adicional') }}
-										{{ Form::textarea('comment',null,['class'=>'form-control'])
+										{{Form::label('commentrejected', 'Comentario Adicional') }}
+										{{ Form::textarea('commentrejected',null,['class'=>'form-control'])
 
 								</div> }}
 							</div>

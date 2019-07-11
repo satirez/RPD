@@ -54,9 +54,7 @@
                                 <td>{{ $listdispatch->exporter_id  }}</td>
                                 <td>{{ $listdispatch->patentNo  }}</td>
                                 <td>{{ $listdispatch->created_at }}</td>
-                                
-
-    
+                                    
                                 <td width="8px">
                                     @can('dispatch.show')
                                     <a href="{{ Route('dispatch.show', $listdispatch->id) }}" class="btn btn-sm btn-default">Ver</a>

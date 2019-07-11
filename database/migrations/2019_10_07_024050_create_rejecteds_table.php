@@ -21,14 +21,13 @@ class CreateRejectedsTable extends Migration
 
             $table->integer('process_id')->unsigned()->nullable();
             $table->foreign('process_id')->references('id')->on('processes');
-            
+
             $table->integer('dispatch')->unsigned()->nullable();
             $table->foreign('dispatch')->references('id')->on('dispatches');
-            
 
             $table->integer('reason')->unsigned()->nullable();
-            $table->foreign('reason')->references('id')->on('rejecteds');
-            
+            $table->foreign('reason')->references('id')->on('motivorejecteds');
+
             $table->integer('comment')->nullable();
             $table->timestamps();
         });

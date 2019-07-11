@@ -4,8 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use ValidateRequests;
-
 class StoreRejected extends FormRequest
 {
     /**
@@ -23,20 +21,17 @@ class StoreRejected extends FormRequest
      *
      * @return array
      */
-       public function rules()
+    public function rules()
     {
-       return [
-            'reason' => 'required|max:20',
-            'description' => 'required|max:120',
-            
+        return [
+            'name' => 'required|max:20',
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
-            'reason.required' => 'Falta un campo obligatorio',
-            'description.required' => 'Falta un campo obligatorio',
-            
+            'name.required' => 'Nombre de rechazo no ingresado',
         ];
     }
 }

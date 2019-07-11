@@ -18,7 +18,7 @@
                        <thead>
                            <tr>
                                <th>Nombre de motivo</th>
-                               <th>Descripción</th>
+                              
                               
                                
                                <th colspan="3">&nbsp;</th>
@@ -29,8 +29,8 @@
                         @foreach($rejecteds as $rejected)
                            
                            <tr>
-                                <td>{{ $rejected->reason   }}</td>
-                                <td>{{ $rejected->description   }}</td>
+                                <td>{{ $rejected->name   }}</td>
+                                
                     
                     			
                                 <td width="10px">

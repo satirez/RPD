@@ -17,7 +17,8 @@ class RejectedController extends Controller
     public function index()
     {
         $rejecteds = Rejected::paginate();
-        return view('admin.rejecteds.index', compact('rejecteds')); 
+
+        return view('admin.rejecteds.index', compact('rejecteds'));
     }
 
     /**
@@ -33,62 +34,67 @@ class RejectedController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreRejected $request)
     {
         $rejected = Rejected::create($request->all());
-        
-        return redirect()->route('admin.rejecteds.index', $rejected->id)->with('info','Calidad guardada con exito'); 
+
+        return redirect()->route('admin.rejecteds.index', $rejected->id)->with('info', 'Calidad guardada con exito');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Rejected $rejected)
     {
         return view('admin.rejecteds.show', compact('rejected'));
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Rejected $rejected)
     {
         return view('admin.rejecteds.edit', compact('rejected'));
-
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRejected $request,Rejected $rejected)
+    public function update(UpdateRejected $request, Rejected $rejected)
     {
-        $rejected->update($request->all()); 
+        $rejected->update($request->all());
+
         return redirect()->route('admin.rejecteds.index', $rejected->id)->with('info', 'Tipo de Calidad actualizada con exito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Rejected $rejected)
     {
         $rejected->delete();
-        return back()->with('info', 'Eliminado el tipo de calidad con exito'); 
+
+        return back()->with('info', 'Eliminado el tipo de calidad con exito');
     }
 }

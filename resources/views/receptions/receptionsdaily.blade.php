@@ -16,8 +16,11 @@
                             <tr class="">
                                 
                                <th>Nombre Productor</th>
+                               <th>Fruta</th>
+                               <th>Estatus</th>
                                <th>Suma de Peso Bruto</th>
                                <th>Suma de Peso Neto</th>
+                               <th>N° Bandejas</th>
                                
                            </tr>
                        </thead>

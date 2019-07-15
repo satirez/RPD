@@ -22,6 +22,12 @@ class CreateDispatchesTable extends Migration
             ->onDelete('cascade')
             ->onUpdate('cascade');
 
+            $table->String('where');
+            $table->String('who');
+
+            //se debe hacer
+            $table->integer('tipo_despacho');
+
 
             $table->String('patentNo');
             $table->boolean('rejected');

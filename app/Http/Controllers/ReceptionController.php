@@ -11,11 +11,8 @@ use App\Status;
 use App\Rejected;
 use App\Season;
 use App\Rate;
-<<<<<<< HEAD
-=======
 use App\motivorejected;
 
->>>>>>> 0be71beb0525ffd4f3d11eaa8aee1b8418bf8cea
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateReception;
 use Carbon\Carbon;

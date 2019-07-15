@@ -11,8 +11,8 @@
     	if (tecla==44) { 
         alert('No usar "Comas", reemplazar por "punto" ');
         return false; 
-    	} 
-	} 
+    	}
+	}
     
 	function cal() {
 		
@@ -27,21 +27,33 @@
 
 
 <div class="col-md-4">
+		<div class="form-group">
+		{{ Form::label('provider_id', 'Productor') }}
+		{{Form::select('provider_id', $listProviders, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione productor'])}}
+
+
 	<div class="form-group">
-	{{ Form::label('provider_id', 'Productor') }}
-	{{Form::select('provider_id', $listProviders, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione productor'])}}
-</div>
+		{{ Form::label('traysin', 'Bandejas que llegaron') }}
+		{{ Form::text('traysin', null, ['class' => 'form-control ']) }}
+	</div>
 
-<div class="form-group">
-	{{ Form::label('providerTrays', 'Bandejas entrantes') }}
-	{{ Form::text('providerTrays', null, ['class' => 'form-control ']) }}
-</div>
+	<div class="form-group">
+		{{ Form::label('traysout', 'Bandejas devueltas') }}
+		{{ Form::text('traysout', null, ['class' => 'form-control ']) }}
+	</div>
 
-<div class="form-group">
-	{{ Form::label('freezTrays', 'Bandejas de Freez') }}
-	{{ Form::text('freezTrays', null, ['class' => 'form-control ']) }}
-</div>
 
-<div class="form-group">
-	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
+	<div class="form-group">
+		{{ Form::label('providerTrays', 'Bandejas entrantes') }}
+		{{ Form::text('providerTrays', null, ['class' => 'form-control ', 'readonly']) }}
+	</div>
+
+	<div class="form-group">
+		{{ Form::label('freezTrays', 'Bandejas de Freez') }}
+		{{ Form::text('freezTrays', null, ['class' => 'form-control ', 'readonly']) }}
+	</div>
+
+	<div class="form-group">
+		{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
+	</div>
 </div>

@@ -18,6 +18,7 @@ class RateController extends Controller
         return view('#', compact('rate'));
 
         $averagerate = Rate::avg('rate');
+        $count = Rate::count('rate');
         
     }
 

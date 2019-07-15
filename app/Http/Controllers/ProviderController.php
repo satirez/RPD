@@ -58,7 +58,11 @@ class ProviderController extends Controller
     {
         $id = $provider->id;
         $rate = Rate::get()->where('provider_id',$id)->SUM('rate');
-        $prom = ($rate/8);
+        $cuenta = Rate::where('provider_id',$id)->count();
+        $prom =  ($rate/$cuenta)*10;
+        
+
+
 
         return view('admin.providers.show', compact('provider', 'prom'));
 

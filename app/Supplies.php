@@ -12,6 +12,9 @@ class Supplies extends Model
         'name', 'weight', 'measure',
     ];
 
+    public function receptions(){
+        return $this->hasMany(Reception::class);
+    }
     
 }
 //nombre - medidas - peso - marca - origen

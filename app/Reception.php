@@ -10,7 +10,7 @@ class Reception extends Model
 	
     protected $fillable = [
     	'season_id', 'grossweight', 'provider_id', 'fruit_id', 'quality_id', 'netweight', 'status_id', 'rejected',
-        'middleweight_supplie', 'tray_in','tray_out','name_driver','number_guide','comment','temperature','tarja', 'middleweight_trays', 'rejected_id'
+        'middleweight_supplie', 'tray_in','tray_out','name_driver','number_guide','comment','temperature','tarja', 'middleweight_trays', 'rejected_id', 'quantity', 'palet_weight', 'supplies_id', 
     ];
 
     public function provider(){
@@ -39,4 +39,10 @@ class Reception extends Model
     {
         return $this->belongsToMany(Process::class);
     }
+
+    public function supplies()
+    {
+        return $this->belongsToMany(Supplies::class);
+    }
+
 }

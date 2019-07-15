@@ -116,8 +116,10 @@ class ProcessController extends Controller
      */
     public function edit(Process $process)
     {
-        $receptions = Reception::orderBy('tarja', 'DES')->where('available', 1)->get();
-         $listRejecteds = Rejected::OrderBy('id', 'DES')->pluck('reason', 'id');
+
+        $processeslist = Process::paginate();
+        $receptions = Reception::orderBy('tarja', 'ASC')->where('available', 1)->get();
+        $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
 
         return view('process.processes.edit', compact('process', 'receptions','listRejecteds'));
     }
@@ -130,7 +132,7 @@ class ProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProcess $request,Process $process)
+    public function update(Request $request,Process $process)
     {
         $process = Process::find($id);
         $process->update($request->all());

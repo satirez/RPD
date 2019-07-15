@@ -31,6 +31,8 @@ class UpdateReception extends FormRequest
             'fruit_id' => 'required',
             'quality_id' => 'required',
             'season_id' => 'required',
+            'supplies_id' => 'required',
+            'status_id' => 'required',
             'netweight' => 'required|max:20',
             'tray_in' => 'required|max:10',
             'tray_out' => 'required|max:10',
@@ -39,18 +41,6 @@ class UpdateReception extends FormRequest
             'comment' => 'required|max:120',
             'temperature' => 'required|max:2',
             'tarja' => 'required|max:20',
-           
-
-
-
-
-
-
-
-
-
-
-
 
 
         ];
@@ -64,6 +54,8 @@ class UpdateReception extends FormRequest
             'fruit_id.required' => 'Debe seleccionar una fruta',
             'quality_id.required' => 'Debe seleccionar una calidad',
             'season_id.required' => 'Debe seleccionar una temporada',
+            'status_id.required' => 'Debe ingresar un estatusfruit_id',
+            'supplies_id' => 'Debe seleccionar un insumo',
             'netweight.required' => 'Falta un campo obligatorio',
             'tray_in.required' => 'Falta un campo obligatorio',
             'tray_out.required' => 'Falta un campo obligatorio',

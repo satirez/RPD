@@ -25,6 +25,7 @@ class CreateDispatchesTable extends Migration
             $table->String('where');
             $table->String('who');
 
+            //se debe hacer
             $table->integer('tipo_despacho');
 
 

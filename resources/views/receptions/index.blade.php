@@ -25,6 +25,14 @@
                     <a href="{{ Route('receptions.create') }}" class="btn btn-info pull-right btn-sm"> Crear </a>
                     @endcan
                     </h4>
+
+                    
+                    <h4 style="text-align:center;">Control de bandejas
+                    @can('receptions.create')
+                    <a href="{{ Route('admin.trays.create') }}" class="btn btn-info pull-right btn-sm"> Crear </a>
+                    @endcan
+                    </h4>
+                   
                 </div>
 
                 <div class="table-responsive">

@@ -140,7 +140,9 @@
 	<div class="col-md-4">		
 		<div class="form-group">
 			{{ Form::label('netweight', 'Peso neto') }}
-			{{ Form::text('netweight', null, ['class' => 'form-control ', 'id'=>'netweight','readonly'
+			{{ Form::text('netweight', null, ['class' => 'form-control ', 
+			'id'=>'netweight',
+			'readonly'
 			]) }}
 		</div>
 	</div>
@@ -149,7 +151,9 @@
 	<div class="col-md-4">
 		<div class="form-group">
 			{{ Form::label('middleweight_trays', 'Gr de fruta por bandeja') }}
-			{{ Form::number('middleweight_trays', null, ['class' => 'form-control ','id'=>'middleweight_trays', 'readonly']) }}
+			{{ Form::number('middleweight_trays', null, ['class' => 'form-control ',
+			'id'=>'middleweight_trays',
+			'readonly']) }}
 		</div>
 	</div>
 </div>		

@@ -11,6 +11,7 @@ use App\Status;
 use App\Rejected;
 use App\Season;
 use App\Rate;
+use App\motivorejected;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateReception;
@@ -85,7 +86,7 @@ class ReceptionController extends Controller
         $listSupplies = Supplies::OrderBy('id', 'DES')->pluck('name', 'weight');
         $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
         $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
-        $listRejecteds = Rejected::OrderBy('id', 'DES')->pluck('reason', 'id');
+        $listRejecteds = MotivoRejected::OrderBy('id', 'DES')->pluck('name', 'id');
 
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
 
@@ -178,16 +179,23 @@ class ReceptionController extends Controller
      */
     public function edit(Reception $reception)
     {
-        $listSupplies = Supplies::OrderBy('id', 'ASC')->pluck('name', 'weight');
-        $listProviders = Providers::OrderBy('id', 'ASC')->pluck('name', 'id');
-        $listFruits = Providers::OrderBy('id', 'ASC')->pluck('name', 'id');
-        $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
 
-        $listQualities = Quality::OrderBy('id', 'ASC')->pluck('name', 'id');
+        $receptionslist = Reception::paginate('5');
 
-        $listSeasons = Season::OrderBy('id', 'ASC')->pluck('name', 'id');
+        $listSupplies = Supplies::OrderBy('id', 'DES')->pluck('name', 'weight');
+        $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
+        $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
+        $listRejecteds = MotivoRejected::OrderBy('id', 'DES')->pluck('name', 'id');
 
-        return view('receptions.edit', compact('reception','listSupplies',
+        $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
+
+        $listSeasons = Season::OrderBy('id', 'DES')->pluck('name', 'id');
+
+        $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
+
+
+
+        return view('receptions.edit', compact('reception','listSupplies','listStatus',
             'listProviders', 'listQualities', 'listFruits', 'listSeasons', 'listRejecteds'));
     }
 

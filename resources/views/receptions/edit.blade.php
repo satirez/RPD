@@ -13,7 +13,7 @@
                 	{!! Form::model($reception, ['route' => ['receptions.update', $reception->id],
                 	'method' => 'PUT']) !!} 
 
-                	@include('receptions.partials.form')
+                	@include('receptions.partials.formedit')
 
                 	{!! Form::close() !!}
 

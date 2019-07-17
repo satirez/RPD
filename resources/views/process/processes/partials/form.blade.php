@@ -27,12 +27,12 @@
 											   <th>N° cajas realizadas</th>
 											   <th>Creado</th>
 											 
-											  
+											   @forelse($receptions as $reception)
+
 											   <th colspan="auto">&nbsp;</th>
 										   </tr>
 									   </thead>
 										  <tbody>
-												@forelse($receptions as $reception)
 												<li>
 													<label>
 														{{ Form::checkbox('receptions[]', $reception->id) }}
@@ -56,6 +56,8 @@
 									   </tbody>
 								   </table>
 							</div>
+
+							
 
 					</ul>
 				</div>
@@ -101,6 +103,98 @@
 	 
 </div>
 
+<div class="card text">
+	<div class="card-header">
+			<h4> Sub Procesos </h4>
+			<button type="button" class="btn btn-info btn-circle btn-md float-right" 
+				onclick="addChild()">
+				<i class="fa fa-plus">
+				</i>
+			</button>
+	</div>
+	<div class="card-body" id="i-want-more-children">
+
+			@php
+				$count = 1;	
+			@endphp
+
+			<div class="btn btn-info btn-circle btn-sm float-left"> {{ $count }} </div>
+
+		<div class="col-md-12">
+				<div class="row">
+					<div class="form-group col-md-3">
+						<label for="format_id"> Formato </label>
+						<input class="form-control" name="format_id" type="text">
+					</div>
+					
+					<div class="form-group col-md-3">
+						<label for="quantity"> Cantidad </label>
+						<input class="form-control" name="quantity" type="number">
+					</div>
+				
+					<div class="form-group col-md-3">
+						<label for="quality_id"> Calidad </label>
+						<input class="form-control" name="quality_id" type="text">
+					</div>
+
+					<div class="form-group col-md-3">
+							<label for="status_id"> Estatus </label>
+							<input class="form-control" name="status_id" type="text">
+					</div>
+				</div>
+		</div>
+
+
+	</div>
+</div>
+
+<script>
+
+		@php
+			$count++;
+		@endphp
+		var childNumber = {{ $count }};
+
+		function addChild() {
+		  var parent = document.getElementById('i-want-more-children');
+		  var newChild = '<div class="btn btn-info btn-circle btn-sm float-left">' + childNumber +'</div>'+
+		  
+			` <div class="col-md-12">
+					<div class="row">
+						<div class="form-group col-md-3">
+							<label for="format_id"> Formato </label>
+							<input class="form-control" name="format_id" type="text">
+						</div>
+						
+						<div class="form-group col-md-3">
+							<label for="quantity"> Cantidad </label>
+							<input class="form-control" name="quantity" type="number">
+						</div>
+					
+						<div class="form-group col-md-3">
+							<label for="quality_id"> Calidad </label>
+							<input class="form-control" name="quality_id" type="text">
+						</div>
+
+						<div class="form-group col-md-3">
+								<label for="status_id"> Estatus </label>
+								<input class="form-control" name="status_id" type="text">
+						</div>
+					</div>
+				</div> 
+			`;
+
+		  parent.insertAdjacentHTML('beforeend', newChild);
+		  childNumber++;
+
+			
+
+
+
+		}
+		
+</script>
+
 
 
 <br>
@@ -112,11 +206,11 @@
 		</div>
 	@else
 	
-		<H4> No se puede ingresar </H4>
+		<div class="btn btn-lg btn-danger disabled"> No se puede ingresar  </div>
 
 	@endif
-	<br>
-	<br>
+<br>
+<br>
 
 
 

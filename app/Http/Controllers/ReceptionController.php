@@ -12,10 +12,6 @@ use App\Rejected;
 use App\Season;
 use App\Rate;
 use App\motivorejected;
-<<<<<<< HEAD
-=======
-
->>>>>>> cf257c98976396e19bc927438c6585b494af1a16
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateReception;
 use Carbon\Carbon;
@@ -107,13 +103,9 @@ class ReceptionController extends Controller
             $lastid = $last->id +1;
         }
 
-<<<<<<< HEAD
         return view('receptions.create', compact('lastid', 'receptionslist',
          'listStatus', 'listSupplies', 'listProviders', 'listQualities',
           'listFruits', 'listSeasons', 'listRejecteds'));
-=======
-        return view('receptions.create', compact('lastid','receptionslist','listStatus' , 'listSupplies', 'listProviders', 'listQualities', 'listFruits', 'listSeasons', 'listRejecteds'));
->>>>>>> cf257c98976396e19bc927438c6585b494af1a16
     }
 
     /**

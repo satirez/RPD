@@ -25,11 +25,7 @@ class Reception extends Model
         return $this->belongsToMany('\App\Process','process_reception')
          ->withPivot('process_id');
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> cf257c98976396e19bc927438c6585b494af1a16
     public function quality(){
         return $this->belongsTo(Quality::class);
     }

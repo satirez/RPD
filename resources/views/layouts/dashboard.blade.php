@@ -131,6 +131,11 @@ z
                 <a class="collapse-item" href="{{ url ('fruits') }}">Fruta</a>
             @endcan
 
+            <!-- Tipos Frutas -->
+            @can('admin.providers.index')
+                <a class="collapse-item" href="{{ url ('varieties') }}">Variedad de fruta</a>
+            @endcan
+
          <!--  Temporada -->
              @can('admin.providers.index')
                 <a class="collapse-item" href="{{ url ('seasons') }}">Temporada</a>

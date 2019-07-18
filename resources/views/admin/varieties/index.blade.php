@@ -6,9 +6,9 @@
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 style="text-align:center;">Tipos de fruta disponibles
-                    @can('admin.fruits.create')
-                    <a href="{{ Route('admin.fruits.create') }}" class="btn btn-info pull-right btn-sm"> Crear </a>
+                    <h4 style="text-align:center;">Variedades de frutas creadas
+                    @can('admin.varieties.create')
+                    <a href="{{ Route('admin.varieties.create') }}" class="btn btn-info pull-right btn-sm"> Crear nueva</a>
                     @endcan
                     </h4> 
                 </div>
@@ -17,39 +17,43 @@
                    <table class="table table-striped table-hover"> 
                        <thead>
                            <tr>
-                               <th>Nombre de la fruta</th>
+                               <th>Variedad</th>
+                               <th>Fruta </th>
                          
                                <th colspan="3">&nbsp;</th>
                            </tr>
                        </thead>
                        <tbody>
                        	
-                        @foreach($fruits as $fruit)
+                        @foreach($varieties as $variety)
                            
                            <tr>
-                                <td>{{ $fruit->specie  }}</td>
+                                <td>{{ $variety->variety  }}</td>
+
+                                <td>{{ $variety->fruit->specie  }}</td>
+
                                                			
                                 <td width="10px">
-                                    @can('admin.fruits.show')
+                                    @can('admin.varieties.show')
                                     <a 
-                                    href="{{ Route('admin.fruits.show', $fruit->id) }}" 
+                                    href="{{ Route('admin.varieties.show', $variety->id) }}" 
                                     class="btn btn-sm btn-default">
                                           Ver
                                     </a>
                                     @endcan
                                 </td>
                                 <td width="10px">
-                                    @can('admin.fruits.edit')
+                                    @can('admin.varieties.edit')
                                     <a 
-                                    href="{{ Route('admin.fruits.edit', $fruit->id) }}" 
+                                    href="{{ Route('admin.varieties.edit', $variety->id) }}" 
                                     class="btn btn-sm btn-info">
                                           Editar
                                     </a>
                                     @endcan
                                 </td>
                                 <td width="10px">
-                                    @can('admin.fruits.destroy')
-                                    {!! Form::open(['route' => ['admin.fruits.destroy', $fruit->id],
+                                    @can('admin.varieties.destroy')
+                                    {!! Form::open(['route' => ['admin.varieties.destroy', $variety->id],
                                     'method' => 'DELETE' ]) !!}
                                         <button class="btn btn-sm btn-danger">Eliminar</button>
                                     {!! Form::close() !!}
@@ -61,7 +65,7 @@
 
                        </tbody>
                    </table>
-                   {{ $fruits->render() }}
+                   {{ $varieties->render() }}
                 </div>
             </div>
         </div>

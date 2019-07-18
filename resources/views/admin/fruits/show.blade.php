@@ -11,7 +11,6 @@
 
                 <div class="panel-body">
                 	<p><strong>Nombre de la fruta:</strong> {{ $fruit->specie    }}</p>
-                    <p><strong>Variedad:</strong> {{ $fruit->variety    }}</p>
                                      
                 </div>
             </div>

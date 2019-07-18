@@ -35,13 +35,12 @@ return array(
     'App\\Http\\Controllers\\RoleController' => $baseDir . '/app/Http/Controllers/RoleController.php',
     'App\\Http\\Controllers\\SeasonController' => $baseDir . '/app/Http/Controllers/SeasonController.php',
     'App\\Http\\Controllers\\StatusController' => $baseDir . '/app/Http/Controllers/StatusController.php',
+    'App\\Http\\Controllers\\SubProcessController' => $baseDir . '/app/Http/Controllers/SubProcessController.php',
     'App\\Http\\Controllers\\SuppliesController' => $baseDir . '/app/Http/Controllers/SuppliesController.php',
     'App\\Http\\Controllers\\TrayController' => $baseDir . '/app/Http/Controllers/TrayController.php',
-<<<<<<< HEAD
     'App\\Http\\Controllers\\TrayInController' => $baseDir . '/app/Http/Controllers/TrayInController.php',
+    'App\\Http\\Controllers\\TrayInTrayOutController' => $baseDir . '/app/Http/Controllers/TrayInTrayOutController.php',
     'App\\Http\\Controllers\\TrayOutController' => $baseDir . '/app/Http/Controllers/TrayOutController.php',
-=======
->>>>>>> cf257c98976396e19bc927438c6585b494af1a16
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
@@ -90,6 +89,7 @@ return array(
     'App\\TrayIn_TrayOut' => $baseDir . '/app/TrayIn_TrayOut.php',
     'App\\TrayOut' => $baseDir . '/app/TrayOut.php',
     'App\\User' => $baseDir . '/app/User.php',
+    'App\\Variety' => $baseDir . '/app/Variety.php',
     'App\\motivorejected' => $baseDir . '/app/motivorejected.php',
     'App\\tray' => $baseDir . '/app/tray.php',
     'BeyondCode\\DumpServer\\DumpServerCommand' => $vendorDir . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',

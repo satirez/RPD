@@ -6,18 +6,14 @@
         <div class="col-md-8 col-md-offset-2">       
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4 style="text-align:center;">Editar Informacion de la fruta</h4>
+                            <h4 style="text-align:center;">Detalle de la variedad</h4>
                         </div>
 
-                @include('admin.fruits.partials.errors')
                 <div class="panel-body">
-                	{!! Form::model($fruit, ['route' => ['admin.fruits.update', $fruit->id],
-                	'method' => 'PUT']) !!} 
-
-                	@include('admin.fruits.partials.form')
-
-                	{!! Form::close() !!}
-
+                	<p><strong>Nombre de la variedad:</strong> {{ $variety->variety }}</p>
+                    <p><strong>Especie de la fruta:</strong> {{ $variety->fruit->specie    }}</p>
+                                                      
+               
                 </div>
             </div>
         </div>

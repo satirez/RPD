@@ -9,9 +9,13 @@ class Fruit extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'specie','variety'
+        'specie',
     ];
      public function receptions(){
         return $this->hasMany(Reception::class);
+    }
+
+     public function variety(){
+        return $this->hasMany(Variety::class);
     }
 }

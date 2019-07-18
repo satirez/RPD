@@ -219,6 +219,34 @@ Route::middleware('auth')->group(function () {
     Route::get('/fruits/{fruit}/edit', 'FruitController@edit')->name('admin.fruits.edit')
                                 ->middleware('permission:admin.fruits.edit');
 
+
+    //Variead de fruta
+    Route::post('/varieties/store', 'VarietyController@store')
+                    ->name('admin.varieties.store')
+                                ->middleware('permission:admin.varieties.create');
+
+    Route::get('/varieties/', 'VarietyController@index')
+                    ->name('admin.varieties.index')
+                                ->middleware('permission:admin.varieties.index');
+
+    Route::get('/varieties/create', 'VarietyController@create')
+                    ->name('admin.varieties.create')
+                                ->middleware('permission:admin.varieties.create');
+
+    Route::put('/varieties/{variety}', 'VarietyController@update')
+                    ->name('admin.varieties.update')
+                                ->middleware('permission:admin.varieties.edit');
+
+    Route::get('/varieties/{variety}', 'VarietyController@show')
+                    ->name('admin.varieties.show')
+                                ->middleware('permission:admin.varieties.show');
+
+    Route::delete('/varieties/{variety}', 'VarietyController@destroy')->name('admin.varieties.destroy')
+                                ->middleware('permission:admin.varieties.destroy');
+
+    Route::get('/varieties/{variety}/edit', 'VarietyController@edit')->name('admin.varieties.edit')
+                                ->middleware('permission:admin.varieties.edit');
+
     //Formato
 
     Route::post('/formats/store', 'FormatController@store')

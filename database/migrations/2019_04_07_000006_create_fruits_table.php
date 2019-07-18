@@ -15,7 +15,6 @@ class CreateFruitsTable extends Migration
     {
         Schema::create('fruits', function (Blueprint $table) {
             $table->increments('id');
-            $table->String('variety');
             $table->String('specie');
             $table->timestamps();
 

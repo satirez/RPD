@@ -9,12 +9,12 @@
                             <h4 style="text-align:center;">Editar Informacion de la fruta</h4>
                         </div>
 
-                @include('admin.fruits.partials.errors')
+                @include('admin.varieties.partials.errors')
                 <div class="panel-body">
-                	{!! Form::model($fruit, ['route' => ['admin.fruits.update', $fruit->id],
+                	{!! Form::model($variety, ['route' => ['admin.varieties.update', $variety->id],
                 	'method' => 'PUT']) !!} 
 
-                	@include('admin.fruits.partials.form')
+                	@include('admin.varieties.partials.form')
 
                 	{!! Form::close() !!}
 

@@ -6,40 +6,44 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reception extends Model
 {
-	protected $primaryKey = 'id';
-	
+    protected $primaryKey = 'id';
+
     protected $fillable = [
-    	'season_id', 'grossweight', 'provider_id', 'fruit_id', 'quality_id', 'netweight', 'status_id', 'rejected',
-        'middleweight_supplie', 'tray_in','tray_out','name_driver','number_guide','comment','temperature','tarja', 'middleweight_trays', 'rejected_id', 'quantity', 'palet_weight', 'supplies_id', 
+        'season_id', 'grossweight', 'provider_id', 'fruit_id', 'quality_id', 'netweight', 'status_id', 'rejected',
+        'middleweight_supplie', 'tray_in', 'tray_out', 'name_driver', 'number_guide', 'comment', 'temperature', 'tarja', 'middleweight_trays', 'rejected_id', 'quantity', 'palet_weight', 'supplies_id',
     ];
 
-    public function provider(){
+    public function provider()
+    {
         return $this->belongsTo(Providers::class);
     }
 
-    public function fruit(){
+    public function fruit()
+    {
         return $this->belongsTo(Fruit::class);
     }
 
-   public function process(){
-        return $this->belongsToMany('\App\Process','process_reception')
+    public function process()
+    {
+        return $this->belongsToMany('\App\Process', 'process_reception')
          ->withPivot('process_id');
     }
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> cf257c98976396e19bc927438c6585b494af1a16
-    public function quality(){
+    public function quality()
+    {
         return $this->belongsTo(Quality::class);
     }
 
-    public function rejected(){
+    public function rejected()
+    {
         return $this->belongsTo(Rejected::class);
     }
-    public function season(){
+
+    public function season()
+    {
         return $this->belongsTo(Season::class);
     }
+
     public function processes()
     {
         return $this->belongsToMany(Process::class);
@@ -49,5 +53,4 @@ class Reception extends Model
     {
         return $this->belongsToMany(Supplies::class);
     }
-
 }

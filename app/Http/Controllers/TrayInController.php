@@ -25,10 +25,11 @@ class TrayInController extends Controller
      */
     public function create()
     {
-        $traysOut = TrayOut::get()->sum('trayout');
-        $traysIn = TrayIn::get()->sum('trayin');
+        $traysOut = TrayOut::get()->sum('traysout');
+        $traysIn = TrayIn::get()->sum('traysin');
 
         $stockbandejas = $traysIn - $traysOut;
+
         $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
 
         return view('admin.trays.create', compact('listProviders', 'stockbandejas'));

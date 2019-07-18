@@ -17,12 +17,12 @@
 
     	function rest() {
         var txtFirstNo = document.getElementById('grossweight').value;
-        var txtSecondNo = document.getElementById('supplie').value;
+        var txtSecondNo = document.getElementById('supplies_id').value;
         var txtThirdNo = document.getElementById('quantity').value;
-        var palet = document.getElementById('palet').value;
+        var palet_weight = document.getElementById('palet_weight').value;
 
         //Calcular peso neto
-        var result = (Number(txtFirstNo)-(Number(txtThirdNo) * Number(txtSecondNo)))-Number(palet);
+        var result = (Number(txtFirstNo)-(Number(txtThirdNo) * Number(txtSecondNo)))-Number(palet_weight);
 		//Calcular peso medio por bandeja
 		var result2 = (Number(txtFirstNo)/(Number(txtThirdNo)));
 
@@ -96,9 +96,9 @@
 	<div class="col-md-4">
 		<div class="form-group">
 		{{ Form::label('supplies_id', 'Selecciona un Insumo') }}
-		{{Form::select('', $listSupplies, null, ['class' => 'form-control','required',
+		{{Form::select('supplies_id', $listSupplies, null, ['class' => 'form-control','required',
 		'onclick'=>'rest()',
-		'id'=>'supplie',
+		'id'=>'supplies_id',
 		 'placeholder'=>'Seleccione una opción'])}}
 		</div>
 	</div>
@@ -106,7 +106,7 @@
 	<div class="col-md-4">		
 		<div class="form-group">
 			{{ Form::label('quantity', 'Cantidad de bandejas') }}
-			{{ Form::number('', null, ['class' => 'form-control ',
+			{{ Form::number('quantity', null, ['class' => 'form-control ',
 			'onkeyup'=>'rest()',
 			'onKeyPress'=>'coma(event)',
 			'id'=>'quantity'
@@ -128,11 +128,11 @@
 <div class="row">
 	<div class="col-md-4">		
 		<div class="form-group">
-			{{ Form::label('palet', 'Peso del palet') }}
-			{{ Form::number('', null, ['class' => 'form-control ',
+			{{ Form::label('palet_weight', 'Peso del palet_weight') }}
+			{{ Form::number('palet_weight', null, ['class' => 'form-control ',
 			'onkeyup'=>'rest()',
 			'onKeyPress'=>'coma(event)',
-			'id'=>'palet'
+			'id'=>'palet_weight'
 			]) }}
 		</div>
 	</div>
@@ -180,14 +180,6 @@
 </div>
 
 <div class="row">
-	<div class="col-md-4">
-		<div class="form-group">
-		{{ Form::label('rate', 'Calidad de la fruta') }}
-		{{ Form::select('rate', array('1' => '10%', '2' => '20%', '3' => '30%', '4' => '40%', '5' => '50%', '6' => '60%', '7' => '70%', '8' => '80%'), 
-		null ,['class' => 'form-control','required' ,'placeholder'=>'Seleccione una nota'])}}
-		</div>
-	</div>
-	
 	<div class="col-md-4">
 		<div class="form-group">
 			{{ Form::label('comment', 'Comentario (Maximo 200 caracteres)') }}

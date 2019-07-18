@@ -479,8 +479,11 @@ class ComposerStaticInitfb31c1b769dd9a4e4ac23eda912e5e43
         'App\\Http\\Controllers\\StatusController' => __DIR__ . '/../..' . '/app/Http/Controllers/StatusController.php',
         'App\\Http\\Controllers\\SuppliesController' => __DIR__ . '/../..' . '/app/Http/Controllers/SuppliesController.php',
         'App\\Http\\Controllers\\TrayController' => __DIR__ . '/../..' . '/app/Http/Controllers/TrayController.php',
+<<<<<<< HEAD
         'App\\Http\\Controllers\\TrayInController' => __DIR__ . '/../..' . '/app/Http/Controllers/TrayInController.php',
         'App\\Http\\Controllers\\TrayOutController' => __DIR__ . '/../..' . '/app/Http/Controllers/TrayOutController.php',
+=======
+>>>>>>> cf257c98976396e19bc927438c6585b494af1a16
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -523,6 +526,7 @@ class ComposerStaticInitfb31c1b769dd9a4e4ac23eda912e5e43
         'App\\Rejected' => __DIR__ . '/../..' . '/app/Rejected.php',
         'App\\Season' => __DIR__ . '/../..' . '/app/Season.php',
         'App\\Status' => __DIR__ . '/../..' . '/app/Status.php',
+        'App\\SubProcess' => __DIR__ . '/../..' . '/app/SubProcess.php',
         'App\\Supplies' => __DIR__ . '/../..' . '/app/Supplies.php',
         'App\\TrayIn' => __DIR__ . '/../..' . '/app/TrayIn.php',
         'App\\TrayIn_TrayOut' => __DIR__ . '/../..' . '/app/TrayIn_TrayOut.php',

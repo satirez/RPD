@@ -12,6 +12,10 @@ use App\Rejected;
 use App\Season;
 use App\Rate;
 use App\motivorejected;
+<<<<<<< HEAD
+=======
+
+>>>>>>> cf257c98976396e19bc927438c6585b494af1a16
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateReception;
 use Carbon\Carbon;
@@ -83,6 +87,7 @@ class ReceptionController extends Controller
         $receptionslist = Reception::paginate('5');
 
         $listSupplies = Supplies::OrderBy('id', 'DES')->pluck('name', 'weight');
+
         $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
         $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
         $listRejecteds = MotivoRejected::OrderBy('id', 'DES')->pluck('name', 'id');
@@ -94,16 +99,21 @@ class ReceptionController extends Controller
         $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
 
         $last = Reception::OrderBy('id', 'DES')->first();
+    
+        if($last == null){
+            $lastid = 1; 
 
-        if ($last == null) {
-            $lastid = 1;
-        } else {
-            $lastid = $last->id + 1;
+        }else{
+            $lastid = $last->id +1;
         }
 
+<<<<<<< HEAD
         return view('receptions.create', compact('lastid', 'receptionslist',
          'listStatus', 'listSupplies', 'listProviders', 'listQualities',
           'listFruits', 'listSeasons', 'listRejecteds'));
+=======
+        return view('receptions.create', compact('lastid','receptionslist','listStatus' , 'listSupplies', 'listProviders', 'listQualities', 'listFruits', 'listSeasons', 'listRejecteds'));
+>>>>>>> cf257c98976396e19bc927438c6585b494af1a16
     }
 
     /**
@@ -115,13 +125,19 @@ class ReceptionController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $supplies_id = $request->get('supplies_id');
+        $supplies = Supplies::where('weight', $supplies_id)->first()->id;
+        $request['supplies_id'] = "$supplies";
+
+
         //Obtener datos del request
         $id = $request->get('provider_id');
         $rate = $request->get('rate');
-
+      
         //array que envia a tablas
         $rate = ['provider_id' => $id, 'rate' => $rate];
-
+      
         //Guarda la calificación
         $rate = Rate::create($rate);
 
@@ -130,14 +146,15 @@ class ReceptionController extends Controller
         //instancio el radio button
         $rejected = $request->get('rejected');
 
-        if ($rejected == 1) {
-            $rejected = ['reception_id' => $request->get('id'),
+        if($rejected==1){
+            $rejected = ['reception_id' => $request->get('id'), 
             'reason' => $request->get('reason'),
-            'commentrejected' => $request->get('comment'), ];
+            'commentrejected' => $request->get('comment')];
             $rejected = Rejected::create($rejected);
-        } else {
+            
+        }else{
         }
-
+        
         $request = $request->all();
 
         //quitar rate y reason  del array reception
@@ -145,12 +162,15 @@ class ReceptionController extends Controller
         unset($request['reason']);
         unset($request['commentrejected']);
 
-        //    dd($request);
+        dd($request);
 
         //Guarda la Recepción
         $reception = Reception::create($request);
 
         return redirect()->route('receptions.create', $reception->id)->with('info', 'Receptiono guardado con exito');
+
+
+
     }
 
     /**
@@ -199,11 +219,14 @@ class ReceptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //revisar UpdateRequest (no funca con eso)
     public function update(UpdateReception $request, Reception $reception)
     {
+       
         $reception->update($request->all());
 
-        return redirect()->route('receptions.edit', $reception->id)->with('info', 'Reception actualizada con exito');
+        return redirect()->route('receptions.index', $reception->id)->with('info', 'Reception actualizada con exito');
     }
 
     /**

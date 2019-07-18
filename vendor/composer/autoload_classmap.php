@@ -37,8 +37,11 @@ return array(
     'App\\Http\\Controllers\\StatusController' => $baseDir . '/app/Http/Controllers/StatusController.php',
     'App\\Http\\Controllers\\SuppliesController' => $baseDir . '/app/Http/Controllers/SuppliesController.php',
     'App\\Http\\Controllers\\TrayController' => $baseDir . '/app/Http/Controllers/TrayController.php',
+<<<<<<< HEAD
     'App\\Http\\Controllers\\TrayInController' => $baseDir . '/app/Http/Controllers/TrayInController.php',
     'App\\Http\\Controllers\\TrayOutController' => $baseDir . '/app/Http/Controllers/TrayOutController.php',
+=======
+>>>>>>> cf257c98976396e19bc927438c6585b494af1a16
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
@@ -81,6 +84,7 @@ return array(
     'App\\Rejected' => $baseDir . '/app/Rejected.php',
     'App\\Season' => $baseDir . '/app/Season.php',
     'App\\Status' => $baseDir . '/app/Status.php',
+    'App\\SubProcess' => $baseDir . '/app/SubProcess.php',
     'App\\Supplies' => $baseDir . '/app/Supplies.php',
     'App\\TrayIn' => $baseDir . '/app/TrayIn.php',
     'App\\TrayIn_TrayOut' => $baseDir . '/app/TrayIn_TrayOut.php',

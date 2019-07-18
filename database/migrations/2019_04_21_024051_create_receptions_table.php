@@ -15,9 +15,7 @@ class CreateReceptionsTable extends Migration
     {
         Schema::create('receptions', function (Blueprint $table) {
             $table->increments('id');
-           
             $table->String('grossweight');
-
             $table->Integer('provider_id')->unsigned();
                 $table->foreign('provider_id')->references('id')->on('providers')->onDelete('cascade');
             
@@ -32,7 +30,13 @@ class CreateReceptionsTable extends Migration
            
             $table->Integer('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
-           
+
+            $table->Integer('supplies_id')->unsigned();
+            $table->foreign('supplies_id')->references('id')->on('supplies')->onDelete('cascade');
+
+            $table->Integer('quantity');
+            $table->Double('palet_weight');
+
             $table->String('netweight');
             $table->boolean('rejected');
             $table->String('middleweight_trays');

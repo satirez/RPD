@@ -5,7 +5,7 @@
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 style="text-align:center;">Insumos
+                    <h4 style="text-align:center;">Exportadores
                     @can('admin.exporters.create')
                     <a href="{{ Route('admin.exporters.create') }}" class="btn btn-info pull-right"> Crear </a>
                     @endcan 

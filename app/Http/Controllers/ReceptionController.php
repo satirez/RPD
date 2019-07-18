@@ -102,7 +102,13 @@ class ReceptionController extends Controller
             $lastid = $last->id + 1;
         }
 
+<<<<<<< HEAD
         return view('receptions.create', compact('lastid', 'receptionslist', 'listStatus', 'listSupplies', 'listProviders', 'listQualities', 'listFruits', 'listSeasons', 'listRejecteds'));
+=======
+        return view('receptions.create', compact('lastid', 'receptionslist',
+         'listStatus', 'listSupplies', 'listProviders', 'listQualities',
+          'listFruits', 'listSeasons', 'listRejecteds'));
+>>>>>>> 60fe7475b95686c4b2d6826ff4aac5419cad97d4
     }
 
     /**

@@ -83,10 +83,7 @@ class ReceptionController extends Controller
     {
         $receptionslist = Reception::paginate('5');
 
-        $supplies = Supplies::Select('id', 'name', 'weight')->get();
-
-
-        $listSupplies = $supplies;
+        $listSupplies = Supplies::OrderBy('id', 'DES')->pluck('name', 'weight');
 
         $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
         $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
@@ -119,6 +116,11 @@ class ReceptionController extends Controller
      */
     public function store(Request $request)
     {
+        
+        $supplies_id = $request->get('supplies_id');
+        $supplies = Supplies::where('weight', $supplies_id)->first()->id;
+        $request['supplies_id'] = "$supplies";
+
 
         //Obtener datos del request
         $id = $request->get('provider_id');

@@ -8,6 +8,14 @@ use App\Http\Requests\StoreProcess;
 use App\Http\Requests\UpdateProcess;
 use App\Reception;
 use App\Rejected;
+use App\Fruit;
+use App\Quality;
+use App\Season;
+use App\Status;
+use App\Format;
+
+
+
 use App\Process_Reception;
 
 class ProcessController extends Controller
@@ -32,11 +40,16 @@ class ProcessController extends Controller
     public function create()
     {
         $processeslist = Process::paginate();
+        $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
         $receptions = Reception::orderBy('tarja', 'ASC')->where('available', 1)->get();
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
 
+        $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
+        $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'id');
+        $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
         $last = Process::OrderBy('id', 'DES')->first();
     
+        
         if($last == null){
             $lastid = 1; 
 
@@ -44,7 +57,9 @@ class ProcessController extends Controller
             $lastid = $last->id +1;
         }
 
-        return view('process.processes.create', compact('lastid','receptions', 'processeslist','listRejecteds'));
+        return view('process.processes.create', compact('lastid','receptions','processeslist',
+        'listRejecteds','listFruits'
+        ,'listQualities','listFormat','listStatus'));
     }
 
     /**
@@ -55,8 +70,29 @@ class ProcessController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreProcess $request)
-    {
- 
+    {   
+   
+        // dd($request->get('cantidad'));
+        $rows = $request->input('row');
+
+       foreach ($rows as $row) {
+        $data[] =[
+            'cantidad' =>$row['cantidad'],
+            'formatos' =>$row['formatos'],
+            'cualidades' =>$row['cualidades'],
+            'estatus' =>$row['estatus']
+        ];
+
+       }
+       
+        $data = $request->all();
+
+        dd($data);
+
+      
+
+        dd($data);
+
          //instancio el radio button
          $rejected = $request->get('rejected');
  

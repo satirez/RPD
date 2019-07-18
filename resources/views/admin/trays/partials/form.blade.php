@@ -16,6 +16,7 @@
     
 	function cal() {
 		
+
 	}
 
       
@@ -34,24 +35,19 @@
 
 	<div class="form-group">
 		{{ Form::label('traysin', 'Bandejas que llegaron') }}
-		{{ Form::text('traysin', null, ['class' => 'form-control ']) }}
+		{{ Form::number('traysin', null, ['class' => 'form-control ']) }}
 	</div>
 
 	<div class="form-group">
 		{{ Form::label('traysout', 'Bandejas devueltas') }}
-		{{ Form::text('traysout', null, ['class' => 'form-control ']) }}
-	</div>
-
-
-	<div class="form-group">
-		{{ Form::label('providerTrays', 'Bandejas entrantes') }}
-		{{ Form::text('providerTrays', null, ['class' => 'form-control ', 'readonly']) }}
+		{{ Form::number('traysout', null, ['class' => 'form-control ']) }}
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('freezTrays', 'Bandejas de Freez') }}
-		{{ Form::text('freezTrays', null, ['class' => 'form-control ', 'readonly']) }}
+		{{ Form::label('stock', 'Bandejas disponibles') }}
+		{{ Form::number('stock', $stockbandejas, null, ['class' => 'form-control ', 'readonly']) }}
 	</div>
+
 
 	<div class="form-group">
 		{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}

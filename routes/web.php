@@ -362,7 +362,7 @@ Route::middleware('auth')->group(function () {
     ->name('admin.statuses.store')
                 ->middleware('permission:admin.statuses.create');
 
-    Route::get('/statuses/', 'StatusController@index')
+    Route::get('/statuses', 'StatusController@index')
     ->name('admin.statuses.index')
                 ->middleware('permission:admin.statuses.index');
 
@@ -384,30 +384,24 @@ Route::middleware('auth')->group(function () {
     Route::get('/statuses/{status}/edit', 'StatusController@edit')->name('admin.statuses.edit')
                 ->middleware('permission:admin.statuses.edit');
 
+    //TrayINNNNNNNNsssssssssssssssssssssssssssssssssssss STORE
 
-    //Trays
-
-    Route::post('/trays/store', 'TrayController@store')
+    Route::post('/trays/store', 'TrayInController@store')
     ->name('admin.trays.store')
-                ->middleware('permission:admin.trays.create');
+                ->middleware('permission:admin.trays.store');
 
-    Route::get('/trays/create', 'TrayController@create')
+    Route::get('/trays/create', 'TrayInController@create')
     ->name('admin.trays.create')
                 ->middleware('permission:admin.trays.create');
 
-    Route::put('/trays/{tray}', 'TrayController@update')
+    Route::put('/trays/{tray}', 'TrayInController@update')
     ->name('admin.trays.update')
                 ->middleware('permission:admin.trays.edit');
 
-    Route::get('/trays/{tray}', 'TrayController@show')
+    Route::get('/trays/{tray}', 'TrayInController@show')
     ->name('admin.trays.show')
                 ->middleware('permission:admin.trays.show');
 
-                Route::get('/trays/{tray}/edit', 'TrayController@edit')->name('admin.trays.edit')
+    Route::get('/trays/{tray}/edit', 'TrayInController@edit')->name('admin.trays.edit')
                 ->middleware('permission:admin.trays.edit');
 });
-
-/* 
-    
-
-*/

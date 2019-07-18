@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\TrayIn;
+use App\TrayOut;
 use App\Providers;
-use App\Tray;
+use Illuminate\Http\Request;
 
-
-class TrayController extends Controller
+class TrayInController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,6 @@ class TrayController extends Controller
      */
     public function index()
     {
-    //    $trays = Tray::Paginate();
-   
-    //    return view('admin.trays.index', compact('trays'));
     }
 
     /**
@@ -28,8 +25,13 @@ class TrayController extends Controller
      */
     public function create()
     {
-     //   $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');       
-     //   return view('admin.trays.create', compact ('listProviders'));
+        $traysOut = TrayOut::get()->sum('trayout');
+        $traysIn = TrayIn::get()->sum('trayin');
+
+        $stockbandejas = $traysIn - $traysOut;
+        $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
+
+        return view('admin.trays.create', compact('listProviders', 'stockbandejas'));
     }
 
     /**
@@ -41,58 +43,53 @@ class TrayController extends Controller
      */
     public function store(Request $request)
     {
-        
-   //     $tray = Tray::create($request->all());
-   //     return redirect()->route('admin.trays.create', $tray->id)->with('info','Insumo guardado con exito');
+        $trayIn = TrayIn::create($request->all());
+
+        return redirect()->route('admin.trays.create', $trayIn->id)->with('info', 'Ingreso exitoso');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\tray $tray
+     * @param \App\TrayIn $trayIn
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(tray $tray)
+    public function show(TrayIn $trayIn)
     {
-
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\tray $tray
+     * @param \App\TrayIn $trayIn
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(tray $tray)
+    public function edit(TrayIn $trayIn)
     {
-        
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\tray                $tray
+     * @param \App\TrayIn              $trayIn
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tray $tray)
+    public function update(Request $request, TrayIn $trayIn)
     {
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\TrayController $traycontroller
+     * @param \App\TrayIn $trayIn
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tray $tray)
+    public function destroy(TrayIn $trayIn)
     {
     }
-
-    
 }

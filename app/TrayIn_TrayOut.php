@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Dispatch_Process extends Model
+class TrayIn_TrayOut extends Model
 {
     protected $primaryKey = 'id';
 
     protected $fillable = [
-            'disptach_id', 'process_id',
+        'trayin_id', 'trayout_id', 'stock',
     ];
 }

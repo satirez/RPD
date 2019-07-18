@@ -13,6 +13,7 @@ class Process extends Model
         'tarja_proceso','Box_out','rejected_id'
             
     ];
+    
      public function receptions(){
         return $this->belongsToMany('\App\Reception','process_reception')
             ->withPivot('process_id');
@@ -22,9 +23,9 @@ class Process extends Model
     {
         return $this->belongsToMany(Dispatch::class);
     }
+
     public function rejected(){
         return $this->belongsTo(Rejected::class);
     }
 
 }
-

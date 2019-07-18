@@ -123,7 +123,7 @@ z
             @endcan
              <!-- Estatus -->
             @can('admin.statuses.index')
-                <a class="collapse-item" href="{{ url ('statuses') }}">Estatus de Fruta</a>
+                <a class="collapse-item" href="{{ url ('statuses/index') }}">Estatus de Fruta</a>
             @endcan
          
             <!-- Tipos Frutas -->

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFormatsTable extends Migration
+class CreateTrayInsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateFormatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('formats', function (Blueprint $table) {
+        Schema::create('tray_ins', function (Blueprint $table) {
             $table->increments('id');
-            $table->String('name');
-            $table->String('largo');
-            $table->String('alto');
-            $table->String('ancho');
-            $table->String('weight');
+            $table->integer('traysin')->nullable();
+            $table->Integer('provider_id')->unsigned()->nullable();
+
+            $table->foreign('provider_id')->references('id')->on('providers')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
 
             $table->timestamps();
         });
@@ -32,6 +33,6 @@ class CreateFormatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('formats');
+        Schema::dropIfExists('tray_ins');
     }
 }

@@ -12,7 +12,6 @@ use App\Rejected;
 use App\Season;
 use App\Rate;
 use App\motivorejected;
-
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateReception;
 use Carbon\Carbon;
@@ -102,7 +101,9 @@ class ReceptionController extends Controller
             $lastid = $last->id + 1;
         }
 
-        return view('receptions.create', compact('lastid', 'receptionslist', 'listStatus', 'listSupplies', 'listProviders', 'listQualities', 'listFruits', 'listSeasons', 'listRejecteds'));
+        return view('receptions.create', compact('lastid', 'receptionslist',
+         'listStatus', 'listSupplies', 'listProviders', 'listQualities',
+          'listFruits', 'listSeasons', 'listRejecteds'));
     }
 
     /**
@@ -173,7 +174,6 @@ class ReceptionController extends Controller
      */
     public function edit(Reception $reception)
     {
-
         $receptionslist = Reception::paginate('5');
 
         $listSupplies = Supplies::OrderBy('id', 'DES')->pluck('name', 'weight');
@@ -186,8 +186,6 @@ class ReceptionController extends Controller
         $listSeasons = Season::OrderBy('id', 'DES')->pluck('name', 'id');
 
         $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
-
-
 
         return view('receptions.edit', compact('reception','listSupplies','listStatus',
             'listProviders', 'listQualities', 'listFruits', 'listSeasons', 'listRejecteds'));

@@ -44,6 +44,20 @@ class TrayInController extends Controller
      */
     public function store(Request $request)
     {
+        //sacar datos del request
+        $stock = $request->get('stock');
+        $traysout = $request->get('traysout');
+        //datos sacados pasados a un array
+        $traysout = ['provider_id' => $id, 'traysout' => $traysout];
+        //guarda un $traysout
+        $traysout = TrayOut::create($traysout);
+        //saca los datos del array!
+        unset($request['stock']);
+        }
+        unset($request['traysout']);
+
+        $stock = ['provider_id' => $id, 'stock' => $stock];
+
         $trayIn = TrayIn::create($request->all());
 
         return redirect()->route('admin.trays.create', $trayIn->id)->with('info', 'Ingreso exitoso');

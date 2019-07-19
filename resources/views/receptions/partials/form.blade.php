@@ -82,6 +82,13 @@
 		</div>
 	</div>
 
+	<div class="col-md-4">
+		<div class="form-group">
+		{{ Form::label('variety_id', 'Selecciona un tipo de variedad') }}
+		{{Form::select('variety_id', $listVariety, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+		</div>
+	</div>
+
 	
 
 	<div class="col-md-4">

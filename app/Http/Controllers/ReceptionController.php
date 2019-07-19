@@ -6,6 +6,8 @@ use App\Reception;
 use App\Supplies;
 use App\Providers;
 use App\Fruit;
+use App\Variety;
+
 use App\Quality;
 use App\Status;
 use App\Rejected;
@@ -85,7 +87,12 @@ class ReceptionController extends Controller
         $listSupplies = Supplies::OrderBy('id', 'DES')->pluck('name', 'weight');
 
         $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
+        
         $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
+        
+        $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
+
+
         $listRejecteds = MotivoRejected::OrderBy('id', 'DES')->pluck('name', 'id');
 
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
@@ -104,7 +111,7 @@ class ReceptionController extends Controller
 
         return view('receptions.create', compact('lastid', 'receptionslist',
          'listStatus', 'listSupplies', 'listProviders', 'listQualities',
-          'listFruits', 'listSeasons', 'listRejecteds'));
+          'listFruits', 'listSeasons', 'listRejecteds', 'listVariety'));
     }
 
     /**
@@ -144,6 +151,7 @@ class ReceptionController extends Controller
         }
 
         $request = $request->all();
+        //dd($request);
 
         //quitar rate y reason  del array reception
         unset($request['rate']);
@@ -184,6 +192,9 @@ class ReceptionController extends Controller
         $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
         $listRejecteds = MotivoRejected::OrderBy('id', 'DES')->pluck('name', 'id');
 
+        $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
+
+
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
 
         $listSeasons = Season::OrderBy('id', 'DES')->pluck('name', 'id');
@@ -191,7 +202,7 @@ class ReceptionController extends Controller
         $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
 
         return view('receptions.edit', compact('reception','listSupplies','listStatus',
-            'listProviders', 'listQualities', 'listFruits', 'listSeasons', 'listRejecteds'));
+            'listProviders', 'listQualities', 'listFruits', 'listSeasons', 'listRejecteds', 'listVariety'));
     }
 
     /**

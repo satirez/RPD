@@ -15,11 +15,13 @@ class CreateVarietiesTable extends Migration
     {
         Schema::create('varieties', function (Blueprint $table) {
 
+        $table->increments('id');
+        $table->String('variety');
+
         $table->Integer('fruit_id')->unsigned();
         $table->foreign('fruit_id')->references('id')->on('fruits')->onDelete('cascade');
 
-        $table->increments('id');
-        $table->String('variety');
+        
 
         $table->timestamps();
 

@@ -16,4 +16,10 @@ class Variety extends Model
     {
         return $this->belongsTo(Fruit::class);
     }
+
+    public function receptions(){
+        return $this->hasMany(Reception::class);
+    }
+
+    
 }

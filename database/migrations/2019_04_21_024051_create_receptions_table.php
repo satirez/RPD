@@ -16,11 +16,19 @@ class CreateReceptionsTable extends Migration
         Schema::create('receptions', function (Blueprint $table) {
             $table->increments('id');
             $table->String('grossweight');
+
             $table->Integer('provider_id')->unsigned();
                 $table->foreign('provider_id')->references('id')->on('providers')->onDelete('cascade');
+
+            $table->Integer('variety_id')->unsigned();
+                $table->foreign('variety_id')->references('id')->on('varieties')->onDelete('cascade');
             
             $table->Integer('fruit_id')->unsigned();
                 $table->foreign('fruit_id')->references('id')->on('fruits')->onDelete('cascade');
+
+                
+
+
 
             $table->Integer('quality_id')->unsigned();
                 $table->foreign('quality_id')->references('id')->on('qualities')->onDelete('cascade');

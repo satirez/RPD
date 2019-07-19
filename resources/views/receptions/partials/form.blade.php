@@ -4,6 +4,10 @@
   crossorigin="anonymous"></script>
 
   <script type="text/javascript">
+
+
+
+
   
     //No permitir comas
     function coma(e) { 
@@ -15,7 +19,7 @@
 
 	} 
 
-    	function rest() {
+    function rest() {
         var txtFirstNo = document.getElementById('grossweight').value;
         var txtSecondNo = document.getElementById('supplies_id').value;
         var txtThirdNo = document.getElementById('quantity').value;
@@ -78,14 +82,20 @@
 	<div class="col-md-4">
 		<div class="form-group">
 		{{ Form::label('fruit_id', 'Selecciona un tipo de fruta') }}
-		{{Form::select('fruit_id', $listFruits, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+		{{Form::select('fruit_id', $listFruits, null, ['class' => 'form-control',
+		'id'=>'fruit_id',
+		'required',
+		 'placeholder'=>'Seleccione una opción'])}}
 		</div>
 	</div>
 
 	<div class="col-md-4">
 		<div class="form-group">
 		{{ Form::label('variety_id', 'Selecciona un tipo de variedad') }}
-		{{Form::select('variety_id', $listVariety, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+		{{Form::select('variety_id', $listVariety, null, ['class' => 'form-control',
+		'id'=>'variety_id',
+		'required',
+		 'placeholder'=>'Seleccione una opción'])}}
 		</div>
 	</div>
 
@@ -271,3 +281,19 @@
 			</div>
 	@endif
 </div>
+<script >
+	
+	//Select dinamico 
+  	$('#fruit_id').on('change', function(e){
+  		console.log(e);
+  		var fruit_id = e.target.value;
+  		$.get('/json-variety_id?fruit_id=' + fruit_id,function(data){
+  			console.log(data);
+  			$('#variety_id').empty();
+  			$('#variety_id').append('');
+  			
+
+  		});
+  	});
+
+</script>

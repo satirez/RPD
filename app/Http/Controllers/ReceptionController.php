@@ -17,6 +17,7 @@ use App\motivorejected;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateReception;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Input;
 
 class ReceptionController extends Controller
 {
@@ -88,7 +89,7 @@ class ReceptionController extends Controller
 
         $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
         
-        $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
+        $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id')->toArray();
         
         $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
 
@@ -112,6 +113,12 @@ class ReceptionController extends Controller
         return view('receptions.create', compact('lastid', 'receptionslist',
          'listStatus', 'listSupplies', 'listProviders', 'listQualities',
           'listFruits', 'listSeasons', 'listRejecteds', 'listVariety'));
+    }
+
+    public function fruitsAjax(){
+        $fruits_id = Input::get('fruits_id');
+        $varieties = Variety::where('fruits_id','=',$fruits_id)->get();
+        return response()->json($varieties);
     }
 
     /**

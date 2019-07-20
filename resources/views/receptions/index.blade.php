@@ -72,14 +72,17 @@
                                 
                                 <td>{{ $receptionslis->tarja }}</td>
 
-                                @if($receptionslis->rejected == 1){
-                                    <span class="badge badge-warning">Rechazado</span>
-                                }
-                                @elseif{
-                                    <span class="badge badge-success">Disponible</span>
-                                }
-                                @endif
-                                <td> {{$receptionslis->rejected}} </td>
+                                <td> 
+                                    @if($receptionslis->rejected == 1)
+                                        <span class="badge badge-danger">Rechazado</span>
+                                    
+                                    @else
+                                        <span class="badge badge-success">Disponible</span>
+                                    
+                                    @endif
+
+                                </td>
+                                
                                 <td>{{ $receptionslis->grossweight  }} kg</td>
                                 <td>{{ $receptionslis->netweight  }} kg</td>
                                 <td>{{ $receptionslis->quantity }}</td>

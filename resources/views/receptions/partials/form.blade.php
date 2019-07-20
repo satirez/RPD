@@ -5,10 +5,6 @@
 
   <script type="text/javascript">
 
-
-
-
-  
     //No permitir comas
     function coma(e) { 
     tecla=(document.all) ? e.keyCode : e.which; 
@@ -45,7 +41,6 @@
 
 <div class="row">
 
-
 	<div class="col-md-4">
 		<div class="form-group">
 			{{ Form::label('tarja', 'Numero de Tarja') }}
@@ -60,33 +55,34 @@
 		</div>
 	</div>
 
-	
 </div>
 
 <div class="row">
 	
-	<div class="col-md-4">
-		<div class="form-group">
-		{{ Form::label('provider_id', 'Selecciona un proveedor') }}
-		{{Form::select('provider_id', $listProviders, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+		<div class="col-md-4">
+			<div class="form-group">
+			{{ Form::label('provider_id', 'Selecciona un proveedor') }}
+			{{Form::select('provider_id', $listProviders, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+			</div>
 		</div>
-	</div>
 
-	<div class="col-md-4">
+		<div class="col-md-4">
 			<div class="form-group">
 			{{ Form::label('status_id', 'Selecciona un estado') }}
 			{{Form::select('status_id', $listStatus, null, ['class' => 'form-control dynamic','required', 'placeholder'=>'Seleccione una opción'])}}
 			</div>
 		</div>
+
 		<div class="col-md-4">
 			<div class="form-group">
 			{{ Form::label('season_id', 'Selecciona la temporada') }}
 			{{Form::select('season_id', $listSeasons, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 			</div>
 		</div>
-	</div>
 
-	<div class="row">
+</div>
+
+<div class="row">
 		
 		<div class="col-md-4">
 			<div class="form-group">
@@ -101,13 +97,11 @@
 
 		<div class="col-md-4">
 			<div class="form-group">
-			
 				<select class="form-control" name="variety_id" id="variety_id">
 					<option value=""> Selectione variedad </option>
 				</select>
 			</div>
 		</div>	
-	</div>
 </div>
 
 <div class="row">
@@ -165,7 +159,6 @@
 		</div>
 	</div>
 
-	<!-- label que muestra el peso medio de fruta por bandeja -->
 	<div class="col-md-4">
 		<div class="form-group">
 			{{ Form::label('middleweight_trays', 'Gr de fruta por bandeja') }}
@@ -224,48 +217,48 @@
 
 <div class="row">
 
-<div class="col-md-12">
-	<div class="form-group">
-		<div class="bs-example">
-			
-			<input type="radio" 
-				name="rejected" 
-				value="0" 
-				data-toggle="collapse" 
-				data-parent="#accordion"
-				href="#collapseOne"  
-				checked> Bueno
+	<div class="col-md-12">
+		<div class="form-group">
+			<div class="bs-example">
+				
+				<input type="radio" 
+					name="rejected" 
+					value="0" 
+					data-toggle="collapse" 
+					data-parent="#accordion"
+					href="#collapseOne"  
+					checked> Bueno
 
-			<input type="radio" 
-				name="rejected" 
-				value="1" 
-				data-toggle="collapse" 
-				data-parent="#accordion" 
-				href="#collapseOne"> Rechazado
-			
-			<div class="panel-group" id="accordion">
-				<div class="panel panel-default">
-					<div id="collapseOne" class="panel-collapse collapse in">
-						<div class="panel-body">
-							<div class="card">
-								<div class="card-body">
-										{{Form::label('reason', 'Selecciona motivo de rechazo') }}
-										{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
-										{{Form::label('commentrejected', 'Comentario Adicional') }}
-										{{Form::textarea('commentrejected',null,['class'=>'form-control'])}}
+				<input type="radio" 
+					name="rejected" 
+					value="1" 
+					data-toggle="collapse" 
+					data-parent="#accordion" 
+					href="#collapseOne"> Rechazado
+				
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-default">
+						<div id="collapseOne" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<div class="card">
+									<div class="card-body">
+											{{Form::label('reason', 'Selecciona motivo de rechazo') }}
+											{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
+											{{Form::label('commentrejected', 'Comentario Adicional') }}
+											{{Form::textarea('commentrejected',null,['class'=>'form-control'])}}
 
-								</div> 
+									</div> 
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+
+
 			</div>
-
-
 		</div>
-	  </div>
-	 
-</div>
+		
+	</div>
 
 			<div class="col-md-8">
 				<div class="form-group">

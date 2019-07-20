@@ -53,7 +53,7 @@ class TrayInController extends Controller
         $traysout = TrayOut::create($traysout);
         //saca los datos del array!
         unset($request['stock']);
-        }
+        
         unset($request['traysout']);
 
         $stock = ['provider_id' => $id, 'stock' => $stock];

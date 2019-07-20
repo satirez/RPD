@@ -52,19 +52,16 @@
                         <br>
                         <thead>
                             <tr class="">
+                                <th>N° de tarja</th>
+                                <th>Estado</th>
                                 <th>Peso bruto</th>
                                 <th>Peso neto</th>
-
-                                <th>Proveedores</th>
+                                <th>N° Bandejas</th>
+                                <th>Productor</th>
                                 <th>Fruta</th>
-                                <th>Calidad</th>
+                                <th>tipo Calidad</th>                               
+                                <th>fecha/hora</th>
                                 
-                                
-
-                                <th>Nombre del Conductor</th>
-                                <th>N° de guia</th>
-                                <th>N° de tarja</th>
-                                <th>creado</th>
 
                                 <th colspan="auto">&nbsp;</th>
                             </tr>
@@ -72,15 +69,18 @@
                         <tbody>
                             @foreach($receptions as $receptionslis)
                             <tr>
-                                <td>{{ $receptionslis->grossweight  }} Kg.</td>
-                                <td>{{ $receptionslis->netweight  }} Kg.</td>
-                                <td>{{ $receptionslis->provider->name  }}</td>
-                                <td>{{ $receptionslis->fruit->name  }}</td>
-                                <td>{{ $receptionslis->quality->name  }}</td>
-                                <td>{{ $receptionslis->name_driver  }}</td>
-                                <td>{{ $receptionslis->number_guide }}</td>
+                                
                                 <td>{{ $receptionslis->tarja }}</td>
+                                <td> {{$receptionslis->rejected}} </td>
+                                <td>{{ $receptionslis->grossweight  }} kg</td>
+                                <td>{{ $receptionslis->netweight  }} kg</td>
+                                <td>{{ $receptionslis->quantity }}</td>
+                                <td>{{ $receptionslis->provider->name  }}</td>
+                                <td>{{ $receptionslis->fruit->specie  }}</td>
+                                <td>{{ $receptionslis->quality->name  }}</td>
                                 <td>{{ $receptionslis->created_at }}</td>
+                                
+                                
 
                                 <td width="8px">
                                     @can('receptions.show')

@@ -24,15 +24,7 @@
                         @foreach($statuses as $status)
                            <tr>
                                 <td>{{ $status->name   }}</td>
-                                <td width="10px">
-                                    @can('admin.statuses.show')
-                                    <a 
-                                    href="{{ Route('admin.statuses.show', $status->id) }}" 
-                                    class="btn btn-sm btn-default">
-                                          Ver
-                                    </a>
-                                    @endcan
-                                </td>
+                               
                                 <td width="10px">
                                     @can('admin.statues.edit')
                                     <a 

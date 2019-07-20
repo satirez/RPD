@@ -32,16 +32,7 @@
                                 <td>{{ $quality->name   }}</td>
                                 <td>{{ $quality->description   }}</td>
                     
-                    			
-                                <td width="10px">
-                                    @can('admin.quality.show')
-                                    <a 
-                                    href="{{ Route('admin.quality.show', $quality->id) }}" 
-                                    class="btn btn-sm btn-default">
-                                          Ver
-                                    </a>
-                                    @endcan
-                                </td>
+                    		
                                 <td width="10px">
                                     @can('admin.quality.edit')
                                     <a 

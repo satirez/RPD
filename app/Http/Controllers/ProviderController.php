@@ -59,7 +59,12 @@ class ProviderController extends Controller
         $id = $provider->id;
         $rate = Rate::get()->where('provider_id',$id)->SUM('rate');
         $cuenta = Rate::where('provider_id',$id)->count();
-        $prom =  ($rate/$cuenta)*10;
+        //validacion de calificacion
+        if ($cuenta  == 0 || $rate == 0){
+            $prom = '- NO CALIFICADO AÚN EN ';
+        }else{
+            $prom =  ($rate/$cuenta)*10;
+        }
         
 
 

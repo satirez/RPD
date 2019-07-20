@@ -29,15 +29,7 @@
                            <tr>
                                 <td>{{ $fruit->specie  }}</td>
                                                			
-                                <td width="10px">
-                                    @can('admin.fruits.show')
-                                    <a 
-                                    href="{{ Route('admin.fruits.show', $fruit->id) }}" 
-                                    class="btn btn-sm btn-default">
-                                          Ver
-                                    </a>
-                                    @endcan
-                                </td>
+                           
                                 <td width="10px">
                                     @can('admin.fruits.edit')
                                     <a 

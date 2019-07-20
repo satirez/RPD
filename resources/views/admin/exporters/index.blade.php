@@ -35,15 +35,6 @@
                         
                     
                                 <td width="10px">
-                                    @can('admin.exporters.show')
-                                    <a 
-                                    href="{{ Route('admin.exporter.show', $exporter->id) }}" 
-                                    class="btn btn-sm btn-default">
-                                          Ver
-                                    </a>
-                                    @endcan
-                                </td>
-                                <td width="10px">
                                     @can('admin.exporters.edit')
                                     <a 
                                     href="{{ Route('admin.exporters.edit', $exporter->id) }}" 

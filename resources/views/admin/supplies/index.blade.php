@@ -27,18 +27,10 @@
                         @foreach($supplies as $supplie)
                            <tr>
                                 <td>{{ $supplie->name   }}</td>
-                                <td>{{ $supplie->weight   }}</td>
-                                <td>{{ $supplie->measure }}</td>
+                                <td>{{ $supplie->weight   }} kg</td>
+                                <td>{{ $supplie->measure }} cm</td>
                     
-                                <td width="10px">
-                                    @can('admin.supplies.show')
-                                    <a 
-                                    href="{{ Route('admin.supplies.show', $supplie->id) }}" 
-                                    class="btn btn-sm btn-default">
-                                          Ver
-                                    </a>
-                                    @endcan
-                                </td>
+                           
                                 <td width="10px">
                                     @can('admin.supplies.edit')
                                     <a 

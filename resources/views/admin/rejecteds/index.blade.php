@@ -33,15 +33,7 @@
                                 
                     
                     			
-                                <td width="10px">
-                                    @can('admin.rejecteds.show')
-                                    <a 
-                                    href="{{ Route('admin.rejecteds.show', $motivorejected->id) }}" 
-                                    class="btn btn-sm btn-default">
-                                          Ver
-                                    </a>
-                                    @endcan
-                                </td>
+                         
                                 <td width="10px">
                                     @can('admin.rejecteds.edit')
                                     <a 

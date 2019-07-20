@@ -34,15 +34,6 @@
                         
                     
                                 <td width="10px">
-                                    @can('admin.seasons.show')
-                                    <a 
-                                    href="{{ Route('admin.season.show', $season->id) }}" 
-                                    class="btn btn-sm btn-default">
-                                          Ver
-                                    </a>
-                                    @endcan
-                                </td>
-                                <td width="10px">
                                     @can('admin.seasons.edit')
                                     <a 
                                     href="{{ Route('admin.seasons.edit', $season->id) }}" 

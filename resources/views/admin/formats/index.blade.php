@@ -18,9 +18,11 @@
                        <thead>
                            <tr>
                                <th>Nombre del formato</th>
-                               <th>largo </th>
-                               <th>alto </th>
-                               <th>ancho </th>
+                               <th>Peso </th>
+                               <th>Largo </th>
+                               <th>Alto </th>
+                               <th>Ancho </th>
+                              
                          
                                <th colspan="3">&nbsp;</th>
                            </tr>
@@ -31,19 +33,13 @@
                            
                            <tr>
                                 <td>{{ $format->name  }}</td>
-                                <td>{{ $format->largo  }}</td>
-                                <td>{{ $format->alto  }}</td>
-                                <td>{{ $format->ancho  }}</td>
+                                <td>{{ $format->weight  }} kg</td>
+                                <td>{{ $format->largo  }} cm</td>
+                                <td>{{ $format->alto  }} cm</td>
+                                <td>{{ $format->ancho  }} cm</td>
+                                
                                                			
-                                <td width="10px">
-                                    @can('admin.formats.show')
-                                    <a 
-                                    href="{{ Route('admin.formats.show', $format->id) }}" 
-                                    class="btn btn-sm btn-default">
-                                          Ver
-                                    </a>
-                                    @endcan
-                                </td>
+                              
                                 <td width="10px">
                                     @can('admin.formats.edit')
                                     <a 

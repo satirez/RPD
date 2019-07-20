@@ -101,15 +101,13 @@
 
 		<div class="col-md-4">
 			<div class="form-group">
+			
 				<select class="form-control" name="variety_id" id="variety_id">
 					<option value=""> Selectione variedad </option>
 				</select>
 			</div>
 		</div>	
 	</div>
-	
-
-	
 </div>
 
 <div class="row">

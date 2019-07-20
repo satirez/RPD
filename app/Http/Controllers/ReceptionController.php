@@ -7,7 +7,6 @@ use App\Supplies;
 use App\Providers;
 use App\Fruit;
 use App\Variety;
-
 use App\Quality;
 use App\Status;
 use App\Rejected;
@@ -89,7 +88,7 @@ class ReceptionController extends Controller
 
         $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
         
-        $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id')->toArray();
+        $listFruits = Fruit::OrderBy('id', 'DES')->get();
         
         $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
 
@@ -115,10 +114,8 @@ class ReceptionController extends Controller
           'listFruits', 'listSeasons', 'listRejecteds', 'listVariety'));
     }
 
-    public function fruitsAjax(){
-        $fruits_id = Input::get('fruits_id');
-        $varieties = Variety::where('fruits_id','=',$fruits_id)->get();
-        return response()->json($varieties);
+    public function byFruit($id){
+        return Variety::where('fruit_id',$id)->get();
     }
 
     /**
@@ -158,7 +155,6 @@ class ReceptionController extends Controller
         }
 
         $request = $request->all();
-        //dd($request);
 
         //quitar rate y reason  del array reception
         unset($request['rate']);

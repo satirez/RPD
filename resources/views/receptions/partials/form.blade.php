@@ -75,38 +75,41 @@
 	<div class="col-md-4">
 			<div class="form-group">
 			{{ Form::label('status_id', 'Selecciona un estado') }}
-			{{Form::select('status_id', $listStatus, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+			{{Form::select('status_id', $listStatus, null, ['class' => 'form-control dynamic','required', 'placeholder'=>'Seleccione una opción'])}}
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+			{{ Form::label('season_id', 'Selecciona la temporada') }}
+			{{Form::select('season_id', $listSeasons, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		
+		<div class="col-md-4">
+			<div class="form-group">
+				<select class="form-control" name="fruit_id" id="fruit_id">
+					<option value=""> Selectione Fruta </option>
+					@foreach ($listFruits as $listFruit)
+						<option value="{{ $listFruit->id }}"> {{ $listFruit->specie }}</option>
+					@endforeach
+				</select>
 			</div>
 		</div>
 
-	<div class="col-md-4">
-		<div class="form-group">
-		{{ Form::label('fruit_id', 'Selecciona un tipo de fruta') }}
-		{{Form::select('fruit_id', $listFruits, null, ['class' => 'form-control',
-		'id'=>'fruit_id',
-		'required',
-		 'placeholder'=>'Seleccione una opción'])}}
-		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<select class="form-control" name="variety_id" id="variety_id">
+					<option value=""> Selectione variedad </option>
+				</select>
+			</div>
+		</div>	
 	</div>
-
-	<div class="col-md-4">
-		<div class="form-group">
-		{{ Form::label('variety_id', 'Selecciona un tipo de variedad') }}
-		{{Form::select('variety_id', $listVariety, null, ['class' => 'form-control',
-		'id'=>'variety_id',
-		'required',
-		 'placeholder'=>'Seleccione una opción'])}}
-		</div>
-	</div>
-
 	
 
-	<div class="col-md-4">
-		<div class="form-group">
-		{{ Form::label('season_id', 'Selecciona la temporada') }}
-		{{Form::select('season_id', $listSeasons, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
-		</div>
-	</div>
+	
 </div>
 
 <div class="row">
@@ -117,7 +120,7 @@
 		'onclick'=>'rest()',
 		'id'=>'supplies_id',
 		 'placeholder'=>'Seleccione una opción'])}}
-		</div>
+		</div> 
 	</div>
 
 	<div class="col-md-4">		
@@ -281,19 +284,27 @@
 			</div>
 	@endif
 </div>
-<script >
-	
-	//Select dinamico 
-  	$('#fruit_id').on('change', function(e){
-  		console.log(e);
-  		var fruit_id = e.target.value;
-  		$.get('/json-variety_id?fruit_id=' + fruit_id,function(data){
-  			console.log(data);
-  			$('#variety_id').empty();
-  			$('#variety_id').append('');
-  			
 
-  		});
-  	});
+<script>
+	$(function(){
+		$('#fruit_id').on('change', onSelectProyectChange);
+	});
 
+	function onSelectProyectChange(){
+		var fruit_id = $(this).val();
+		
+		if(! fruit_id){
+			$('#variety_id').html('<Option value="">Seleccione Variedad</Option>');
+				return;
+		}
+		// ajax
+
+		$.get('/api/fruit/'+fruit_id+'/variedad', function(data){
+
+			var html_select = '<Option value="">Seleccione Variedad</Option>';
+			for(var i=0; i<data.length; ++i)
+				html_select += '<Option value="'+data[i].id+'">'+data[i].variety+'</option>';
+			$('#variety_id').html(html_select);
+		});
+	}
 </script>

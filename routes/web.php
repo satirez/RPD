@@ -147,8 +147,10 @@ Route::middleware('auth')->group(function () {
                                 ->middleware('permission:receptions.edit');
 
     //Consulta Ajax Select
-    Route::get('/json-variety_id', 'ReceptionController@fruitsAjax'); 
-                                
+
+
+    
+    
     //Process
     //ruta 		//nombre de ruta 	//Permiso
     Route::get('/processes/create', 'ProcessController@create')->name('process.processes.create')

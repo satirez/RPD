@@ -177,14 +177,28 @@ z
         @endcan
 
            <!-- Nav Item -->
+        <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport1" aria-expanded="true" aria-controls="collapseReport">
+          <i class="fas fa-fw fa-truck-loading" style="color:#55FF00"></i>
+          <span>Despacho</span>
+        </a>
+        <div id="collapseReport1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Custom Components:</h6>
+            @can('dispatch.index')
+            <a class="collapse-item" href="{{ url ('camara') }}">Camara</a>
+            @endcan
 
-           @can('dispatch.index')
-           <li class="nav-item">
-                <a class="nav-link" href="{{ url ('dispatch') }}">
-                  <i class="fas fa-fw fa-truck-loading" style="color:#55FF00"></i>
-                  <span>Despacho</span></a>
-              </li>
-           @endcan
+            @can('dispatch.index')
+            <a class="collapse-item" href="{{ url ('dispatch') }}">Despachar</a>
+            @endcan
+
+          </div>
+        </div>
+      </li>
+
+
 
 
       <!-- Divider -->

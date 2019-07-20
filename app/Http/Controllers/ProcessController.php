@@ -136,9 +136,9 @@ class ProcessController extends Controller
      */
     public function show(Process $process)
     {
-        $process1 = $process->id;
+        
         // $receptions = Process_Reception::where('process_id',$process1)->get();
-        $receptions = Process::find($process1);
+        $receptions = Process::find($process);
 
         return view('process.processes.show', compact('receptions'));
     }

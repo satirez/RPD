@@ -390,6 +390,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/dispatch/{dispatch}/edit', 'dispatchcontroller@edit')->name('dispatch.edit')
             ->middleware('permission:dispatch.edit');
 
+    Route::get('/camara', 'dispatchcontroller@getProcess')
+            ->name('dispatch.getProcess')
+                ->middleware('permission:dispatch.getProcess');
+
     //Estatus
 
     Route::post('/statuses/store', 'StatusController@store')

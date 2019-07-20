@@ -25,6 +25,20 @@ class DispatchController extends Controller
         return view('dispatch.index', compact('listexporter', 'listdispatches'));
     }
 
+    public function getProcess(){
+        $processes = Process::paginate();
+
+        return view('dispatch.camara', compact('processes'));
+    }
+
+    public function showCam(Process $process){
+        $process1 = $process->id;
+        // $receptions = Process_Reception::where('process_id',$process1)->get();
+        $receptions = Process::find($process1);
+
+        return view('dispatch.showcam', compact('receptions'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

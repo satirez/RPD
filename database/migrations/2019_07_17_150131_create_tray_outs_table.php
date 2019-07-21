@@ -23,6 +23,9 @@ class CreateTrayOutsTable extends Migration
             $table->foreign('provider_id')->references('id')->on('providers')
             ->onDelete('cascade')
             ->onUpdate('cascade');
+
+            $table->timestamps();
+
         });
     }
 

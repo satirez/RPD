@@ -43,20 +43,19 @@ class TrayInController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //sacar datos del request
-        $stock = $request->get('stock');
-        $traysout = $request->get('traysout');
+    {   
+        $menos = ($request->get('traysout')*-1);
+
+        
         //datos sacados pasados a un array
-        $traysout = ['provider_id' => $id, 'traysout' => $traysout];
+        $traysout = ['provider_id' => $request->get('provider_id'), 
+                     'traysout' => $request->get('traysout')];
+
         //guarda un $traysout
         $traysout = TrayOut::create($traysout);
         //saca los datos del array!
-        unset($request['stock']);
         
         unset($request['traysout']);
-
-        $stock = ['provider_id' => $id, 'stock' => $stock];
 
         $trayIn = TrayIn::create($request->all());
 

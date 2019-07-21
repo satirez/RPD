@@ -68,30 +68,37 @@ class DispatchController extends Controller
       
           //instancio el radio button
           $rejected = $request->get('rejected');
- 
-          if($rejected==1){
-              $rejected = ['reception_id' => $request->get('id'), 
-              'reason' => $request->get('reason'),
-              'comment' => $request->get('comment')];
-              $rejected = Rejected::create($rejected);
-              
-          }else{
-          }
+          $reason = $request->get('reason');
+          $comment = $request->get('comment');
+
+         
             
           //quitar rate y reason  del array reception
           unset($request['reason']);
           unset($request['comment']);
-  
+        
           //Guarda la despacho
         $dispatch = Dispatch::create($request->all());
 
         $dispatch->processes()->attach($request->get('process'));
+        $dispatch_id = $dispatch->id;
 
         $checklistdata = $request->get('process');
 
         foreach ($checklistdata as $key) {
             Process::where('id', $key)->update(['available' => 0]);
         }
+
+        if($rejected==1){
+            $rejected = ['reception_id' => $dispatch_id, 
+            'reason' => $reason,
+            'comment' => $comment
+          ];
+            $rejected = Rejected::create($rejected);
+            
+        }else{
+        }
+
 
         return redirect()->route('dispatch.index', $dispatch->id)->with('info', 'despacho guardado con exito');
     }

@@ -13,10 +13,8 @@ use App\Quality;
 use App\Season;
 use App\Status;
 use App\Format;
-
-
-
 use App\Process_Reception;
+use App\SubProcess;
 
 class ProcessController extends Controller
 {
@@ -71,51 +69,24 @@ class ProcessController extends Controller
      */
     public function store(StoreProcess $request)
     {   
-   
-        // dd($request->get('cantidad'));
-        $rows = $request->input('row');
-
-       foreach ($rows as $row) {
-        $data[] =[
-            'cantidad' =>$row['cantidad'],
-            'formatos' =>$row['formatos'],
-            'cualidades' =>$row['cualidades'],
-            'estatus' =>$row['estatus']
-        ];
-
-       }
        
-        $data = $request->all();
-
-        dd($data);
-
-      
-
-        dd($data);
-
-         //instancio el radio button
-         $rejected = $request->get('rejected');
- 
-         if($rejected==1){
-             $rejected = [
-                 'process_id' => $request->get('id'), 
-                 'reason' => $request->get('reason'),
-                'comment' => $request->get('comment')];
-             $rejected = Rejected::create($rejected);
-             
-         }else{
-         }
-         
-         
-         //quitar rate y reason  del array reception
-         unset($request['reason']);
-         unset($request['comment']);
-
-         //Guarda la Recepción
-         $process = Process::create($request->all());
-
+        // Se genera el array con la información de proceso
+       $process = [
+            'tarja_proceso' => $request->get('tarja_proceso'), 
+            'Box_out' => $request->get('Box_out'),
+            'rejected' => $request->get('rejected'),
+            'wash' => $request->get('wash')
+        ];
+        
+        // Se crea
+        $process = Process::create($process);
+        //se establece la relación con receptions
         $process->receptions()->attach($request->get('receptions'));
 
+        //se obtiene el id del ultimo
+        $process_id = $process->id;
+
+        //se obtienen todas las recepciones para crear un update de las recepciones que no estaran disponibles
         $checklistdata = $request->get('receptions');
 
         foreach ($checklistdata as $key) {
@@ -123,8 +94,42 @@ class ProcessController extends Controller
             Reception::where('id', $key)->update(['available' => 0]);
         }
 
+            // SUB PROCESOS
+        // se obtienen los array de sub procesos
+         $rows = $request->input('row');
+         foreach ($rows as $row) {
+  
+              $Charges[] = [
+                  'quantity' =>$row['cantidad'],
+                  'format_id' =>$row['formatos'],
+                  'quality_id' =>$row['cualidades'],
+                  'status_id' =>$row['estatus'],
+                  'process_id'=>$process_id
+              ];
+  
+         }
+         
+         // Se insertan los Subprocesos
+         SubProcess::insert($Charges);
 
-        return redirect()->route('process.processes.index', $process->id)->with('info', 'Proceso guardado con exito');
+
+         //instancio el radio button
+         $rejected = $request->get('rejected');
+ 
+         if($rejected==1){
+             $rejected = [
+                 'process_id' => $process_id, 
+                 'reason' => $request->get('reason'),
+                 'comment' => $request->get('comment')];
+                 $rejected = Rejected::create($rejected);
+             
+         }else{
+         }
+         
+
+        
+
+        return redirect()->route('process.processes.index', $process_id)->with('info', 'Proceso guardado con exito');
     }
 
     /**

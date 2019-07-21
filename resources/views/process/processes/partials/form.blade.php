@@ -138,25 +138,25 @@
 				
 				<div class="form-group col-md-3">
 					<label for="quantity"> Cantidad </label>
-					<input class="form-control", onkeyup="rest()", name="row[{{ $count }}][cantidad]" id="cantidad" type="text">
+					<input class="form-control", onkeyup="rest()", name="row[0][cantidad]" id="cantidad" type="text">
 				</div>
 
 				<div class="form-group col-md-3">
 					{{ Form::label('format_id', 'Formato') }}
-					{{Form::select('row[$count][formatos]', $listFormat, null, 
+					{{Form::select('row[0][formatos]', $listFormat, null, 
 					['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 					
 				</div>
 
 				<div class="form-group col-md-3">
 					{{ Form::label('quality_id', 'Calidad') }}
-					{{Form::select('row[$count][cualidades]', $listQualities, null, 
+					{{Form::select('row[0][cualidades]', $listQualities, null, 
 					['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 				</div>
 
 				<div class="form-group col-md-3">
 					{{ Form::label('status_id', 'status de la fruta') }}
-					{{Form::select('row[$count][estatus]', $listStatus, null, 
+					{{Form::select('row[0][estatus]', $listStatus, null, 
 					['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 				</div>
 			</div>
@@ -168,7 +168,7 @@
 
 <script>
 	@php
-		$count++;
+		$count = 1;
 	@endphp
 	
 	var childNumber = {{ $count }};
@@ -182,25 +182,25 @@
 						
 						<div class="form-group col-md-3">
 							<label for="quantity"> Cantidad </label>
-							<input class="form-control" name="row[$count][cantidad]" type="text">
+							<input class="form-control" name="row[`+ childNumber +`][cantidad]" type="text">
 						</div>
 		
 						<div class="form-group col-md-3">
 							{{ Form::label('format_id', 'Formato') }}
-							{{Form::select('row[$count][formatos]', $listFormat, null, 
+							{{Form::select('row[`+ childNumber +`][formatos]', $listFormat, null, 
 							['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 							
 						</div>
 		
 						<div class="form-group col-md-3">
 							{{ Form::label('quality_id', 'Calidad') }}
-							{{Form::select('row[$count][cualidades]', $listQualities, null, 
+							{{Form::select('row[`+ childNumber +`][cualidades]', $listQualities, null, 
 							['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 						</div>
 		
 						<div class="form-group col-md-3">
 							{{ Form::label('status_id', 'status de la fruta') }}
-							{{Form::select('row[$count][estatus]', $listStatus, null, 
+							{{Form::select('row[`+ childNumber +`][estatus]', $listStatus, null, 
 							['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 						</div>
 

@@ -10,7 +10,7 @@ class Rejected extends Model
 	protected $primaryKey = 'id';
 
     protected $fillable = [
-        'reason', 'description',
+        'reason', 'comment','reception_id','process_id','dispatch'
     ];
 
    public function receptions(){

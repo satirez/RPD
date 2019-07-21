@@ -127,7 +127,13 @@ class ReceptionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+
+        $rejected = $request->get('rejected');
+        $reason = $request->get('reason');
+        $comment = $request->get('comment');
+
+        //Obtiene el dato de la bandeja
         $supplies_id = $request->get('supplies_id');
         $supplies = Supplies::where('weight', $supplies_id)->first()->id;
         $request['supplies_id'] = "$supplies";
@@ -142,28 +148,29 @@ class ReceptionController extends Controller
         //Guarda la calificación
         $rate = Rate::create($rate);
 
-        // RECHADOS
-
-        //instancio el radio button
-        $rejected = $request->get('rejected');
-
-        if ($rejected == 1) {
-            $rejected = ['reception_id' => $request->get('id'),
-            'reason' => $request->get('reason'),
-            'commentrejected' => $request->get('comment'), ];
-            $rejected = Rejected::create($rejected);
-        } else {
-        }
-
-        $request = $request->all();
-
+        
+        $reception = $request->all();
         //quitar rate y reason  del array reception
         unset($request['rate']);
         unset($request['reason']);
         unset($request['commentrejected']);
 
         //Guarda la Recepción
-        $reception = Reception::create($request);
+        $reception = Reception::create($reception);
+        $reception_id = $reception->id;
+        
+        
+        // RECHAZADOS
+        //instancio el radio button
+
+        if ($rejected == 1) {
+            $rejected = ['reception_id' => $reception_id,
+            'reason' => $reason,
+            'commentrejected' => $comment, ];
+            $rejected = Rejected::create($rejected);
+        } else {
+        }
+
 
         return redirect()->route('receptions.create', $reception->id)->with('info', 'Receptiono guardado con exito');
     }

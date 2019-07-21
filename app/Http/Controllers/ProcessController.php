@@ -115,7 +115,8 @@ class ProcessController extends Controller
 
          //instancio el radio button
          $rejected = $request->get('rejected');
- 
+         
+         // si se selecciono que estaba rechazado pos, se rechaza xD
          if($rejected==1){
              $rejected = [
                  'process_id' => $process_id, 
@@ -175,7 +176,7 @@ class ProcessController extends Controller
      */
     public function update(Request $request,Process $process)
     {
-        $process = Process::find($id);
+        $process = Process::find($process->id);
         $process->update($request->all());
         $process->receptions()->sync($request->get('receptions'));
 

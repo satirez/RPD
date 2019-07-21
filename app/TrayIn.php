@@ -16,4 +16,10 @@ class TrayIn extends Model
         return $this->belongsToMany('\App\TrayOut','TrayIn_TrayOut')
         ->withPivot('trayout_id');
     }
+    
+    public function provider()
+    {
+        return $this->belongsTo(Providers::class);
+    }
+
 }

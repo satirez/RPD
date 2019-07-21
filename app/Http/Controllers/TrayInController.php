@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\TrayIn;
 use App\TrayOut;
 use App\Providers;
+use App\TrayIn_TrayOut;
 use Illuminate\Http\Request;
 
 class TrayInController extends Controller
@@ -25,6 +26,9 @@ class TrayInController extends Controller
      */
     public function create()
     {
+        
+        $liststocks = TrayIn::all();
+       
         $traysOut = TrayOut::get()->sum('traysout');
         $traysIn = TrayIn::get()->sum('traysin');
 
@@ -32,7 +36,7 @@ class TrayInController extends Controller
 
         $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
 
-        return view('admin.trays.create', compact('listProviders', 'stockbandejas'));
+        return view('admin.trays.create', compact('listProviders', 'stockbandejas', 'liststocks'));
     }
 
     /**

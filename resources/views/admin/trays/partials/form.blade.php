@@ -1,32 +1,3 @@
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-
-  <script type="text/javascript">
-  
-    //No permitir comas
-    function coma(e) { 
-    	tecla=(document.all) ? e.keyCode : e.which; 
-    	if (tecla==44) { 
-        alert('No usar "Comas", reemplazar por "punto" ');
-        return false; 
-    	}
-	}
-    
-	function cal() {
-		
-
-	}
-
-      
-</script>
-
-
-
-
-
-
 <div class="col-md-4">
 		<div class="form-group">
 		{{ Form::label('provider_id', 'Productor') }}
@@ -45,7 +16,7 @@
 
 	<div class="form-group">
 		{{ Form::label('stock', 'Bandejas disponibles') }}
-		{{ Form::number('stock', $stockbandejas, null, ['class' => 'form-control ', 'readonly']) }}
+		{{ Form::number('stock', $stockbandejas, null, ['class' => 'form-control ', 'ReadOnly']) }}
 	</div>
 
 
@@ -53,3 +24,29 @@
 		{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
 	</div>
 </div>
+
+<div class="col-md-10">
+<div class="panel-body">
+                   <table class="table table-striped table-hover"> 
+                       <thead>
+                           <tr>
+                               <th>Nombre</th>
+                               <th>bandejas de entrada</th>
+                               <th>bandejas de salida</th>
+                               
+                               <th colspan="3">&nbsp;</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                        @foreach($liststocks as $liststock)
+                           <tr>
+                                <td>{{ $liststock->provider->name   }} </td>
+                         
+                           </tr>
+                        @endforeach
+                       </tbody>
+                   </table>
+                 
+                </div>
+</div>
+

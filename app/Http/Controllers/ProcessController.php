@@ -13,9 +13,6 @@ use App\Quality;
 use App\Season;
 use App\Status;
 use App\Format;
-
-
-
 use App\Process_Reception;
 
 class ProcessController extends Controller

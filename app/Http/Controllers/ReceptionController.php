@@ -31,6 +31,7 @@ class ReceptionController extends Controller
         $receptions = Reception::paginate();
 
         return view('receptions.index', compact('receptions'));
+        
     }
 
     public function inprocess()

@@ -86,24 +86,30 @@
                                 <td>{{ $receptionslis->grossweight  }} kg</td>
                                 <td>{{ $receptionslis->netweight  }} kg</td>
                                 <td>{{ $receptionslis->quantity }}</td>
-                                <td>{{ $receptionslis->provider->name  }}</td>
+                                <td>
+
+                                    <a  href="{{ Route('admin.providers.show', $receptionslis->provider->id ) }}" >
+                                     {{ $receptionslis->provider->name }} 
+                                    </a>
+
+                                </td>
                                 <td>{{ $receptionslis->fruit->specie  }}</td>
                                 <td>{{ $receptionslis->quality->name  }}</td>
                                 <td>{{ $receptionslis->created_at }}</td>
                                 
                                 
 
-                                <td width="8px">
+                                <td width="5px">
                                     @can('receptions.show')
                                     <a href="{{ Route('receptions.show', $receptionslis->id) }}" class="btn btn-sm btn-default">Ver</a>
                                     @endcan
                                 <td>
-                                <td width="8px">
+                                <td width="5px">
                                     @can('receptions.edit')
                                     <a href="{{ Route('receptions.edit', $receptionslis->id) }}" class="btn btn-sm btn-info">Editar</a>
                                     @endcan
                                 <td>
-                                <td width="8px">
+                                <td width="5px">
                                     @can('receptions.destroy')
                                     {!! Form::open(['route' => ['receptions.destroy', $receptionslis->id],
                                     'method' => 'DELETE' ]) !!}

@@ -32,7 +32,9 @@
 									<th></th>
 									<th>Tarja</th>
 									<th>Fruta</th>
-									<th>Temporada</th>
+									<th>Peso Bruto</th>
+									<th>Rejillas</th>
+									
 									<th>Calidad</th>
 								</tr>
 							</thead>
@@ -42,9 +44,11 @@
 								<tr>
 									<th>{{ Form::checkbox('receptions[]', $reception->id) }} </th>
 									<th>{{ $reception->tarja }}</th>
-									<th>{{ $reception->fruit->specie }}</th>
-									<th>{{ $reception->season->name }}</th>
+									<th>{{ $reception->fruit->specie }} - {{ $reception->variety_id }}</th>
+									<th>{{ $reception->grossweight }}</th>
+									<th>{{ $reception->quantity }}</th>
 									<th>{{ $reception->quality->name }}</th>
+
 
 									@php
 									$uno = false;

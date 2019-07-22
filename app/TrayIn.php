@@ -9,7 +9,7 @@ class TrayIn extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'traysin', 'provider_id', 'traysout', 'haber'
+        'traysin', 'provider_id',
     ];
 
  

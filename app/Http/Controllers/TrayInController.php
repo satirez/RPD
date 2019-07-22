@@ -25,16 +25,11 @@ class TrayInController extends Controller
     public function create()
     {
         $liststocks = TrayIn::all();
-
-
-
-
-
         //Calcular Stock General
-        $traysOut = TrayIn::get()->sum('traysout');
-        $traysIn = TrayIn::get()->sum('traysin');
+        
+        $stockbandejas = TrayIn::get()->sum('traysin');
 
-        $stockbandejas = $traysIn - $traysOut;
+     
       
         $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
 
@@ -50,25 +45,24 @@ class TrayInController extends Controller
      */
     public function store(Request $request)
     {
-         $TrayIn = new TrayIn();         ;
-
+        $accion = $request->get('accion');
             
-                //bandejas que se deben
 
-            $in = $request->input("traysin");
-            $out = $request->input("traysout");
-            
-            $haberr = $request->input("haber");
-
-            if($haber > 0 ){
-
-                $haber = $haberr - ($in - $out);
-            }
-
-            $TrayIn->save();
-            
+        if ($accion == 1){
 
             $trayIn = TrayIn::create($request->all());
+
+        }else{
+
+            $traysinn = $request->get("traysin");
+            $traysin = $traysinn * (-1);
+            $request->merge(['traysin' => $traysin]);
+            $trayIn = TrayIn::create($request->all());
+        }
+            //unir datos al request
+            
+
+           
 
         return redirect()->route('admin.trays.create', $trayIn->id)->with('info', 'Ingreso exitoso');
     }

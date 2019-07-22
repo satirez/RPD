@@ -4,10 +4,13 @@
 
     <div class="container">
         <div class="row">
+                <img src="images/logo.png"  class="rounded mx-auto d-block" >
+
             <div class="col-md-12">
                 <h1 class="text-center">
                     Bienvenido
                 </h1>
+
             </div>
         </div>
         <div class="row">

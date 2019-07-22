@@ -36,7 +36,7 @@ class FruitController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreFruit $request)
     {
       $fruits = Fruit::create($request->all());
         

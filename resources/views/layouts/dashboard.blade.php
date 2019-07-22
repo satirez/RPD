@@ -70,7 +70,6 @@
              <!-- Roles -->
              @can('roles.index')
              <a class="collapse-item" href="{{ url ('roles') }}">Roles de usuario</a>
-z
             @endcan
           </div>
         </div>

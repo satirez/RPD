@@ -4,9 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use ValidateRequests;
-
-class StoreFruit extends FormRequest
+class UpdateVariety extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,16 +21,18 @@ class StoreFruit extends FormRequest
      *
      * @return array
      */
-       public function rules()
+    public function rules()
     {
        return [
-            'specie' => 'required|max:20',
+            'variety' => 'required|max:20',
+            'fruit_id' => 'required|max:20',
         ];
     }
 
     public function messages(){
         return [
-            'specie.required' => 'Debe ingresar el nombre de la fruta',
+            'variety.required' => 'Debe ingresar el nombre de la variedad',
+            'fruit_id.required' => 'Debe seleccionar una fruta',
             ];
     }
 }

@@ -39,6 +39,7 @@ class StoreUser extends FormRequest
             'name.required' => 'El Nombre esta vacio.',
             'email.required' => 'Por favor, rellenar el Rut',
             'email.unique' => 'El rut ya esta en uso',
+            'email.cl_rut' => 'No es valido'
         ];
     }
 }

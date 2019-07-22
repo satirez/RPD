@@ -16,6 +16,8 @@ class CreateTrayInsTable extends Migration
         Schema::create('tray_ins', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('traysin')->nullable();
+            $table->integer('traysout')->nullable();
+            $table->integer('haber')->nullable();
             $table->Integer('provider_id')->unsigned()->nullable();
 
             $table->foreign('provider_id')->references('id')->on('providers')

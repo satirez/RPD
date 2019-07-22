@@ -17,7 +17,7 @@ class CreateSuppliesTable extends Migration
             $table->increments('id');
             $table->String('name');
             $table->String('weight');
-            $table->String('measure');
+            
             $table->timestamps();
         });
     }

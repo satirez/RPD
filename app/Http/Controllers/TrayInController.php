@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TrayIn;
-use App\TrayOut;
 use App\Providers;
-use App\TrayIn_TrayOut;
 use Illuminate\Http\Request;
 
 class TrayInController extends Controller
@@ -26,14 +24,18 @@ class TrayInController extends Controller
      */
     public function create()
     {
-        
         $liststocks = TrayIn::all();
-       
-        $traysOut = TrayOut::get()->sum('traysout');
+
+
+
+
+
+        //Calcular Stock General
+        $traysOut = TrayIn::get()->sum('traysout');
         $traysIn = TrayIn::get()->sum('traysin');
 
         $stockbandejas = $traysIn - $traysOut;
-
+      
         $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
 
         return view('admin.trays.create', compact('listProviders', 'stockbandejas', 'liststocks'));
@@ -47,21 +49,26 @@ class TrayInController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        $menos = ($request->get('traysout')*-1);
+    {
+         $TrayIn = new TrayIn();         ;
 
-        
-        //datos sacados pasados a un array
-        $traysout = ['provider_id' => $request->get('provider_id'), 
-                     'traysout' => $request->get('traysout')];
+            
+                //bandejas que se deben
 
-        //guarda un $traysout
-        $traysout = TrayOut::create($traysout);
-        //saca los datos del array!
-        
-        unset($request['traysout']);
+            $in = $request->input("traysin");
+            $out = $request->input("traysout");
+            
+            $haberr = $request->input("haber");
 
-        $trayIn = TrayIn::create($request->all());
+            if($haber > 0 ){
+
+                $haber = $haberr - ($in - $out);
+            }
+
+            $TrayIn->save();
+            
+
+            $trayIn = TrayIn::create($request->all());
 
         return redirect()->route('admin.trays.create', $trayIn->id)->with('info', 'Ingreso exitoso');
     }

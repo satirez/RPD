@@ -29,14 +29,15 @@
 
        	if(result > 0){
  			if (!isNaN(result)) {
-            document.getElementById('netweight').value = result;
-			document.getElementById('middleweight_trays').value = result2.toFixed(2);
-               }
+           		document.getElementById('netweight').value = result;
+				document.getElementById('middleweight_trays').value = result2.toFixed(2);
+            }
        	}else{
             document.getElementById('netweight').value = 0;
 			document.getElementById('middleweight_trays').value = 0;
-           }
-       	}
+        }
+    }
+	
 </script>
 
 

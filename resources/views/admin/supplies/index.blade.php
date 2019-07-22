@@ -18,7 +18,7 @@
                            <tr>
                                <th>Nombre</th>
                                <th>Peso</th>
-                               <th>Medida</th>
+                               
                                
                                <th colspan="3">&nbsp;</th>
                            </tr>
@@ -28,7 +28,7 @@
                            <tr>
                                 <td>{{ $supplie->name   }}</td>
                                 <td>{{ $supplie->weight   }} kg</td>
-                                <td>{{ $supplie->measure }} cm</td>
+                              
                     
                            
                                 <td width="10px">

@@ -9,7 +9,7 @@ class Supplies extends Model
 	protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name', 'weight', 'measure',
+        'name', 'weight', 
     ];
 
     public function receptions(){

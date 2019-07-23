@@ -202,15 +202,14 @@ class ReceptionController extends Controller
         $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
         $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
         $listRejecteds = MotivoRejected::OrderBy('id', 'DES')->pluck('name', 'id');
-
         $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
-
-
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
-
         $listSeasons = Season::OrderBy('id', 'DES')->pluck('name', 'id');
-
         $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
+
+    //        $rechazado = Rejected::where('reception_id',$reception->id)->pluck('name','id');
+
+
 
         return view('receptions.edit', compact('reception','listSupplies','listStatus',
             'listProviders', 'listQualities', 'listFruits', 'listSeasons', 'listRejecteds', 'listVariety'));
@@ -228,6 +227,13 @@ class ReceptionController extends Controller
     //revisar UpdateRequest (no funca con eso)
     public function update(UpdateReception $request, Reception $reception)
     {
+
+        $rejected = $reception->rejected;
+
+        if($rejected == 1){
+            $borrado = Rejected::where('reception_id', $reception->id)->delete();
+        }
+
         $reception->update($request->all());
 
         return redirect()->route('receptions.index', $reception->id)->with('info', 'Reception actualizada con exito');

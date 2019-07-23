@@ -4,10 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use ValidateRequests;
-
-
-class StoreUser extends FormRequest
+class StoreStatus extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,21 +23,14 @@ class StoreUser extends FormRequest
      */
     public function rules()
     {
-       return [
-            'name' => 'required|max:40',
-            'email' => 'required|min:9|max:10|cl_rut|unique:users',
-            'password' => 'required|string|min:6',
-
+        return [
+            'name' => 'required|max:30',
         ];
     }
 
     public function messages(){
         return [
-            'name.required' => 'El Nombre esta vacio.',
-            'email.required' => 'Por favor, rellenar el Rut',
-            'email.unique' => 'El rut ya esta en uso',
-            'email.cl_rut' => 'No es valido'
-        ];
+            'name.required' => 'Debe ingresar el nombre del estatus'
+            ];
     }
 }
-

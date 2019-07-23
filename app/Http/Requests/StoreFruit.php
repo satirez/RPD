@@ -27,14 +27,12 @@ class StoreFruit extends FormRequest
     {
        return [
             'specie' => 'required|max:20',
-            'variety' => 'required|max:20',
         ];
     }
 
     public function messages(){
         return [
-            'specie.required' => 'Falta un campo obligatorio',
-            'variety.required' => 'Falta un campo obligatorio',
+            'specie.required' => 'Debe ingresar el nombre de la fruta',
             ];
     }
 }

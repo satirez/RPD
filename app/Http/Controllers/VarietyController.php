@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Variety; 
 use App\Fruit;
-
+use App\Http\Requests\StoreVariety;
+use App\Http\Requests\UpdateVariety;
 
 class VarietyController extends Controller
 {
@@ -38,7 +39,7 @@ class VarietyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreVariety $request)
     {
         $varieties = Variety::create($request->all());
         
@@ -77,7 +78,7 @@ class VarietyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Variety $variety)
+    public function update(UpdateVariety $request, Variety $variety)
     {
         $variety->update($request->all()); 
         return redirect()->route('admin.varieties.index', $variety->id)->with('info', 'Tipo de variedad actualizada con exito');

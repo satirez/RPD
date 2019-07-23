@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Status;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreStatus;
+use App\Http\Requests\UpdateStatus;
 
 class StatusController extends Controller
 {
@@ -35,7 +37,7 @@ class StatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreStatus $request)
     {
         $status = Status::create($request->all());
         return redirect()->route('admin.statuses.index', $status->id)->with('info', 'estatus guardado con exito');
@@ -73,7 +75,7 @@ class StatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Status $status)
+    public function update(UpdateStatus $request, Status $status)
     {
         $status->update($request->all());
 

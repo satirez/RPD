@@ -72,7 +72,6 @@
                         <a href="{{ url('home') }}">Panel de administración</a>
                     @else
                         <a href="{{ url('login') }}">Login</a>
-                        <a href="{{ url('register') }}">Registro</a>
                     @endauth
                 </div>
             @endif

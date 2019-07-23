@@ -4,10 +4,13 @@
 
     <div class="container">
         <div class="row">
+                <img src="images/logo.png"  class="rounded mx-auto d-block" >
+
             <div class="col-md-12">
                 <h1 class="text-center">
                     Bienvenido
                 </h1>
+
             </div>
         </div>
         <div class="row">
@@ -22,7 +25,7 @@
                                     <div class="row p-2 no-gutters">
                                         <div class="col-6">
                                             <div class="card card-block text-info rounded-0 border-left-0 border-top-o border-bottom-0">
-                                                <h3>{{ $cuentaProcess }}</h3>
+                                                <h3>{{ $cuentaReception }}</h3>
                                                 <span class="small text-uppercase">Realizas Hoy</span>
                                             </div>
                                         </div>
@@ -49,7 +52,7 @@
                                     <div class="row p-2 no-gutters">
                                         <div class="col-6">
                                             <div class="card card-block text-info rounded-0 border-left-0 border-top-o border-bottom-0">
-                                                <h3>{{ $cuentaReception }}</h3>
+                                                <h3>{{ $cuentaProcess}}</h3>
                                                 <span class="small text-uppercase">Realizados Hoy</span>
                                             </div>
                                         </div>

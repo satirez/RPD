@@ -26,7 +26,7 @@ class StoreQuality extends FormRequest
        public function rules()
     {
        return [
-            'name' => 'required|max:20',
+            'name' => 'required|max:20|unique:users',
             'description' => 'required|max:120',
             
         ];

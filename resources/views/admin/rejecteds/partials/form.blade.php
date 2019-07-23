@@ -1,8 +1,8 @@
 <div class="form-group">
-	{{ Form::label('name', 'Nombre del motivo de rechazo') }}
-	{{ Form::text('name', null, ['class' => 'form-control ']) }}
+	{{ Form::label('name', 'Motivo de rechazo') }}
+	{{ Form::text('name', null, ['class' => 'form-control ', 'placeholder'=>'ejemplo: Metales']) }}
 </div>
 
 <div class="form-group">
-	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
+	{{ Form::submit('Guardar', ['class' => 'btn btn-success']) }}
 </div>

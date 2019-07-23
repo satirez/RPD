@@ -26,7 +26,7 @@ class StoreExporter extends FormRequest
         return [
             'name' => 'required|max:20',
             'phone' => 'required|max:8',
-            'rut' => 'required|max:10',
+            'rut' => 'required|max:10|cl_rut|unique:rut',
         ];
     }
 
@@ -35,7 +35,8 @@ class StoreExporter extends FormRequest
         return [
             'name.required' => 'Falta el rut del exportador',
             'phone.required' => 'Falta el numero de contacto',
-            'rut.required' => 'Falta rut del exportador',
+            'rut.cl_rut' => 'rut invakudi o falta rellenar el campo',
+            
         ];
     }
 }

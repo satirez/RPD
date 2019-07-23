@@ -181,7 +181,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport1" aria-expanded="true" aria-controls="collapseReport">
           <i class="fas fa-fw fa-truck-loading" style="color:#55FF00"></i>
-          <span>Despacho</span>
+          <span>Camara</span>
         </a>
         <div id="collapseReport1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">

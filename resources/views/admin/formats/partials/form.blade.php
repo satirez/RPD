@@ -23,11 +23,11 @@
 
 <div class="form-group">
 	{{ Form::label('weight', 'Peso (ejem: 0.2)') }}
-	{{ Form::text('weight', null, ['class' => 'form-control input-number', 'placeholder'=>'cm']) }}
+	{{ Form::text('weight', null, ['class' => 'form-control input-number', 'placeholder'=>'kg']) }}
 </div>
 
 <div class="form-group">
-	{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
+	{{ Form::submit('Guardar', ['class' => 'btn btn-success']) }}
 </div>
 
 <!-- Permitir solo numeros, puntos y X-->
@@ -39,6 +39,3 @@
 });
 
 </script>
-
-
-

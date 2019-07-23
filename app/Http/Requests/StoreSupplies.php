@@ -26,7 +26,7 @@ class StoreSupplies extends FormRequest
        public function rules()
     {
        return [
-            'name' => 'required|max:20',
+            'name' => 'required|max:20|unique:name',
             'weight' => 'required|max:10',
            
         ];
@@ -36,7 +36,6 @@ class StoreSupplies extends FormRequest
         return [
             'name.required' => 'Falta un campo obligatorio',
             'weight.required' => 'Falta un campo obligatorio',
-            
         ];
     }
 }

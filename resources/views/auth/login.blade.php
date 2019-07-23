@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Login</title>
+  <title>Login</title>
 
   <!-- Custom fonts for this template-->
   <link href="/webcss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -54,7 +54,7 @@
                                                     </div>
                                                   
                                                     <!-- Change this to a button or input when using this as a form -->
-                                                    <button  class="btn btn-primary btn-user btn-block">Login</button>
+                                                    <button  class="btn btn-primary btn-user btn-block">Entrar!</button>
                                                 </fieldset>
                                             </form>
 

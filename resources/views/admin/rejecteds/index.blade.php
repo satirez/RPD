@@ -6,7 +6,7 @@
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                  <h4 style="text-align:center;"> Motivos de Rechazos
+                  <h4 style="text-align:center;"> Motivos de Rechazo
                     @can('admin.rejecteds.create')
                     <a href="{{ Route('admin.rejecteds.create') }}" class="btn btn-info pull-right"> Crear </a>
                     @endcan 
@@ -17,7 +17,7 @@
                    <table class="table table-striped table-hover"> 
                        <thead>
                            <tr>
-                               <th>Nombre de motivo</th>
+                               <th>Motivo</th>
                               
                               
                                

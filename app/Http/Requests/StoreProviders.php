@@ -26,10 +26,10 @@ class StoreProviders extends FormRequest
        public function rules()
     {
        return [
-            'name' => 'required|max:120',
+            'name' => 'required|max:120|unique:name',
             'address' => 'required|max:120',
             'number_phone' => 'required|max:8',
-            'rut' => 'required|min:9|max:10|cl_rut',
+            'rut' => 'required|max:10|cl_rut|unique:rut',
 
         ];
     }
@@ -38,7 +38,7 @@ class StoreProviders extends FormRequest
         return [
             'name.required' => 'Falta un campo obligatorio',
             'address.required' => 'Falta un campo obligatorio',
-            'rut.required' => 'Por favor, rellenar el Rut',
+            'rut.cl_rut' => 'Por favor, rellenar el Rut',
             'number_phone.required' => 'Falta un campo obligatorio',
            
         ];

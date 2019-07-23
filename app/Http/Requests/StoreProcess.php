@@ -27,7 +27,7 @@ class StoreProcess extends FormRequest
     {
        return [
             'tarja_proceso' => 'required|max:10',
-            'Box_out' => 'required|max:10',
+            
             
         ];
     }
@@ -35,7 +35,7 @@ class StoreProcess extends FormRequest
     public function messages(){
         return [
             'tarja_proceso.required' => 'Falta un campo obligatorio',
-            'Box_out.required' => 'Falta un campo obligatorio',
+           
             
         ];
     }

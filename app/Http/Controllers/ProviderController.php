@@ -32,7 +32,7 @@ class ProviderController extends Controller
     {
         return view('admin.providers.create');
     }
-
+ 
     /**
      * Store a newly created resource in storage.
      *
@@ -42,7 +42,9 @@ class ProviderController extends Controller
      */
     public function store(StoreProviders $request)
     {
+       
         $providers = Providers::create($request->all());
+        
 
         return redirect()->route('admin.providers.index', $providers->id)->with('info', 'Proveedor guardado con exito');
     }
@@ -66,9 +68,6 @@ class ProviderController extends Controller
             $prom =  ($rate/$cuenta)*10;
         }
         
-
-
-
         return view('admin.providers.show', compact('provider', 'prom'));
 
     }

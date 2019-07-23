@@ -52,7 +52,7 @@
 
 	<div class="col-md-4">
 		<div class="form-group">
-		{{ Form::label('quality_id', 'status de la fruta') }}
+		{{ Form::label('quality_id', 'Calidad') }}
 		{{Form::select('quality_id', $listQualities, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 		</div>
 	</div>
@@ -63,21 +63,21 @@
 	
 		<div class="col-md-4">
 			<div class="form-group">
-			{{ Form::label('provider_id', 'Selecciona un proveedor') }}
+			{{ Form::label('provider_id', 'Productor') }}
 			{{Form::select('provider_id', $listProviders, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 			</div>
 		</div>
 
 		<div class="col-md-4">
 			<div class="form-group">
-			{{ Form::label('status_id', 'Selecciona un estado') }}
+			{{ Form::label('status_id', 'Estatus de la fruta') }}
 			{{Form::select('status_id', $listStatus, null, ['class' => 'form-control dynamic','required', 'placeholder'=>'Seleccione una opción'])}}
 			</div>
 		</div>
 
 		<div class="col-md-4">
 			<div class="form-group">
-			{{ Form::label('season_id', 'Selecciona la temporada') }}
+			{{ Form::label('season_id', 'Temporada') }}
 			{{Form::select('season_id', $listSeasons, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 			</div>
 		</div>
@@ -89,7 +89,7 @@
 		<div class="col-md-4">
 			<div class="form-group">
 				<select class="form-control" name="fruit_id" id="fruit_id">
-					<option value=""> Selectione Fruta </option>
+					<option value=""> Fruta </option>
 					@foreach ($listFruits as $listFruit)
 						<option value="{{ $listFruit->id }}"> {{ $listFruit->specie }}</option>
 					@endforeach
@@ -100,7 +100,7 @@
 		<div class="col-md-4">
 			<div class="form-group">
 				<select class="form-control" name="variety_id" id="variety_id">
-					<option value=""> Selectione variedad </option>
+					<option value=""> Variedad de Fruta </option>
 				</select>
 			</div>
 		</div>	
@@ -109,12 +109,23 @@
 <div class="row">
 	<div class="col-md-4">
 		<div class="form-group">
-		{{ Form::label('supplies_id', 'Selecciona un Insumo') }}
+		{{ Form::label('supplies_id', 'Bandejas') }}
 		{{Form::select('supplies_id', $listSupplies, null, ['class' => 'form-control','required',
 		'onclick'=>'rest()',
 		'id'=>'supplies_id',
 		 'placeholder'=>'Seleccione una opción'])}}
 		</div> 
+	</div>
+
+	<div class="col-md-4">		
+		<div class="form-group">
+			{{ Form::label('grossweight', 'Peso bruto') }}
+			{{ Form::number('grossweight', null, ['class' => 'form-control ',
+			'onkeyup'=>'rest()',
+			'onKeyPress'=>'coma(event)',
+			'id'=>'grossweight'
+			]) }}
+		</div>
 	</div>
 
 	<div class="col-md-4">		
@@ -127,16 +138,7 @@
 			]) }}
 		</div>
 	</div>
-	<div class="col-md-4">		
-		<div class="form-group">
-			{{ Form::label('grossweight', 'Peso bruto') }}
-			{{ Form::number('grossweight', null, ['class' => 'form-control ',
-			'onkeyup'=>'rest()',
-			'onKeyPress'=>'coma(event)',
-			'id'=>'grossweight'
-			]) }}
-		</div>
-	</div>
+	
 </div>
 
 <div class="row">
@@ -163,7 +165,7 @@
 
 	<div class="col-md-4">
 		<div class="form-group">
-			{{ Form::label('middleweight_trays', 'Gr de fruta por bandeja') }}
+			{{ Form::label('middleweight_trays', 'Kg de fruta por bandeja') }}
 			{{ Form::number('middleweight_trays', null, ['class' => 'form-control ',
 			'id'=>'middleweight_trays',
 			'readonly']) }}
@@ -182,7 +184,7 @@
 	
 	<div class="col-md-4">
 		<div class="form-group">
-			{{ Form::label('name_driver', 'nombre del conductor') }}
+			{{ Form::label('name_driver', 'Nombre del conductor') }}
 			{{ Form::text('name_driver', null, ['class' => 'form-control ']) }}
 		</div>
 	</div>
@@ -264,7 +266,7 @@
 
 			<div class="col-md-8">
 				<div class="form-group">
-				{{ Form::submit('Guardar', ['class' => 'btn btn-lg btn-primary']) }}
+				{{ Form::submit('Guardar', ['class' => 'btn btn-success']) }}
 				</div>
 			</div>
 </div>

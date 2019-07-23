@@ -1,5 +1,3 @@
-
-
 <div class="card text-left">
 	<div class="card-body">
 		<div class="row">
@@ -59,7 +57,7 @@
 								@empty
 
 								<h4> Sin Registros </h4>
-
+ 
 								@php
 								$uno = true;
 								@endphp
@@ -227,7 +225,8 @@
 @if($uno == false)
 <div class="col-md-12 text-center">
 	<div class="form-group text">
-		{{ Form::submit('Guardar', ['class' => 'btn btn-lg  btn-primary']) }}
+		{{ Form::submit('Guardar', ['class' => 'btn btn-success']) }}
+		
 	</div>
 </div>
 @else
@@ -237,5 +236,3 @@
 @endif
 <br>
 <br>
-
-

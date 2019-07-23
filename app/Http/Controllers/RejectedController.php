@@ -80,7 +80,6 @@ class RejectedController extends Controller
     public function update(UpdateRejected $request, Rejected $rejected)
     {
         $rejected->update($request->all());
-
         return redirect()->route('admin.rejecteds.index', $rejected->id)->with('info', 'Tipo de Calidad actualizada con exito');
     }
 

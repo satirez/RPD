@@ -41,18 +41,6 @@ class StoreReception extends FormRequest
             'tarja' => 'required|max:20',
            
 
-
-
-
-
-
-
-
-
-
-
-
-
         ];
     }
 

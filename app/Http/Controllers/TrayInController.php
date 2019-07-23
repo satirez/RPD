@@ -24,7 +24,7 @@ class TrayInController extends Controller
      */
     public function create()
     {
-        $liststocks = TrayIn::all();
+        $liststocks = TrayIn::paginate(10);
         //Calcular Stock General
         
         $stockbandejas = TrayIn::get()->sum('traysin');
@@ -47,13 +47,9 @@ class TrayInController extends Controller
     {
         $accion = $request->get('accion');
             
-
         if ($accion == 1){
-
             $trayIn = TrayIn::create($request->all());
-
         }else{
-
             $traysinn = $request->get("traysin");
             $traysin = $traysinn * (-1);
              //unir datos al request
@@ -61,10 +57,6 @@ class TrayInController extends Controller
             $trayIn = TrayIn::create($request->all());
         }
            
-            
-
-           
-
         return redirect()->route('admin.trays.create', $trayIn->id)->with('info', 'Ingreso exitoso');
     }
 

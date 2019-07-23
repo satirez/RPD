@@ -1,3 +1,12 @@
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous">
+</script>
+
+
+
 <div class="col-md-12">
 
     <div class="row">
@@ -12,7 +21,7 @@
 
             <div class="form-group">
                 {{ Form::label('traysin', 'Cantidad de bandejas') }}
-                {{ Form::number('traysin', null, ['class' => 'form-control ',
+                {{ Form::number('traysin', null, ['class' => 'form-control input-number',
                 'id'=>'traysin',
                 'onkeyup'=>'calcularhaber()']) }}
             </div>
@@ -39,7 +48,7 @@
 
 
 	<div class="form-group">
-		{{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
+		{{ Form::submit('Guardar', ['class' => 'btn btn-success']) }}
 	</div>
 
 </div>
@@ -76,3 +85,12 @@
                 </div>
 </div>
 
+<!-- Permitir solo numeros, puntos y X-->
+<script type="text/javascript">
+	$(document).ready(function (){
+  $('.input-number').keyup(function (){
+	this.value = (this.value + '').replace(/[^.x0-9]/g, '');
+  });
+});
+
+</script>

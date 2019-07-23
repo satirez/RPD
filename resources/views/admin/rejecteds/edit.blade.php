@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">       
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4 style="text-align:center;">Editar Motivo de rechazo</h4>
+                            <h4 style="text-align:center;">Editar Rechazo</h4>
                         </div>
                 @include('admin.rejecteds.partials.errors')
                 <div class="panel-body">

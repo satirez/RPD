@@ -26,10 +26,8 @@ class StoreFormat extends FormRequest
        public function rules()
     {
        return [
-            'name' => 'required|max:20',
-            'largo' => 'required|max:20',
-            'alto' => 'required|max:20',
-            'ancho' => 'required|max:20',
+            'name' => 'required|max:20|unique:name',
+            'weight' => 'required|max:20',
   
         ];
     }
@@ -37,9 +35,7 @@ class StoreFormat extends FormRequest
     public function messages(){
         return [
             'name.required' => 'Debe ingresar el nombre del formato',
-            'largo.required' => 'Debe ingresar un largo',
-            'alto.required' => 'Debe ingresar un alto',
-            'ancho.required' => 'Debe ingresar un ancho',
+            'weight.required' => 'Debe ingresar un Peso',
             ];
     }
 }

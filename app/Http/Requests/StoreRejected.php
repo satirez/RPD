@@ -31,7 +31,7 @@ class StoreRejected extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Nombre de rechazo no ingresado',
+            'name.required' => 'Motivo de rechazo no ingresado',
         ];
     }
 }

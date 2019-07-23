@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\motivorejected;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRejected;
 
 class MotivorejectedController extends Controller
 {
@@ -14,10 +15,9 @@ class MotivorejectedController extends Controller
      */
     public function index()
     {
-        $motivorejecteds = motivorejected::paginate();
-
+        $motivorejecteds = motivorejected::paginate(5);
         return view('admin.rejecteds.index', compact('motivorejecteds'));
-
+    
     }
 
     /**
@@ -26,7 +26,7 @@ class MotivorejectedController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {        
+    {
         return view('admin.rejecteds.create');
     }
 
@@ -37,11 +37,11 @@ class MotivorejectedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRejected $request)
     {
-        $motivorejected = motivorejected::create($request->all());
         
-        return redirect()->route('admin.rejecteds.index', $motivorejected->id)->with('info','Tipo de fruta guardada con exito'); 
+        $motivorejected = motivorejected::create($request->all());
+        return redirect()->route('admin.rejecteds.index', $motivorejected->id)->with('info', 'Motivo guardado con exito');
     }
 
     /**
@@ -53,6 +53,7 @@ class MotivorejectedController extends Controller
      */
     public function show(motivorejected $motivorejected)
     {
+        return view('admin.rejecteds.show', compact('motivorejected'));
     }
 
     /**
@@ -64,6 +65,8 @@ class MotivorejectedController extends Controller
      */
     public function edit(motivorejected $motivorejected)
     {
+        
+        return view('admin.rejecteds.edit', compact('motivorejected'));
     }
 
     /**
@@ -76,6 +79,9 @@ class MotivorejectedController extends Controller
      */
     public function update(Request $request, motivorejected $motivorejected)
     {
+        
+        $motivorejected->update($request->all());
+        return redirect()->route('admin.rejecteds.index', $motivorejected->id)->with('info', 'Motivo de rechazo, actualizado con exito');
     }
 
     /**
@@ -87,5 +93,8 @@ class MotivorejectedController extends Controller
      */
     public function destroy(motivorejected $motivorejected)
     {
+        $motivorejected->delete();
+        
+        return back()->with('info', 'Eliminado con exito'); 
     }
 }

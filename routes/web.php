@@ -103,20 +103,20 @@ Route::middleware('auth')->group(function () {
                                 ->middleware('permission:admin.supplies.edit');
 
     //Rechazado
-    //ruta 		//nombre de ruta 	//Permiso
+    //ruta 		//focod de la ruta	//Permiso
     Route::post('/rejecteds/store', 'MotivorejectedController@store')->name('admin.rejecteds.store')
                                 ->middleware('permission:admin.rejecteds.create');
     Route::get('/rejecteds/', 'MotivorejectedController@index')->name('admin.rejecteds.index')
                                 ->middleware('permission:admin.rejecteds.index');
     Route::get('/rejecteds/create', 'MotivorejectedController@create')->name('admin.rejecteds.create')
                                 ->middleware('permission:admin.rejecteds.create');
-    Route::put('/rejecteds/{rejected}', 'RejectedController@update')->name('admin.rejecteds.update')
+    Route::put('/rejecteds/{motivorejected}', 'MotivorejectedController@update')->name('admin.rejecteds.update')
                                 ->middleware('permission:admin.rejecteds.edit');
-    Route::get('/rejecteds/{rejected}', 'RejectedController@show')->name('admin.rejecteds.show')
+    Route::get('/rejecteds/{motivorejected}', 'MotivorejectedController@show')->name('admin.rejecteds.show')
                                 ->middleware('permission:admin.rejecteds.show');
-    Route::delete('/rejecteds/{rejected}', 'RejectedController@destroy')->name('admin.rejecteds.destroy')
+    Route::delete('/rejecteds/{motivorejected}', 'MotivorejectedController@destroy')->name('admin.rejecteds.destroy')
                                 ->middleware('permission:admin.rejecteds.destroy');
-    Route::get('/rejecteds/{rejected}/edit', 'RejectedController@edit')->name('admin.rejecteds.edit')
+    Route::get('/rejecteds/{motivorejected}/edit', 'MotivorejectedController@edit')->name('admin.rejecteds.edit')
                                 ->middleware('permission:admin.rejecteds.edit');
 
     //Reception

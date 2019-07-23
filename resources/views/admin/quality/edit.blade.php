@@ -12,7 +12,7 @@
                 <div class="panel-body">
                 	{!! Form::model($quality, ['route' => ['admin.quality.update', $quality->id],
                 	'method' => 'PUT']) !!} 
-
+                  
                 	@include('admin.quality.partials.form')
 
                 	{!! Form::close() !!}

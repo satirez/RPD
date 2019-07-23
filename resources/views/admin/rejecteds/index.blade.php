@@ -39,7 +39,7 @@
                                     <a 
                                     href="{{ Route('admin.rejecteds.edit', $motivorejected->id) }}" 
                                     class="btn btn-sm btn-info">
-                                          Editar
+                                        Editar
                                     </a>
                                     @endcan
                                 </td>

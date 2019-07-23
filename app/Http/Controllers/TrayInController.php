@@ -56,10 +56,11 @@ class TrayInController extends Controller
 
             $traysinn = $request->get("traysin");
             $traysin = $traysinn * (-1);
+             //unir datos al request
             $request->merge(['traysin' => $traysin]);
             $trayIn = TrayIn::create($request->all());
         }
-            //unir datos al request
+           
             
 
            

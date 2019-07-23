@@ -10,9 +10,9 @@
                         </div>
                 @include('admin.rejecteds.partials.errors')
                 <div class="panel-body">
-                	{!! Form::model($rejected, ['route' => ['admin.rejecteds.update', $rejected->id],
+                	{!! Form::model($motivorejected, ['route' => ['admin.rejecteds.update', $motivorejected->id],
                 	'method' => 'PUT']) !!} 
-
+                   
                 	@include('admin.rejecteds.partials.form')
 
                 	{!! Form::close() !!}

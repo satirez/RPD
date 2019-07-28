@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Fruit; 
+use App\Fruit;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreFruit;
 use App\Http\Requests\UpdateFruit;
@@ -17,7 +17,8 @@ class FruitController extends Controller
     public function index()
     {
         $fruits = Fruit::paginate();
-        return view('admin.fruits.index', compact('fruits')); 
+
+        return view('admin.fruits.index', compact('fruits'));
     }
 
     /**
@@ -33,20 +34,22 @@ class FruitController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreFruit $request)
     {
-      $fruits = Fruit::create($request->all());
-        
-        return redirect()->route('admin.fruits.index', $fruits->id)->with('info','Tipo de fruta guardada con exito'); 
+        $fruits = Fruit::create($request->all());
+
+        return redirect()->route('admin.fruits.index', $fruits->id)->with('info', 'Tipo de fruta guardada con exito');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Fruit $fruit)
@@ -57,7 +60,8 @@ class FruitController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Fruit $fruit)
@@ -68,25 +72,29 @@ class FruitController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateFruit $request, Fruit $fruit)
     {
-        $fruit->update($request->all()); 
+        $fruit->update($request->all());
+
         return redirect()->route('admin.fruits.index', $fruit->id)->with('info', 'Tipo de fruta actualizada con exito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Fruit $fruit)
     {
         $fruit->delete();
-        return back()->with('info', 'Eliminado el tipo de fruta con exito'); 
+
+        return back()->with('info', 'Eliminado el tipo de fruta con exito');
     }
 }

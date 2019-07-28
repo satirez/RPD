@@ -8,6 +8,7 @@
 	{{ Form::label('name', 'Nombre ') }}
 	{{ Form::text('name', null, ['class' => 'form-control ', 'placeholder'=>'ejemplo: Bandeja']) }}
 </div>
+	
 <div class="form-group">
 	{{ Form::label('weight', 'Peso') }}
 	{{ Form::text('weight', null, ['class' => 'form-control input-number','placeholder'=>'ejemplo: 0.45']) }}

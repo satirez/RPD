@@ -4,8 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use ValidateRequests;
-
 class StoreSupplies extends FormRequest
 {
     /**
@@ -23,16 +21,16 @@ class StoreSupplies extends FormRequest
      *
      * @return array
      */
-       public function rules()
+    public function rules()
     {
-       return [
-            'name' => 'required|max:20|unique:name',
+        return [
+            'name' => 'required|max:20',
             'weight' => 'required|max:10',
-           
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
             'name.required' => 'Falta un campo obligatorio',
             'weight.required' => 'Falta un campo obligatorio',

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Supplies;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreSupplies;
-use App\Http\Requests\UpdateSupplies;
 
 class SuppliesController extends Controller
 {
@@ -17,6 +16,7 @@ class SuppliesController extends Controller
     public function index()
     {
         $supplies = Supplies::paginate();
+
         return view('admin.supplies.index', compact('supplies'));
     }
 
@@ -33,33 +33,34 @@ class SuppliesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreSupplies $request)
     {
-
         $supplies = Supplies::create($request->all());
-        
-        return redirect()->route('admin.supplies.index', $supplies->id)->with('info','Insumo guardado con exito'); 
+
+        return redirect()->route('admin.supplies.index', $supplies->id)->with('info', 'Insumo guardado con exito');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Supplies  $supplies
+     * @param \App\Supplies $supplies
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Supplies $supplie)
     {
         return view('admin.supplies.show', compact('supplie'));
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Supplies  $supplies
+     * @param \App\Supplies $supplies
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Supplies $supplie)
@@ -70,25 +71,29 @@ class SuppliesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Supplies  $supplies
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Supplies            $supplies
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Supplies $supplie)
     {
-        $supplie->update($request->all()); 
+        $supplie->update($request->all());
+
         return redirect()->route('admin.supplies.index', $supplie->id)->with('info', 'Insumo actualizado con exito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Supplies  $supplies
+     * @param \App\Supplies $supplies
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Supplies $supplie)
     {
         $supplie->delete();
-        return back()->with('info', 'Eliminado con exito'); 
+
+        return back()->with('info', 'Eliminado con exito');
     }
 }

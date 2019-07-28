@@ -148,9 +148,6 @@ Route::middleware('auth')->group(function () {
 
     //Consulta Ajax Select
 
-
-    
-    
     //Process
     //ruta 		//nombre de ruta 	//Permiso
     Route::get('/processes/create', 'ProcessController@create')->name('process.processes.create')
@@ -224,7 +221,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/fruits/{fruit}/edit', 'FruitController@edit')->name('admin.fruits.edit')
                                 ->middleware('permission:admin.fruits.edit');
-
 
     //Variead de fruta
     Route::post('/varieties/store', 'VarietyController@store')

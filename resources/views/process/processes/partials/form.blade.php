@@ -170,7 +170,7 @@
 
 <script>
 	@php
-		$count = 1;
+		$count++;
 	@endphp
 	
 	var childNumber = {{ $count }};

@@ -145,8 +145,9 @@ class ProcessController extends Controller
         
         // $receptions = Process_Reception::where('process_id',$process1)->get();
         $receptions = Process::find($process);
+        $subprocess = SubProcess::where('process_id',$process->id)->get();
 
-        return view('process.processes.show', compact('receptions'));
+        return view('process.processes.show', compact('receptions','subprocess'));
     }
 
     /**

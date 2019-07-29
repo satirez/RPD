@@ -11,33 +11,26 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                              @foreach($receptions->receptions as $reception)
+                              @foreach($subprocess as $subproces)
                                 <table class="table table-hover">
                                    
                                     <tbody>
                                         <tr>
                                             <th> Tarjas </th>
-                                            <th> {{ $reception->tarja }}</th>
+                                            <th> PROC{{ $subproces->id }}</th>
                                         </tr>
-                                        <tr>
-                                            <th> Proveedor </th>
-                                            <th> {{ $reception->provider->name}}</th>
-                                        </tr>
+                                     
                                         <tr>
                                             <th> Frutas </th>
-                                        <th> {{ $reception->fruit->name }}</th>
                                         </tr>
                                         <tr>
                                             <th> Calidad </th>
-                                            <th> {{ $reception->quality->name }}</th>
                                         </tr>
                                         <tr>
                                             <th> Peso Neto </th>
-                                            <th> {{ $reception->netweight }}</th>
                                         </tr>
                                         <tr>
                                             <th> Peso Bruto </th>
-                                            <th> {{ $reception->grossweight }}</th>
                                         </tr>
 
                                         <br>

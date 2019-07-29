@@ -11,7 +11,7 @@ class Format extends Model
 	protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name','largo','alto','ancho', 'weight'
+        'name', 'weight'
     ];
   
 }

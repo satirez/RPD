@@ -43,7 +43,7 @@ class ProcessController extends Controller
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
 
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
-        $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'id');
+        $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');
         $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
         $last = Process::OrderBy('id', 'DES')->first();
     

@@ -168,6 +168,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/processes/{process}/edit', 'ProcessController@edit')->name('process.processes.edit')
                                 ->middleware('permission:process.processes.edit');
 
+    
+
     //Proveederoes
     Route::post('/providers/store', 'ProviderController@store')
                     ->name('admin.providers.store')

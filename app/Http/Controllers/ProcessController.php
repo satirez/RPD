@@ -73,7 +73,6 @@ class ProcessController extends Controller
         // Se genera el array con la información de proceso
        $process = [
             'tarja_proceso' => $request->get('tarja_proceso'), 
-            'Box_out' => $request->get('Box_out'),
             'rejected' => $request->get('rejected'),
             'wash' => $request->get('wash')
         ];
@@ -94,43 +93,7 @@ class ProcessController extends Controller
             Reception::where('id', $key)->update(['available' => 0]);
         }
 
-            // SUB PROCESOS
-        // se obtienen los array de sub procesos
-         $rows = $request->input('row');
-         foreach ($rows as $row) {
-  
-              $Charges[] = [
-                  'quantity' =>$row['cantidad'],
-                  'format_id' =>$row['formatos'],
-                  'quality_id' =>$row['cualidades'],
-                  'status_id' =>$row['estatus'],
-                  'process_id'=>$process_id
-              ];
-  
-         }
-         
-         // Se insertan los Subprocesos
-         SubProcess::insert($Charges);
-
-
-         //instancio el radio button
-         $rejected = $request->get('rejected');
-         
-         // si se selecciono que estaba rechazado pos, se rechaza xD
-         if($rejected==1){
-             $rejected = [
-                 'process_id' => $process_id, 
-                 'reason' => $request->get('reason'),
-                 'comment' => $request->get('comment')];
-                 $rejected = Rejected::create($rejected);
-             
-         }else{
-         }
-         
-
-        
-
-        return redirect()->route('process.processes.index', $process_id)->with('info', 'Proceso guardado con exito');
+        return redirect()->route('process.processes.index', $process_id)->with('success', 'Proceso guardado con exito');
     }
 
     /**

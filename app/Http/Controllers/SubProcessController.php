@@ -22,9 +22,14 @@ class SubProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(Request $subprocess)
+    {        
+        
+        dd($subprocess->all());
+
+        $id = $subprocess->id;
+        $subprocess = SubProcess::where('process_id', $id)->get();
+
     }
 
     /**
@@ -35,7 +40,39 @@ class SubProcessController extends Controller
      */
     public function store(Request $request)
     {
-        //
+           // SUB PROCESOS
+        // se obtienen los array de sub procesos
+        $rows = $request->input('row');
+        foreach ($rows as $row) {
+ 
+             $Charges[] = [
+                 'quantity' =>$row['cantidad'],
+                 'format_id' =>$row['formatos'],
+                 'quality_id' =>$row['cualidades'],
+                 'status_id' =>$row['estatus'],
+                 'process_id'=>$process_id
+             ];
+ 
+        }
+        
+        // Se insertan los Subprocesos
+        SubProcess::insert($Charges);
+
+
+        //instancio el radio button
+        $rejected = $request->get('rejected');
+        
+        // si se selecciono que estaba rechazado pos, se rechaza xD
+        if($rejected==1){
+            $rejected = [
+                'process_id' => $process_id, 
+                'reason' => $request->get('reason'),
+                'comment' => $request->get('comment')];
+                $rejected = Rejected::create($rejected);
+            
+        }else{
+        }
+        
     }
 
     /**

@@ -26,7 +26,7 @@ class StoreFormat extends FormRequest
        public function rules()
     {
        return [
-            'name' => 'required|max:20|unique:name',
+            'name' => 'required|max:20',
             'weight' => 'required|max:20',
   
         ];

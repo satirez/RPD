@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreDispatch;
 use App\Http\Requests\UpdateDispatch;
 use App\Exporter;
-use App\Process;
+use App\SubProcess;
 use App\Dispatch;
 use App\Rejected;
 
@@ -25,16 +25,16 @@ class DispatchController extends Controller
         return view('dispatch.index', compact('listexporter', 'listdispatches'));
     }
 
-    public function getProcess(){
-        $processes = Process::paginate();
+    public function getSubProcess(){
+        $subprocesses = SubProcess::paginate();
 
-        return view('dispatch.camara', compact('processes'));
+        return view('dispatch.camara', compact('subprocesses'));
     }
 
     public function showCam(Process $process){
-        $process1 = $process->id;
+        $subprocess1 = $subprocess->id;
         // $receptions = Process_Reception::where('process_id',$process1)->get();
-        $receptions = Process::find($process1);
+        $receptions = SubProcess::find($subprocess1);
 
         return view('dispatch.showcam', compact('receptions'));
     }
@@ -48,12 +48,12 @@ class DispatchController extends Controller
     {
         //lista de tabla pivote en despacho (checkbox)
 
-        $processes = Process::orderBy('id', 'DES')->where('available', 1)->get();
+        $subprocesses = SubProcess::orderBy('id', 'DES')->where('available', 1)->get();
 
         $listexporter = Exporter::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
 
-        return view('dispatch.create', compact('listexporter', 'processes','listRejecteds'));
+        return view('dispatch.create', compact('listexporter', 'subprocesses','listRejecteds'));
     }
 
     /**
@@ -80,13 +80,13 @@ class DispatchController extends Controller
           //Guarda la despacho
         $dispatch = Dispatch::create($request->all());
 
-        $dispatch->processes()->attach($request->get('process'));
+        $dispatch->processes()->attach($request->get('subprocess'));
         $dispatch_id = $dispatch->id;
 
-        $checklistdata = $request->get('process');
+        $checklistdata = $request->get('subprocess');
 
         foreach ($checklistdata as $key) {
-            Process::where('id', $key)->update(['available' => 0]);
+            SubProcess::where('id', $key)->update(['available' => 0]);
         }
 
         if($rejected==1){
@@ -125,9 +125,9 @@ class DispatchController extends Controller
     public function edit(Dispatch $dispatch)
     {
         $listexporter = Exporter::OrderBy('id', 'ASC')->pluck('name', 'id');
-        $processes = Process::orderBy('id', 'ASC')->where('available', 1)->get();
+        $subprocesses = SubProcess::orderBy('id', 'ASC')->where('available', 1)->get();
 
-        return view('dispatch.edit', compact('dispatch', 'listexporter', 'processes'));
+        return view('dispatch.edit', compact('dispatch', 'listexporter', 'subprocesses'));
     }
 
     /**
@@ -142,7 +142,7 @@ class DispatchController extends Controller
     {
         $dispatch = Dispatch::find($id);
         $dispatch->update($request->all());
-        $dispatch->process()->sync($request->get('processes'));
+        $dispatch->subprocess()->sync($request->get('processes'));
 
         return redirect()->route('dispatch.index', $dispatch->id)->with('info', 'despacho actualizado con éxito');
     }

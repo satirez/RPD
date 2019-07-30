@@ -26,7 +26,7 @@ class StoreExporter extends FormRequest
         return [
             'name' => 'required|max:20',
             'phone' => 'required|max:8',
-            'rut' => 'required|max:10|cl_rut|unique:rut',
+            'rut' => 'required|max:10|cl_rut',
         ];
     }
 

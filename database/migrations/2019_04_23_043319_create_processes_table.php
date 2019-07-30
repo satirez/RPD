@@ -15,6 +15,10 @@ class CreateProcessesTable extends Migration
     {
          Schema::create('processes', function (Blueprint $table) {
             $table->increments('id');
+
+
+            
+            
                  
             $table->String('tarja_proceso');
             $table->integer('Box_out');

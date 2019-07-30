@@ -26,7 +26,7 @@ class StoreFruit extends FormRequest
        public function rules()
     {
        return [
-            'specie' => 'required|max:20|unique:users',
+            'specie' => 'required|max:20',
         ];
     }
 

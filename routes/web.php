@@ -390,6 +390,24 @@ Route::middleware('auth')->group(function () {
             ->name('dispatch.getProcess')
                 ->middleware('permission:dispatch.getProcess');
 
+
+
+                   //TipoDespacho
+    Route::post('/tipodispatches/store', 'TipoDispatchController@store')->name('admin.tipodispatches.store')->middleware('permission:admin.tipodispatches.create');
+
+    Route::get('/tipodispatches', 'TipoDispatchController@index')->name('admin.tipodispatches.index')
+            ->middleware('permission:admin.tipodispatches.index');
+
+    Route::get('/tipodispatches/create', 'TipoDispatchController@create')->name('admin.tipodispatches.create')->middleware('permission:admin.tipodispatches.create');
+
+    Route::put('/tipodispatches/{tipodispatch}', 'TipoDispatchController@update')->name('admin.tipodispatches.update')->middleware('permission:admin.tipodispatches.edit');
+
+    Route::get('/tipodispatches/{tipodispatch}', 'TipoDispatchController@show')->name('admin.tipodispatch.show')->middleware('permission:admin.tipodispatch.show');
+
+    Route::delete('/tipodispatch/{tipodispatch}', 'TipoDispatchController@destroy')->name('admin.tipodispatches.destroy')->middleware('permission:admin.tipodispatches.destroy');
+
+    Route::get('/tipodispatches/{tipodispatch}/edit', 'TipoDispatchController@edit')->name('admin.tipodispatches.edit')->middleware('permission:admin.tipodispatches.edit');
+
     //Estatus
 
     Route::post('/statuses/store', 'StatusController@store')

@@ -10,13 +10,21 @@ class Dispatch extends Model
 	
     protected $fillable = [
         
-            'exporter_id', 'patentNo','rejected'   
+            'exporter_id', 'patentNo','rejected','tipodispatch_id','Destino','subprocess_id'   
     ];
 
     public function processes()
     {
         return $this->belongsToMany(Process::class);
     }
+
+    public function subprocesses()
+    {
+        return $this->belongsToMany(SubProcess::class);
+    }
+
+
+
 	public function rejected(){
         return $this->belongsTo(Rejected::class);
     }

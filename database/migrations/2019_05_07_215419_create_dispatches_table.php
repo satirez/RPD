@@ -22,8 +22,15 @@ class CreateDispatchesTable extends Migration
             ->onDelete('cascade')
             ->onUpdate('cascade');
 
-            $table->String('where');
-            $table->String('who');
+             $table->Integer('subprocess_id')->unsigned();
+            $table->foreign('subprocess_id')->references('id')->on('sub_processes')->onDelete('cascade');
+
+
+            $table->Integer('tipodispatch_id')->unsigned();
+            $table->foreign('tipodispatch_id')->references('id')->on('tipo_dispatches')->onDelete('cascade');
+
+            $table->String('Destino');
+            
 
             //se debe hacer
             $table->integer('tipo_despacho');

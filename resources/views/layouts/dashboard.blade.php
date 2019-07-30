@@ -136,6 +136,12 @@
                 <a class="collapse-item" href="{{ url ('varieties') }}">Variedad de fruta</a>
             @endcan
 
+             <!-- Tipos despacho -->
+            @can('admin.tipodispatches.index')
+                <a class="collapse-item" href="{{ url ('tipodispatches') }}">Tipo de despacho</a>
+            @endcan
+
+
          <!--  Temporada -->
              @can('admin.providers.index')
                 <a class="collapse-item" href="{{ url ('seasons') }}">Temporada</a>

@@ -34,32 +34,60 @@
 	
 </div>
 
-    <h3>Procesos para despacho</h3>
-<div class="form-group">
-	<ul class="list-unstyled">
-		@forelse($processes as $process)
-		<li>
-			<label>
-				{{ Form::checkbox('process[]', $process->id) }}
-				{{ $process->tarja_proceso }}
-			</label>
-		</li>
 
-		@php
-			$uno = false;
-		@endphp
+<div class="col-md-12">
+			<h3 class="text-center">Listado de productos en camara</h3>
+			<div class="form-group">
+				<ul class="list-unstyled">
 
-		@empty
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr class="">
+									<th></th>
+									<th>Tarja id</th>
+									<th>Fruta</th>
+									<th>Peso Bruto</th>
+									<th>Rejillas</th>
+									
+									<th>Calidad</th>
+								</tr>
+							</thead>
+							<tbody>
 
-		@php
-			$uno = true;
-		@endphp
+								@forelse($subprocesses as $subprocess)
+								<tr>
+									<th>{{ Form::checkbox('subsubprocesses[]', $subprocess->id) }} </th>
+									<th>{{ $subprocess->tarja }}</th>
+									
 
-		<h4> No existen Registros </h4>
 
-		@endforelse 
-	</ul>
-</div>
+									@php
+									$uno = false;
+									@endphp
+
+								</tr>
+
+								@empty
+
+								<h4> Sin Registros </h4>
+ 
+								@php
+								$uno = true;
+								@endphp
+
+								@endforelse
+
+							</tbody>
+						</table>
+					</div>
+
+				</ul>
+			</div>
+		</div>
+
+
+   
 
 <div class="col-md-12">
 	<div class="form-group">

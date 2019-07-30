@@ -43,7 +43,7 @@ class ProcessController extends Controller
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
 
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
-        $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');
+        $listFormat = Format::OrderBy('id', 'DES')->pluck('name','id','weight');
         $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
         $last = Process::OrderBy('id', 'DES')->first();
     
@@ -70,6 +70,8 @@ class ProcessController extends Controller
     public function store(StoreProcess $request)
     {   
        
+        //dd($request->input('row'));
+
         // Se genera el array con la información de proceso
        $process = [
             'tarja_proceso' => $request->get('tarja_proceso'), 
@@ -78,6 +80,9 @@ class ProcessController extends Controller
             'wash' => $request->get('wash')
         ];
         
+
+        //dd($process);
+
         // Se crea
         $process = Process::create($process);
         //se establece la relación con receptions

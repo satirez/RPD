@@ -26,10 +26,10 @@ class StoreProviders extends FormRequest
        public function rules()
     {
        return [
-            'name' => 'required|max:120|unique:name',
+            'name' => 'required|max:120',
             'address' => 'required|max:120',
             'number_phone' => 'required|max:8',
-            'rut' => 'required|max:10|cl_rut|unique:rut',
+            'rut' => 'required|max:10|cl_rut',
 
         ];
     }

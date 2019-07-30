@@ -11,4 +11,11 @@ class SubProcess extends Model
     protected $fillable = [
         'quality_id', 'status_id', 'process_id','format_id','quantity'
     ];
+
+
+
+     public function dispatches()
+    {
+        return $this->belongsToMany(Dispatch::class);
+    }
 }

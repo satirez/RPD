@@ -1,7 +1,22 @@
 @extends('layouts.dashboard')
 
 @section('section')
+
+
+
 <div class="container">
+
+        @if (\Session::has('success'))
+            <div class="col-md-12">
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{!! \Session::get('success') !!}</li>
+                    </ul>
+                </div>
+            </div>
+        @endif
+
+
     <div class="row justify-content-center">
         <div class="col-md-12 col-md-offset-0">       
                     <div class="panel panel-primary">

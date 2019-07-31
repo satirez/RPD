@@ -16,12 +16,6 @@ class CreateSubProcessesTable extends Migration
         Schema::create('sub_processes', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->Integer('quality_id')->unsigned();
-            $table->foreign('quality_id')->references('id')->on('qualities')->onDelete('cascade');
-
-            $table->Integer('status_id')->unsigned();
-            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
-
             $table->Integer('process_id')->unsigned();
             $table->foreign('process_id')->references('id')->on('processes')->onDelete('cascade');
 
@@ -29,6 +23,7 @@ class CreateSubProcessesTable extends Migration
             $table->foreign('format_id')->references('id')->on('formats')->onDelete('cascade');
 
             $table->Integer('quantity');
+            
             $table->Integer('weight');
 
 

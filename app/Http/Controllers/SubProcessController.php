@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\SubProcess;
+
+use Illuminate\Support\Facades\DB;
+use App\Process;
+use App\Process_Reception;
 use Illuminate\Http\Request;
 
 class SubProcessController extends Controller
@@ -14,7 +18,9 @@ class SubProcessController extends Controller
      */
     public function index()
     {
-        //
+         $subprocesses = SubProcess::paginate();
+        
+        return view('subprocess.index', compact('subprocesses'));
     }
 
     /**
@@ -22,14 +28,15 @@ class SubProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $subprocess)
-    {        
+    public function create(Request $request, $id)
+    {   
+        $process = DB::table('process_reception')->where('process_id', $id)->first();
+        $reception_id = $process->reception_id;
+        $reception = DB::table('receptions')->where('id', $reception_id)->first();   
+        $peso = $reception->grossweight;
         
-        dd($subprocess->all());
-
-        $id = $subprocess->id;
-        $subprocess = SubProcess::where('process_id', $id)->get();
-
+        $idsad = $id;
+        return view('subprocess.create', compact('idsad','peso'));
     }
 
     /**

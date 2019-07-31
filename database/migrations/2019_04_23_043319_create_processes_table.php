@@ -16,12 +16,14 @@ class CreateProcessesTable extends Migration
          Schema::create('processes', function (Blueprint $table) {
             $table->increments('id');
 
-
-            
-            
-                 
             $table->String('tarja_proceso');
-            $table->integer('Box_out');
+            
+            $table->Integer('quality_id')->unsigned();
+            $table->foreign('quality_id')->references('id')->on('qualities')->onDelete('cascade');
+
+            $table->Integer('status_id')->unsigned();
+            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
+
             $table->Boolean('available')->default('1');
             $table->Boolean('rejected')->default('0');
             

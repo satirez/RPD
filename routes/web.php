@@ -168,7 +168,36 @@ Route::middleware('auth')->group(function () {
     Route::get('/processes/{process}/edit', 'ProcessController@edit')->name('process.processes.edit')
                                 ->middleware('permission:process.processes.edit');
 
-    
+    //SubProcess
+
+    Route::get('/subprocess/create/{subprocess}', 'SubProcessController@create')
+                                ->name('subprocess.create')
+                                ->middleware('permission:subprocess.create');
+
+    Route::post('/subprocess/store', 'SubProcessController@store')
+                                ->name('subprocess.store')
+                                ->middleware('permission:subprocess.create');
+
+    Route::get('/subprocess', 'SubProcessController@index')
+                                ->name('subprocess.index')
+                                ->middleware('permission:subprocess.index');
+
+    Route::put('/subprocess/{subprocess}', 'SubProcessController@update')
+                                ->name('subprocess.update')
+                                ->middleware('permission:subprocess.edit');
+
+    Route::get('/subprocess/{subprocess}', 'SubProcessController@show')
+                                ->name('subprocess.show')
+                                ->middleware('permission:subprocess.show');
+
+    Route::delete('/subprocess/{subprocess}', 'SubProcessController@destroy')
+                                ->name('subprocess.destroy')
+                                ->middleware('permission:subprocess.destroy');
+
+    Route::get('/subprocess/{subprocess}/edit', 'SubProcessController@edit')
+                                ->name('subprocess.edit')
+                                ->middleware('permission:subprocess.edit');
+
 
     //Proveederoes
     Route::post('/providers/store', 'ProviderController@store')
@@ -391,24 +420,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/camara', 'dispatchcontroller@getProcess')
             ->name('dispatch.getProcess')
                 ->middleware('permission:dispatch.getProcess');
-
-
-
-                   //TipoDespacho
-    Route::post('/tipodispatches/store', 'TipoDispatchController@store')->name('admin.tipodispatches.store')->middleware('permission:admin.tipodispatches.create');
-
-    Route::get('/tipodispatches', 'TipoDispatchController@index')->name('admin.tipodispatches.index')
-            ->middleware('permission:admin.tipodispatches.index');
-
-    Route::get('/tipodispatches/create', 'TipoDispatchController@create')->name('admin.tipodispatches.create')->middleware('permission:admin.tipodispatches.create');
-
-    Route::put('/tipodispatches/{tipodispatch}', 'TipoDispatchController@update')->name('admin.tipodispatches.update')->middleware('permission:admin.tipodispatches.edit');
-
-    Route::get('/tipodispatches/{tipodispatch}', 'TipoDispatchController@show')->name('admin.tipodispatch.show')->middleware('permission:admin.tipodispatch.show');
-
-    Route::delete('/tipodispatch/{tipodispatch}', 'TipoDispatchController@destroy')->name('admin.tipodispatches.destroy')->middleware('permission:admin.tipodispatches.destroy');
-
-    Route::get('/tipodispatches/{tipodispatch}/edit', 'TipoDispatchController@edit')->name('admin.tipodispatches.edit')->middleware('permission:admin.tipodispatches.edit');
 
     //Estatus
 

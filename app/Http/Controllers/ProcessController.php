@@ -98,7 +98,7 @@ class ProcessController extends Controller
             Reception::where('id', $key)->update(['available' => 0]);
         }
 
-        return redirect()->route('process.processes.index', $process_id)->with('success', 'Proceso guardado con exito');
+        return redirect()->route('subprocess.create', $process_id)->with('success', 'Proceso guardado con exito');
     }
 
     /**

@@ -6,8 +6,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 style="text-align:center;">Insumos
-                    @can('admin.subprocesses.create')
-                    <a href="{{ Route('admin.subprocesses.create') }}" class="btn btn-info pull-right btn-sm"> Crear </a>
+                    @can('subprocess.create')
                     @endcan 
                   </h4>
                 </div>
@@ -27,25 +26,25 @@
                            </tr>
                        </thead>
                        <tbody>
-                        @foreach($subprocesses as $subprocesses)
+                        @foreach($subprocesses as $subprocesse)
                            <tr>
-                                <td>{{ $subprocesses->name   }}</td>
-                                <td>{{ $subprocesses->weight   }} kg</td>
+                                <td>{{ $subprocesse->name   }}</td>
+                                <td>{{ $subprocesse->weight   }} kg</td>
                               
                     
                            
                                 <td width="10px">
-                                    @can('admin.subprocesses.edit')
+                                    @can('subprocess.edit')
                                     <a 
-                                    href="{{ Route('admin.subprocesses.edit', $subprocesses->id) }}" 
+                                    href="{{ Route('subprocess.edit', $subprocesse->id) }}" 
                                     class="btn btn-sm btn-info">
                                           Editar
                                     </a>
                                     @endcan
                                 </td>
                                 <td width="10px">
-                                    @can('admin.subprocesses.destroy')
-                                    {!! Form::open(['route' => ['admin.subprocesses.destroy', $subprocesses->id],
+                                    @can('subprocess.destroy')
+                                    {!! Form::open(['route' => ['subprocess.destroy', $subprocesse->id],
                                     'method' => 'DELETE' ]) !!}
                                         <button class="btn btn-sm btn-danger">Eliminar</button>
                                     {!! Form::close() !!}

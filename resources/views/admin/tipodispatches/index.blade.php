@@ -5,7 +5,7 @@
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 style="text-align:center;">Tipo de despacho
+                    <h4 style="text-align:center;">Lista de Tipos de despachos:
                     @can('admin.tipodispatches.create')
                     <a href="{{ Route('admin.tipodispatches.create') }}" class="btn btn-info pull-right"> Crear </a>
                     @endcan 

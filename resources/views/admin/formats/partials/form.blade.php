@@ -5,12 +5,12 @@
 </script>
 
 <div class="form-group">
-	{{ Form::label('name', 'Nombre de formato') }}
+	{{ Form::label('name', 'Nombre de formato:') }}
 	{{ Form::text('name', null, ['class' => 'form-control ']) }}
 </div>
 
 <div class="form-group">
-	{{ Form::label('weight', 'Peso (ejem: 0.2)') }}
+	{{ Form::label('weight', 'Peso: (Ejem: 0.2)') }}
 	{{ Form::text('weight', null, ['class' => 'form-control input-number', 'placeholder'=>'kg']) }}
 </div>
 

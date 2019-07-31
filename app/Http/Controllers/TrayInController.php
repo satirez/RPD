@@ -14,7 +14,11 @@ class TrayInController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
+
+        $liststocks = TrayIn::paginate();
+        return view('admin.trays.index', compact('liststocks'));
     }
 
     /**

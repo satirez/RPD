@@ -5,19 +5,19 @@
 </script>
 
 <div class="form-group">
-	{{ Form::label('name', 'Nombre del exportador') }}
+	{{ Form::label('name', 'Nombre del exportador:') }}
 	{{ Form::text('name', null, ['class' => 'form-control ']) }}
 </div>
 <div class="form-group">
-	{{ Form::label('rut', 'Rut') }}
+	{{ Form::label('rut', 'Rut:') }}
 	{{ Form::text('rut', null, ['class' => 'form-control ']) }}
 </div>
 <div class="form-group">
-	{{ Form::label('phone', 'Numero de contacto') }}
+	{{ Form::label('phone', 'Numero de contacto:') }}
 	{{ Form::text('phone', null, ['class' => 'form-control input-number']) }}
 </div>
 <div class="form-group">
-	{{ Form::label('email', 'email') }}
+	{{ Form::label('email', 'E-mail:') }}
 	{{ Form::text('email', null, ['class' => 'form-control ']) }}
 </div>
 

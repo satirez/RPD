@@ -38,7 +38,7 @@
 				</div>
 				<div class="col-md-2">
 					<div class="form-group">
-						{{ Form::label('quantity', 'Cantidad ') }}
+						{{ Form::label('quantity', 'Cantidad de Cajas') }}
 						{{ Form::text('quantity', null, ['class' => 'form-control','id'=>'cantidad','oninput'=>'getWeightFormat()']) }}
 					</div>
 				</div>

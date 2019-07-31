@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">       
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4 style="text-align:center;">Ingresar Nuevo tipo de fruta</h4>
+                            <h4 style="text-align:center;">Ingresar Nuevo tipo de Fruta:</h4>
                         </div>
 
                 @include('admin.fruits.partials.errors')

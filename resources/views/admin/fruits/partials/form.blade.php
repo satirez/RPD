@@ -1,5 +1,5 @@
 <div class="form-group">
-	{{ Form::label('specie', 'Nombre de la fruta') }}
+	{{ Form::label('specie', 'Nombre de la Fruta:') }}
 	{{ Form::text('specie', null, ['class' => 'form-control ']) }}
 </div>
 

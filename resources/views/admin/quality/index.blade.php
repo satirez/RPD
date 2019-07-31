@@ -6,7 +6,7 @@
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                  <h4 style="text-align:center;"> Calidad
+                  <h4 style="text-align:center;"> Listado de  Calidades
                     @can('admin.quality.create')
                     <a href="{{ Route('admin.quality.create') }}" class="btn btn-info pull-right"> Crear </a>
                     @endcan 

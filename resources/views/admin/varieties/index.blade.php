@@ -6,7 +6,7 @@
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 style="text-align:center;">Variedades de frutas creadas
+                    <h4 style="text-align:center;">Listado de Variedades de Frutas:
                     @can('admin.varieties.create')
                     <a href="{{ Route('admin.varieties.create') }}" class="btn btn-info pull-right btn-sm"> Crear nueva</a>
                     @endcan

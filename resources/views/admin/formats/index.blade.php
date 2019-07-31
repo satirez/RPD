@@ -6,7 +6,7 @@
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 style="text-align:center;">Tipos de formato disponibles
+                    <h4 style="text-align:center;">Lista de Formato Disponibles:
                     @can('admin.formats.create')
                     <a href="{{ Route('admin.formats.create') }}" class="btn btn-info pull-right btn-sm"> Crear </a>
                     @endcan

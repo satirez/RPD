@@ -168,6 +168,8 @@
           
         </a>  
       </li>
+
+      
       
       @endcan
 
@@ -181,6 +183,10 @@
         </li>
 
         @endcan
+
+
+
+
 
            <!-- Nav Item -->
         <!-- Nav Item - Pages Collapse Menu -->
@@ -234,6 +240,18 @@
 
           </div>
         </div>
+
+
+         @can('admin.trays.index')
+
+         <li class="nav-item">
+          <a class="nav-link" href="{{ url ('trays') }}">
+            <i class="fas fa-fw fa-pallet" style="color:#FFEC00"></i>
+            <span>Control de Bandejas</span></a>
+        </li>
+
+        @endcan
+        
       </li>
 
       <!-- Sidebar Toggler (Sidebar) -->

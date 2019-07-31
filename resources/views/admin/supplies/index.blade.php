@@ -5,7 +5,7 @@
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 style="text-align:center;">Insumos
+                    <h4 style="text-align:center;">Listado de Bandejas:
                     @can('admin.supplies.create')
                     <a href="{{ Route('admin.supplies.create') }}" class="btn btn-info pull-right btn-sm"> Crear </a>
                     @endcan 

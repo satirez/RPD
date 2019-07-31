@@ -18,11 +18,7 @@
                        <thead>
                            <tr>
                                <th>Nombre del formato</th>
-                               <th>Peso </th>
-                               <th>Largo </th>
-                               <th>Alto </th>
-                               <th>Ancho </th>
-                              
+                               <th>Peso </th>                            
                          
                                <th colspan="3">&nbsp;</th>
                            </tr>
@@ -34,12 +30,7 @@
                            <tr>
                                 <td>{{ $format->name  }}</td>
                                 <td>{{ $format->weight  }} kg</td>
-                                <td>{{ $format->largo  }} cm</td>
-                                <td>{{ $format->alto  }} cm</td>
-                                <td>{{ $format->ancho  }} cm</td>
-                                
-                                               			
-                              
+                          
                                 <td width="10px">
                                     @can('admin.formats.edit')
                                     <a 

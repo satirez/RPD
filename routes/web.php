@@ -148,12 +148,10 @@ Route::middleware('auth')->group(function () {
     Route::get('receptionChange', 'ReceptionController@ChangeStatusTrue')->name('receptions.change')
                                 ->middleware('permission:receptions.edit');
 
-                                
-
     //Consulta Ajax Select
 
     //Process
-    //ruta 		//nombre de ruta 	//Permiso
+    //ruta 		//referencia de la ruta 	//con la función...
     Route::get('/processes/create', 'ProcessController@create')->name('process.processes.create')
                                 ->middleware('permission:process.processes.create');
     Route::post('/processes/store', 'ProcessController@store')->name('process.processes.store')
@@ -201,7 +199,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/subprocess/{subprocess}/edit', 'SubProcessController@edit')
                                 ->name('subprocess.edit')
                                 ->middleware('permission:subprocess.edit');
-
 
     //Proveederoes
     Route::post('/providers/store', 'ProviderController@store')

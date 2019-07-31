@@ -7,15 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Process extends Model
 {
     protected $primaryKey = 'id';
-	
+
     protected $fillable = [
-        
-        'tarja_proceso','Box_out','rejected_id'
-            
+        'tarja_proceso', 'rejected_id',
     ];
-    
-     public function receptions(){
-        return $this->belongsToMany('\App\Reception','process_reception')
+
+    public function receptions()
+    {
+        return $this->belongsToMany('\App\Reception', 'process_reception')
             ->withPivot('process_id');
     }
 
@@ -24,8 +23,8 @@ class Process extends Model
         return $this->belongsToMany(Dispatch::class);
     }
 
-    public function rejected(){
+    public function rejected()
+    {
         return $this->belongsTo(Rejected::class);
     }
-
 }

@@ -145,6 +145,10 @@ Route::middleware('auth')->group(function () {
                                 ->middleware('permission:receptions.destroy');
     Route::get('/receptions/{reception}/edit', 'ReceptionController@edit')->name('receptions.edit')
                                 ->middleware('permission:receptions.edit');
+    Route::get('receptionChange', 'ReceptionController@ChangeStatusTrue')->name('receptions.change')
+                                ->middleware('permission:receptions.edit');
+
+                                
 
     //Consulta Ajax Select
 

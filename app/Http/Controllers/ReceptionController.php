@@ -239,6 +239,23 @@ class ReceptionController extends Controller
         return redirect()->route('receptions.index', $reception->id)->with('info', 'Reception actualizada con exito');
     }
 
+    public function ChangeStatusTrue(Reception $reception)
+    {
+        
+        $reception = Reception::find($reception->input('id'));
+        $rejected =  Reception::where('id',$reception)->get('rejected');
+
+        dd($reception);
+        if($rejected == 1){
+            Reception::where('id', $reception)->update(['available' => 0]);        
+        }elseif($rejected == 0){
+            Reception::where('id', $reception)->update(['available' => 1]);        
+        }
+
+        return redirect()->route('receptions.index', $reception->id)->with('info', 'Reception actualizada con exito');
+    }
+
+    
     /**
      * Remove the specified resource from storage.
      *

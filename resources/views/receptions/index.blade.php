@@ -97,8 +97,12 @@
                                 <td>{{ $receptionslis->quality->name  }}</td>
                                 <td>{{ $receptionslis->created_at }}</td>
                                 
-                                
 
+                                <td width="5px">
+                                        @can('receptions.show')
+                                        <a class="btn btn-primary" href="#"  onclick="changestate(this.id)" id="{{ $receptionslis->id}}" class="btn btn-sm btn-default changestate">estado</a>
+                                        @endcan
+                                    <td>
                                 <td width="5px">
                                     @can('receptions.show')
                                     <a href="{{ Route('receptions.show', $receptionslis->id) }}" class="btn btn-sm btn-default">Ver</a>
@@ -128,5 +132,32 @@
         </div>
     </div>
 </div>
+
+<script>
+    function changestate(clicked){
+       
+        alert(clicked);
+
+        if(confirm("Are you sure you want to Delete this data?"))
+        {
+            $.ajax({
+                url:"{{route('receptions.change')}}",
+                mehtod:"get",
+                data:{id:clicked},
+                success:function(data)
+                {
+                    alert(data);
+                }
+            })
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+</script>
+
+
 
 @endsection

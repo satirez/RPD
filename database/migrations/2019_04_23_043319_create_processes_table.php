@@ -22,6 +22,7 @@ class CreateProcessesTable extends Migration
             $table->Boolean('rejected')->default('0');
             
             $table->Boolean('wash')->default('1');
+            $table->Boolean('available')->default('1');
 
             $table->timestamps();
         });

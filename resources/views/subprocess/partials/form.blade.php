@@ -30,28 +30,33 @@
 	<div class="card-body">
 		<div class="d-flex justify-content-center">
 			<div class="row">
-				<div class="col-md-5">
+				<div class="col-md-2">
 					<div class="form-group">
 						{{ Form::label('tarja_subprocceses', 'Proceso') }}
-						{{ Form::text('tarja_subprocceses', 'PRO'.$idsad, ['class' => 'form-control','readonly']) }}
+						{{ Form::text('tarja_subprocceses', 'PR'.$idsad, ['class' => 'form-control','readonly']) }}
 					</div>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-2">
 					<div class="form-group">
 						{{ Form::label('quantity', 'Cantidad ') }}
 						{{ Form::text('quantity', null, ['class' => 'form-control','id'=>'cantidad','oninput'=>'getWeightFormat()']) }}
 					</div>
 				</div>
-			</div>
 
-			<div class="row">
-				<div class="col-md-5">
+				<div class="col-md-2">
 					<div class="form-group">
 						{{ Form::label('format', 'Formato') }}
 						{{ Form::select('format',$listFormat, null, ['class' => 'form-control input-number','id'=>'formatWeight','oninput'=>'getWeightFormat()']) }}
 					</div>
 				</div>
-				<div class="col-md-5">
+
+				<div class="col-md-3">
+					<div class="form-group">
+						{{ Form::label('quality_id', 'Calidad') }}
+						{{Form::select('quality_id', $listQualities, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+					</div>
+				</div>
+				<div class="col-md-2">
 					<div class="form-group">
 						<label> Kg Procesados </label>
 						<input class="form-control" 
@@ -65,6 +70,7 @@
 				</div>
 			</div>
 
+			
 		</div>
 	</div>
 </div>

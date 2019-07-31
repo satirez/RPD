@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\SubProcess;
 use App\Format;
+use App\Quality;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -28,8 +29,7 @@ class SubProcessController extends Controller
      */
     public function create(Request $request, $id)
     {  
-        $process = DB::table('process_reception')->where('process_id', $id)->first();
-        
+        $process = DB::table('process_reception')->where('process_id', $id)->first(); 
         $reception_id = $process->reception_id;
         $reception = DB::table('receptions')->where('id', $reception_id)->first();
         $peso = $reception->grossweight;
@@ -38,8 +38,9 @@ class SubProcessController extends Controller
 
         //formato y peso para la vista
         $listFormat = Format::OrderBy('id', 'DES')->pluck('name','weight');
+        $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
 
-        return view('subprocess.create', compact('idsad', 'peso', 'listFormat'));
+        return view('subprocess.create', compact('idsad', 'peso', 'listFormat', 'listQualities'));
     }
 
     /**

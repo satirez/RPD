@@ -25,7 +25,7 @@ class CreateSubProcessesTable extends Migration
             $table->Integer('quantity');
             
             $table->Integer('weight');
-
+            $table->Boolean('available')->default('1');
 
             $table->timestamps();
         });

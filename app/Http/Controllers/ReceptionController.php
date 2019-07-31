@@ -200,18 +200,27 @@ class ReceptionController extends Controller
 
         $listSupplies = Supplies::OrderBy('id', 'DES')->pluck('name', 'weight');
         $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
-        $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
-        $listRejecteds = MotivoRejected::OrderBy('id', 'DES')->pluck('name', 'id');
+        $listFruits = Fruit::OrderBy('id', 'DES')->get();
+        
+        $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
+
         $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $listSeasons = Season::OrderBy('id', 'DES')->pluck('name', 'id');
         $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
+        $listRejecteds = MotivoRejected::OrderBy('id', 'DES')->pluck('name', 'id');
 
-    //        $rechazado = Rejected::where('reception_id',$reception->id)->pluck('name','id');
+        if($reception->rejected == 1){
+            $rechazado = "disponible";
+        }else{
+            $rechazado = "rechazado";
+            $rechazado = Rejected::where('reception_id',$reception->id)->first();
 
+            $motivo = MotivoRejected::where('id',$rechazado->id)->pluck('name', 'id');
+            $comment = MotivoRejected::where('id',$rechazado->id)->pluck('comment');
+        }
 
-
-        return view('receptions.edit', compact('reception','listSupplies','listStatus',
+        return view('receptions.edit', compact('reception','comment','motivo','rechazado','listSupplies','listStatus',
             'listProviders', 'listQualities', 'listFruits', 'listSeasons', 'listRejecteds', 'listVariety'));
     }
 

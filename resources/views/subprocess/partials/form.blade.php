@@ -32,13 +32,13 @@
 			<div class="row">
 				<div class="col-md-5">
 					<div class="form-group">
-						{{ Form::label('tarja_subprocceses', 'Proceso') }}
+						{{ Form::label('tarja_subprocceses', 'Pertenece al Proceso') }}
 						{{ Form::text('tarja_subprocceses', 'PRO'.$idsad, ['class' => 'form-control','readonly']) }}
 					</div>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-5">DDD
 					<div class="form-group">
-						{{ Form::label('quantity', 'Cantidad ') }}
+						{{ Form::label('quantity', 'Cantidad de Cajas') }}
 						{{ Form::text('quantity', null, ['class' => 'form-control','id'=>'cantidad','oninput'=>'getWeightFormat()']) }}
 					</div>
 				</div>

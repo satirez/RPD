@@ -6,7 +6,7 @@
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 style="text-align:center;">Productores de Fruta
+                    <h4 style="text-align:center;">Listado de los Productores de Fruta
                     @can('admin.providers.create')
                     <a href="{{ Route('admin.providers.create') }}" class="btn btn-info pull-right"> Crear </a>
                     @endcan 
@@ -19,7 +19,7 @@
                            <tr>
                                <th>Nombre</th>
                                <th>Rut</th>
-                               <th>Direccion</th>
+                               <th>Dirección</th>
                                <th>Numero Telefonico</th>
 
                                <th colspan="3">&nbsp;</th>

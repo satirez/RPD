@@ -425,6 +425,26 @@ Route::middleware('auth')->group(function () {
             ->name('dispatch.getProcess')
                 ->middleware('permission:dispatch.getProcess');
 
+
+
+
+    //TipoDespacho
+    Route::post('/tipodispatches/store', 'TipoDispatchController@store')->name('admin.tipodispatches.store')->middleware('permission:admin.tipodispatches.create');
+
+    Route::get('/tipodispatches', 'TipoDispatchController@index')->name('admin.tipodispatches.index')
+            ->middleware('permission:admin.tipodispatches.index');
+
+    Route::get('/tipodispatches/create', 'TipoDispatchController@create')->name('admin.tipodispatches.create')->middleware('permission:admin.tipodispatches.create');
+
+    Route::put('/tipodispatches/{tipodispatch}', 'TipoDispatchController@update')->name('admin.tipodispatches.update')->middleware('permission:admin.tipodispatches.edit');
+
+    Route::get('/tipodispatches/{tipodispatch}', 'TipoDispatchContr oller@show')->name('admin.tipodispatch.show')->middleware('permission:admin.tipodispatch.show');
+
+    Route::delete('/tipodispatch/{tipodispatch}', 'TipoDispatchController@destroy')->name('admin.tipodispatches.destroy')->middleware('permission:admin.tipodispatches.destroy');
+
+    Route::get('/tipodispatches/{tipodispatch}/edit', 'TipoDispatchController@edit')->name('admin.tipodispatches.edit')->middleware('permission:admin.tipodispatches.edit');
+
+
     //Estatus
 
     Route::post('/statuses/store', 'StatusController@store')
@@ -455,9 +475,14 @@ Route::middleware('auth')->group(function () {
 
     //TrayINNNNNNNNsssssssssssssssssssssssssssssssssssss STORE
 
-    Route::post('/trays/store', 'TrayInController@store')
+
+      Route::post('/trays/store', 'TrayInController@store')
     ->name('admin.trays.store')
-                ->middleware('permission:admin.trays.store');
+                ->middleware('permission:admin.trays.create');
+
+    Route::get('/trays', 'TrayInController@index')
+    ->name('admin.trays.index')
+                ->middleware('permission:admin.trays.index');
 
     Route::get('/trays/create', 'TrayInController@create')
     ->name('admin.trays.create')
@@ -471,6 +496,12 @@ Route::middleware('auth')->group(function () {
     ->name('admin.trays.show')
                 ->middleware('permission:admin.trays.show');
 
+    Route::delete('/trays/{tray}', 'TrayInController@destroy')->name('admin.trays.destroy')
+                ->middleware('permission:admin.trays.destroy');
+
     Route::get('/trays/{tray}/edit', 'TrayInController@edit')->name('admin.trays.edit')
                 ->middleware('permission:admin.trays.edit');
+                
+
+
 });

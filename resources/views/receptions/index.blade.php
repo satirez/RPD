@@ -27,11 +27,7 @@
                     </h4>
 
                     
-                    <h4 style="text-align:center;">Control de bandejas
-                    @can('receptions.create')
-                    <a href="{{ Route('admin.trays.create') }}" class="btn btn-info pull-right btn-sm"> Crear </a>
-                    @endcan
-                    </h4>
+                   
                    
                 </div>
 
@@ -59,8 +55,8 @@
                                 <th>N° Bandejas</th>
                                 <th>Productor</th>
                                 <th>Fruta</th>
-                                <th>tipo Calidad</th>                               
-                                <th>fecha/hora</th>
+                                <th>Tipo Calidad</th>                               
+                                <th>Fecha/Hora</th>
                                 
 
                                 <th colspan="auto">&nbsp;</th>

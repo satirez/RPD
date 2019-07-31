@@ -5,13 +5,13 @@
 </script>
 
 <div class="form-group">
-	{{ Form::label('name', 'Nombre ') }}
-	{{ Form::text('name', null, ['class' => 'form-control ', 'placeholder'=>'ejemplo: Bandeja']) }}
+	{{ Form::label('name', 'Nombre: ') }}
+	{{ Form::text('name', null, ['class' => 'form-control ', 'placeholder'=>'Ejemplo: Bandeja China Verde']) }}
 </div>
 	
 <div class="form-group">
-	{{ Form::label('weight', 'Peso') }}
-	{{ Form::text('weight', null, ['class' => 'form-control input-number','placeholder'=>'ejemplo: 0.45']) }}
+	{{ Form::label('weight', 'Peso en Kilogramos:') }}
+	{{ Form::text('weight', null, ['class' => 'form-control input-number','placeholder'=>'Ejemplo: 0.45 kg']) }}
 </div>
 
 

@@ -100,7 +100,7 @@
 
                                 <td width="5px">
                                         @can('receptions.show')
-                                        <a class="btn btn-primary" href="#"  onclick="changestate(this.id)" id="{{ $receptionslis->id}}" class="btn btn-sm btn-default changestate">estado</a>
+                                        <a class="btn btn-primary" href="#"  onclick="changestate(this.id)" id="{{ $receptionslis->id}}" class="btn btn-sm btn-default changestate">Cambiar Estado</a>
                                         @endcan
                                     <td>
                                 <td width="5px">

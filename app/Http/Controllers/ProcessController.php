@@ -69,7 +69,6 @@ class ProcessController extends Controller
      */
     public function store(StoreProcess $request)
     {   
-       
         //dd($request->input('row'));
 
         // Se genera el array con la información de proceso

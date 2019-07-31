@@ -22,9 +22,9 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4 style="text-align:center;">Procesos
-                              @can('process.processes.create')
-                    <a href="{{ Route('process.processes.create') }}" class="btn btn-info pull-right btn-sm"> Crear </a>
-                    @endcan
+                                @can('process.processes.create')
+                                    <a href="{{ Route('process.processes.create') }}" class="btn btn-info pull-right btn-sm"> Crear </a>
+                                @endcan
                             </h4>
                         
                     

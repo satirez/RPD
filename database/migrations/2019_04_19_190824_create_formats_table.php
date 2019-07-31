@@ -16,9 +16,6 @@ class CreateFormatsTable extends Migration
         Schema::create('formats', function (Blueprint $table) {
             $table->increments('id');
             $table->String('name');
-            $table->String('largo');
-            $table->String('alto');
-            $table->String('ancho');
             $table->String('weight');
 
             $table->timestamps();

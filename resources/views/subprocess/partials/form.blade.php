@@ -48,7 +48,7 @@
 				<div class="col-md-5">
 					<div class="form-group">
 						{{ Form::label('format', 'Formato') }}
-						{{ Form::text('format', null, ['class' => 'form-control input-number','id'=>'formatWeight','oninput'=>'getWeightFormat()']) }}
+						{{ Form::select('format',$listFormat, null, ['class' => 'form-control input-number','id'=>'formatWeight','oninput'=>'getWeightFormat()']) }}
 					</div>
 				</div>
 				<div class="col-md-5">

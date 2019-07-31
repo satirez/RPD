@@ -73,7 +73,7 @@
 
 <div class="col-md-12 text-center">
 	<div class="form-group text">
-		{{ Form::submit('Guardar', ['class' => 'btn btn-success']) }}
+		{{ Form::submit('Guardar', ['class' => 'btn btn-success','id' =>'save']) }}
 	</div>
 </div>
 
@@ -89,13 +89,14 @@
 		var input = kgProcesado;
 		if(input > {{ $peso }} ){
 			alert('peso superado');
+			
 		}
 	}
 	
 	function hola(){
 		
 	}
-</script>LA 
+</script>
 
 
 <!-- Permitir solo numeros, puntos y X-->

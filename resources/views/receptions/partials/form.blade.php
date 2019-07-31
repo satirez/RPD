@@ -5,16 +5,7 @@
 </script>
 
   <script type="text/javascript">
-
-    //No permitir comas
-    function coma(e) { 
-    tecla=(document.all) ? e.keyCode : e.which; 
-    if (tecla==44) { 
-        alert('No usar "Comas", reemplazar por "punto" ');
-        return false; 
-    	} 
-
-	} 
+ 
 
     function rest() {
         var txtFirstNo = document.getElementById('grossweight').value;
@@ -123,7 +114,8 @@
 			{{ Form::number('grossweight', null, ['class' => 'form-control ',
 			'onkeyup'=>'rest()',
 			'onKeyPress'=>'coma(event)',
-			'id'=>'grossweight'
+			'id'=>'grossweight',
+			'step'=>'any'
 			]) }}
 		</div>
 	</div>
@@ -134,7 +126,8 @@
 			{{ Form::number('quantity', null, ['class' => 'form-control ',
 			'onkeyup'=>'rest()',
 			'onKeyPress'=>'coma(event)',
-			'id'=>'quantity'
+			'id'=>'quantity',
+			'step'=>'any'
 			]) }}
 		</div>
 	</div>
@@ -148,7 +141,8 @@
 			{{ Form::number('palet_weight', null, ['class' => 'form-control ',
 			'onkeyup'=>'rest()',
 			'onKeyPress'=>'coma(event)',
-			'id'=>'palet_weight'
+			'id'=>'palet_weight',
+			'step'=>'any'
 			]) }}
 		</div>
 	</div>
@@ -168,7 +162,8 @@
 			{{ Form::label('middleweight_trays', 'Kg de fruta por bandeja') }}
 			{{ Form::number('middleweight_trays', null, ['class' => 'form-control ',
 			'id'=>'middleweight_trays',
-			'readonly']) }}
+			'readonly',
+			'step'=>'any']) }}
 		</div>
 	</div>
 </div>		

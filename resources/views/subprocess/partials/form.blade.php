@@ -92,6 +92,9 @@
 		}
 	}
 	
+	function hola(){
+		
+	}
 </script>LA 
 
 

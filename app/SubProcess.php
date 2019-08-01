@@ -24,7 +24,7 @@ class SubProcess extends Model
     }
     public function quality()
     {
-        return $this->quality(Quality::class);
+        return $this->belongsTo(Quality::class);
     }
     public function dispatches()
     {

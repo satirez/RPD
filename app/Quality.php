@@ -18,6 +18,6 @@ class Quality extends Model
 
     public function subprocess()
     {
-        return $this->hasMany(SubProcess::class);
+        return $this->belongsTo(SubProcess::class);
     }
 }

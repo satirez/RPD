@@ -15,7 +15,7 @@ class CreateReceptionsTable extends Migration
     {
         Schema::create('receptions', function (Blueprint $table) {
             $table->increments('id');
-            $table->String('grossweight');
+            $table->Double('grossweight');
 
             $table->Integer('provider_id')->unsigned();
                 $table->foreign('provider_id')->references('id')->on('providers')->onDelete('cascade');

@@ -6,6 +6,7 @@ use App\SubProcess;
 use App\Format;
 use App\Quality;
 use App\motivorejected;
+use App\Process;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -56,25 +57,14 @@ class SubProcessController extends Controller
      */
     public function store(Request $request)
     {
-
-        // SUB PROCESOS
-
-        // Se insertan los Subprocesos
+        
         SubProcess::create($request->all());
 
         //instancio el radio button
-        $rejected = $request->get('rejected');
+        
 
         // si se selecciono que estaba rechazado pos, se rechaza xD
-        if ($rejected == 1) {
-            $rejected = [
-                
-                'reason' => $request->get('reason'),
-                'comment' => $request->get('comment'), ];
-            $rejected = Rejected::create($rejected);
-        } else {
-            
-        }
+       
     }
 
     /**

@@ -17,10 +17,10 @@
 				<h2>{{ $peso }}</h2>
 			</td>
 			<td>
-				<h2> 00 </h2>
+				<h2> 5 </h2>
 			</td>
 			<td>
-				<h2> 00 </h2>
+				<h2> 100 </h2>
 			</td>
 		</tr>
 	</tbody>
@@ -32,9 +32,11 @@
 			<div class="row">
 				<div class="col-md-2">
 					<div class="form-group">
-						{{ Form::label('process_id', 'Proceso') }}
-						{{ Form::text('process_id', 'PR'.$idsad, ['class' => 'form-control','readonly']) }}
+						{{ Form::label('', 'N° Proceso') }}
+						{{ Form::text('', 'PR'.$idsad, ['class' => 'form-control','readonly']) }}
 					</div>
+
+					<input name="process_id" type="hidden" value= {{$idsad}} >
 				</div>
 				<div class="col-md-2">
 					<div class="form-group">
@@ -59,14 +61,15 @@
 				<div class="col-md-2">
 					<div class="form-group">
 						<label> Kg Procesados </label>
-						<input class="form-control" 
-						id="kgTotal" 
+						<input name="weight"class="form-control" 
+						id="weight"
 						onkeyup="this.onchange();" 
 						onpaste="this.onchange();" 
 						oninput="this.onchange();"  
 						onchange="validacion()" 
-						type="text">
+						type="number">
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -117,7 +120,7 @@
 			var quantityBox = document.getElementById('cantidad').value;
 			var formatWeight = document.getElementById('formatWeight').value;
 			var kgProcesado = Number(quantityBox)*Number(formatWeight);
-			document.getElementById('kgTotal').value = kgProcesado;
+			document.getElementById('weight').value = kgProcesado;
 			validacion(kgProcesado)
 	}
 	function validacion(kgProcesado){

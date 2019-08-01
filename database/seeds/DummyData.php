@@ -24,6 +24,7 @@ class DummyData extends Seeder
         $this->Formatos();
         $this->Temporadas();
 
+       // factory(App\Reception::class,30)->create();
     }
 
     public function frutas()

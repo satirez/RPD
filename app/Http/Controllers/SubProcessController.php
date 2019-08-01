@@ -84,9 +84,8 @@ class SubProcessController extends Controller
         //sumas y restas
         $acumWeight = SubProcess::where('process_id', $idProcess )->sum('weight');
         $resto = $peso - $acumWeight;
-
-        return redirect()->route('subprocess.create', $idProcess)->with('info','Temprada guardado con exito'); 
-
+        
+        return redirect()->route('subprocess.create', $idProcess)->with('info','Temprada guardado con exito');
     }
 
     /**

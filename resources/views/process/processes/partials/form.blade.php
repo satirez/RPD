@@ -61,36 +61,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-12">
-			<div class="form-group">
-				<div class="bs-example">
-
-					<h5>¿ El Proceso está? </h5>
-					<input type="radio" name="rejected" value="0" data-toggle="collapse" data-parent="#accordion"
-						href="#collapseOne" checked> Bueno
-
-					<input type="radio" name="rejected" value="1" data-toggle="collapse" data-parent="#accordion"
-						href="#collapseOne"> Rechazado
-
-					<div class="panel-group" id="accordion">
-						<div class="panel panel-default">
-							<div id="collapseOne" class="panel-collapse collapse in">
-								<div class="panel-body">
-									<div class="card">
-										<div class="card-body">
-											{{Form::label('reason', 'Selecciona motivo de rechazo') }}
-											{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
-											{{Form::label('comment', 'Comentario Adicional') }}
-											{{Form::textarea('comment', null, ['class' => 'form-control'])}}
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 	</div>
 </div>
 

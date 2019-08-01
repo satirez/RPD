@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Schema;
@@ -21,11 +22,19 @@ class CreateSubProcessesTable extends Migration
 
             $table->Integer('format_id')->unsigned();
             $table->foreign('format_id')->references('id')->on('formats')->onDelete('cascade');
+            
+            $table->Integer('quality_id')->unsigned();
+            $table->foreign('quality_id')->references('id')->on('qualities')->onDelete('cascade');
 
             $table->Integer('quantity');
             
             $table->Integer('weight');
             $table->Boolean('available')->default('1');
+
+            $table->Boolean('rejected')->default('0');
+            $table->integer('reason')->unsigned()->nullable();
+            $table->foreign('reason')->references('id')->on('motivorejecteds');
+            $table->String('comment')->nullable();
 
             $table->timestamps();
         });

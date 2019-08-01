@@ -9,7 +9,8 @@ class SubProcess extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'quality_id', 'status_id', 'process_id','format_id','quantity'
+        'process_id', 'format_id', 'quality_id', 'quantity','weight',
+         'available', 'rejected', 'reason', 'comment'
     ];
 
 

@@ -32,8 +32,8 @@
 			<div class="row">
 				<div class="col-md-2">
 					<div class="form-group">
-						{{ Form::label('tarja_subprocceses', 'Proceso') }}
-						{{ Form::text('tarja_subprocceses', 'PR'.$idsad, ['class' => 'form-control','readonly']) }}
+						{{ Form::label('process_id', 'Proceso') }}
+						{{ Form::text('process_id', 'PR'.$idsad, ['class' => 'form-control','readonly']) }}
 					</div>
 				</div>
 				<div class="col-md-2">
@@ -45,8 +45,8 @@
 
 				<div class="col-md-2">
 					<div class="form-group">
-						{{ Form::label('format', 'Formato') }}
-						{{ Form::select('format',$listFormat, null, ['class' => 'form-control input-number','id'=>'formatWeight','oninput'=>'getWeightFormat()']) }}
+						{{ Form::label('format_id', 'Formato') }}
+						{{ Form::select('format_id',$listFormat, null, ['class' => 'form-control input-number','id'=>'formatWeight','oninput'=>'getWeightFormat()']) }}
 					</div>
 				</div>
 
@@ -69,9 +69,38 @@
 					</div>
 				</div>
 			</div>
-
-			
 		</div>
+<div class="col-md-12">
+			<div class="form-group">
+				<div class="bs-example">
+
+					<h5>¿ El Proceso está? </h5>
+					<input type="radio" name="rejected" value="0" data-toggle="collapse" data-parent="#accordion"
+						href="#collapseOne" checked> Bueno
+
+					<input type="radio" name="rejected" value="1" data-toggle="collapse" data-parent="#accordion"
+						href="#collapseOne"> Rechazado
+
+					<div class="panel-group" id="accordion">
+						<div class="panel panel-default">
+							<div id="collapseOne" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<div class="card">
+										<div class="card-body">
+											{{Form::label('reason', 'Selecciona motivo de rechazo') }}
+											{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
+											{{Form::label('comment', 'Comentario Adicional') }}
+											{{Form::textarea('comment', null, ['class' => 'form-control'])}}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 </div>
 

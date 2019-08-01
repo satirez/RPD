@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\SubProcess;
 use App\Format;
 use App\Quality;
+use App\motivorejected;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,8 @@ class SubProcessController extends Controller
      */
     public function create(Request $request, $id)
     {  
+
+        
         $process = DB::table('process_reception')->where('process_id', $id)->first(); 
         $reception_id = $process->reception_id;
         $reception = DB::table('receptions')->where('id', $reception_id)->first();
@@ -39,8 +42,9 @@ class SubProcessController extends Controller
         //formato y peso para la vista
         $listFormat = Format::OrderBy('id', 'DES')->pluck('name','weight');
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
+        $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
 
-        return view('subprocess.create', compact('idsad', 'peso', 'listFormat', 'listQualities'));
+        return view('subprocess.create', compact('idsad', 'peso', 'listFormat', 'listQualities', 'listRejecteds'));
     }
 
     /**
@@ -52,11 +56,11 @@ class SubProcessController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         // SUB PROCESOS
 
         // Se insertan los Subprocesos
-        SubProcess::insert($Charges);
+        SubProcess::create($request->all());
 
         //instancio el radio button
         $rejected = $request->get('rejected');
@@ -64,11 +68,12 @@ class SubProcessController extends Controller
         // si se selecciono que estaba rechazado pos, se rechaza xD
         if ($rejected == 1) {
             $rejected = [
-                'process_id' => $process_id,
+                
                 'reason' => $request->get('reason'),
                 'comment' => $request->get('comment'), ];
             $rejected = Rejected::create($rejected);
         } else {
+            
         }
     }
 

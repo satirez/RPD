@@ -129,6 +129,8 @@ class ReceptionController extends Controller
     public function store(Request $request)
     {   
 
+        
+
         $rejected = $request->get('rejected');
         $reason = $request->get('reason');
         $comment = $request->get('comment');

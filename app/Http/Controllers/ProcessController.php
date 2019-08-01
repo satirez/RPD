@@ -69,6 +69,7 @@ class ProcessController extends Controller
      */
     public function store(StoreProcess $request)
     {   
+       
         //dd($request->input('row'));
 
         // Se genera el array con la información de proceso
@@ -78,9 +79,6 @@ class ProcessController extends Controller
             'wash' => $request->get('wash')
         ];
         
-
-        //dd($process);
-
         // Se crea
         $process = Process::create($process);
         //se establece la relación con receptions

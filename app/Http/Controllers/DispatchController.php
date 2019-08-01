@@ -9,6 +9,7 @@ use App\Exporter;
 use App\SubProcess;
 use App\Dispatch;
 use App\Rejected;
+use App\TipoDispatch;
 
 class DispatchController extends Controller
 {
@@ -21,8 +22,11 @@ class DispatchController extends Controller
     {
         $listexporter = Exporter::paginate();
         $listdispatches = dispatch::paginate();
+        $listtipodispatch = TipoDispatch::paginate();
 
-        return view('dispatch.index', compact('listexporter', 'listdispatches'));
+        
+
+        return view('dispatch.index', compact('listexporter', 'listdispatches','listtipodispatch'));
     }
 
     public function getSubProcess(){
@@ -52,8 +56,10 @@ class DispatchController extends Controller
 
         $listexporter = Exporter::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
+        $listtipodispatch = TipoDispatch::OrderBy('id', 'ASC')->pluck('name', 'id');
 
-        return view('dispatch.create', compact('listexporter', 'subprocesses','listRejecteds'));
+
+        return view('dispatch.create', compact('listexporter', 'subprocesses','listRejecteds','listtipodispatch'));
     }
 
     /**

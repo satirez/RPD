@@ -22,6 +22,8 @@ class DummyData extends Seeder
         $this->Bandejas();
         $this->Estatus();
         $this->Formatos();
+        $this->Temporadas();
+
     }
 
     public function frutas()
@@ -46,6 +48,29 @@ class DummyData extends Seeder
         }, $fruits);
 
         DB::table('fruits')->insert($fruits);
+    }
+    public function Temporadas()
+    {
+        $now = \Carbon\Carbon::now();
+
+        $fruits = [
+
+            ['2020-2021','2019-08-01','2019-08-01'],
+        ];
+
+
+        $fruits = array_map(function ($fruits) use ($now) {
+            return [
+                'name' => $fruits[0],
+                'start_date' => $fruits[1],
+                'end_date' => $fruits[2],
+
+                'updated_at' => $now,
+                'created_at' => $now,
+            ];
+        }, $fruits);
+
+        DB::table('seasons')->insert($fruits);
     }
     public function variedades()
     {

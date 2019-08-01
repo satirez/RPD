@@ -14,6 +14,10 @@ class Format extends Model
         'name', 'weight'
     ];
 
+  	public function subprocesses()
+    {
+        return $this->belongsTo(SubProcess::class);
+    }
     
   
 }

@@ -20,7 +20,7 @@ class SubProcess extends Model
 
     public function format()
     {
-        return $this->hasMany(Format::class);
+        return $this->belongsTo(Format::class);
     }
     public function quality()
     {

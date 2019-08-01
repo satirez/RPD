@@ -9,6 +9,9 @@ use App\Exporter;
 use App\SubProcess;
 use App\Dispatch;
 use App\Rejected;
+use App\Fruit;
+use App\Quality;
+use App\Format;
 use App\TipoDispatch;
 
 class DispatchController extends Controller
@@ -23,10 +26,12 @@ class DispatchController extends Controller
         $listexporter = Exporter::paginate();
         $listdispatches = dispatch::paginate();
         $listtipodispatch = TipoDispatch::paginate();
-
+        $listFormat = Format::paginate();
+        $listFruits = Fruit::paginate();
+        $listQualities = Quality::paginate();
         
 
-        return view('dispatch.index', compact('listexporter', 'listdispatches','listtipodispatch'));
+        return view('dispatch.index', compact('listexporter', 'listdispatches','listtipodispatch','listFormat','listFruits'));
     }
 
     public function getSubProcess(){
@@ -57,9 +62,11 @@ class DispatchController extends Controller
         $listexporter = Exporter::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
         $listtipodispatch = TipoDispatch::OrderBy('id', 'ASC')->pluck('name', 'id');
+        $listFormat = Format::OrderBy('id', 'DES')->pluck('name','id','weight');
+        $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
+        $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
 
-
-        return view('dispatch.create', compact('listexporter', 'subprocesses','listRejecteds','listtipodispatch'));
+        return view('dispatch.create', compact('listexporter', 'subprocesses','listRejecteds','listtipodispatch','listFormat','listFruits','listQualities'));
     }
 
     /**

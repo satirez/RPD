@@ -86,9 +86,9 @@
 									<th>{{ Form::checkbox('subprocesses[]', $subprocess->id) }} </th>
 									<th>{{ $subprocess->id }}</th>
 									<th>{{ $subprocess->quantity }}</th>
-									<th>{{ $subprocess->format_id }}</th>
+									<th>{{ $subprocess->format->name}}</th>
 									<th>{{ $subprocess->weight }}</th>
-									<th>{{ $subprocess->quality_id }}</th>
+									<th>{{ $subprocess->quality->name }}</th>
 									
 
 

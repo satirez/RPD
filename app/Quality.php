@@ -15,4 +15,9 @@ class Quality extends Model
      public function receptions(){
         return $this->hasMany(Reception::class);
     }
+
+    public function subprocess()
+    {
+        return $this->hasMany(SubProcess::class);
+    }
 }

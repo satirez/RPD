@@ -23,7 +23,7 @@ class Dispatch extends Model
         return $this->belongsToMany(SubProcess::class);
     }
 
-
+    
 
 	public function rejected(){
         return $this->belongsTo(Rejected::class);

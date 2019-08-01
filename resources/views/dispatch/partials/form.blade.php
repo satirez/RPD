@@ -16,6 +16,9 @@
 
 </script>
 
+
+<div class="row">
+
 	<div class="col-md-4">
 		<div class="form-group">
 			{{ Form::label('patentNo', 'Numero de patente') }}
@@ -23,16 +26,16 @@
 		</div>
 	</div>
 	
-    <div class="row">
+    
 	
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<div class="form-group">
 		{{ Form::label('exporter_id', 'Selecciona un exportador') }}
 		{{Form::select('exporter_id', $listexporter, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 	</div>
 	</div>
-	
-</div>
+</div>	
+
 
 
 <div class="col-md-12">
@@ -57,7 +60,7 @@
 
 								@forelse($subprocesses as $subprocess)
 								<tr>
-									<th>{{ Form::checkbox('subsubprocesses[]', $subprocess->id) }} </th>
+									<th>{{ Form::checkbox('subprocesses[]', $subprocess->id) }} </th>
 									<th>{{ $subprocess->tarja }}</th>
 									
 

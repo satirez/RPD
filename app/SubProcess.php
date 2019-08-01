@@ -13,9 +13,20 @@ class SubProcess extends Model
          'available', 'rejected', 'reason', 'comment'
     ];
 
+    public function process()
+    {
+        return $this->hasOne(Process::class);
+    }
 
-
-     public function dispatches()
+    public function format()
+    {
+        return $this->hasMany(Format::class);
+    }
+    public function quality()
+    {
+        return $this->quality(Quality::class);
+    }
+    public function dispatches()
     {
         return $this->belongsToMany(Dispatch::class);
     }

@@ -36,7 +36,7 @@ class TrayInController extends Controller
      
       
         $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
-
+        
         return view('admin.trays.create', compact('listProviders', 'stockbandejas', 'liststocks'));
     }
 
@@ -60,7 +60,7 @@ class TrayInController extends Controller
             $request->merge(['traysin' => $traysin]);
             $trayIn = TrayIn::create($request->all());
         }
-           
+
         return redirect()->route('admin.trays.create', $trayIn->id)->with('info', 'Ingreso exitoso');
     }
 

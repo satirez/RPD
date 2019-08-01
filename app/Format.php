@@ -13,5 +13,7 @@ class Format extends Model
     protected $fillable = [
         'name', 'weight'
     ];
+
+    
   
 }

@@ -17,10 +17,10 @@
 				<h2>{{ $peso }}</h2>
 			</td>
 			<td>
-				<h2> 5 </h2>
+				<h2> {{ $acumWeight }} </h2>
 			</td>
 			<td>
-				<h2> 100 </h2>
+				<h2> {{$resto}} </h2>
 			</td>
 		</tr>
 	</tbody>

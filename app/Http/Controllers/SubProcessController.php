@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\SubProcess;
 use App\Format;
+use App\Reception;
+use App\Proces_Reception;
+use App\SubProcess;
 use App\Quality;
 use App\motivorejected;
 use App\Process;
@@ -33,19 +35,22 @@ class SubProcessController extends Controller
     {  
 
         
-        $process = DB::table('process_reception')->where('process_id', $id)->first(); 
+        $process = DB::table('process_reception')->where('process_id', $id)->first();
         $reception_id = $process->reception_id;
         $reception = DB::table('receptions')->where('id', $reception_id)->first();
+
         $peso = $reception->grossweight;
+        $acumWeight = SubProcess::get()->sum('weight');
+        $resto=0;
 
         $idsad = $id;
-
+        
         //formato y peso para la vista
         $listFormat = Format::OrderBy('id', 'DES')->pluck('name','weight');
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
 
-        return view('subprocess.create', compact('idsad', 'peso', 'listFormat', 'listQualities', 'listRejecteds'));
+        return view('subprocess.create', compact('idsad', 'peso', 'listFormat', 'listQualities', 'listRejecteds', 'acumWeight', 'resto'));
     }
 
     /**
@@ -57,14 +62,30 @@ class SubProcessController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //query pa pasar el peso de formato y sacarle su id
+
+        $getFormatId =  $request->get('format_id');
+        $idProcess =  $request->get('process_id');
+
+        $idFormat = Format::where('weight', $getFormatId)->first()->id;
+        $request['format_id']=$idFormat;
+
         SubProcess::create($request->all());
 
-        //instancio el radio button
-        
+        $listFormat = Format::OrderBy('id', 'DES')->pluck('name','weight');
+        $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
+        $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
 
-        // si se selecciono que estaba rechazado pos, se rechaza xD
-       
+        $process = DB::table('process_reception')->where('process_id', $idProcess)->first();
+        $reception_id = $process->reception_id;
+        $reception = DB::table('receptions')->where('id', $reception_id)->first();
+        $peso = $reception->grossweight;
+        $idsad = $idProcess;
+        //sumas y restas
+        $acumWeight = SubProcess::where('process_id', $idProcess )->sum('weight');
+        $resto = $peso - $acumWeight;
+
+        return view('subprocess.create', compact('peso','acumWeight', 'idsad', 'listFormat', 'listQualities', 'listRejecteds', 'resto'));
     }
 
     /**

@@ -15,11 +15,8 @@ class CreateProcessesTable extends Migration
     {
          Schema::create('processes', function (Blueprint $table) {
             $table->increments('id');
-
             $table->String('tarja_proceso');
-
-            $table->Boolean('available')->default('1');
-                       
+            $table->Boolean('available')->default('1');     
             $table->Boolean('wash')->default('1');
             
 

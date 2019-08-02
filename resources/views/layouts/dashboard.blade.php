@@ -1,6 +1,3 @@
-@extends('layouts.plane')
-
-@section('body')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,10 +5,16 @@
 
   <!-- Custom fonts for this template-->
   <link href="/webcss/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="/webcss/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
 </head>
 
@@ -26,7 +29,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon">
-          <img src="../images/logotri.png"  class="img-fluid" width="50px" height="50px">
+          <img src="../images/logotri.png" class="img-fluid" width="50px" height="50px">
 
         </div>
         <div class="sidebar-brand-text mx-3">BioBerries <sup>BB</sup></div>
@@ -35,10 +38,10 @@
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
-       <!-- Nav Item -->
-       <li class="nav-item">
+      <!-- Nav Item -->
+      <li class="nav-item">
         <a class="nav-link" href="{{ url ('home') }}">
-          <i class="fas fa-fw fa-home" style="color:#FF9E00" ></i>
+          <i class="fas fa-fw fa-home" style="color:#FF9E00"></i>
           <span>Principal</span></a>
 
 
@@ -47,7 +50,7 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      
+
       <!-- Heading -->
       <div class="sidebar-heading">
         Panel Administrativo
@@ -55,7 +58,8 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+          aria-controls="collapseTwo">
           <i class="fas fa-fw fa-users"></i>
           <span>Recursos Humanos</span>
         </a>
@@ -68,9 +72,9 @@
             <a class="collapse-item" href="{{ url ('users') }}">Usuarios</a>
 
             @endcan
-             <!-- Roles -->
-             @can('roles.index')
-             <a class="collapse-item" href="{{ url ('roles') }}">Roles de usuario</a>
+            <!-- Roles -->
+            @can('roles.index')
+            <a class="collapse-item" href="{{ url ('roles') }}">Roles de usuario</a>
             @endcan
           </div>
         </div>
@@ -78,7 +82,8 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+          aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Autocompletados</span>
         </a>
@@ -89,12 +94,12 @@
 
             <!-- Isumos -->
             @can('admin.supplies.index')
-                <a class="collapse-item" href="{{ url ('supplies') }}">Bandejas</a>
+            <a class="collapse-item" href="{{ url ('supplies') }}">Bandejas</a>
             @endcan
 
-             <!-- Motivos de rechazo -->
+            <!-- Motivos de rechazo -->
             @can('admin.rejecteds.index')
-                <a class="collapse-item" href="{{ url ('rejecteds') }}">Rechazos</a>
+            <a class="collapse-item" href="{{ url ('rejecteds') }}">Rechazos</a>
             @endcan
 
             <!-- Proveedores -->
@@ -103,48 +108,48 @@
 
             @endcan
 
-             <!-- Quality -->
-             @can('admin.providers.index')
+            <!-- Quality -->
+            @can('admin.providers.index')
 
             <a class="collapse-item" href="{{ url ('quality') }}">Calidad</a>
 
             @endcan
-            
+
             <!-- Exportadores -->
             @can('admin.providers.index')
 
             <a class="collapse-item" href="{{ url ('exporters') }}">Exportadores</a>
 
             @endcan
-             <!-- Tipos Formato -->
+            <!-- Tipos Formato -->
             @can('admin.formats.index')
             <a class="collapse-item" href="{{ url ('formats') }}">Formato de Caja</a>
 
             @endcan
-             <!-- Estatus -->
+            <!-- Estatus -->
             @can('admin.statuses.index')
-                <a class="collapse-item" href="{{ url ('statuses') }}">Estatus de Fruta</a>
-            @endcan
-         
-            <!-- Tipos Frutas -->
-            @can('admin.providers.index')
-                <a class="collapse-item" href="{{ url ('fruits') }}">Fruta</a>
+            <a class="collapse-item" href="{{ url ('statuses') }}">Estatus de Fruta</a>
             @endcan
 
             <!-- Tipos Frutas -->
             @can('admin.providers.index')
-                <a class="collapse-item" href="{{ url ('varieties') }}">Variedad de fruta</a>
+            <a class="collapse-item" href="{{ url ('fruits') }}">Fruta</a>
             @endcan
 
-             <!-- Tipos despacho -->
+            <!-- Tipos Frutas -->
+            @can('admin.providers.index')
+            <a class="collapse-item" href="{{ url ('varieties') }}">Variedad de fruta</a>
+            @endcan
+
+            <!-- Tipos despacho -->
             @can('admin.tipodispatches.index')
-                <a class="collapse-item" href="{{ url ('tipodispatches') }}">Tipo de despacho</a>
+            <a class="collapse-item" href="{{ url ('tipodispatches') }}">Tipo de despacho</a>
             @endcan
 
 
-         <!--  Temporada -->
-             @can('admin.providers.index')
-                <a class="collapse-item" href="{{ url ('seasons') }}">Temporada</a>
+            <!--  Temporada -->
+            @can('admin.providers.index')
+            <a class="collapse-item" href="{{ url ('seasons') }}">Temporada</a>
             @endcan
 
           </div>
@@ -165,33 +170,34 @@
         <a class="nav-link" href="{{ url ('receptions') }}">
           <i class="fas fa-fw fa-boxes" style="color:#00F0FF"></i>
           <span>Recepción </span>
-          
-        </a>  
+
+        </a>
       </li>
 
-      
-      
+
+
       @endcan
 
-         <!-- Nav Item -->
-         @can('process.processes.index')
+      <!-- Nav Item -->
+      @can('process.processes.index')
 
-         <li class="nav-item">
-          <a class="nav-link" href="{{ url ('processes') }}">
-            <i class="fas fa-fw fa-pallet" style="color:#FFEC00"></i>
-            <span>Proceso</span></a>
-        </li>
-
-        @endcan
-
-
-
-
-
-           <!-- Nav Item -->
-        <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport1" aria-expanded="true" aria-controls="collapseReport">
+        <a class="nav-link" href="{{ url ('processes') }}">
+          <i class="fas fa-fw fa-pallet" style="color:#FFEC00"></i>
+          <span>Proceso</span></a>
+      </li>
+
+      @endcan
+
+
+
+
+
+      <!-- Nav Item -->
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport1"
+          aria-expanded="true" aria-controls="collapseReport">
           <i class="fas fa-fw fa-truck-loading" style="color:#55FF00"></i>
           <span>Camara</span>
         </a>
@@ -218,7 +224,8 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport" aria-expanded="true" aria-controls="collapseReport">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport" aria-expanded="true"
+          aria-controls="collapseReport">
           <i class="fas fa-fw fa-book-open" style="color:#FFFFFF"></i>
           <span>Reportes</span>
         </a>
@@ -230,28 +237,28 @@
             <a class="collapse-item" href="{{ url ('receptionsdaily') }}">Diario</a>
             @endcan
 
-             @can('receptions.receptionsperfruit')
-             <a class="collapse-item" href="{{ url ('receptionsperfruit') }}">Por Fruta</a>
+            @can('receptions.receptionsperfruit')
+            <a class="collapse-item" href="{{ url ('receptionsperfruit') }}">Por Fruta</a>
             @endcan
 
             @can('receptions.receptionsperproductor')
-             <a class="collapse-item" href="{{ url ('receptionsperproductor') }}">Por Productor</a>
+            <a class="collapse-item" href="{{ url ('receptionsperproductor') }}">Por Productor</a>
             @endcan
 
           </div>
         </div>
 
 
-         @can('admin.trays.index')
+        @can('admin.trays.index')
 
-         <li class="nav-item">
-          <a class="nav-link" href="{{ url ('trays') }}">
-            <i class="fas fa-fw fa-pallet" style="color:#FFEC00"></i>
-            <span>Control de Bandejas</span></a>
-        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url ('trays') }}">
+          <i class="fas fa-fw fa-pallet" style="color:#FFEC00"></i>
+          <span>Control de Bandejas</span></a>
+      </li>
 
-        @endcan
-        
+      @endcan
+
       </li>
 
       <!-- Sidebar Toggler (Sidebar) -->
@@ -278,39 +285,35 @@
 
 
           <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">      
-          
+          <ul class="navbar-nav ml-auto">
+
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ Auth::user()->name }} </span>
-                <img class="img-profile rounded-circle" src="https://static05.cminds.com/wp-content/uploads/computer-1331579_1280-1-300x300.png">
+                <img class="img-profile rounded-circle"
+                  src="https://static05.cminds.com/wp-content/uploads/computer-1331579_1280-1-300x300.png">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-            
-                <a class="dropdown-item" 
-                        href="{{ url('logout') }}" 
-                        onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" 
-                        data-toggle="modal" 
-                        data-target="#logoutModal">
+
+                <a class="dropdown-item" href="{{ url('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" data-toggle="modal"
+                  data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Salir
                 </a>
 
-                <form id="logout-form" 
-                    action="{{ url('logout') }}" 
-                    method="POST" 
-                    style="display: none;">
-                    {{ csrf_field() }}
+                <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
                 </form>
-                <a >
+                <a>
 
-                     <div class="dropdown-divider"></div>
+                  <div class="dropdown-divider"></div>
 
 
               </div>
@@ -328,13 +331,13 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800"></h1>
           </div>
-            
 
-           <div class="row">  
-             @yield('section')
-     
+
+          <div class="row">
+            @yield('section')
+
           </div>
-     
+
 
 
         </div>
@@ -361,7 +364,6 @@
 
 
   <!-- Bootstrap core JavaScript-->
-  <script src="/webcss/vendor/jquery/jquery.min.js"></script>
   <script src="/webcss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
@@ -373,5 +375,3 @@
 </body>
 
 </html>
-@stop
-

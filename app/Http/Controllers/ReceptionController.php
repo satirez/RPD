@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UpdateReception;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
+use Yajra\Datatables\Datatables;
+use App\User;
 
 class ReceptionController extends Controller
 {
@@ -69,11 +71,13 @@ class ReceptionController extends Controller
 
     public function receptionsperproductor()
     {
-        $listProviders = Providers::pluck('name', 'id');
-        //procesadas
-        $inprocess = Reception::where('available', 0)->paginate();
+        return view('receptions.receptionsperproductor');
+    }
 
-        return view('receptions.receptionsperproductor', compact('inprocess', 'listProviders'));
+    public function getData()
+    {
+        return Datatables::of(Reception::query())->make(true);
+
     }
 
     /**

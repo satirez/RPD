@@ -148,6 +148,10 @@ Route::middleware('auth')->group(function () {
     Route::get('receptionChange', 'ReceptionController@ChangeStatusTrue')->name('receptions.change')
                                 ->middleware('permission:receptions.edit');
 
+    Route::get('get-data-my-datatables','ReceptionController@getData')->name('get.users');
+    Route::get('users-list', 'ReceptionController@getData'); 
+
+
     //Consulta Ajax Select
 
     //Process

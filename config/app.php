@@ -162,6 +162,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -239,6 +240,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
 
         'Rut'   => Freshwork\ChileanBundle\Laravel\Facades\Rut::class,
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
 
     ],
 

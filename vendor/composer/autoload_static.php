@@ -33,6 +33,7 @@ class ComposerStaticInitfb31c1b769dd9a4e4ac23eda912e5e43
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
+        '0b47d6d4a00ca9112ba3953b49e7c9a4' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -43,6 +44,10 @@ class ComposerStaticInitfb31c1b769dd9a4e4ac23eda912e5e43
         'Z' => 
         array (
             'Zend\\Diactoros\\' => 15,
+        ),
+        'Y' => 
+        array (
+            'Yajra\\DataTables\\' => 17,
         ),
         'X' => 
         array (
@@ -175,6 +180,10 @@ class ComposerStaticInitfb31c1b769dd9a4e4ac23eda912e5e43
         'Zend\\Diactoros\\' => 
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-diactoros/src',
+        ),
+        'Yajra\\DataTables\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -478,6 +487,7 @@ class ComposerStaticInitfb31c1b769dd9a4e4ac23eda912e5e43
         'App\\Http\\Controllers\\StatusController' => __DIR__ . '/../..' . '/app/Http/Controllers/StatusController.php',
         'App\\Http\\Controllers\\SubProcessController' => __DIR__ . '/../..' . '/app/Http/Controllers/SubProcessController.php',
         'App\\Http\\Controllers\\SuppliesController' => __DIR__ . '/../..' . '/app/Http/Controllers/SuppliesController.php',
+        'App\\Http\\Controllers\\TipoDispatchController' => __DIR__ . '/../..' . '/app/Http/Controllers/TipoDispatchController.php',
         'App\\Http\\Controllers\\TrayInController' => __DIR__ . '/../..' . '/app/Http/Controllers/TrayInController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Controllers\\VarietyController' => __DIR__ . '/../..' . '/app/Http/Controllers/VarietyController.php',
@@ -498,6 +508,7 @@ class ComposerStaticInitfb31c1b769dd9a4e4ac23eda912e5e43
         'App\\Http\\Requests\\StoreSeason' => __DIR__ . '/../..' . '/app/Http/Requests/StoreSeason.php',
         'App\\Http\\Requests\\StoreStatus' => __DIR__ . '/../..' . '/app/Http/Requests/StoreStatus.php',
         'App\\Http\\Requests\\StoreSupplies' => __DIR__ . '/../..' . '/app/Http/Requests/StoreSupplies.php',
+        'App\\Http\\Requests\\StoreTipoDispatch' => __DIR__ . '/../..' . '/app/Http/Requests/StoreTipoDispatch.php',
         'App\\Http\\Requests\\StoreUser' => __DIR__ . '/../..' . '/app/Http/Requests/StoreUser.php',
         'App\\Http\\Requests\\StoreVariety' => __DIR__ . '/../..' . '/app/Http/Requests/StoreVariety.php',
         'App\\Http\\Requests\\UpdateDispatch' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateDispatch.php',
@@ -511,6 +522,7 @@ class ComposerStaticInitfb31c1b769dd9a4e4ac23eda912e5e43
         'App\\Http\\Requests\\UpdateRejected' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateRejected.php',
         'App\\Http\\Requests\\UpdateSeason' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateSeason.php',
         'App\\Http\\Requests\\UpdateStatus' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateStatus.php',
+        'App\\Http\\Requests\\UpdateTipoDispatch' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateTipoDispatch.php',
         'App\\Http\\Requests\\UpdateVariety' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateVariety.php',
         'App\\Process' => __DIR__ . '/../..' . '/app/Process.php',
         'App\\Process_Reception' => __DIR__ . '/../..' . '/app/Process_Reception.php',
@@ -528,6 +540,7 @@ class ComposerStaticInitfb31c1b769dd9a4e4ac23eda912e5e43
         'App\\Status' => __DIR__ . '/../..' . '/app/Status.php',
         'App\\SubProcess' => __DIR__ . '/../..' . '/app/SubProcess.php',
         'App\\Supplies' => __DIR__ . '/../..' . '/app/Supplies.php',
+        'App\\TipoDispatch' => __DIR__ . '/../..' . '/app/TipoDispatch.php',
         'App\\TrayIn' => __DIR__ . '/../..' . '/app/TrayIn.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\Variety' => __DIR__ . '/../..' . '/app/Variety.php',
@@ -4190,6 +4203,21 @@ class ComposerStaticInitfb31c1b769dd9a4e4ac23eda912e5e43
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
+        'Yajra\\DataTables\\ApiResourceDataTable' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/ApiResourceDataTable.php',
+        'Yajra\\DataTables\\CollectionDataTable' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/CollectionDataTable.php',
+        'Yajra\\DataTables\\Contracts\\DataTable' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Contracts/DataTable.php',
+        'Yajra\\DataTables\\DataTableAbstract' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/DataTableAbstract.php',
+        'Yajra\\DataTables\\DataTables' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/DataTables.php',
+        'Yajra\\DataTables\\DataTablesServiceProvider' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/DataTablesServiceProvider.php',
+        'Yajra\\DataTables\\EloquentDataTable' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/EloquentDataTable.php',
+        'Yajra\\DataTables\\Exceptions\\Exception' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Exceptions/Exception.php',
+        'Yajra\\DataTables\\Facades\\DataTables' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Facades/DataTables.php',
+        'Yajra\\DataTables\\Processors\\DataProcessor' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Processors/DataProcessor.php',
+        'Yajra\\DataTables\\Processors\\RowProcessor' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Processors/RowProcessor.php',
+        'Yajra\\DataTables\\QueryDataTable' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/QueryDataTable.php',
+        'Yajra\\DataTables\\Utilities\\Config' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Utilities/Config.php',
+        'Yajra\\DataTables\\Utilities\\Helper' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Utilities/Helper.php',
+        'Yajra\\DataTables\\Utilities\\Request' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/Utilities/Request.php',
         'Zend\\Diactoros\\AbstractSerializer' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/AbstractSerializer.php',
         'Zend\\Diactoros\\CallbackStream' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/CallbackStream.php',
         'Zend\\Diactoros\\Exception\\DeprecatedMethodException' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/Exception/DeprecatedMethodException.php',

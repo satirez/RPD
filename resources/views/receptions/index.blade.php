@@ -47,7 +47,7 @@
                         </div>
                         <br>
                         <thead>
-                            <tr class="">
+                            <tr class="table-dark text-dark">
                                 <th>N° de tarja</th>
                                 <th>Estado</th>
                                 <th>Peso bruto</th>
@@ -57,8 +57,6 @@
                                 <th>Fruta</th>
                                 <th>Tipo Calidad</th>                               
                                 <th>Fecha/Hora</th>
-                                
-
                                 <th colspan="auto">&nbsp;</th>
                             </tr>
                         </thead>

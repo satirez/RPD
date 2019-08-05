@@ -14,13 +14,13 @@
 
 		<tr>
 			<td>
-				<h2>{{ $peso }}</h2>
+				<h2>{{ $peso }} Kg</h2>
 			</td>
 			<td>
-				<h2> {{ $acumWeight }} </h2>
+				<h2> {{ $acumWeight }} Kg</h2>
 			</td>
 			<td>
-				<h2> {{$resto}} </h2>
+				<h2 id="resto">{{$peso - $acumWeight}} Kg</h2>
 			</td>
 		</tr>
 	</tbody>
@@ -33,7 +33,7 @@
 				<div class="col-md-2">
 					<div class="form-group">
 						{{ Form::label('', 'N° Proceso') }}
-						{{ Form::text('', 'PR'.$idsad, ['class' => 'form-control','readonly']) }}
+						{{ Form::text('', 'Proceso '.$idsad, ['class' => 'form-control','readonly']) }}
 					</div>
 
 					<input name="process_id" type="hidden" value= {{$idsad}} >
@@ -67,7 +67,7 @@
 						onpaste="this.onchange();" 
 						oninput="this.onchange();"  
 						onchange="validacion()" 
-						type="number">
+						type="number" readonly>
 					</div>
 					
 				</div>
@@ -93,7 +93,7 @@
 											{{Form::label('reason', 'Selecciona motivo de rechazo') }}
 											{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
 											{{Form::label('comment', 'Comentario Adicional') }}
-											{{Form::textarea('comment', null, ['class' => 'form-control'])}}
+								 			{{Form::textarea('comment', null, ['class' => 'form-control'])}}
 										</div>
 									</div>
 								</div>
@@ -125,13 +125,16 @@
 	}
 	function validacion(kgProcesado){
 		var input = kgProcesado;
-		if(input > {{ $peso }} ){
+		var acumWeight = {{ $acumWeight }};
+		var sum = acumWeight + input;
+
+		if(sum > {{ $peso }}){
 			alert('peso superado');
 			
 		}
 	}
 	
-	function hola(){
+	function resto(){
 		
 	}
 </script>

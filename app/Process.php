@@ -27,4 +27,9 @@ class Process extends Model
     {
         return $this->belongsTo(Rejected::class);
     }
+
+    public function subprocess()
+    {
+        return $this->hasMany(SubProcess::class);
+    }
 }

@@ -15,26 +15,32 @@
                                 <table class="table table-hover">
                                    
                                     <tbody>
-                                        <tr>
+                                    
+                                        <tr class="table-dark text-dark">
                                             <th> Tarjas </th>
-                                            <th> PROC{{ $subproces->id }}</th>
+                                            <th> P00{{ $subproces->id }}</th>
                                         </tr>
                                      
                                         <tr>
-                                            <th> Frutas </th>
+                                            <th> Formato </th>
+                                            <th> {{$subproces->format->name}} </th>
                                         </tr>
                                         <tr>
-                                            <th> Calidad </th>
+                                            <th> Tipo de Calidad </th>
+                                            <th> {{$subproces->quality->name}} </th>
                                         </tr>
                                         <tr>
-                                            <th> Peso Neto </th>
+                                            <th> N° de producto terminado </th>
+                                            <th> {{$subproces->quantity}} </th>
                                         </tr>
-                                        <tr>
-                                            <th> Peso Bruto </th>
+                                        <tr class="table-warning">
+                                            <th> Kg total </th>
+                                            <th> {{$subproces->weight}} </th>
                                         </tr>
 
                                         <br>
                                     </tbody>
+
                                 </table>
                                  @endforeach
                             </div>

@@ -16,9 +16,7 @@ use App\motivorejected;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateReception;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Input;
 use Yajra\Datatables\Datatables;
-use App\User;
 
 class ReceptionController extends Controller
 {
@@ -30,10 +28,13 @@ class ReceptionController extends Controller
     public function index()
     {
         //sin procesar
-        $receptions = Reception::paginate();
+        $receptions = Reception::where('available', 1)->paginate();
+        $receptionWeight = Reception::where('available', 1)->sum('netweight');
+        $receptionQuantity = Reception::where('available', 1)->sum('quantity');
+        $receptionCount = Reception::where('available', 1)->count();
+        //$ = Reception::paginate();
 
-        return view('receptions.index', compact('receptions'));
-        
+        return view('receptions.index', compact('receptions', 'receptionWeight', 'receptionQuantity', 'receptionCount'));
     }
 
     public function inprocess()
@@ -77,7 +78,6 @@ class ReceptionController extends Controller
     public function getData()
     {
         return Datatables::of(Reception::query())->make(true);
-
     }
 
     /**
@@ -92,11 +92,10 @@ class ReceptionController extends Controller
         $listSupplies = Supplies::OrderBy('id', 'DES')->pluck('name', 'weight');
 
         $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
-        
-        $listFruits = Fruit::OrderBy('id', 'DES')->get();
-        
-        $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
 
+        $listFruits = Fruit::OrderBy('id', 'DES')->get();
+
+        $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
 
         $listRejecteds = MotivoRejected::OrderBy('id', 'DES')->pluck('name', 'id');
 
@@ -119,8 +118,9 @@ class ReceptionController extends Controller
           'listFruits', 'listSeasons', 'listRejecteds', 'listVariety'));
     }
 
-    public function byFruit($id){
-        return Variety::where('fruit_id',$id)->get();
+    public function byFruit($id)
+    {
+        return Variety::where('fruit_id', $id)->get();
     }
 
     /**
@@ -131,10 +131,7 @@ class ReceptionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-
-        
-
+    {
         $rejected = $request->get('rejected');
         $reason = $request->get('reason');
         $comment = $request->get('comment');
@@ -154,7 +151,6 @@ class ReceptionController extends Controller
         //Guarda la calificación
         $rate = Rate::create($rate);
 
-        
         $reception = $request->all();
         //quitar rate y reason  del array reception
         unset($request['rate']);
@@ -164,8 +160,7 @@ class ReceptionController extends Controller
         //Guarda la Recepción
         $reception = Reception::create($reception);
         $reception_id = $reception->id;
-        
-        
+
         // RECHAZADOS
         //instancio el radio button
 
@@ -176,7 +171,6 @@ class ReceptionController extends Controller
             $rejected = Rejected::create($rejected);
         } else {
         }
-
 
         return redirect()->route('receptions.create', $reception->id)->with('info', 'Receptiono guardado con exito');
     }
@@ -207,7 +201,7 @@ class ReceptionController extends Controller
         $listSupplies = Supplies::OrderBy('id', 'DES')->pluck('name', 'weight');
         $listProviders = Providers::OrderBy('id', 'DES')->pluck('name', 'id');
         $listFruits = Fruit::OrderBy('id', 'DES')->get();
-        
+
         $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
 
         $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
@@ -216,14 +210,14 @@ class ReceptionController extends Controller
         $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = MotivoRejected::OrderBy('id', 'DES')->pluck('name', 'id');
 
-        if($reception->rejected == 1){
-            $rechazado = "disponible";
-        }else{
-            $rechazado = "rechazado";
-            $rechazado = Rejected::where('reception_id',$reception->id)->first();
+        if ($reception->rejected == 1) {
+            $rechazado = 'disponible';
+        } else {
+            $rechazado = 'rechazado';
+            $rechazado = Rejected::where('reception_id', $reception->id)->first();
 
-            $motivo = MotivoRejected::where('id',$rechazado->id)->pluck('name', 'id');
-            $comment = MotivoRejected::where('id',$rechazado->id)->pluck('comment');
+            $motivo = MotivoRejected::where('id', $rechazado->id)->pluck('name', 'id');
+            $comment = MotivoRejected::where('id', $rechazado->id)->pluck('comment');
         }
 
         return view('receptions.edit', compact('reception','comment','motivo','rechazado','listSupplies','listStatus',
@@ -242,10 +236,9 @@ class ReceptionController extends Controller
     //revisar UpdateRequest (no funca con eso)
     public function update(UpdateReception $request, Reception $reception)
     {
-
         $rejected = $reception->rejected;
 
-        if($rejected == 1){
+        if ($rejected == 1) {
             $borrado = Rejected::where('reception_id', $reception->id)->delete();
         }
 
@@ -256,21 +249,19 @@ class ReceptionController extends Controller
 
     public function ChangeStatusTrue(Reception $reception)
     {
-        
         $reception = Reception::find($reception->input('id'));
-        $rejected =  Reception::where('id',$reception)->get('rejected');
+        $rejected = Reception::where('id', $reception)->get('rejected');
 
         dd($reception);
-        if($rejected == 1){
-            Reception::where('id', $reception)->update(['available' => 0]);        
-        }elseif($rejected == 0){
-            Reception::where('id', $reception)->update(['available' => 1]);        
+        if ($rejected == 1) {
+            Reception::where('id', $reception)->update(['available' => 0]);
+        } elseif ($rejected == 0) {
+            Reception::where('id', $reception)->update(['available' => 1]);
         }
 
         return redirect()->route('receptions.index', $reception->id)->with('info', 'Reception actualizada con exito');
     }
 
-    
     /**
      * Remove the specified resource from storage.
      *

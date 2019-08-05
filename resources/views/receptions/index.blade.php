@@ -116,12 +116,27 @@
                                     @endcan
                                 <td>
 
+                                <tr class="table-warning">
+                                    <td><th><h5>Palets disponibles: </h5></th></td>
+                                    <td><h5>{{ $receptionCount }}</h5></td>
+                                    
+                                    <td><th><h5>Kilos disponibles </h5></th></td>
+                                    <td><h5>{{ $receptionWeight }}</h5></td>
+                                    
+                                    <td><th><h5>N° de rejillas totales: </h5></th></td>
+                                    <td><h5>{{ $receptionQuantity }}</h5></td>
+                                    <td></td>
+                                </tr>
+
                             </tr>
+                          
                             @endforeach
-                        </tbody>
+                       
+
+                            
                     </table>
                     {{ $receptions->render() }}
-                </div>
+                </div>                            
             </div>
         </div>
     </div>

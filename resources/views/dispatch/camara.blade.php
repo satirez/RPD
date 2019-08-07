@@ -23,16 +23,16 @@
                            </tr>
                        </thead>
                        <tbody>
-                        @foreach($processes as $process)
+                        @foreach($subprocesses as $subprocess)
                            <tr>
-                                <td>{{ $process->tarja_proceso }}</td>
-                                <td>{{ $process->Box_out  }}</td>
-                                <td>{{ $process->created_at  }}</td>
+                                <td>{{ $subprocess->tarja_proceso }}</td>
+                                <td>{{ $subprocess->Box_out  }}</td>
+                                <td>{{ $subprocess->created_at  }}</td>
                                
 
                                 <td width="10px">
-                                    @can('process.processes.show')
-                                    <a href="{{ Route('process.processes.show', $process->id) }}" class="btn btn-sm btn-default">Ver</a>
+                                    @can('subprocess.subsubprocesses.show')
+                                    <a href="{{ Route('subprocess.subsubprocesses.show', $subprocess->id) }}" class="btn btn-sm btn-default">Ver</a>
                                     @endcan
                                 <td>
                                 
@@ -43,7 +43,7 @@
                         @endforeach
                        </tbody>
                    </table>
-                   {{ $processes->render() }}
+                   {{ $subprocesses->render() }}
                 </div>
             </div>
         </div>

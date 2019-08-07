@@ -34,6 +34,9 @@ class DispatchController extends Controller
         return view('dispatch.index', compact('listexporter', 'listdispatches','listtipodispatch','listFormat','listFruits'));
     }
 
+
+
+
     public function getSubProcess(){
         $subprocesses = SubProcess::paginate();
 
@@ -79,38 +82,22 @@ class DispatchController extends Controller
     public function store(StoreDispatch $request)
     {   
       
-          //instancio el radio button
-          $rejected = $request->get('rejected');
-          $reason = $request->get('reason');
-          $comment = $request->get('comment');
-
-         
-            
-          //quitar rate y reason  del array reception
-          unset($request['reason']);
-          unset($request['comment']);
+       
+          
         
           //Guarda la despacho
         $dispatch = Dispatch::create($request->all());
 
-        $dispatch->processes()->attach($request->get('subprocess'));
-        $dispatch_id = $dispatch->id;
+        $dispatch->subprocesses()->attach($request->get('subprocesses'));
+       
 
-        $checklistdata = $request->get('subprocess');
+        $checklistdata = $request->get('subprocesses');
 
         foreach ($checklistdata as $key) {
             SubProcess::where('id', $key)->update(['available' => 0]);
         }
 
-        if($rejected==1){
-            $rejected = ['reception_id' => $dispatch_id, 
-            'reason' => $reason,
-            'comment' => $comment
-          ];
-            $rejected = Rejected::create($rejected);
-            
-        }else{
-        }
+        
 
 
         return redirect()->route('dispatch.index', $dispatch->id)->with('info', 'despacho guardado con exito');

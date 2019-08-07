@@ -22,22 +22,20 @@ class CreateDispatchesTable extends Migration
             ->onDelete('cascade')
             ->onUpdate('cascade');
 
-             $table->Integer('subprocess_id')->unsigned();
-            $table->foreign('subprocess_id')->references('id')->on('sub_processes')->onDelete('cascade');
 
 
             $table->Integer('tipodispatch_id')->unsigned();
             $table->foreign('tipodispatch_id')->references('id')->on('tipo_dispatches')->onDelete('cascade');
 
-            $table->String('Destino');
+            $table->String('destino');
             
 
-            //se debe hacer
-            $table->integer('tipo_despacho');
-
-
             $table->String('patentNo');
-            $table->boolean('rejected');
+            $table->Boolean('rejected')->default('0');
+
+            $table->integer('reason')->unsigned()->nullable();
+            $table->foreign('reason')->references('id')->on('motivorejecteds');
+            $table->String('comment')->nullable();
 
             $table->timestamps();
         });

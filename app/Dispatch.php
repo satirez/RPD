@@ -10,7 +10,7 @@ class Dispatch extends Model
 	
     protected $fillable = [
         
-            'exporter_id', 'patentNo','rejected','tipodispatch_id','Destino','subprocess_id'   
+            'exporter_id', 'patentNo','rejected','tipodispatch_id','destino',   
     ];
 
     public function processes()

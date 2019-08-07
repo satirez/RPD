@@ -47,11 +47,20 @@
 							</div>
 						</div>
 					</div>
+
+					<div>
+					<div class="col-md-4">
+							<div class="form-group">
+								{{ Form::label('destino', 'Destino del producto') }}
+								{{ Form::text('destino', null, ['class' => 'form-control ']) }}
+							</div>
+						</div>
+					</div>
 			</div>
 </div>			
 
 
-
+<br>
 
 <div class="card">
 	<div class="card-header">
@@ -113,46 +122,66 @@
 					</div>
 
 				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<br>
+
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="form-group">
+			{{ Form::label('comment', 'Comentario (Maximo 200 caracteres)') }}
+			{{ Form::textarea('comment', null, ['class' => 'form-control ',
+			'maxlength' => '200','rows'=>'5'
+			]) }}
+		</div>
+	</div>
+</div>
 
 
 
-<div class="col-md-12">
-	<div class="form-group">
-		<div class="bs-example">
-			
-			<input type="radio" 
-				name="rejected" 
-				value="0" 
-				data-toggle="collapse" 
-				data-parent="#accordion"
-				href="#collapseOne" 
-				checked> Bueno
 
-			<input type="radio" 
-				name="rejected" 
-				value="1" data-toggle="collapse" 
-				data-parent="#accordion" 
-				href="#collapseOne"> Rechazado
-			
-			<div class="panel-group" id="accordion">
-				<div class="panel panel-default">
-					<div id="collapseOne" class="panel-collapse collapse in">
-						<div class="panel-body">
-							<div class="card">
-								<div class="card-body">
+
+
+
+
+	<div class="col-md-12">
+		<div class="form-group">
+			<div class="bs-example">
+
+				<input type="radio" name="rejected" value="0" data-toggle="collapse" data-parent="#accordion"
+					href="#collapseOne" checked> Bueno
+
+				<input type="radio" name="rejected" value="1" data-toggle="collapse" data-parent="#accordion"
+					href="#collapseOne"> Rechazado
+
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-default">
+						<div id="collapseOne" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<div class="card">
+									<div class="card-body">
 										{{Form::label('reason', 'Selecciona motivo de rechazo') }}
 										{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
-										{{Form::label('comment', 'Comentario Adicional') }}
-										{{Form::textarea('comment', null, ['class' => 'form-control'])}}
+										{{Form::label('commentrejected', 'Comentario Adicional') }}
+										{{Form::textarea('commentrejected',null,['class'=>'form-control'])}}
+
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
+
+			</div>
 		</div>
-	  </div>
+
+	</div>
 
 	  	<div class="col-md-12 text-center">
 		<div class="form-group">
@@ -160,7 +189,7 @@
 				Guardar
 			</button>
 		</div>
-	</div>
+		</div>
 
 
 	<!-- Modal -->
@@ -186,6 +215,8 @@
 	</div>
 
 
+
+</div>
 
 </div>
 

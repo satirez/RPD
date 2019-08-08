@@ -62,7 +62,6 @@ class DispatchController extends Controller
         //lista de tabla pivote en despacho (checkbox)
 
         $subprocesses = SubProcess::orderBy('id', 'DES')->where('available', 1)->get();
-
         $listexporter = Exporter::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
         $listtipodispatch = TipoDispatch::OrderBy('id', 'ASC')->pluck('name', 'id');
@@ -84,14 +83,10 @@ class DispatchController extends Controller
     public function store(StoreDispatch $request)
     {   
       
-       
-          
-        
           //Guarda la despacho
         $dispatch = Dispatch::create($request->all());
 
         $dispatch->subprocesses()->attach($request->get('subprocesses'));
-       
 
         $checklistdata = $request->get('subprocesses');
 
@@ -99,8 +94,7 @@ class DispatchController extends Controller
             SubProcess::where('id', $key)->update(['available' => 0]);
         }
 
-        
-
+    
 
         return redirect()->route('dispatch.index', $dispatch->id)->with('info', 'despacho guardado con exito');
     }

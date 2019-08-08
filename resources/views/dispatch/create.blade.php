@@ -12,7 +12,7 @@
                 <div class="panel-body">
                     {!! Form::open(['route' => 'dispatch.store']) !!} 
 
-                    @include('dispatch.partials.form')
+                        @include('dispatch.partials.form')
 
                     {!! Form::close() !!}
 
@@ -21,9 +21,5 @@
 
         </div>
     </div>
-
- 
-
-  
 
 @stop

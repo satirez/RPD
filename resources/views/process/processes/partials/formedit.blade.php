@@ -1,128 +1,64 @@
-<div class="form-group">
-	{{ Form::label('tarja_proceso', 'Numero de tarja') }}
-	{{ Form::text('tarja_proceso', null, ['class' => 'form-control', 'readonly']) }}
-</div>
 
-<div class="form-group">
-	{{ Form::label('Box_out', 'cajas que salieron') }}
-	{{ Form::number('Box_out', null, ['class' => 'form-control ']) }}
-</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-md-offset-2">       
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 style="text-align:center;">Detalle de Proceso</h4>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                              @foreach($subprocess as $subproces)
+                                <table class="table table-hover">
+                                   
+                                    <tbody>
+                                    
+                                        <tr class="table-dark text-dark">
+                                            <th> Tarja: </th>
+                                            <th> P00{{ $subproces->id }}</th>
+                                        </tr>
+                                     
+                                        <tr>
+                                            <th> Formato </th>
+                                            <th>{{ Form::text('formato', $subproces->format->name ,['class' => 'form-control']) }}  </th>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <th> Tipo de Calidad </th>
+                                            <th>{{ Form::text('formato', $subproces->quality->name ,['class' => 'form-control']) }}  </th>
+                                        </tr>
+                                        <tr>
+                                            <th> N° de producto terminado </th>
+                                            <th>{{ Form::text('formato', $subproces->quantity ,['class' => 'form-control']) }}  </th>
+                                        </tr>
+                                        <tr class="table-warning">
+                                            <th> Kg total </th>
+                                            <th>{{ Form::text('formato', $subproces->weight ,['class' => 'form-control']) }}  </th>
+                                        </tr>
 
-<div class="form-group">
-	{{ Form::label('wash', 'Lavado') }}
-	{{ Form::select('wash', array('1' => 'Si', '2' => 'No'), 
-	null ,['class' => 'form-control','required' ,'placeholder'=>'Seleccione si el proceso es lavado o no'])}}
-</div>
+                                        <br>
+                                    </tbody>
 
-<div class="col-md-10">
-		<h3>Lista de Recepcion</h3>
-				<div class="form-group">
-					<ul class="list-unstyled">
-
-							<div class="table-responsive">
-									<table class="table table-hover">
-										<thead>
-											<tr class="">
-											   <th>Tarja de Proceso</th>
-											   <th>N° cajas realizadas</th>
-											   <th>Creado</th>
-											 
-											  
-											   <th colspan="auto">&nbsp;</th>
-										   </tr>
-									   </thead>
-										  <tbody>
-												@forelse($receptions as $reception)
-												<li>
-													<label>
-														{{ Form::checkbox('receptions[]', $reception->id) }}
-														{{ $reception->tarja }}
-														
-													</label>
-													@php
-														$uno = false;
-													@endphp
-													
-												</li>
-						
-												@empty
-						
-												<h4> Sin Registros </h4>
-													@php
-														$uno = true;
-													@endphp
-						
-												@endforelse
-									   </tbody>
-								   </table>
-							</div>
-
-					</ul>
-				</div>
-</div>
-
-<div class="col-md-12">
-	<div class="form-group">
-		<div class="bs-example">
-			
-			<input type="radio" 
-				name="rejected" 
-				value="0" 
-				data-toggle="collapse" 
-				data-parent="#accordion" 
-				href="#collapseOne" 
-				checked> Bueno
-
-			<input type="radio" 
-				name="rejected" 
-				value="1" data-toggle="collapse" 
-				data-parent="#accordion" 
-				href="#collapseOne"> Rechazado
-			
-			<div class="panel-group" id="accordion">
-				<div class="panel panel-default">
-					<div id="collapseOne" class="panel-collapse collapse in">
-						<div class="panel-body">
-							<div class="card">
-								<div class="card-body">
-										{{Form::label('reason', 'Selecciona motivo de rechazo') }}
-										{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
-										{{Form::label('comment', 'Comentario Adicional') }}
-										{{Form::textarea('comment', null, ['class' => 'form-control'])}}
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	  </div>
-	 
-</div>
-
-
+                                </table>
+                                 @endforeach
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+        </div>
+                <!-- /.col-lg-6 -->
 
 <br>
-	@if($uno == false)
+	
 		<div class="col-md-4">
 			<div class="form-group">
 		{{ Form::submit('Guardar', ['class' => 'btn btn-sm  btn-primary']) }}
 			</div>
 		</div>
-	@else
-	
-		<H4> No se puede ingresar </H4>
-
-	@endif
 	<br>
 	<br>
-
-
-
-	
-
-
-
-
-

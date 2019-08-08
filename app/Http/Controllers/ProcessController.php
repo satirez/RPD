@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\Process;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProcess;
-use App\Http\Requests\UpdateProcess;
 use App\Reception;
 use App\Rejected;
 use App\Fruit;
 use App\Quality;
-use App\Season;
 use App\Status;
 use App\Format;
 use App\Process_Reception;
@@ -43,21 +41,18 @@ class ProcessController extends Controller
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
 
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
-        $listFormat = Format::OrderBy('id', 'DES')->pluck('name','id','weight');
+        $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'id', 'weight');
         $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
         $last = Process::OrderBy('id', 'DES')->first();
-    
-        
-        if($last == null){
-            $lastid = 1; 
 
-        }else{
-            $lastid = $last->id +1;
+        if ($last == null) {
+            $lastid = 1;
+        } else {
+            $lastid = $last->id + 1;
         }
 
         return view('process.processes.create', compact('lastid','receptions','processeslist',
-        'listRejecteds','listFruits'
-        ,'listQualities','listFormat','listStatus'));
+        'listRejecteds', 'listFruits', 'listQualities', 'listFormat', 'listStatus'));
     }
 
     /**
@@ -68,17 +63,16 @@ class ProcessController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreProcess $request)
-    {   
-       
+    {
         //dd($request->input('row'));
 
         // Se genera el array con la información de proceso
-       $process = [
-            'tarja_proceso' => $request->get('tarja_proceso'), 
+        $process = [
+            'tarja_proceso' => $request->get('tarja_proceso'),
             'rejected' => $request->get('rejected'),
-            'wash' => $request->get('wash')
+            'wash' => $request->get('wash'),
         ];
-        
+
         // Se crea
         $process = Process::create($process);
         //se establece la relación con receptions
@@ -107,12 +101,11 @@ class ProcessController extends Controller
      */
     public function show(Process $process)
     {
-        
         // $receptions = Process_Reception::where('process_id',$process1)->get();
         $receptions = Process::find($process);
-        $subprocess = SubProcess::where('process_id',$process->id)->get();
+        $subprocess = SubProcess::where('process_id', $process->id)->get();
 
-        return view('process.processes.show', compact('receptions','subprocess'));
+        return view('process.processes.show', compact('process', 'subprocess'));
     }
 
     /**
@@ -124,12 +117,9 @@ class ProcessController extends Controller
      */
     public function edit(Process $process)
     {
+        $subprocesses = SubProcess::where('process_id', $process->id)->get();
 
-        $processeslist = Process::paginate();
-        $receptions = Reception::orderBy('tarja', 'ASC')->where('available', 1)->get();
-        $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
-
-        return view('process.processes.edit', compact('process', 'receptions','listRejecteds'));
+        return view('subprocess.processes.edit', compact('process', 'subprocesses'));
     }
 
     /**
@@ -140,11 +130,9 @@ class ProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Process $process)
+    public function update(Request $request, Process $process)
     {
-        $process = Process::find($process->id);
         $process->update($request->all());
-        $process->receptions()->sync($request->get('receptions'));
 
         return redirect()->route('process.processes.index', $process->id)->with('info', 'procesos actualizado con exito');
     }

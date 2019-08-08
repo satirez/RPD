@@ -13,7 +13,7 @@
                 	{!! Form::model($process, ['route' => ['process.processes.update', $process->id],
                 	'method' => 'PUT']) !!} 
 
-                	@include('process.processes.partials.formedit')
+                	@include('subprocess.partials.form')
 
                 	{!! Form::close() !!}
 

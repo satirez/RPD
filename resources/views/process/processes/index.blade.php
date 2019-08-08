@@ -56,7 +56,7 @@
                                 <td>
                                 <td width="10px">
                                     @can('process.processes.edit')
-                                    <a href="{{ Route('process.processes.edit', $process->id) }}" class="btn btn-sm btn-info">Editar</a>
+                                    <a href="{{ Route('subprocess.index', $process->id) }}" class="btn btn-sm btn-info">Editar</a>
                                     @endcan
                                 <td>
                            

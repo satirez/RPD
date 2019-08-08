@@ -148,9 +148,8 @@ Route::middleware('auth')->group(function () {
     Route::get('receptionChange', 'ReceptionController@ChangeStatusTrue')->name('receptions.change')
                                 ->middleware('permission:receptions.edit');
 
-    Route::get('get-data-my-datatables','ReceptionController@getData')->name('get.users');
-    Route::get('users-list', 'ReceptionController@getData'); 
-
+    Route::get('get-data-my-datatables', 'ReceptionController@getData')->name('get.users');
+    Route::get('users-list', 'ReceptionController@getData');
 
     //Consulta Ajax Select
 
@@ -394,8 +393,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/seasons/{season}/edit', 'SeasonController@edit')->name('admin.seasons.edit')
             ->middleware('permission:admin.seasons.edit');
 
-
-                //TipoTransportes
+    //TipoTransportes
     Route::post('/tipotransportes/store', 'TipoTransporteController@store')
 ->name('admin.tipotransportes.store')
             ->middleware('permission:admin.tipotransportes.create');
@@ -422,9 +420,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tipotransportes/{tipotransporte}/edit', 'TipoTransporteController@edit')->name('admin.tipotransportes.edit')
             ->middleware('permission:admin.tipotransportes.edit');
 
-
-
-   //Tipo de producto para despachos
+    //Tipo de producto para despachos
     Route::post('/tipoproductodispatches/store', 'TipoProductoDispatchController@store')
 ->name('admin.tipoproductodispatches.store')
             ->middleware('permission:admin.tipoproductodispatches.create');
@@ -482,9 +478,6 @@ Route::middleware('auth')->group(function () {
             ->name('dispatch.getProcess')
                 ->middleware('permission:dispatch.getProcess');
 
-
-
-
     //TipoDespacho
     Route::post('/tipodispatches/store', 'TipoDispatchController@store')->name('admin.tipodispatches.store')->middleware('permission:admin.tipodispatches.create');
 
@@ -500,7 +493,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/tipodispatch/{tipodispatch}', 'TipoDispatchController@destroy')->name('admin.tipodispatches.destroy')->middleware('permission:admin.tipodispatches.destroy');
 
     Route::get('/tipodispatches/{tipodispatch}/edit', 'TipoDispatchController@edit')->name('admin.tipodispatches.edit')->middleware('permission:admin.tipodispatches.edit');
-
 
     //Estatus
 
@@ -532,8 +524,7 @@ Route::middleware('auth')->group(function () {
 
     //TrayINNNNNNNNsssssssssssssssssssssssssssssssssssss STORE
 
-
-      Route::post('/trays/store', 'TrayInController@store')
+    Route::post('/trays/store', 'TrayInController@store')
     ->name('admin.trays.store')
                 ->middleware('permission:admin.trays.create');
 
@@ -558,7 +549,4 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/trays/{tray}/edit', 'TrayInController@edit')->name('admin.trays.edit')
                 ->middleware('permission:admin.trays.edit');
-                
-
-
 });

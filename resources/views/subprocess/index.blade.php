@@ -28,29 +28,16 @@
                        <tbody>
                         @foreach($subprocesses as $subprocesse)
                            <tr>
-                                <td>{{ $subprocesse->name   }}</td>
-                                <td>{{ $subprocesse->weight   }} kg</td>
-                              
-                    
-                           
+ 
                                 <td width="10px">
                                     @can('subprocess.edit')
                                     <a 
                                     href="{{ Route('subprocess.edit', $subprocesse->id) }}" 
                                     class="btn btn-sm btn-info">
-                                          Editar
+                                        Editar
                                     </a>
                                     @endcan
                                 </td>
-                                <td width="10px">
-                                    @can('subprocess.destroy')
-                                    {!! Form::open(['route' => ['subprocess.destroy', $subprocesse->id],
-                                    'method' => 'DELETE' ]) !!}
-                                        <button class="btn btn-sm btn-danger">Eliminar</button>
-                                    {!! Form::close() !!}
-                                    @endcan
-                                </td>    
-
                            </tr>
                         @endforeach
                        </tbody>
@@ -62,5 +49,3 @@
     </div>
 </div>
 @stop
-
- 

@@ -106,8 +106,10 @@ class SubProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubProcess $subProcess)
+    public function edit(SubProcess $process)
     {
+        $subprocesses = SubProcess::where('process_id', $process->id)->get();
+        
     }
 
     /**

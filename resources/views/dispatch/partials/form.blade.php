@@ -1,17 +1,4 @@
-<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-	crossorigin="anonymous"></script>
-
-<script>
-	//No permitir comas
-    function coma(e) { 
-    tecla=(document.all) ? e.keyCode : e.which; 
-    if (tecla==44) { 
-        alert('No usar "Comas", reemplazar por "punto" ');
-        return false; 
-    	} 
-
-	} 
-</script>
+{{ Form::submit('Guardar', ['class' => 'btn btn-success']) }}
 
 <div class="card">
 	<div class="card-header">
@@ -283,7 +270,6 @@
 				¿Está seguro de guardar los cambios efectuados?
 			</div>
 			<div class="modal-footer">
-				{{ Form::submit('Guardar', ['class' => 'btn btn-primary']) }}
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 		</div>

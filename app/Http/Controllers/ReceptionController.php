@@ -133,7 +133,7 @@ class ReceptionController extends Controller
     public function store(Request $request)
     {
 
-        dd('VEAN EL CONTROLLER, hay un comentario');
+      
 
         // rate,reason y coment deben ir en el mismo request y tabla, ya que eliminamos la tabla rejected de la db
 

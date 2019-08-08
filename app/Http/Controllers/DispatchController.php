@@ -13,6 +13,7 @@ use App\Fruit;
 use App\Quality;
 use App\Format;
 use App\TipoDispatch;
+use App\Season;
 
 class DispatchController extends Controller
 {
@@ -68,8 +69,9 @@ class DispatchController extends Controller
         $listFormat = Format::OrderBy('id', 'DES')->pluck('name','id','weight');
         $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
+        $listSeasons = Season::OrderBy('id', 'DES')->pluck('name', 'id');
 
-        return view('dispatch.create', compact('listexporter', 'subprocesses','listRejecteds','listtipodispatch','listFormat','listFruits','listQualities'));
+        return view('dispatch.create', compact('listexporter', 'subprocesses','listRejecteds','listtipodispatch','listFormat','listFruits','listQualities','listSeasons'));
     }
 
     /**

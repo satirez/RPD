@@ -25,46 +25,151 @@
 	</div>
 		<div class="card-body">
 					<div class="row">
-						<div class="col-md-4">
-							<div class="form-group">
-								{{ Form::label('patentNo', 'Numero de patente') }}
-								{{ Form::text('patentNo', null, ['class' => 'form-control ']) }}
-							</div>
-						</div>
-						
-						<div class="col-md-4">
-							<div class="form-group">
-							{{ Form::label('tipodispatch_id', 'Selecciona un tipo de despacho') }}
-							{{Form::select('tipodispatch_id', $listtipodispatch, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
-							</div>
-						</div>
-					    
-						
+
 						<div class="col-md-4">
 							<div class="form-group">
 							{{ Form::label('exporter_id', 'Selecciona un exportador') }}
 							{{Form::select('exporter_id', $listexporter, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 							</div>
 						</div>
-					</div>
 
-					<div>
-					<div class="col-md-4">
+						<div class="col-md-4">
 							<div class="form-group">
-								{{ Form::label('destino', 'Destino del producto') }}
-								{{ Form::text('destino', null, ['class' => 'form-control ']) }}
+								{{ Form::label('planilla_dispatch', 'Numero de Planilla de despacho') }}
+								{{ Form::text('planilla_dispatch', null, ['class' => 'form-control ']) }}
 							</div>
 						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								{{ Form::label('numero_guia', 'Numero de Guia') }}
+								{{ Form::text('numero_guia', null, ['class' => 'form-control ']) }}
+							</div>
+						</div>
+						
 					</div>
-			</div>
+
+					
+					<div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							{{ Form::label('season_id', 'Temporada') }}
+							{{Form::select('season_id', $listSeasons, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+						</div>
+					</div>
+					
+					<div class="col-md-4">
+							<div class="form-group">
+								{{ Form::label('tipoproducto_dispatch', 'Tipo de producto a despachar') }}
+								{{ Form::text('tipoproducto_dispatch', null, ['class' => 'form-control ']) }}
+							</div>
+					</div>
+					<div class="col-md-4">
+							<div class="form-group">
+							{{ Form::label('numero_despacho', 'Numero de Despacho') }}
+							{{ Form::text('numero_despacho', null, ['class' => 'form-control ']) }}
+							</div>
+					</div>
+				</div>	
+
+
+				
+
+
+		</div>
+	</div>
 </div>			
+
+<br>
+
+<div class="card">
+	<div class="card-header">
+		<div class="badge badge-pill badge-success float-left"> 2 </div>
+		Selección de medios de exportacion:
+	</div>
+		<div class="card-body">
+
+			<div class="row">
+
+					<div class="col-md-4">
+							<div class="form-group">
+							{{ Form::label('tipodispatch_id', 'Selecciona un tipo de despacho') }}
+							{{Form::select('tipodispatch_id', $listtipodispatch, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+							</div>
+					</div>
+					<div class="col-md-4">
+							<div class="form-group">
+							{{ Form::label('tipo_transporte', 'Seleccione un tipo de transporte') }}
+							{{ Form::text('tipo_transporte', null, ['class' => 'form-control ']) }}
+							</div>
+					</div>
+					<div class="col-md-4">
+							<div class="form-group">
+							{{ Form::label('nombre_chofer', 'Nombre del Chofer') }}
+							{{ Form::text('nombre_chofer', null, ['class' => 'form-control ']) }}
+							</div>
+					</div>
+
+				</div>
+
+				<div class="row">
+
+					<div class="col-md-4">
+							<div class="form-group">
+							{{ Form::label('patente_vehiculo', 'Patente del Vehiculo') }}
+							{{ Form::text('patente_vehiculo', null, ['class' => 'form-control ']) }}
+							</div>
+					</div>
+					<div class="col-md-4">
+							<div class="form-group">
+							{{ Form::label('patente_rampla', 'Patente de la Rampla') }}
+							{{ Form::text('patente_rampla', null, ['class' => 'form-control ']) }}
+							</div>
+					</div>
+					<div class="col-md-4">
+							<div class="form-group">
+							{{ Form::label('numero_contenedor', 'Numero del Contenedor') }}
+							{{ Form::text('numero_contenedor', null, ['class' => 'form-control ']) }}
+							</div>
+					</div>
+
+				</div>
+
+				<div class="row">
+
+					<div class="col-md-4">
+							<div class="form-group">
+							{{ Form::label('consignatario', 'Nombre Del Consignatario') }}
+							{{ Form::text('consignatario', null, ['class' => 'form-control ']) }}
+							</div>
+					</div>
+					<div class="col-md-4">
+							<div class="form-group">
+							{{ Form::label('puerto_salida', 'Puerto De Salida') }}
+							{{ Form::text('puerto_salida', null, ['class' => 'form-control ']) }}
+							</div>
+					</div>
+					<div class="col-md-4">
+							<div class="form-group">
+							{{ Form::label('puerto_destino', 'Puerto de Destino') }}
+							{{ Form::text('puerto_destino', null, ['class' => 'form-control ']) }}
+							</div>
+					</div>
+
+				</div>
+
+
+	</div>
+</div>
+		
+
 
 
 <br>
 
 <div class="card">
 	<div class="card-header">
-		<div class="badge badge-pill badge-success float-left">2 </div>
+		<div class="badge badge-pill badge-warning float-left"> 3 </div>
 		Selección de procesos:
 	</div>
 	

@@ -10,7 +10,7 @@ class Dispatch extends Model
 	
     protected $fillable = [
         
-            'exporter_id', 'patentNo','rejected','tipodispatch_id','destino',   
+            'exporter_id', 'planilla_dispatch','numero_guia','numero_despacho','season_id','tipodispatch_id','puerto_salida','puerto_destino','consignatario','numero_contenedor','nombre_chofer','patente_vehiculo','patente_rampla','rejected','comment'   
     ];
 
     public function processes()
@@ -23,10 +23,13 @@ class Dispatch extends Model
         return $this->belongsToMany(SubProcess::class);
     }
 
-    
-
 	public function rejected(){
         return $this->belongsTo(Rejected::class);
+    }
+
+     public function season()
+    {
+        return $this->belongsTo(Season::class);
     }
 }
 

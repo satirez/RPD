@@ -42,8 +42,8 @@
 
 				<div class="col-md-4">
 					<div class="form-group">
-						{{ Form::label('tipoproducto_dispatch', 'Tipo de producto a despachar') }}
-						{{ Form::text('tipoproducto_dispatch', null, ['class' => 'form-control ']) }}
+						{{ Form::label('tipoproductodispatch_id', 'Selecciona un producto a despachar:') }}
+						{{Form::select('tipoproductodispatch_id', $listTipoProductoDispatch, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 					</div>
 				</div>
 
@@ -77,8 +77,8 @@
 			</div>
 			<div class="col-md-4">
 				<div class="form-group">
-					{{ Form::label('tipo_transporte', 'Seleccione un tipo de transporte') }}
-					{{ Form::text('tipo_transporte', null, ['class' => 'form-control ']) }}
+					{{ Form::label('tipotransporte_id', 'Selecciona un Tipo de Transporte:') }}
+						{{Form::select('tipotransporte_id', $listTipoTransporte, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 				</div>
 			</div>
 			<div class="col-md-4">

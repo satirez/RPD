@@ -541,6 +541,8 @@ class ComposerStaticInitfb31c1b769dd9a4e4ac23eda912e5e43
         'App\\SubProcess' => __DIR__ . '/../..' . '/app/SubProcess.php',
         'App\\Supplies' => __DIR__ . '/../..' . '/app/Supplies.php',
         'App\\TipoDispatch' => __DIR__ . '/../..' . '/app/TipoDispatch.php',
+        'App\\TipoProductoDispatch' => __DIR__ . '/../..' . '/app/TipoProductoDispatch.php',
+        'App\\TipoTransporte' => __DIR__ . '/../..' . '/app/TipoTransporte.php',
         'App\\TrayIn' => __DIR__ . '/../..' . '/app/TrayIn.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\Variety' => __DIR__ . '/../..' . '/app/Variety.php',

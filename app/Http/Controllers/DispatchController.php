@@ -14,6 +14,8 @@ use App\Quality;
 use App\Format;
 use App\TipoDispatch;
 use App\Season;
+use App\TipoTransporte;
+use App\TipoProductoDispatch;
 
 class DispatchController extends Controller
 {
@@ -69,8 +71,10 @@ class DispatchController extends Controller
         $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $listSeasons = Season::OrderBy('id', 'DES')->pluck('name', 'id');
+        $listTipoTransporte = TipoTransporte::OrderBy('id', 'DES')->pluck('name', 'id');
+        $listTipoProductoDispatch = TipoProductoDispatch::OrderBy('id', 'DES')->pluck('name', 'id');
 
-        return view('dispatch.create', compact('listexporter', 'subprocesses','listRejecteds','listtipodispatch','listFormat','listFruits','listQualities','listSeasons'));
+        return view('dispatch.create', compact('listexporter', 'subprocesses','listRejecteds','listtipodispatch','listFormat','listFruits','listQualities','listSeasons','listTipoTransporte','listTipoProductoDispatch'));
     }
 
     /**

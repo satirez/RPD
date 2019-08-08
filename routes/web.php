@@ -394,6 +394,62 @@ Route::middleware('auth')->group(function () {
     Route::get('/seasons/{season}/edit', 'SeasonController@edit')->name('admin.seasons.edit')
             ->middleware('permission:admin.seasons.edit');
 
+
+                //TipoTransportes
+    Route::post('/tipotransportes/store', 'TipoTransporteController@store')
+->name('admin.tipotransportes.store')
+            ->middleware('permission:admin.tipotransportes.create');
+
+    Route::get('/tipotransportes', 'TipoTransporteController@index')
+->name('admin.tipotransportes.index')
+            ->middleware('permission:admin.tipotransportes.index');
+
+    Route::get('/tipotransportes/create', 'TipoTransporteController@create')
+->name('admin.tipotransportes.create')
+            ->middleware('permission:admin.tipotransportes.create');
+
+    Route::put('/tipotransportes/{tipotransporte}', 'TipoTransporteController@update')
+->name('admin.tipotransportes.update')
+            ->middleware('permission:admin.tipotransportes.edit');
+
+    Route::get('/tipotransportes/{tipotransporte}', 'TipoTransporteController@show')
+->name('admin.tipotransportes.show')
+            ->middleware('permission:admin.tipotransportes.show');
+
+    Route::delete('/tipotransporte/{tipotransporte}', 'TipoTransporteController@destroy')->name('admin.tipotransportes.destroy')
+            ->middleware('permission:admin.tipotransportes.destroy');
+
+    Route::get('/tipotransportes/{tipotransporte}/edit', 'TipoTransporteController@edit')->name('admin.tipotransportes.edit')
+            ->middleware('permission:admin.tipotransportes.edit');
+
+
+
+   //Tipo de producto para despachos
+    Route::post('/tipoproductodispatches/store', 'TipoProductoDispatchController@store')
+->name('admin.tipoproductodispatches.store')
+            ->middleware('permission:admin.tipoproductodispatches.create');
+
+    Route::get('/tipoproductodispatches', 'TipoProductoDispatchController@index')
+->name('admin.tipoproductodispatches.index')
+            ->middleware('permission:admin.tipoproductodispatches.index');
+
+    Route::get('/tipoproductodispatches/create', 'TipoProductoDispatchController@create')
+->name('admin.tipoproductodispatches.create')
+            ->middleware('permission:admin.tipoproductodispatches.create');
+
+    Route::put('/tipoproductodispatches/{tipoproductodispatch}', 'TipoProductoDispatchController@update')
+->name('admin.tipoproductodispatches.update')
+            ->middleware('permission:admin.tipoproductodispatches.edit');
+
+    Route::get('/tipoproductodispatches/{tipoproductodispatch}', 'TipoProductoDispatchController@show')
+->name('admin.tipoproductodispatches.show')
+            ->middleware('permission:admin.tipoproductodispatches.show');
+
+    Route::delete('/tipoproductodispatch/{tipoproductodispatch}', 'TipoProductoDispatchController@destroy')->name('admin.tipoproductodispatches.destroy')
+            ->middleware('permission:admin.tipoproductodispatches.destroy');
+
+    Route::get('/tipoproductodispatches/{tipoproductodispatch}/edit', 'TipoProductoDispatchController@edit')->name('admin.tipoproductodispatches.edit')
+            ->middleware('permission:admin.tipoproductodispatches.edit');
     //Despachos
 
     Route::post('/dispatch/store', 'DispatchController@store')

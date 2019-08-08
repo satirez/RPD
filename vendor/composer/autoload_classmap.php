@@ -90,6 +90,8 @@ return array(
     'App\\SubProcess' => $baseDir . '/app/SubProcess.php',
     'App\\Supplies' => $baseDir . '/app/Supplies.php',
     'App\\TipoDispatch' => $baseDir . '/app/TipoDispatch.php',
+    'App\\TipoProductoDispatch' => $baseDir . '/app/TipoProductoDispatch.php',
+    'App\\TipoTransporte' => $baseDir . '/app/TipoTransporte.php',
     'App\\TrayIn' => $baseDir . '/app/TrayIn.php',
     'App\\User' => $baseDir . '/app/User.php',
     'App\\Variety' => $baseDir . '/app/Variety.php',

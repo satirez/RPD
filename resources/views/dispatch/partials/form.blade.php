@@ -226,13 +226,6 @@
 	</div>
 </div>
 
-
-
-
-
-
-
-
 <div class="col-md-12">
 	<div class="form-group">
 		<div class="bs-example">
@@ -267,9 +260,6 @@
 
 </div>
 
-{{ Form::submit('Guardar', ['class' => 'btn btn-primary']) }}
-<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
 <div class="col-md-12 text-center">
 	<div class="form-group">
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
@@ -277,7 +267,6 @@
 		</button>
 	</div>
 </div>
-
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -294,25 +283,9 @@
 				¿Está seguro de guardar los cambios efectuados?
 			</div>
 			<div class="modal-footer">
-			
+				{{ Form::submit('Guardar', ['class' => 'btn btn-primary']) }}
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
-</div>
-
-
-
-</div>
-
-</div>
-
-
-</div>
-</div>
-</div>
-</div>
-
-
-
-
 </div>

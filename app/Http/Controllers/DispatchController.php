@@ -82,7 +82,6 @@ class DispatchController extends Controller
      */
     public function store(Request $request)
     {   
-      dd($request);
           //Guarda la despacho
         $dispatch = Dispatch::create($request->all());
 

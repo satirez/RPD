@@ -80,9 +80,9 @@ class DispatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDispatch $request)
+    public function store(Request $request)
     {   
-      
+      dd($request);
           //Guarda la despacho
         $dispatch = Dispatch::create($request->all());
 

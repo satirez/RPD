@@ -6,48 +6,76 @@
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Usuarios  
-                     @can('users.create')
+                    Usuarios
+                    @can('users.create')
                     <a href="{{ Route('users.create') }}" class="btn btn-sm btn-primary pull-right"> Crear </a>
-                    @endcan                
+                    @endcan
                 </div>
 
                 <div class="panel-body">
-                   <table class="table table-striped table-hover"> 
-                       <thead>
-                           <tr>
-                              
-                               <th>Nombre y Apellido</th>
-                               <th>Rut</th>
-                               <th colspan="2">&nbsp;</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                        @foreach($users as $user)
-                           <tr>
-                                
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+
+                                <th>Nombre y Apellido</th>
+                                <th>Rut</th>
+                                <th colspan="2">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($users as $user)
+                            <tr>
+
                                 <td>{{ $user->name  }}</td>
                                 <td>{{ $user->email  }}</td>
-                               
+
                                 <td width="10px">
                                     @can('users.edit')
-                                    <a href="{{ Route('users.edit', $user->id) }}" class="btn btn-sm btn-info">Editar</a>
+                                    <a href="{{ Route('users.edit', $user->id) }}"
+                                        class="btn btn-sm btn-info">Editar</a>
                                     @endcan
                                 <td>
                                 <td width="10px">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                                        data-target="#exampleModalCenter{{$user->id}}">
+                                        Eliminar
+                                    </button>
+                                <td>
+
+                            </tr>
+
+                               <!-- Modal -->
+                               <div class="modal fade" id="exampleModalCenter{{$user->id}}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Eliminar</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ¿Esta seguro que desea eliminar?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-sm btn-secondary"
+                                                data-dismiss="modal">Cerrar</button>
+                                           
                                     @can('users.destroy')
                                     {!! Form::open(['route' => ['users.destroy', $user->id],
                                     'method' => 'DELETE' ]) !!}
-                                        <button class="btn btn-sm btn-danger">Eliminar</button>
+                                    <button class="btn btn-sm btn-danger">Eliminar</button>
                                     {!! Form::close() !!}
-                                    @endcan
-                                <td>    
-
-                           </tr>
-                        @endforeach
-                       </tbody>
-                   </table>
-                   {{ $users->render() }}
+                                    @endcan </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    {{ $users->render() }}
                 </div>
 
             </div>
@@ -55,4 +83,3 @@
     </div>
 </div>
 @stop
- 

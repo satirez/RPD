@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Format;
-use App\Reception;
-use App\Proces_Reception;
 use App\SubProcess;
 use App\Quality;
 use App\motivorejected;
-use App\Process;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -32,21 +29,19 @@ class SubProcessController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request, $id)
-    {  
-
-        
+    {
         $process = DB::table('process_reception')->where('process_id', $id)->first();
         $reception_id = $process->reception_id;
         $reception = DB::table('receptions')->where('id', $reception_id)->first();
 
         $peso = $reception->grossweight;
         $acumWeight = SubProcess::get()->sum('weight');
-        $resto=0;
+        $resto = 0;
 
         $idsad = $id;
-        
+
         //formato y peso para la vista
-        $listFormat = Format::OrderBy('id', 'DES')->pluck('name','weight');
+        $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
 
@@ -64,15 +59,15 @@ class SubProcessController extends Controller
     {
         //query pa pasar el peso de formato y sacarle su id
 
-        $getFormatId =  $request->get('format_id');
-        $idProcess =  $request->get('process_id');
+        $getFormatId = $request->get('format_id');
+        $idProcess = $request->get('process_id');
 
         $idFormat = Format::where('weight', $getFormatId)->first()->id;
-        $request['format_id']=$idFormat;
+        $request['format_id'] = $idFormat;
 
         SubProcess::create($request->all());
 
-        $listFormat = Format::OrderBy('id', 'DES')->pluck('name','weight');
+        $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
 
@@ -82,10 +77,10 @@ class SubProcessController extends Controller
         $peso = $reception->grossweight;
         $idsad = $idProcess;
         //sumas y restas
-        $acumWeight = SubProcess::where('process_id', $idProcess )->sum('weight');
+        $acumWeight = SubProcess::where('process_id', $idProcess)->sum('weight');
         $resto = $peso - $acumWeight;
-        
-        return redirect()->route('subprocess.create', $idProcess)->with('info','Temprada guardado con exito');
+
+        return redirect()->route('subprocess.create', $idProcess)->with('info', 'Temprada guardado con exito');
     }
 
     /**
@@ -106,10 +101,11 @@ class SubProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubProcess $process)
+    public function edit(SubProcess $subProcess)
     {
-        $subprocesses = SubProcess::where('process_id', $process->id)->get();
-        
+        dd($subProcess->all());
+
+        return view('subprocess.edit', compact('subProcess'));
     }
 
     /**
@@ -120,8 +116,11 @@ class SubProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubProcess $subProcess)
+    public function update(Request $request, SubProcess $subprocess)
     {
+        $subprocess->update($request->all());
+
+        return redirect()->route('subprocess.index', $subprocess->id)->with('info', 'Insumo actualizado con exito');
     }
 
     /**

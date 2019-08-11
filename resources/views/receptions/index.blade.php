@@ -92,22 +92,22 @@
                                 <td>{{ $receptionslis->created_at }}</td>
                                 
 
-                                <td width="5px">
+                                <td colspan="2">
                                         @can('receptions.show')
                                         <a class="btn btn-primary" href="#"  onclick="changestate(this.id)" id="{{ $receptionslis->id}}" class="btn btn-sm btn-default changestate">Cambiar Estado</a>
                                         @endcan
                                     <td>
-                                <td width="5px">
+                                <td colspan="2">
                                     @can('receptions.show')
                                     <a href="{{ Route('receptions.show', $receptionslis->id) }}" class="btn btn-sm btn-default">Ver</a>
                                     @endcan
                                 <td>
-                                <td width="5px">
+                                <td colspan="2">
                                     @can('receptions.edit')
                                     <a href="{{ Route('receptions.edit', $receptionslis->id) }}" class="btn btn-sm btn-info">Editar</a>
                                     @endcan
                                 <td>
-                                <td width="5px">
+                                <td colspan="2">
                                     @can('receptions.destroy')
                                     {!! Form::open(['route' => ['receptions.destroy', $receptionslis->id],
                                     'method' => 'DELETE' ]) !!}

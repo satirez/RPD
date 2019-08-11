@@ -8,12 +8,12 @@
                         <div class="panel-heading">
                             <h4 style="text-align:center;">Editar informacion de subprocesos</h4>
                         </div>
-                @include('admin.subprocesses.partials.errors')
+                @include('subprocess.partials.errors')
                 <div class="panel-body">
-                	{!! Form::model($subprocesses, ['route' => ['admin.subprocesses.update', $subprocesses->id],
+                	{!! Form::model($subProcess, ['route' => ['subprocess.update', $subProcess->id],
                 	'method' => 'PUT']) !!} 
 
-                	@include('admin.subprocesses.partials.form')
+                	@include('subprocess.partials.form')
 
                 	{!! Form::close() !!}
 

@@ -23,9 +23,10 @@ class ProcessController extends Controller
      */
     public function index()
     {
+        $countSubProcess = SubProcess::where('id')->count();
         $processes = Process::paginate();
 
-        return view('process.processes.index', compact('processes'));
+        return view('process.processes.index', compact('processes','countSubProcess' ));
     }
 
     /**

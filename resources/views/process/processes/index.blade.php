@@ -35,7 +35,7 @@
                        <thead>
                            <tr>
                                <th>Tarja</th>
-                               <th>N° Cajas</th>
+                               <th >N° de procesos realizados</th>
                                <th>Creado</th>
                                
                                <th colspan="3">&nbsp;</th>
@@ -45,7 +45,7 @@
                         @foreach($processes as $process)
                            <tr>
                                 <td>{{ $process->tarja_proceso }}</td>
-                                <td>{{ $process->Box_out  }}</td>
+                                <td> {{ $countSubProcess }} </td>
                                 <td>{{ $process->created_at  }}</td>
                                
 

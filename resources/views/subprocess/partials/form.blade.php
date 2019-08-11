@@ -104,6 +104,27 @@
 			</div>
 		</div>
 
+
+		<table class="table table-striped table-hover"> 
+                       <thead>
+                           <tr>
+                               <th>Nª de tarja</th>
+                               <th>Cantidad</th>
+                               <th>Formato</th>
+                               <th>Calidad</th>
+                               <th>Estatus</th>
+                               
+                               
+                               <th colspan="3">&nbsp;</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                       
+                       </tbody>
+                   </table>
+
+
+
 	</div>
 </div>
 

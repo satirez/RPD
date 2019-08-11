@@ -19,22 +19,27 @@
                                <th>Cantidad</th>
                                <th>Formato</th>
                                <th>Calidad</th>
-                               <th>Status</th>
+                               <th>Estatus</th>
                                
                                
                                <th colspan="3">&nbsp;</th>
                            </tr>
                        </thead>
                        <tbody>
-                        @foreach($subprocesses as $subprocesse)
+                        @foreach($subprocesses as $subprocess)
                            <tr>
+                                <td>P00{{ $subprocess->id }}</td>
+                                <td>{{ $subprocess->quantity  }}</td>
+                                <td>{{ $subprocess->format->name  }}</td>
+                                <td>{{ $subprocess->quality->name  }}</td>
+                                <td>{{ $subprocess->weight  }}</td>
  
                                 <td width="10px">
                                     @can('subprocess.edit')
                                     <a 
-                                    href="{{ Route('subprocess.edit', $subprocesse->id) }}" 
+                                    href="{{ Route('subprocess.edit', $subprocess->id) }}" 
                                     class="btn btn-sm btn-info">
-                                        Editar
+                                        Editar {{$subprocess->id}}
                                     </a>
                                     @endcan
                                 </td>

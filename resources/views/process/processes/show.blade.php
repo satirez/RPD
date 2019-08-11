@@ -37,7 +37,7 @@
                                             <th> Kg total </th>
                                             <th> {{$subproces->weight}} </th>
                                         </tr>
-
+                                        
                                         <br>
                                     </tbody>
 

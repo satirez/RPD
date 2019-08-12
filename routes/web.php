@@ -367,31 +367,25 @@ Route::middleware('auth')->group(function () {
             ->middleware('permission:admin.exporters.edit');
 
     //Season
-    Route::post('/seasons/store', 'SeasonController@store')
-->name('admin.seasons.store')
-            ->middleware('permission:admin.seasons.create');
+Route::group(['middleware' => 'auth'], function() {
 
-    Route::get('/seasons', 'SeasonController@index')
-->name('admin.seasons.index')
-            ->middleware('permission:admin.seasons.index');
+Route::resource('seasons','SeasonController')->names('admin.seasons')->parameters(['seasons'=>'season']);
 
-    Route::get('/seasons/create', 'SeasonController@create')
-->name('admin.seasons.create')
-            ->middleware('permission:admin.seasons.create');
+});
 
-    Route::put('/seasons/{season}', 'SeasonController@update')
-->name('admin.seasons.update')
-            ->middleware('permission:admin.seasons.edit');
+    //Route::post('/seasons/store', 'SeasonController@store')->name('admin.seasons.store')->middleware('permission:admin.seasons.create');
 
-    Route::get('/seasons/{season}', 'SeasonController@show')
-->name('admin.season.show')
-            ->middleware('permission:admin.season.show');
+    //Route::get('/seasons', 'SeasonController@index')->name('admin.seasons.index')->middleware('permission:admin.seasons.index');
 
-    Route::delete('/season/{season}', 'SeasonController@destroy')->name('admin.seasons.destroy')
-            ->middleware('permission:admin.seasons.destroy');
+    //Route::get('/seasons/create', 'SeasonController@create')->name('admin.seasons.create')->middleware('permission:admin.seasons.create');
 
-    Route::get('/seasons/{season}/edit', 'SeasonController@edit')->name('admin.seasons.edit')
-            ->middleware('permission:admin.seasons.edit');
+    //Route::put('/seasons/{season}', 'SeasonController@update')->name('admin.seasons.update')->middleware('permission:admin.seasons.edit');
+
+    //Route::get('/seasons/{season}', 'SeasonController@show')->name('admin.season.show')->middleware('permission:admin.season.show');
+
+    //Route::delete('/season/{season}', 'SeasonController@destroy')->name('admin.seasons.destroy')->middleware('permission:admin.seasons.destroy');
+
+    //Route::get('/seasons/{season}/edit', 'SeasonController@edit')->name('admin.seasons.edit')->middleware('permission:admin.seasons.edit');
 
     //TipoTransportes
     Route::post('/tipotransportes/store', 'TipoTransporteController@store')

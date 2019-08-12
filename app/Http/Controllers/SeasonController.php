@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Validator;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreSeason;
 use App\Http\Requests\UpdateSeason;

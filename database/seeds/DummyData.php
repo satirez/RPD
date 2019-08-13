@@ -76,7 +76,6 @@ class DummyData extends Seeder
     public function variedades()
     {
         $now = \Carbon\Carbon::now();
-
         $fruits = [
 
             ['Mora', 1],
@@ -84,8 +83,6 @@ class DummyData extends Seeder
             ['frambueza', 3],
             ['arandanos', 4],
         ];
-
-
         $fruits = array_map(function ($fruits) use ($now) {
             return [
                 'variety' => $fruits[0],
@@ -197,10 +194,9 @@ class DummyData extends Seeder
 
         $fruits = [
 
-            ['Mala','d'],
-            ['Podrida','c'],
-            ['No esta','b'],
-            ['Robada','a'],
+            ['Simple','d'],
+            ['Internacional','c'],
+            ['Nacional','b'],
         ];
 
 

@@ -38,7 +38,7 @@ class SeasonController extends Controller
 
         $season = Season::create($request->all());
         
-        return redirect()->route('admin.seasons.index', $season->id)->with('info','Temprada guardado con exito'); 
+        return redirect()->route('admin.seasons.index', $season->id)->with('info','Temporada guardado con exito'); 
     }
 
     
@@ -58,7 +58,7 @@ class SeasonController extends Controller
     public function update(UpdateSeason $request,Season $season)
     {
         $season->update($request->all()); 
-        return redirect()->route('admin.seasons.index', $season->id)->with('info', 'termprada actualizado con exito');
+        return redirect()->route('admin.seasons.index', $season->id)->with('info', 'Termporada actualizado con exito');
     }
 
     public function destroy(Season $season)

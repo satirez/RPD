@@ -186,6 +186,14 @@ Route::resource('subprocess','SubProcessController')->names('subprocess')->param
 
 });
 
+
+// lote
+Route::group(['middleware' => 'auth'], function() {
+
+Route::resource('lotes','LoteController')->names('lotes')->parameters(['lotes'=>'lote']);
+
+});
+
     //Route::get('/subprocess/create/{subprocess}', 'SubProcessController@create')->name('subprocess.create')->middleware('permission:subprocess.create');
 
     //Route::post('/subprocess/store', 'SubProcessController@store')->name('subprocess.store')->middleware('permission:subprocess.create');

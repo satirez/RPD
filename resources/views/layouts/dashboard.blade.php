@@ -187,6 +187,7 @@
 
       @endcan
 
+
       <!-- Nav Item -->
       @can('process.processes.index')
 
@@ -200,7 +201,19 @@
 
 
 
+        <!-- Nav Item -->
+      @can('lotes.index')
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url ('lotes') }}">
+          <i class="fas fa-fw fa-boxes" style="color:#00F0FF"></i>
+          <span>Lotes </span>
 
+        </a>
+      </li>
+
+
+
+      @endcan
 
       <!-- Nav Item -->
       <!-- Nav Item - Pages Collapse Menu -->

@@ -31,19 +31,23 @@
                 </div>
                         <!--comienzo de la tabla-->
 
-                <table id="myTable" class="table table-hover ">
+                 <table class="table table-bordered" id="laravel_datatable">
 
                         <div class="col-sm-3 pull-right">
                         <br>
                     <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar">
                     <br>
                        </div>
+                        
                         <thead>
                             <tr class="">
                              
-                               <th>exportador</th>
-                               <th>numero de patente</th>
-                               <th>creado</th>
+                               <th>Id</th>
+                               <th>Tipo de despacho </th>
+                               <th>Consignatario</th>
+                               <th>formato</th>
+                               <th>cantidad</th>
+
 
                                <th colspan="auto">&nbsp;</th>
                            </tr>
@@ -51,9 +55,11 @@
                        <tbody>
                         @foreach($listdispatches as $listdispatch)
                            <tr>
-                                <td>{{ $listdispatch->exporter_id  }}</td>
-                                <td>{{ $listdispatch->patentNo  }}</td>
-                                <td>{{ $listdispatch->created_at }}</td>
+                                <td>{{ $listdispatch->id  }}</td>
+                                <td>{{ $listdispatch->tipodispatch  }}</td>
+                                <td>{{ $listdispatch->consignatario }}</td>
+                                <td>{{ $listdispatch->format }}</td>
+                                <td>{{ $listdispatch->quantity }}</td>
                                     
                                 <td width="8px">
                                     @can('dispatch.show')

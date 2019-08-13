@@ -180,11 +180,7 @@ Route::resource('processes','ProcessController')->names('process.processes')->pa
 
     //SubProcess
 
-Route::group(['middleware' => 'auth'], function() {
 
-Route::resource('subprocess','SubProcessController')->names('subprocess')->parameters(['subprocess'=>'subprocess']);
-
-});
 
 
 // lote
@@ -194,19 +190,19 @@ Route::resource('lotes','LoteController')->names('lotes')->parameters(['lotes'=>
 
 });
 
-    //Route::get('/subprocess/create/{subprocess}', 'SubProcessController@create')->name('subprocess.create')->middleware('permission:subprocess.create');
+    Route::get('/subprocess/create/{subprocess}', 'SubProcessController@create')->name('subprocess.create')->middleware('permission:subprocess.create');
 
-    //Route::post('/subprocess/store', 'SubProcessController@store')->name('subprocess.store')->middleware('permission:subprocess.create');
+    Route::post('/subprocess/store', 'SubProcessController@store')->name('subprocess.store')->middleware('permission:subprocess.create');
 
-    //Route::get('/subprocess', 'SubProcessController@index')->name('subprocess.index')->middleware('permission:subprocess.index');
+    Route::get('/subprocess', 'SubProcessController@index')->name('subprocess.index')->middleware('permission:subprocess.index');
 
-    //Route::put('/subprocess/{subprocess}', 'SubProcessController@update')->name('subprocess.update')->middleware('permission:subprocess.edit');
+    Route::put('/subprocess/{subprocess}', 'SubProcessController@update')->name('subprocess.update')->middleware('permission:subprocess.edit');
 
-    //Route::get('/subprocess/{subprocess}', 'SubProcessController@show')->name('subprocess.show')->middleware('permission:subprocess.show');
+    Route::get('/subprocess/{subprocess}', 'SubProcessController@show')->name('subprocess.show')->middleware('permission:subprocess.show');
 
-    //Route::delete('/subprocess/{subprocess}', 'SubProcessController@destroy')->name('subprocess.destroy')->middleware('permission:subprocess.destroy');
+    Route::delete('/subprocess/{subprocess}', 'SubProcessController@destroy')->name('subprocess.destroy')->middleware('permission:subprocess.destroy');
 
-    //Route::get('/subprocess/{subprocess}/edit', 'SubProcessController@edit')->name('subprocess.edit')->middleware('permission:subprocess.edit');
+    Route::get('/subprocess/{subprocess}/edit', 'SubProcessController@edit')->name('subprocess.edit')->middleware('permission:subprocess.edit');
 
     //Proveederoes
 

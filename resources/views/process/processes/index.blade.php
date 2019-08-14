@@ -1,9 +1,5 @@
 @extends('layouts.dashboard')
-
 @section('section')
-
-
-
 <div class="container">
 
         @if (\Session::has('success'))
@@ -31,7 +27,7 @@
                 </div>
 
                  <div class="table-responsive">
-                    <table class="table table-striped table-hover "> 
+                    <table id="laravel_datatable" class="table table-striped table-hover "> 
                        <thead>
                            <tr>
                                <th>Tarja</th>
@@ -42,39 +38,24 @@
                            </tr>
                        </thead>
                        <tbody>
-                        @foreach($processes as $process)
-                           <tr>
-                                <td>{{ $process->tarja_proceso }}</td>
-                                <td> {{ $countSubProcess }} </td>
-                                <td>{{ $process->created_at  }}</td>
-                               
-
-                                <td width="10px">
-                                    @can('process.processes.show')
-                                    <a href="{{ Route('process.processes.show', $process->id) }}" class="btn btn-sm btn-default">Ver</a>
-                                    @endcan
-                                <td>
-                                <td width="10px">
-                                    @can('process.processes.edit')
-                                    <a href="{{ Route('subprocess.index', $process->id) }}" class="btn btn-sm btn-info">Editar</a>
-                                    @endcan
-                                <td>
-                           
-                                <td width="10px">
-                                   @can('process.processes.destroy')
-                                    {!! Form::open(['route' => ['process.processes.destroy', $process->id],
-                                    'method' => 'DELETE' ]) !!}
-                                        <button class="btn btn-sm btn-danger">Eliminar</button>
-                                    {!! Form::close() !!}
-                                    @endcan
-                                <td>    
-
-                           </tr>
-                        @endforeach
                        </tbody>
                    </table>
-                   {{ $processes->render() }}
                 </div>
+                <script>
+                $(document).ready( function () {
+                    $('#laravel_datatable').DataTable({
+                        processing: true,
+                        serverSide: true,
+                        ajax: "{{ url('users-list') }}",
+                        columns: [
+                            { data: 'id', name: 'id' },
+                            { data: 'tarja_proceso', name: 'tarja_proceso' },
+                            { data: 'available', name: 'available' },
+                            { data: 'created_at', name: 'created_at ' },
+                        ]
+                    });
+                });
+            </script>
             </div>
         </div>
     </div>

@@ -55,13 +55,9 @@ Route::middleware('auth')->group(function () {
     //Roles
     //ruta 		//nombre de ruta 	//Permiso
 
-
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('roles','RoleController')->names('roles')->parameters(['roles'=>'role']);
-
-});
-
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('roles', 'RoleController')->names('roles')->parameters(['roles' => 'role']);
+    });
 
     //Route::post('/roles/store', 'RoleController@store')->name('roles.store')->middleware('permission:roles.create');
     //Route::get('/roles', 'RoleController@index')->name('roles.index')->middleware('permission:roles.index');
@@ -73,13 +69,9 @@ Route::resource('roles','RoleController')->names('roles')->parameters(['roles'=>
     //Users
     //ruta 		//nombre de ruta 	//Permiso
 
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('users','UserController')->names('users')->parameters(['users'=>'user']);
-
-});
-
-
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('users', 'UserController')->names('users')->parameters(['users' => 'user']);
+    });
 
     //Route::get('/users', 'UserController@index')->name('users.index')->middleware('permission:users.index');
     //Route::get('/users/create', 'UserController@create')->name('users.create')->middleware('permission:users.create');
@@ -91,12 +83,9 @@ Route::resource('users','UserController')->names('users')->parameters(['users'=>
     //Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit')->middleware('permission:users.edit');
     //Supplies
     //ruta 		//nombre de ruta 	//Permiso
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('supplies','SuppliesController')->names('admin.supplies')->parameters(['supplies'=>'supplie']);
-
-});
-
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('supplies', 'SuppliesController')->names('admin.supplies')->parameters(['supplies' => 'supplie']);
+    });
 
     //Route::post('/supplies/store', 'SuppliesController@store')->name('admin.supplies.store')->middleware('permission:admin.supplies.create');
     //Route::get('/supplies/', 'SuppliesController@index')->name('admin.supplies.index')->middleware('permission:admin.supplies.index');
@@ -109,13 +98,9 @@ Route::resource('supplies','SuppliesController')->names('admin.supplies')->param
     //Rechazado
     //ruta 		//focod de la ruta	//Permiso
 
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('rejecteds','MotivorejectedController')->names('admin.rejecteds')->parameters(['rejecteds'=>'motivorejected']);
-
-});
-
-
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('rejecteds', 'MotivorejectedController')->names('admin.rejecteds')->parameters(['rejecteds' => 'motivorejected']);
+    });
 
     //Route::post('/rejecteds/store', 'MotivorejectedController@store')->name('admin.rejecteds.store')->middleware('permission:admin.rejecteds.create');
     //Route::get('/rejecteds/', 'MotivorejectedController@index')->name('admin.rejecteds.index')->middleware('permission:admin.rejecteds.index');
@@ -154,19 +139,17 @@ Route::resource('rejecteds','MotivorejectedController')->names('admin.rejecteds'
     Route::get('receptionChange', 'ReceptionController@ChangeStatusTrue')->name('receptions.change')
                                 ->middleware('permission:receptions.edit');
 
-    Route::get('get-data-my-datatables', 'ReceptionController@getData')->name('get.users');
     Route::get('users-list', 'ReceptionController@getData');
-
+    Route::get('users-list', 'SubProcessController@getData');
+    Route::get('users-list', 'ProcessController@getData');
     //Consulta Ajax Select
 
     //Process
     //ruta 		//referencia de la ruta 	//con la función...
 
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('processes','ProcessController')->names('process.processes')->parameters(['processes'=>'process']);
-
-});
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('processes', 'ProcessController')->names('process.processes')->parameters(['processes' => 'process']);
+    });
 
     //Route::get('/processes/create', 'ProcessController@create')->name('process.processes.create')->middleware('permission:process.processes.create');
     //Route::post('/processes/store', 'ProcessController@store')->name('process.processes.store')->middleware('permission:process.processes.create');
@@ -180,19 +163,14 @@ Route::resource('processes','ProcessController')->names('process.processes')->pa
 
     //SubProcess
 
-Route::group(['middleware' => 'auth'], function() {
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('subprocess', 'SubProcessController')->names('subprocess')->parameters(['subprocess' => 'subprocess']);
+    });
 
-Route::resource('subprocess','SubProcessController')->names('subprocess')->parameters(['subprocess'=>'subprocess']);
-
-});
-
-
-// lote
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('lotes','LoteController')->names('lotes')->parameters(['lotes'=>'lote']);
-
-});
+    // lote
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('lotes', 'LoteController')->names('lotes')->parameters(['lotes' => 'lote']);
+    });
 
     Route::get('/subprocess/create/{subprocess}', 'SubProcessController@create')->name('subprocess.create')->middleware('permission:subprocess.create');
 
@@ -210,11 +188,9 @@ Route::resource('lotes','LoteController')->names('lotes')->parameters(['lotes'=>
 
     //Proveederoes
 
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('providers','ProviderController')->names('admin.providers')->parameters(['providers'=>'provider']);
-
-});
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('providers', 'ProviderController')->names('admin.providers')->parameters(['providers' => 'provider']);
+    });
 
     //Route::post('/providers/store', 'ProviderController@store')->name('admin.providers.store')->middleware('permission:admin.providers.create');
 
@@ -232,11 +208,9 @@ Route::resource('providers','ProviderController')->names('admin.providers')->par
 
     //Fruta
 
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('fruits','FruitController')->names('admin.fruits')->parameters(['fruits'=>'fruit']);
-
-});
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('fruits', 'FruitController')->names('admin.fruits')->parameters(['fruits' => 'fruit']);
+    });
 
     //Route::post('/fruits/store', 'FruitController@store')->name('admin.fruits.store')->middleware('permission:admin.fruits.create');
 
@@ -254,12 +228,9 @@ Route::resource('fruits','FruitController')->names('admin.fruits')->parameters([
 
     //Variead de fruta
 
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('varieties','VarietyController')->names('admin.varieties')->parameters(['varieties'=>'variety']);
-
-});
-
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('varieties', 'VarietyController')->names('admin.varieties')->parameters(['varieties' => 'variety']);
+    });
 
     //Route::post('/varieties/store', 'VarietyController@store')->name('admin.varieties.store')->middleware('permission:admin.varieties.create');
 
@@ -277,11 +248,9 @@ Route::resource('varieties','VarietyController')->names('admin.varieties')->para
 
     //Formato
 
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('formats','FormatController')->names('admin.formats')->parameters(['formats'=>'format']);
-
-});
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('formats', 'FormatController')->names('admin.formats')->parameters(['formats' => 'format']);
+    });
 
     //Route::post('/formats/store', 'FormatController@store')->name('admin.formats.store')->middleware('permission:admin.formats.create');
 
@@ -299,11 +268,9 @@ Route::resource('formats','FormatController')->names('admin.formats')->parameter
 
     //Quality
 
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('quality','QualityController')->names('admin.quality')->parameters(['quality'=>'quality']);
-
-});
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('quality', 'QualityController')->names('admin.quality')->parameters(['quality' => 'quality']);
+    });
 
     //Route::post('/quality/store', 'QualityController@store')->name('admin.quality.store')->middleware('permission:admin.quality.create');
 
@@ -319,14 +286,11 @@ Route::resource('quality','QualityController')->names('admin.quality')->paramete
 
     //Route::get('/quality/{quality}/edit', 'QualityController@edit')->name('admin.quality.edit')->middleware('permission:admin.quality.edit');
 
-
     //Exportadores
 
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('exporters','ExporterController')->names('admin.exporters')->parameters(['exporters'=>'exporter']);
-
-});
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('exporters', 'ExporterController')->names('admin.exporters')->parameters(['exporters' => 'exporter']);
+    });
 
     //Route::post('/exporters/store', 'ExporterController@store')->name('admin.exporters.store')->middleware('permission:admin.exporters.create');
 
@@ -343,11 +307,9 @@ Route::resource('exporters','ExporterController')->names('admin.exporters')->par
     //Route::get('/exporters/{exporter}/edit', 'ExporterController@edit')->name('admin.exporters.edit')->middleware('permission:admin.exporters.edit');
 
     //Season
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('seasons','SeasonController')->names('admin.seasons')->parameters(['seasons'=>'season']);
-
-});
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('seasons', 'SeasonController')->names('admin.seasons')->parameters(['seasons' => 'season']);
+    });
 
     //Route::post('/seasons/store', 'SeasonController@store')->name('admin.seasons.store')->middleware('permission:admin.seasons.create');
 
@@ -364,11 +326,9 @@ Route::resource('seasons','SeasonController')->names('admin.seasons')->parameter
     //Route::get('/seasons/{season}/edit', 'SeasonController@edit')->name('admin.seasons.edit')->middleware('permission:admin.seasons.edit');
 
     //TipoTransportes
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('tipotransportes','TipoTransporteController')->names('admin.tipotransportes')->parameters(['tipotransportes'=>'tipotransporte']);
-
-});
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('tipotransportes', 'TipoTransporteController')->names('admin.tipotransportes')->parameters(['tipotransportes' => 'tipotransporte']);
+    });
 
     //Route::post('/tipotransportes/store', 'TipoTransporteController@store')->name('admin.tipotransportes.store')->middleware('permission:admin.tipotransportes.create');
 
@@ -386,11 +346,9 @@ Route::resource('tipotransportes','TipoTransporteController')->names('admin.tipo
 
     //Tipo de producto para despachos
 
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('tipoproductodispatches','TipoProductoDispatchController')->names('admin.tipoproductodispatches')->parameters(['tipoproductodispatches'=>'tipoproductodispatch']);
-
-});
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('tipoproductodispatches', 'TipoProductoDispatchController')->names('admin.tipoproductodispatches')->parameters(['tipoproductodispatches' => 'tipoproductodispatch']);
+    });
     //Route::post('/tipoproductodispatches/store', 'TipoProductoDispatchController@store')->name('admin.tipoproductodispatches.store')->middleware('permission:admin.tipoproductodispatches.create');
 
     //Route::get('/tipoproductodispatches', 'TipoProductoDispatchController@index')->name('admin.tipoproductodispatches.index')->middleware('permission:admin.tipoproductodispatches.index');
@@ -404,7 +362,7 @@ Route::resource('tipoproductodispatches','TipoProductoDispatchController')->name
     //Route::delete('/tipoproductodispatch/{tipoproductodispatch}', 'TipoProductoDispatchController@destroy')->name('admin.tipoproductodispatches.destroy')->middleware('permission:admin.tipoproductodispatches.destroy');
 
     //Route::get('/tipoproductodispatches/{tipoproductodispatch}/edit', 'TipoProductoDispatchController@edit')->name('admin.tipoproductodispatches.edit')->middleware('permission:admin.tipoproductodispatches.edit');
-    
+
     //Despachos
 
     Route::post('/dispatch/store', 'DispatchController@store')->name('dispatch.store')->middleware('permission:dispatch.create');
@@ -423,16 +381,13 @@ Route::resource('tipoproductodispatches','TipoProductoDispatchController')->name
 
     Route::get('/camara', 'dispatchcontroller@getProcess')->name('dispatch.getProcess')->middleware('permission:dispatch.getProcess');
 
-
     Route::get('get-data-my-datatables', 'DispatchController@getData')->name('get.dispatch');
     Route::get('dispatch-list', 'DispatchController@getData');
     //TipoDespacho
 
-Route::group(['middleware' => 'auth'], function() {
-
-Route::resource('tipodispatches','TipoDispatchController')->names('admin.tipodispatches')->parameters(['tipodispatches'=>'tipodispatch']);
-
-});
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('tipodispatches', 'TipoDispatchController')->names('admin.tipodispatches')->parameters(['tipodispatches' => 'tipodispatch']);
+    });
 
     //Route::post('/tipodispatches/store', 'TipoDispatchController@store')->name('admin.tipodispatches.store')->middleware('permission:admin.tipodispatches.create');
 
@@ -450,35 +405,31 @@ Route::resource('tipodispatches','TipoDispatchController')->names('admin.tipodis
 
     //Estatus
 
-Route::group(['middleware' => 'auth'], function() {
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('statuses', 'StatusController')->names('admin.statuses')->parameters(['statuses' => 'status']);
+    });
 
-Route::resource('statuses','StatusController')->names('admin.statuses')->parameters(['statuses'=>'status']);
+    // Route::post('/statuses/store', 'StatusController@store')->name('admin.statuses.store')->middleware('permission:admin.statuses.create');
 
-});
+    // Route::get('/statuses', 'StatusController@index')->name('admin.statuses.index')->middleware('permission:admin.statuses.index');
 
-   // Route::post('/statuses/store', 'StatusController@store')->name('admin.statuses.store')->middleware('permission:admin.statuses.create');
+    // Route::get('/statuses/create', 'StatusController@create')->name('admin.statuses.create')->middleware('permission:admin.statuses.create');
 
-   // Route::get('/statuses', 'StatusController@index')->name('admin.statuses.index')->middleware('permission:admin.statuses.index');
+    // Route::put('/statuses/{status}', 'StatusController@update')->name('admin.statuses.update')->middleware('permission:admin.statuses.edit');
 
-   // Route::get('/statuses/create', 'StatusController@create')->name('admin.statuses.create')->middleware('permission:admin.statuses.create');
+    // Route::get('/statuses/{status}', 'StatusController@show')->name('admin.statuses.show')->middleware('permission:admin.statuses.show');
 
-   // Route::put('/statuses/{status}', 'StatusController@update')->name('admin.statuses.update')->middleware('permission:admin.statuses.edit');
+    // Route::delete('/statuses/{status}', 'StatusController@destroy')->name('admin.statuses.destroy')->middleware('permission:admin.statuses.destroy');
 
-   // Route::get('/statuses/{status}', 'StatusController@show')->name('admin.statuses.show')->middleware('permission:admin.statuses.show');
-
-   // Route::delete('/statuses/{status}', 'StatusController@destroy')->name('admin.statuses.destroy')->middleware('permission:admin.statuses.destroy');
-
-   // Route::get('/statuses/{status}/edit', 'StatusController@edit')->name('admin.statuses.edit')->middleware('permission:admin.statuses.edit');
+    // Route::get('/statuses/{status}/edit', 'StatusController@edit')->name('admin.statuses.edit')->middleware('permission:admin.statuses.edit');
 
     //TrayINNNNNNNNsssssssssssssssssssssssssssssssssssss STORE
 
-Route::group(['middleware' => 'auth'], function() {
+    Route::group(['middleware' => 'auth'], function () {
+        Route::resource('trays', 'TrayInController')->names('admin.trays')->parameters(['trays' => 'tray']);
+    });
 
-Route::resource('trays','TrayInController')->names('admin.trays')->parameters(['trays'=>'tray']);
-
-});
-
-   // Route::post('/trays/store', 'TrayInController@store')->name('admin.trays.store')->middleware('permission:admin.trays.create');
+    // Route::post('/trays/store', 'TrayInController@store')->name('admin.trays.store')->middleware('permission:admin.trays.create');
 
    // Route::get('/trays', 'TrayInController@index')->name('admin.trays.index')->middleware('permission:admin.trays.index');
 

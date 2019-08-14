@@ -48,6 +48,11 @@ class SubProcessController extends Controller
         return view('subprocess.create', compact('idsad', 'peso', 'listFormat', 'listQualities', 'listRejecteds', 'acumWeight', 'resto'));
     }
 
+    public function getData()
+    {
+        return Datatables::of(SubProcess::query())->make(true);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

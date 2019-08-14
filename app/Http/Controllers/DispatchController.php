@@ -16,6 +16,8 @@ use App\TipoDispatch;
 use App\Season;
 use App\TipoTransporte;
 use App\TipoProductoDispatch;
+use Yajra\Datatables\Datatables;
+
 
 class DispatchController extends Controller
 {
@@ -38,7 +40,10 @@ class DispatchController extends Controller
     }
 
 
-
+    public function getData()
+    {
+        return Datatables::of(Dispatch::query())->make(true);
+    }
 
     public function getSubProcess(){
         $subprocesses = SubProcess::paginate();

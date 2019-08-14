@@ -34,7 +34,7 @@
                      { data: 'id', name: 'id' },
                      { data: 'tarja', name: 'tarja' },
                      { data: 'grossweight', name: 'grossweight' },
-                     { data: 'fruit_id', name: 'fruit_id' },
+                     { data: 'fruit_id', name: 'fruit' },
                      { data: 'provider_id', name: 'provider_id' },
                      { data: 'created_at', name: 'created_at' }
                   ]
@@ -45,3 +45,5 @@
     </div>
 </div>
 @endsection
+
+

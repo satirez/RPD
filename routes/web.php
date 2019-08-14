@@ -180,7 +180,11 @@ Route::resource('processes','ProcessController')->names('process.processes')->pa
 
     //SubProcess
 
+Route::group(['middleware' => 'auth'], function() {
 
+Route::resource('subprocess','SubProcessController')->names('subprocess')->parameters(['subprocess'=>'subprocess']);
+
+});
 
 
 // lote
@@ -402,27 +406,26 @@ Route::resource('tipoproductodispatches','TipoProductoDispatchController')->name
     //Route::get('/tipoproductodispatches/{tipoproductodispatch}/edit', 'TipoProductoDispatchController@edit')->name('admin.tipoproductodispatches.edit')->middleware('permission:admin.tipoproductodispatches.edit');
     
     //Despachos
-Route::group(['middleware' => 'auth'], function() {
 
-Route::resource('dispatch','DispatchController')->names('dispatch')->parameters(['dispatch'=>'dispatch']);
+    Route::post('/dispatch/store', 'DispatchController@store')->name('dispatch.store')->middleware('permission:dispatch.create');
 
-});
-    //Route::post('/dispatch/store', 'DispatchController@store')->name('dispatch.store'->middleware('permission:dispatch.create');
+    Route::get('/dispatch', 'DispatchController@index')->name('dispatch.index')->middleware('permission:dispatch.index');
 
-    //Route::get('/dispatch', 'DispatchController@index')->name('dispatch.index'->middleware('permission:dispatch.index');
+    Route::get('/dispatch/create', 'DispatchController@create')->name('dispatch.create')->middleware('permission:dispatch.create');
 
-    //Route::get('/dispatch/create', 'DispatchController@create')->name('dispatch.create'->middleware('permission:dispatch.create');
+    Route::put('/dispatch/{dispatch}', 'DispatchController@update')->name('dispatch.update')->middleware('permission:dispatch.edit');
 
-    //Route::put('/dispatch/{dispatch}', 'DispatchController@update')->name('dispatch.update'->middleware('permission:dispatch.edit');
+    Route::get('/dispatch/{dispatch}', 'DispatchController@show')->name('dispatch.show')->middleware('permission:dispatch.show');
 
-    //Route::get('/dispatch/{dispatch}', 'DispatchController@show')->name('dispatch.show'->middleware('permission:dispatch.show');
+    Route::delete('/dispatch/{dispatch}', 'dispatchcontroller@destroy')->name('dispatch.destroy')->middleware('permission:dispatch.destroy');
 
-    //Route::delete('/dispatch/{dispatch}', 'dispatchcontroller@destroy')->name('dispatch.destroy'->middleware('permission:dispatch.destroy');
-
-    //Route::get('/dispatch/{dispatch}/edit', 'dispatchcontroller@edit')->name('dispatch.edit'->middleware('permission:dispatch.edit');
+    Route::get('/dispatch/{dispatch}/edit', 'dispatchcontroller@edit')->name('dispatch.edit')->middleware('permission:dispatch.edit');
 
     Route::get('/camara', 'dispatchcontroller@getProcess')->name('dispatch.getProcess')->middleware('permission:dispatch.getProcess');
 
+
+    Route::get('get-data-my-datatables', 'DispatchController@getData')->name('get.dispatch');
+    Route::get('dispatch-list', 'DispatchController@getData');
     //TipoDespacho
 
 Route::group(['middleware' => 'auth'], function() {

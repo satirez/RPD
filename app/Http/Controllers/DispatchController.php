@@ -32,21 +32,31 @@ class DispatchController extends Controller
        return view('dispatch.index', compact('despachos'));
     }
 
-    public function getDispatches(){
-
-         if ($request->ajax()) {
-            $query = TipoDispatch::with('dispatches')->select('tipodispatches.*');
-
-            return $this->dataTable->eloquent($query)->make(true);
-        }
-
-        return view('dispatch.index', [
-            'name'      => 'Model Belongs To Demo',
-            'controller' => 'Relation Controller',
+        public function getData()
+    {
+        $dispatches = Dispatch::with([
+            'tipodispatch',
+            'tipotransporte',
+            'season',
+            
         ]);
 
-         
+
+        return Datatables::of($dispatches)
+            ->addColumn('tipodispatch', function ($dispatch) {
+                return $dispatch->tipodispatch->name;
+            })
+            ->editColumn('tipotransporte', function ($dispatch) {
+                return $dispatch->tipotransporte->name;
+            })
+          
+            ->editColumn('season', function ($dispatch) {
+                return $dispatch->season->name;
+            })
+
+            ->make(true);
     }
+
 
 
     public function getSubProcess(){

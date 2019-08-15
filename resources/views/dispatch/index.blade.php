@@ -14,7 +14,7 @@
                 </div>
 
                <div class="card-body"> 
-                <table class="table table-bordered" id="laravel_datatable">
+                <table class="table table-bordered" id="laravel_datatable3">
                     <thead>
                         
                             <th>Id</th>
@@ -33,6 +33,31 @@
             </div>
             </div>
 
+
+<script>
+                $(document).ready( function () {
+     $('#laravel_datatable3').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ url('dispatch-list') }}",
+            columns: [
+                     { data: 'id', name: 'id' },
+                     { data: 'tipodispatch', name: 'tipodispatch.name' },
+                     { data: 'consignatario', name: 'consignatario' },
+                     { data: 'tipotransporte', name: 'tipotransporte.name' },                 
+                     { data: 'season', name: 'season.name' },
+                     { data: 'created_at', name: 'created_at' }
+                  ]
+         });
+      });
+
+      $('.filter-input').keyup(function() {
+          table.columm( $(this).data('column') )
+          .search( $(this).val() )
+          .draw();
+      });
+      
+            </script>
           
 
         </div>

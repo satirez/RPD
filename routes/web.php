@@ -383,11 +383,9 @@ Route::middleware('auth')->group(function () {
 
 
     
-    Route::get('dispatches', 'DispatchController@getDispatches')->name('get.dispatches');
-
    
 
-    Route::get('get-data-my-datatables', 'DispatchController@getData')->name('get.dispatch');
+    
     Route::get('dispatch-list', 'DispatchController@getData');
 
     //TipoDespacho

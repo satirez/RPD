@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+  @extends('layouts.dashboard')
 
 @section('section')
 <div class="container">
@@ -8,7 +8,7 @@
 
             <div class="container">
                 <h2>Recepciones</h2>
-                <table class="table table-bordered" id="laravel_datatable">
+                <table class="table table-bordered" id="laravel_datatable2">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -52,7 +52,7 @@
             </div>
             <script>
                 $(document).ready( function () {
-     $('#laravel_datatable').DataTable({
+     $('#laravel_datatable2').DataTable({
             processing: true,
             serverSide: true,
             ajax: "{{ url('reception-list') }}",

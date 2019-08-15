@@ -395,28 +395,7 @@
 
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
-    <script>
-               $(document).ready( function () {
-    $('#laravel_datatable').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: '{!! route('get.dispatches') !!}',
 
-         columns: [
-            { data: 'id', name: 'id' },
-            { data: 'tipodispatch', name: 'tipodispatch.name' },
-            { data: 'consignatario', name: 'consignatario' },
-            { data: 'tipotransporte', name: 'tipotransporte.name' },
-            { data: 'puerto_salida', name: 'puerto_salida' },
-            { data: 'created_at', name: 'created_at' },
-          
-            
-
-        ]
-    }); 
-} );
-
-    </script>
 
   <!-- Bootstrap core JavaScript-->
   <script src="/webcss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -139,9 +139,9 @@ Route::middleware('auth')->group(function () {
     Route::get('receptionChange', 'ReceptionController@ChangeStatusTrue')->name('receptions.change')
                                 ->middleware('permission:receptions.edit');
 
-    Route::get('users-list', 'ReceptionController@getData');
-    Route::get('users-list', 'SubProcessController@getData');
-    Route::get('users-list', 'ProcessController@getData');
+    Route::get('reception-list', 'ReceptionController@getData');
+    Route::get('subprocess-list', 'SubProcessController@getData');
+    Route::get('process-list', 'ProcessController@getData');
     //Consulta Ajax Select
 
     //Process

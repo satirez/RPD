@@ -77,7 +77,29 @@ class ReceptionController extends Controller
 
     public function getData()
     {
-        return Datatables::of(Reception::query())->make(true);
+        $receptions = Reception::with([
+            'fruit',
+            'provider',
+            'supplies',
+            'season'
+        ]);
+
+
+        return Datatables::of($receptions)
+            ->addColumn('fruit', function ($reception) {
+                return $reception->fruit->specie;
+            })
+            ->editColumn('provider', function ($reception) {
+                return $reception->provider->name;
+            })
+            ->editColumn('supplies', function ($reception) {
+                return $reception->supplies->name;
+            })
+            ->editColumn('season', function ($reception) {
+                return $reception->season->name;
+            })
+
+            ->make(true);
     }
 
     /**
@@ -113,9 +135,18 @@ class ReceptionController extends Controller
             $lastid = $last->id + 1;
         }
 
-        return view('receptions.create', compact('lastid', 'receptionslist',
-         'listStatus', 'listSupplies', 'listProviders', 'listQualities',
-          'listFruits', 'listSeasons', 'listRejecteds', 'listVariety'));
+        return view('receptions.create', compact(
+            'lastid',
+            'receptionslist',
+            'listStatus',
+            'listSupplies',
+            'listProviders',
+            'listQualities',
+            'listFruits',
+            'listSeasons',
+            'listRejecteds',
+            'listVariety'
+        ));
     }
 
     public function byFruit($id)
@@ -133,7 +164,7 @@ class ReceptionController extends Controller
     public function store(Request $request)
     {
 
-      
+
 
         // rate,reason y coment deben ir en el mismo request y tabla, ya que eliminamos la tabla rejected de la db
 
@@ -170,12 +201,13 @@ class ReceptionController extends Controller
         //instancio el radio button
 
         if ($rejected == 1) {
-            $rejected = ['reception_id' => $reception_id,
-            'reason' => $reason,
-            'commentrejected' => $comment, ];
+            $rejected = [
+                'reception_id' => $reception_id,
+                'reason' => $reason,
+                'commentrejected' => $comment,
+            ];
             $rejected = Rejected::create($rejected);
-        } else {
-        }
+        } else { }
 
         return redirect()->route('receptions.create', $reception->id)->with('info', 'Receptiono guardado con exito');
     }
@@ -225,8 +257,20 @@ class ReceptionController extends Controller
             $comment = MotivoRejected::where('id', $rechazado->id)->pluck('comment');
         }
 
-        return view('receptions.edit', compact('reception','comment','motivo','rechazado','listSupplies','listStatus',
-            'listProviders', 'listQualities', 'listFruits', 'listSeasons', 'listRejecteds', 'listVariety'));
+        return view('receptions.edit', compact(
+            'reception',
+            'comment',
+            'motivo',
+            'rechazado',
+            'listSupplies',
+            'listStatus',
+            'listProviders',
+            'listQualities',
+            'listFruits',
+            'listSeasons',
+            'listRejecteds',
+            'listVariety'
+        ));
     }
 
     /**

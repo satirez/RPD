@@ -12,64 +12,71 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Name</th>
-                            <th>grossweight</th>
+                            <th>Nombre</th>
+                            <th>Peso Bruto</th>
                             <th>Fruta</th>
+                            <th>Bandejas</th>
+                            <th>Temporada</th>
                             <th>Provedor</th>
                             <th>Created at</th>
                         </tr>
                     </thead>
-                    <tbody> 
+                    <tfoot>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control filter-input" data-column="1">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control filter-input" data-column="2">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control filter-input" data-column="3">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control filter-input" data-column="4">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control filter-input" data-column="5">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control filter-input" data-column="6">
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </tfoot>
 
-                    </tbody>
                 </table>
             </div>
             <script>
                 $(document).ready( function () {
-                    $('#laravel_datatable').DataTable({
-                        processing: true,
-                        serverSide: true,
-                        ajax: "{{ url('users-list') }}",
-                        columns: [
-                            { data: 'id', name: 'id' },
-                            { data: 'tarja', name: 'tarja' },
-                            { data: 'grossweight', name: 'grossweight' },
-                            { data: 'fruit_id', name: 'fruit_id ' },
-                            { data: 'provider_id', name: 'provider_id' },
-                            { data: 'created_at', name: 'created_at' }
-                        ]
-                    });
+     $('#laravel_datatable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ url('reception-list') }}",
+            columns: [
+                     { data: 'id', name: 'id' },
+                     { data: 'tarja', name: 'tarja' },
+                     { data: 'grossweight', name: 'grossweight' },
+                     { data: 'fruit', name: 'fruit.specie' },
+                     { data: 'supplies', name: 'supplies.name' },
+                     { data: 'season', name: 'season.name' },
+                     { data: 'provider', name: 'provider.name' },
+                     { data: 'created_at', name: 'created_at' }
+                  ]
+         });
+      });
 
-                    $('#laravel_datatable thead tr').clone(true).appendTo( '#laravel_datatable thead' );
-                    $('#laravel_datatable thead tr:eq(1) th').each( function (i) {
-                        var title = $(this).text();
-                        $(this).html( '<input type="text" placeholder="Buscar '+title+'" />' );
-                
-                        $( 'input', this ).on( 'keyup change', function () {
-                            if ( table.column(i).search() !== this.value ) {
-                                table
-                                    .column(i)
-                                    .search( this.value )
-                                    .draw();
-                            }
-                        } );
-                    } );
-
-
-
-
-                    var table = $('#laravel_datatable').DataTable( {
-                        orderCellsTop: true,
-                        fixedHeader: true
-                    } );
-                });
-
-                
-
-                
-             
+      $('.filter-input').keyup(function() {
+          table.columm( $(this).data('column') )
+          .search( $(this).val() )
+          .draw();
+      });
+      
             </script>
         </div>
     </div>
 </div>
-@endsection}
+@endsection

@@ -31,6 +31,7 @@ class Reception extends Model
         return $this->belongsTo(Fruit::class);
     }
 
+
     public function process()
     {
         return $this->belongsToMany('\App\Process', 'process_reception')
@@ -54,17 +55,17 @@ class Reception extends Model
 
     public function processes()
     {
-        return $this->belongsToMany(Process::class);
+        return $this->belongsTo(Process::class);
     }
 
     public function supplies()
     {
-        return $this->belongsToMany(Supplies::class);
+        return $this->belongsTo(Supplies::class);
     }
 
     public function varieties()
     {
-        return $this->belongsToMany(Variety::class);
+        return $this->belongsTo(Variety::class);
     }
     
 }

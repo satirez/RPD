@@ -46,7 +46,7 @@
                     $('#laravel_datatable').DataTable({
                         processing: true,
                         serverSide: true,
-                        ajax: "{{ url('users-list') }}",
+                        ajax: "{{ url('process-list') }}",
                         columns: [
                             { data: 'id', name: 'id' },
                             { data: 'tarja_proceso', name: 'tarja_proceso' },

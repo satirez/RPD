@@ -2,6 +2,7 @@
 
 @section('section')
 <div class="container">
+
     <div class="row justify-content-center">
         <div class="col-md-12 col-md-offset-0">       
                 <div class="panel panel-primary">
@@ -42,16 +43,16 @@
                         <tbody>  
                         </tbody>
                     </table>
-                    
-                </div>        
-                
-                <script>
-                  $(document).ready( function () {
-                        $('#laravel_datatable').DataTable({ 
-                    processing: true,
-                    serverSide: true,
-                    ajax: "{{ url('users-list') }}",
-                    columns: [
+                </div>                        
+            </div>
+        </div>
+        <script>
+                $(document).ready( function () {
+                    $('#laravel_datatable').DataTable({
+                        processing: true,
+                        serverSide: true,
+                        ajax: "{{ url('reception-list') }}",
+                        columns: [
                             { data: 'tarja', name: 'tarja' },
                             { data: 'available', name: 'available' },
                             { data: 'grossweight', name: 'grossweight' },
@@ -62,11 +63,11 @@
                             { data: 'quality_id', name: 'quality_id'},
                             { data: 'created_at', name: 'created_at' }
                         ]
+                    });
                 });
-            });
-                </script>                    
-            </div>
-        </div>
+
+                </script>    
     </div>
+    
 </div>
 @endsection

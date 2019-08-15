@@ -109,12 +109,10 @@ class ReceptionController extends Controller
             ->make(true);
     }
 
-    public function searchReception(){
+    public function print(){
 
-        $receptions = Reception::all();
-        $names = $receptions->sortBy('name')->pluck('name')->unique();
-
-        return view('receptions.index', compact('names'));
+        $receptions = Reception::first();
+        return view('receptions.print',compact('receptions'));
 
     }
 

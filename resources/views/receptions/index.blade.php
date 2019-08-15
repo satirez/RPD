@@ -1,34 +1,16 @@
 @extends('layouts.dashboard')
 
 @section('section')
-<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-
-<script>
-        //js buscar
-    $(document).ready(function() {
-        $("#myInput").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-</script>
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12 col-md-offset-0">       
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
                     <h4 style="text-align:center;">Recepcionados
                     @can('receptions.create')
                     <a href="{{ Route('receptions.create') }}" class="btn btn-info pull-right btn-sm"> Crear </a>
                     @endcan
                     </h4>
-
-                    
-                   
-                   
                 </div>
 
                 <div class="table-responsive">
@@ -40,11 +22,8 @@
 
 
                         <!--comienzo de la tabla-->
-                    <table id="myTable" class="table table-hover ">
-                    <br>
-                        <div class="col-sm-3 pull-right">
-                            <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar">
-                        </div>
+                    <table id="laravel_datatable" class="table table-hover ">
+                        <br>
                         <br>
                         <thead>
                             <tr class="table-dark text-dark">
@@ -60,113 +39,34 @@
                                 <th colspan="auto">&nbsp;</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach($receptions as $receptionslis)
-                            <tr>
-                                
-                                <td>{{ $receptionslis->tarja }}</td>
-
-                                <td> 
-                                    @if($receptionslis->rejected == 1)
-                                        <span class="badge badge-danger">Rechazado</span>
-                                    
-                                    @else
-                                        <span class="badge badge-success">Disponible</span>
-                                    
-                                    @endif
-
-                                </td>
-                                
-                                <td>{{ $receptionslis->grossweight  }} kg</td>
-                                <td>{{ $receptionslis->netweight  }} kg</td>
-                                <td>{{ $receptionslis->quantity }}</td>
-                                <td>
-
-                                    <a  href="{{ Route('admin.providers.show', $receptionslis->provider->id ) }}" >
-                                     {{ $receptionslis->provider->name }} 
-                                    </a>
-
-                                </td>
-                                <td>{{ $receptionslis->fruit->specie  }}</td>
-                                <td>{{ $receptionslis->quality->name  }}</td>
-                                <td>{{ $receptionslis->created_at }}</td>
-                                
-
-                                <td colspan="2">
-                                        @can('receptions.show')
-                                        <a class="btn btn-primary" href="#"  onclick="changestate(this.id)" id="{{ $receptionslis->id}}" class="btn btn-sm btn-default changestate">Cambiar Estado</a>
-                                        @endcan
-                                    <td>
-                                <td colspan="2">
-                                    @can('receptions.show')
-                                    <a href="{{ Route('receptions.show', $receptionslis->id) }}" class="btn btn-sm btn-default">Ver</a>
-                                    @endcan
-                                <td>
-                                <td colspan="2">
-                                    @can('receptions.edit')
-                                    <a href="{{ Route('receptions.edit', $receptionslis->id) }}" class="btn btn-sm btn-info">Editar</a>
-                                    @endcan
-                                <td>
-                                <td colspan="2">
-                                    @can('receptions.destroy')
-                                    {!! Form::open(['route' => ['receptions.destroy', $receptionslis->id],
-                                    'method' => 'DELETE' ]) !!}
-                                    <button class="btn btn-sm btn-danger">Eliminar</button>
-                                    {!! Form::close() !!}
-                                    @endcan
-                                <td>
-
-                                <tr class="table-warning">
-                                    <td><th><h5>Palets disponibles: </h5></th></td>
-                                    <td><h5>{{ $receptionCount }}</h5></td>
-                                    
-                                    <td><th><h5>Kilos disponibles </h5></th></td>
-                                    <td><h5>{{ $receptionWeight }}</h5></td>
-                                    
-                                    <td><th><h5>N° de rejillas totales: </h5></th></td>
-                                    <td><h5>{{ $receptionQuantity }}</h5></td>
-                                    <td></td>
-                                </tr>
-
-                            </tr>
-                          
-                            @endforeach
-                       
-
-                            
+                        <tbody>  
+                        </tbody>
                     </table>
-                    {{ $receptions->render() }}
-                </div>                            
+                    
+                </div>        
+                
+                <script>
+                  $(document).ready( function () {
+                        $('#laravel_datatable').DataTable({ 
+                    processing: true,
+                    serverSide: true,
+                    ajax: "{{ url('users-list') }}",
+                    columns: [
+                            { data: 'tarja', name: 'tarja' },
+                            { data: 'available', name: 'available' },
+                            { data: 'grossweight', name: 'grossweight' },
+                            { data: 'netweight', name: 'netweight' },
+                            { data: 'quantity', name: 'quantity' },
+                            { data: 'provider_id', name: 'provider_id' },
+                            { data: 'fruit_id', name: 'fruit_id '},
+                            { data: 'quality_id', name: 'quality_id'},
+                            { data: 'created_at', name: 'created_at' }
+                        ]
+                });
+            });
+                </script>                    
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    function changestate(clicked){
-       
-        alert(clicked);
-
-        if(confirm("Are you sure you want to Delete this data?"))
-        {
-            $.ajax({
-                url:"{{route('receptions.change')}}",
-                mehtod:"get",
-                data:{id:clicked},
-                success:function(data)
-                {
-                    alert(data);
-                }
-            })
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-</script>
-
-
-
 @endsection

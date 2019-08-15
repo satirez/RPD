@@ -13,6 +13,7 @@ use App\Status;
 use App\Format;
 use App\Process_Reception;
 use App\SubProcess;
+use Yajra\Datatables\Datatables;
 
 class ProcessController extends Controller
 {
@@ -91,6 +92,11 @@ class ProcessController extends Controller
         }
 
         return redirect()->route('subprocess.create', $process_id)->with('success', 'Proceso guardado con exito');
+    }
+
+    public function getData()
+    {
+        return Datatables::of(Process::query())->make(true);
     }
 
     /**

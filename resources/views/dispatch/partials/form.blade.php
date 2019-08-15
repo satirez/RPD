@@ -1,4 +1,4 @@
-{{ Form::submit('Guardar', ['class' => 'btn btn-success']) }}
+
 
 <div class="card">
 	<div class="card-header">
@@ -212,65 +212,81 @@
 	</div>
 </div>
 
-<div class="col-md-12">
-	<div class="form-group">
-		<div class="bs-example">
+<div class="row">
 
-			<input type="radio" name="rejected" value="0" data-toggle="collapse" data-parent="#accordion"
-				href="#collapseOne" checked> Bueno
+	<div class="col-md-12">
+		<div class="form-group">
+			<div class="bs-example">
 
-			<input type="radio" name="rejected" value="1" data-toggle="collapse" data-parent="#accordion"
-				href="#collapseOne"> Rechazado
+				<input type="radio" name="rejected" value="0" data-toggle="collapse" data-parent="#accordion"
+					href="#collapseOne" checked> Bueno
 
-			<div class="panel-group" id="accordion">
-				<div class="panel panel-default">
-					<div id="collapseOne" class="panel-collapse collapse in">
-						<div class="panel-body">
-							<div class="card">
-								<div class="card-body">
-									{{Form::label('reason', 'Selecciona motivo de rechazo') }}
-									{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
-									{{Form::label('commentrejected', 'Comentario Adicional') }}
-									{{Form::textarea('commentrejected',null,['class'=>'form-control'])}}
+				<input type="radio" name="rejected" value="1" data-toggle="collapse" data-parent="#accordion"
+					href="#collapseOne"> Rechazado
 
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-default">
+						<div id="collapseOne" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<div class="card">
+									<div class="card-body">
+										{{Form::label('reason', 'Selecciona motivo de rechazo') }}
+										{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
+										{{Form::label('commentrejected', 'Comentario Adicional') }}
+										{{Form::textarea('commentrejected',null,['class'=>'form-control'])}}
+
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+
+
 			</div>
+		</div>
+
+	</div>
+
+	<div class="col-md-12 text-center">
+		<div class="form-group">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+				Guardar
+			</button>
+		</div>
+	</div>
 
 
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Guardar</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					¿Está seguro de guardar los cambios efectuados?
+				</div>
+				<div class="modal-footer">
+					{{ Form::submit('Guardar', ['class' => 'btn btn-primary']) }}
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
 		</div>
 	</div>
 
 </div>
 
-<div class="col-md-12 text-center">
-	<div class="form-group">
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-			Guardar
-		</button>
+
+<div class="row">
+	@if(session('info'))
+	<div class="alert alert-success">
+		{{session('info')}}
 	</div>
+	@endif
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-	aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">Guardar</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				¿Está seguro de guardar los cambios efectuados?
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>

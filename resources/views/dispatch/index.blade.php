@@ -1,6 +1,3 @@
-
-
-
 @extends('layouts.dashboard')
 
 @section('section')
@@ -15,41 +12,31 @@
                     @endcan
                     </h4>
                 </div>
+
+               <div class="card-body"> 
                 <table class="table table-bordered" id="laravel_datatable">
                     <thead>
-                        <tr>
+                        
                             <th>Id</th>
-                            <th>Tipo de despacho </th>
+                            <th>Tipo de Despacho </th>
                             <th>Consignatario</th>
-                            <th>tipo transporte</th>
-                            <th>Puerto de salida</th>
-                            <th>Hora de creacion</th>
-                        </tr>
+                            <th>Tipo Transporte</th>
+                            <th>Puerto de Salida</th>
+                            <th>Hora de Creación</th>
+                        
                     </thead>
                     <tbody>
-                   
+               
                     </tbody>
                 </table>
-                {{ $listdispatches->render() }}
+                
             </div>
-            <script>
-                $(document).ready( function () {
-     $('#laravel_datatable').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: "{{ url('dispatch-list') }}",
-            columns: [
-                     { data: 'id', name: 'id' },
-                     { data: 'tipodispatch_id', name: 'tipodispatch_id' },
-                     { data: 'consignatario', name: 'consignatario' },
-                     { data: 'tipotransporte_id', name: 'tipotransporte_id' },
-                     { data: 'puerto_salida', name: 'puerto_salida' },
-                     { data: 'created_at', name: 'created_at' }
-                  ]
-         });
-      });
-            </script>
+            </div>
+
+          
+
         </div>
     </div>
 </div>
 @endsection
+

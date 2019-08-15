@@ -11,10 +11,15 @@
 
   <!-- Custom styles for this template-->
   <link href="/webcss/css/sb-admin-2.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+ 
+
   <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
 
 </head>
 
@@ -383,7 +388,35 @@
 
   </div>
   <!-- End of Page Wrapper -->
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
 
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <script>
+               $(document).ready( function () {
+    $('#laravel_datatable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{!! route('get.dispatches') !!}',
+
+         columns: [
+            { data: 'id', name: 'id' },
+            { data: 'tipodispatch', name: 'tipodispatch.name' },
+            { data: 'consignatario', name: 'consignatario' },
+            { data: 'tipotransporte', name: 'tipotransporte.name' },
+            { data: 'puerto_salida', name: 'puerto_salida' },
+            { data: 'created_at', name: 'created_at' },
+          
+            
+
+        ]
+    }); 
+} );
+
+    </script>
 
   <!-- Bootstrap core JavaScript-->
   <script src="/webcss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

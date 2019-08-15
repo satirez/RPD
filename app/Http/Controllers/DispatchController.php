@@ -28,22 +28,26 @@ class DispatchController extends Controller
      */
     public function index()
     {
-        $listexporter = Exporter::paginate();
-        $listdispatches = dispatch::paginate();
-        $listtipodispatch = TipoDispatch::paginate();
-        $listFormat = Format::paginate();
-        $listFruits = Fruit::paginate();
-        $listQualities = Quality::paginate();
-        
-
-        return view('dispatch.index', compact('listexporter', 'listdispatches','listtipodispatch','listFormat','listFruits'));
+        $despachos = Dispatch::all();
+       return view('dispatch.index', compact('despachos'));
     }
 
+    public function getDispatches(){
 
-    public function getData()
-    {
-        return Datatables::of(Dispatch::query())->make(true);
+         if ($request->ajax()) {
+            $query = TipoDispatch::with('dispatches')->select('tipodispatches.*');
+
+            return $this->dataTable->eloquent($query)->make(true);
+        }
+
+        return view('dispatch.index', [
+            'name'      => 'Model Belongs To Demo',
+            'controller' => 'Relation Controller',
+        ]);
+
+         
     }
+
 
     public function getSubProcess(){
         $subprocesses = SubProcess::paginate();

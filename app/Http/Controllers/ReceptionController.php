@@ -77,7 +77,7 @@ class ReceptionController extends Controller
 
     public function getData()
     {
-        $receptions = Reception::with([
+        $receptions = Reception::where('available', 1)->with([
             'fruit',
             'provider',
             'supplies',
@@ -100,6 +100,15 @@ class ReceptionController extends Controller
             })
 
             ->make(true);
+    }
+
+    public function searchReception(){
+
+        $receptions = Reception::all();
+        $names = $receptions->sortBy('name')->pluck('name')->unique();
+
+        return view('receptions.index', compact('names'));
+
     }
 
     /**

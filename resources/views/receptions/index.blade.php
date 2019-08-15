@@ -42,13 +42,24 @@
                         </thead>
                         <tbody>  
                         </tbody>
+                    <tfoot>
+                    <tr>
+                            <td>
+                                <select data-column="0" class="form-control filter-select">
+                                <option value="">selecciona...</option>
+                                @foreach( $names as $name)
+                                <option value=" {{name}} "> {{name}} </option>
+                                </select>
+                            </td>
+                        </tr>
                     </table>
+                    
                 </div>                        
             </div>
         </div>
         <script>
                 $(document).ready( function () {
-                    $('#laravel_datatable').DataTable({
+                var table = $('#laravel_datatable').DataTable({
                         processing: true,
                         serverSide: true,
                         ajax: "{{ url('reception-list') }}",
@@ -66,8 +77,20 @@
                     });
                 });
 
-                </script>    
+            $('filter-select').change(function {
+                table.column($(this).data('column')).search($(this).val()).draw();
+            });
+
+
+            $(document).ready(function() {
+    $('#laravel_datatable3').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+            </script>    
     </div>
-    
 </div>
 @endsection

@@ -424,8 +424,10 @@ Route::resource('tipoproductodispatches','TipoProductoDispatchController')->name
     Route::get('/camara', 'dispatchcontroller@getProcess')->name('dispatch.getProcess')->middleware('permission:dispatch.getProcess');
 
 
-    Route::get('get-data-my-datatables', 'DispatchController@getData')->name('get.dispatch');
-    Route::get('dispatch-list', 'DispatchController@getData');
+    
+    Route::get('dispatches', 'DispatchController@getDispatches')->name('get.dispatches');
+
+   
     //TipoDespacho
 
 Route::group(['middleware' => 'auth'], function() {

@@ -31,5 +31,16 @@ class Dispatch extends Model
     {
         return $this->belongsTo(Season::class);
     }
+
+
+     public function tipodispatch()
+    {
+        return $this->belongsTo(TipoDispatch::class);
+    }
+
+    public function tipotransporte()
+    {
+        return $this->belongsTo(TipoTransporte::class);
+    }
 }
 

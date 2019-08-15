@@ -145,6 +145,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/print','ReceptionController@print')->name('receptions.print');
 
+
     //Consulta Ajax Select
 
     //Process

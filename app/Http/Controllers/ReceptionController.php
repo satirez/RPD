@@ -17,6 +17,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UpdateReception;
 use Carbon\Carbon;
 use Yajra\Datatables\Datatables;
+use Barryvdh\DomPDF\Facade as PDF;
+
+
 
 class ReceptionController extends Controller
 {
@@ -112,7 +115,11 @@ class ReceptionController extends Controller
     public function print(){
 
         $receptions = Reception::first();
-        return view('receptions.print',compact('receptions'));
+
+        $customPaper = array(0,0,567,378);
+        $pdf = PDF::loadView('receptions.print  ',compact('receptions'))->setPaper($customPaper);
+    
+        return $pdf->stream();
 
     }
 

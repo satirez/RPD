@@ -1,35 +1,42 @@
-@extends('layouts.dashboard')
-@section('section')
-
-<a href="{{ url('/prnpriview') }}" class="btnprn btn">Print Preview</a></center>
-
-    <script type="text/javascript">
-        $(document).ready(function(){
-    $('.btnprn').printPage();
-    });
-    </script>
 
 <div class="col-md-12">
     <h1> Tarja </h1>
-    <table class="table table-responsive">
+    <table class="table table-responsive" style="width:100%">
         <thead>
             <tr>
                 <td>Tarja</td>
-                <td>Peso Bruto</td>
-                <td>Tarja</td>
-                <td>Tarja</td>
+                <td> {{ $receptions->tarja}}</td>
+            </tr>
+            <tr>
+                <td>Peso Neto</td>
+                <td> {{ $receptions->grossweight}}</td>
+            </tr>
+            <tr>
+                <td>Provedor</td>
+                <td> {{ $receptions->provider->name}}</td>
+            </tr>
+            <tr>
+                <td>Fruta</td>
+                <td> {{ $receptions->fruit->specie}}</td>
+            </tr>
+            <tr>
+                <td>Temporada</td>
+                <td> {{ $receptions->season->name}}</td>
+            </tr>
+            <tr>
+                <td>Estatus</td>
+                <td> {{ $receptions->supplies->name }}</td>
+            </tr>
+            <tr>
+                <td>Cantidad</td>
+                <td> {{ $receptions->quantity }}</td>
+            </tr>
+            <tr>
+                <td>Peso Palet</td>
+                <td> {{ $receptions->palet_weight }}</td>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td> {{ $receptions->tarja}}</td>
-                <td> {{ $receptions->grossweight}}</td>
-                <td> {{ $receptions->tarja}}</td>
-                <td> {{ $receptions->tarja}}</td>
-            </tr>
-        </tbody>
+    
 
     </table>
 </div>
-
-@endsection

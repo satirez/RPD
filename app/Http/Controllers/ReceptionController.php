@@ -81,7 +81,9 @@ class ReceptionController extends Controller
             'fruit',
             'provider',
             'supplies',
-            'season'
+            'season',
+            'quality',
+            
         ]);
 
 
@@ -98,6 +100,11 @@ class ReceptionController extends Controller
             ->editColumn('season', function ($reception) {
                 return $reception->season->name;
             })
+            ->editColumn('quality', function ($reception) {
+                return $reception->quality->name;
+            })
+          
+      
 
             ->make(true);
     }

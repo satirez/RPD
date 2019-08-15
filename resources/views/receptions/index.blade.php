@@ -23,7 +23,7 @@
 
 
                         <!--comienzo de la tabla-->
-                    <table id="laravel_datatable" class="table table-hover ">
+                    <table id="laravel_datatable3" class="table responsive ">
                         <br>
                         <br>
                         <thead>
@@ -43,53 +43,56 @@
                         <tbody>  
                         </tbody>
                     <tfoot>
-                    <tr>
-                            <td>
-                                <select data-column="0" class="form-control filter-select">
-                                <option value="">selecciona...</option>
-                                @foreach( $names as $name)
-                                <option value=" {{name}} "> {{name}} </option>
-                                </select>
-                            </td>
-                        </tr>
                     </table>
                     
                 </div>                        
             </div>
         </div>
         <script>
-                $(document).ready( function () {
-                var table = $('#laravel_datatable').DataTable({
-                        processing: true,
-                        serverSide: true,
-                        ajax: "{{ url('reception-list') }}",
-                        columns: [
-                            { data: 'tarja', name: 'tarja' },
-                            { data: 'available', name: 'available' },
-                            { data: 'grossweight', name: 'grossweight' },
-                            { data: 'netweight', name: 'netweight' },
-                            { data: 'quantity', name: 'quantity' },
-                            { data: 'provider_id', name: 'provider_id' },
-                            { data: 'fruit_id', name: 'fruit_id '},
-                            { data: 'quality_id', name: 'quality_id'},
-                            { data: 'created_at', name: 'created_at' }
-                        ]
-                    });
-                });
-
-            $('filter-select').change(function {
-                table.column($(this).data('column')).search($(this).val()).draw();
-            });
-
-
             $(document).ready(function() {
-    $('#laravel_datatable3').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+    
+    $('#laravel_datatable3 thead tr').clone(true).appendTo( '#laravel_datatable3 thead' );
+    $('#laravel_datatable3 thead tr:eq(1) th').each( function (i) {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Buscar '+title+'" />' );
+ 
+        $( 'input', this ).on( 'keyup change', function () {
+            if ( table.column(i).search() !== this.value ) {
+                table
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
     } );
+ 
+    var table = $('#laravel_datatable3').DataTable({
+            processing: true,
+            serverSide: true,
+              language: {
+               url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+              },
+             dom: 'Bfrtip',
+        buttons: [
+            'excel', 'pdf', 
+        ],
+            
+            
+            ajax: "{{ url('reception-list') }}",
+            columns: [
+                     { data: 'tarja', name: 'tarja' },
+                     { data: 'available', name: 'available' },
+                     { data: 'grossweight', name: 'grossweight' },
+                     { data: 'netweight', name: 'netweight' },
+                     { data: 'quantity', name: 'quantity' },
+                     { data: 'provider', name: 'provider.name' },
+                     { data: 'fruit', name: 'fruit.specie' },
+                     { data: 'quality', name: 'quality.name' },
+                     { data: 'created_at', name: 'created_at' }
+                ]
+         });
 } );
+
             </script>    
     </div>
 </div>

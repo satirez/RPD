@@ -25,9 +25,16 @@
 		</tr>
 	</tbody>
 </table>
+@php(	
+		$range =($acumWeight*100)/$peso
+)
+
+<div class="progress progress-small">
+	<div style="width: {{$range}}% ; backbroud-color: #green; !important;" class="progress-bar"></div>
+</div>
 
 <div class="card">
-	<div class="card-body">
+	<div class="card-body"$>
 		<div class="d-flex justify-content-center">
 			<div class="row">
 				<div class="col-md-2">
@@ -122,9 +129,6 @@
                        
                        </tbody>
                    </table>
-
-
-
 	</div>
 </div>
 

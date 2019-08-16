@@ -150,8 +150,12 @@
 		var sum = acumWeight + input;
 
 		if(sum > {{ $peso }}){
-			alert('peso superado');
-			
+			swal("Peso Superado!", "Por favor, ingrese la información correcta", "error");
+			document.getElementById('save').setAttribute("disabled","disabled");
+
+		}else{
+			document.getElementById('save').removeAttribute("disabled");
+
 		}
 	}
 	

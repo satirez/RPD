@@ -15,6 +15,14 @@ class CreateLotesTable extends Migration
     {
         Schema::create('lotes', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('numero_lote');
+            
+            $table->integer('subprocess_id')->unsigned();
+            $table->foreign('subprocess_id')->references('id')->on('sub_processes')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

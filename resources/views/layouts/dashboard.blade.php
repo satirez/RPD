@@ -13,13 +13,12 @@
   <link href="/webcss/css/sb-admin-2.min.css" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
- 
 
-  
+
+
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  
-  <script src="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.dataTables.min.css"></script>
+
 
 
 
@@ -153,12 +152,12 @@
             <a class="collapse-item" href="{{ url ('tipodispatches') }}">Tipo de despacho</a>
             @endcan
 
-             <!-- Tipos despacho -->
+            <!-- Tipos despacho -->
             @can('admin.tipotransportes.index')
             <a class="collapse-item" href="{{ url ('tipotransportes') }}">Tipo de Transporte</a>
             @endcan
 
-             <!-- Tipos despacho -->
+            <!-- Tipos despacho -->
             @can('admin.tipoproductodispatches.index')
             <a class="collapse-item" href="{{ url ('tipoproductodispatches') }}">Producto a Despachar</a>
             @endcan
@@ -208,7 +207,7 @@
 
 
 
-        <!-- Nav Item -->
+      <!-- Nav Item -->
       @can('lotes.index')
       <li class="nav-item">
         <a class="nav-link" href="{{ url ('lotes') }}">
@@ -390,25 +389,25 @@
 
   </div>
   <!-- End of Page Wrapper -->
-  <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js">
+  </script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <script src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
 
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.print/1.6.0/jQuery.print.js"
+    integrity="sha256-y1bcuJgVgLha8+mzcg7TB2OHNDC2ZQvaJZmoXM0hxx0=" crossorigin="anonymous"></script>
 
   <!-- Bootstrap core JavaScript-->
   <script src="/webcss/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -29,16 +29,16 @@ class DispatchController extends Controller
     public function index()
     {
         $despachos = Dispatch::all();
-       return view('dispatch.index', compact('despachos'));
+        return view('dispatch.index', compact('despachos'));
     }
 
-        public function getData()
+    public function getData()
     {
         $dispatches = Dispatch::with([
             'tipodispatch',
             'tipotransporte',
             'season',
-            
+
         ]);
 
 
@@ -49,7 +49,7 @@ class DispatchController extends Controller
             ->editColumn('tipotransporte', function ($dispatch) {
                 return $dispatch->tipotransporte->name;
             })
-          
+
             ->editColumn('season', function ($dispatch) {
                 return $dispatch->season->name;
             })
@@ -59,13 +59,15 @@ class DispatchController extends Controller
 
 
 
-    public function getSubProcess(){
+    public function getSubProcess()
+    {
         $subprocesses = SubProcess::paginate();
 
         return view('dispatch.camara', compact('subprocesses'));
     }
 
-    public function showCam(Process $process){
+    public function showCam(Process $process)
+    {
         $subprocess1 = $subprocess->id;
         // $receptions = Process_Reception::where('process_id',$process1)->get();
         $receptions = SubProcess::find($subprocess1);
@@ -86,14 +88,14 @@ class DispatchController extends Controller
         $listexporter = Exporter::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
         $listtipodispatch = TipoDispatch::OrderBy('id', 'ASC')->pluck('name', 'id');
-        $listFormat = Format::OrderBy('id', 'DES')->pluck('name','id','weight');
+        $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'id', 'weight');
         $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $listSeasons = Season::OrderBy('id', 'DES')->pluck('name', 'id');
         $listTipoTransporte = TipoTransporte::OrderBy('id', 'DES')->pluck('name', 'id');
         $listTipoProductoDispatch = TipoProductoDispatch::OrderBy('id', 'DES')->pluck('name', 'id');
 
-        return view('dispatch.create', compact('listexporter', 'subprocesses','listRejecteds','listtipodispatch','listFormat','listFruits','listQualities','listSeasons','listTipoTransporte','listTipoProductoDispatch'));
+        return view('dispatch.create', compact('listexporter', 'subprocesses', 'listRejecteds', 'listtipodispatch', 'listFormat', 'listFruits', 'listQualities', 'listSeasons', 'listTipoTransporte', 'listTipoProductoDispatch'));
     }
 
     /**
@@ -104,8 +106,37 @@ class DispatchController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-          //Guarda la despacho
+    {
+        $lotes = $request->get('subprocesses');
+        //  dd($lotes);
+
+        $ultimolote = Lote::orderBy('DESC', 'id')->first();
+        // dd($ultimolote);
+
+        if ($ultimolote == 0) {
+            $ultimolote = 1;
+            foreach ($lotes as $key) {
+                $lotes = [
+                    'numero_lote' => $ultimolote,
+                    'subprocess_id' => $key,
+                ];
+                $lotes = Lote::create($lotes);
+            }
+        } else {
+            foreach ($lotes as $key) {
+
+                $lotes = [
+                    'numero_lote' => $ultimolote++,
+                    'subprocess_id' => $key,
+                ];
+
+                $lotes = Lote::create($lotes);
+            }
+        }
+
+        $lote = $lotes->id;
+
+        //Guarda la despacho
         $dispatch = Dispatch::create($request->all());
 
         $dispatch->subprocesses()->attach($request->get('subprocesses'));
@@ -116,7 +147,7 @@ class DispatchController extends Controller
             SubProcess::where('id', $key)->update(['available' => 0]);
         }
 
-    
+
 
         return redirect()->route('dispatch.index', $dispatch->id)->with('info', 'despacho guardado con exito');
     }
@@ -156,7 +187,7 @@ class DispatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDispatch $request,Dispatch $dispatch)
+    public function update(UpdateDispatch $request, Dispatch $dispatch)
     {
         $dispatch = Dispatch::find($id);
         $dispatch->update($request->all());

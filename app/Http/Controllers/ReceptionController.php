@@ -17,6 +17,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UpdateReception;
 use Carbon\Carbon;
 use Yajra\Datatables\Datatables;
+use Barryvdh\DomPDF\Facade as PDF;
+
+
 
 class ReceptionController extends Controller
 {
@@ -109,12 +112,14 @@ class ReceptionController extends Controller
             ->make(true);
     }
 
-    public function searchReception(){
+    public function print(){
 
-        $receptions = Reception::all();
-        $names = $receptions->sortBy('name')->pluck('name')->unique();
+        $receptions = Reception::first();
 
-        return view('receptions.index', compact('names'));
+        $customPaper = array(0,0,567,378);
+        $pdf = PDF::loadView('receptions.print  ',compact('receptions'))->setPaper($customPaper);
+    
+        return $pdf->stream();
 
     }
 

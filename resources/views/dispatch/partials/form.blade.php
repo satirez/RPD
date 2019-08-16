@@ -1,5 +1,3 @@
-
-
 <div class="card">
 	<div class="card-header">
 		<div class="badge badge-pill badge-primary float-left"> 1 </div>
@@ -78,7 +76,7 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('tipotransporte_id', 'Selecciona un Tipo de Transporte:') }}
-						{{Form::select('tipotransporte_id', $listTipoTransporte, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+					{{Form::select('tipotransporte_id', $listTipoTransporte, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -281,6 +279,11 @@
 
 </div>
 
+<script>
+
+</script>
+
+
 
 <div class="row">
 	@if(session('info'))
@@ -289,4 +292,3 @@
 	</div>
 	@endif
 </div>
-

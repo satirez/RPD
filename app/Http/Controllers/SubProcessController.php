@@ -31,11 +31,12 @@ class SubProcessController extends Controller
     public function create(Request $request, $id)
     {
         $process = DB::table('process_reception')->where('process_id', $id)->first();
+        $processId = $process->process_id;
         $reception_id = $process->reception_id;
         $reception = DB::table('receptions')->where('id', $reception_id)->first();
 
         $peso = $reception->grossweight;
-        $acumWeight = SubProcess::get()->sum('weight');
+        $acumWeight = SubProcess::where('process_id', $processId)->sum('weight');
         $resto = 0;
 
         $idsad = $id;

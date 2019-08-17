@@ -20,23 +20,24 @@
 				<h2> {{ $acumWeight }} Kg</h2>
 			</td>
 			<td>
-				<h2 id="resto">{{$peso - $acumWeight}} Kg</h2>
+				<h2 id="resto">{{ $resto = $peso-$acumWeight }} Kg</h2>
 			</td>
 		</tr>
 	</tbody>
 </table>
-@php(	
-		$range = round((($acumWeight*100)/$peso))
+@php(
+$range = round((($acumWeight*100)/$peso))
 )
 
 <div class="progress progress-small" style="height: 30px;">
-	<div style="width: {{$range}}% ; backbroud-color: #green; !important;" class="progress-bar bg-success"> {{$range}}% </div>
+	<div style="width: {{$range}}% ; backbroud-color: #green; !important;" class="progress-bar bg-success"> {{$range}}%
+	</div>
 </div>
 <br>
 <br>
 
 <div class="card">
-	<div class="card-body"$>
+	<div class="card-body" $>
 		<div class="d-flex justify-content-center">
 			<div class="row">
 				<div class="col-md-2">
@@ -45,7 +46,7 @@
 						{{ Form::text('', 'Proceso '.$idsad, ['class' => 'form-control','readonly']) }}
 					</div>
 
-					<input name="process_id" type="hidden" value= {{$idsad}} >
+					<input name="process_id" type="hidden" value={{$idsad}}>
 				</div>
 				<div class="col-md-2">
 					<div class="form-group">
@@ -70,19 +71,15 @@
 				<div class="col-md-2">
 					<div class="form-group">
 						<label> Kg Procesados </label>
-						<input name="weight"class="form-control" 
-						id="weight"
-						onkeyup="this.onchange();" 
-						onpaste="this.onchange();" 
-						oninput="this.onchange();"  
-						onchange="validacion()" 
-						type="number" readonly>
+						<input name="weight" class="form-control" id="weight" onkeyup="this.onchange();"
+							onpaste="this.onchange();" oninput="this.onchange();" onchange="validacion()" type="number"
+							readonly>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
-<div class="col-md-12">
+		<div class="col-md-12">
 			<div class="form-group">
 				<div class="bs-example">
 
@@ -102,7 +99,7 @@
 											{{Form::label('reason', 'Selecciona motivo de rechazo') }}
 											{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
 											{{Form::label('comment', 'Comentario Adicional') }}
-								 			{{Form::textarea('comment', null, ['class' => 'form-control'])}}
+											{{Form::textarea('comment', null, ['class' => 'form-control'])}}
 										</div>
 									</div>
 								</div>
@@ -113,40 +110,44 @@
 			</div>
 		</div>
 
-		<div class="col-md-12 text-center">
-	<div class="form-group text">
-		{{ Form::submit('Guardar', ['class' => 'btn btn-success','id' =>'save']) }}
-	</div>
-</div>
+			
+			<div class="col-md-12 text-center">
+				<div class="form-group text">
+					{{ Form::submit('Guardar', ['class' => 'btn btn-success','id' =>'save']) }}
+				</div>
+			</div>
+	
 
-		<table class="table table-striped table-hover"> 
-                       <thead>
-                           <tr>
-                               <th>Selecciona</th>
-                               <th>Nª de tarja</th>
-                               <th>Cantidad</th>
-                               <th>Formato</th>
-                               <th>Calidad</th>
-                               <th>Estatus</th>
-                               <th colspan="3">&nbsp;</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-					   @foreach($subprocesses as $subprocess)
-					   <tr>
-					   <th>{{ Form::checkbox('subprocesses[]', $subprocess->id, null, ['value'=>'$subprocess->id', 'onclick'=>'loteCreate(this)']) }}
-									</th>
-                               <td> SP0{{$subprocess->id}} </td>
-                               <td> {{$subprocess->format->name}} </td>
-                               <td> {{$subprocess->quality->name}} </td>
-                               <td> {{$subprocess->quantity}} </td>
-                               <td> {{$subprocess->quantity}} </td>
-							
-                           </tr>
-						   @endforeach
-						   {{ $subprocesses->render() }}
-                       </tbody>
-                   </table>
+
+	
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th>Selecciona</th>
+					<th>Nª de tarja</th>
+					<th>Cantidad</th>
+					<th>Formato</th>
+					<th>Calidad</th>
+					<th>Estatus</th>
+					<th colspan="3">&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach($subprocesses as $subprocess)
+				<tr>
+					<th>{{ Form::checkbox('subprocesses[]', $subprocess->id, null, ['value'=>'$subprocess->id', 'onclick'=>'loteCreate(this)']) }}
+					</th>
+					<td> SP0{{$subprocess->id}} </td>
+					<td> {{$subprocess->format->name}} </td>
+					<td> {{$subprocess->quality->name}} </td>
+					<td> {{$subprocess->quantity}} </td>
+					<td> {{$subprocess->quantity}} </td>
+
+				</tr>
+				@endforeach
+				{{ $subprocesses->render() }}
+			</tbody>
+		</table>
 	</div>
 </div>
 
@@ -166,7 +167,7 @@
 		var acumWeight = {{ $acumWeight }};
 		var sum = acumWeight + input;
 
-		if(sum > {{ $peso }}){
+		if(sum > {{ $peso }} == 0){
 			swal("Peso Superado!", "Por favor, ingrese la información correcta", "error");
 			document.getElementById('save').setAttribute("disabled","disabled");
 			var quantityBox = document.getElementById('cantidad').value = '';

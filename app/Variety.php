@@ -20,6 +20,5 @@ class Variety extends Model
     public function receptions(){
         return $this->hasMany(Reception::class);
     }
-
     
 }

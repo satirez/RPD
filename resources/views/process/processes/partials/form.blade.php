@@ -37,7 +37,7 @@
 									<th>{{ Form::radio('receptions[]', $reception->id, null, ['value'=>'$reception->id', 'onclick'=>'getWeight(this)']) }}
 									</th>
 									<th>{{ $reception->tarja }}</th>
-									<th>{{ $reception->fruit->specie }} - {{ $reception->variety_id }}</th>
+									<th>{{ $reception->fruit->specie }} - {{ $reception->varieties->variety }}</th>
 									<th>{{ $reception->grossweight }}</th>
 									<th>{{ $reception->quantity }}</th>
 									<th>{{ $reception->quality->name }}</th>

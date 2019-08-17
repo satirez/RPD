@@ -16,6 +16,6 @@ class Fruit extends Model
     }
 
      public function variety(){
-        return $this->hasMany(Variety::class);
+        return $this->belongsTo(Variety::class);
     }
 }

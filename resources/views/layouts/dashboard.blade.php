@@ -35,7 +35,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon">
-          <img src="../images/logotri.png" class="img-fluid" width="50px" height="50px">
+          <img src="{{ asset('images/logotri.png') }}" class="img-fluid" width="50px" height="50px">
 
         </div>
         <div class="sidebar-brand-text mx-3">BioBerries <sup>BB</sup></div>

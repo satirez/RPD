@@ -34,7 +34,7 @@
                                <th >N° de procesos realizados</th>
                                <th>Creado</th>
                                
-                               <th colspan="3">&nbsp;</th>
+                               <th colspan="auto">&nbsp;</th>
                            </tr>
                        </thead>
                        <tbody>
@@ -42,19 +42,52 @@
                    </table>
                 </div>
                 <script>
-                $(document).ready( function () {
-                    $('#laravel_datatable').DataTable({
-                        processing: true,
-                        serverSide: true,
-                        ajax: "{{ url('process-list') }}",
-                        columns: [
-                            { data: 'id', name: 'id' },
-                            { data: 'tarja_proceso', name: 'tarja_proceso' },
-                            { data: 'available', name: 'available' },
-                            { data: 'created_at', name: 'created_at ' },
-                        ]
-                    });
-                });
+                
+
+                    $(document).ready(function() {
+    
+                        $('#laravel_datatable thead tr').clone(true).appendTo( '#laravel_datatable thead' );
+                        $('#laravel_datatable thead tr:eq(1) th').each( function (i) {
+                            var title = $(this).text();
+                            $(this).html( '<input type="text" placeholder="Buscar '+title+'" />' );
+                     
+                            $( 'input', this ).on( 'keyup change', function () {
+                                if ( table.column(i).search() !== this.value ) {
+                                    table
+                                        .column(i)
+                                        .search( this.value )
+                                        .draw();
+                                }
+                            } );
+                        } );
+                     
+                        var table = $('#laravel_datatable').DataTable({
+                                processing: true,
+                                serverSide: true,
+                                  language: {
+                                   url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                                  },
+                                 dom: 'Bfrtip',
+                            buttons: [
+                                'excel', 'pdf', 
+                            ],
+                                
+                                
+                            ajax: "{{ url('process-list') }}",
+                            columns: [
+                                { data: 'id', name: 'id' },
+                                { data: 'tarja_proceso', name: 'tarja_proceso' },
+                                { data: 'available', name: 'available' },
+                                { data: 'created_at', name: 'created_at ' },
+                            ]
+                             });
+                    } );
+
+
+
+                        
+                      
+                   
             </script>
             </div>
         </div>

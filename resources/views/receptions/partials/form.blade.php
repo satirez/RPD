@@ -236,10 +236,10 @@
 		<div class="form-group">
 			<div class="bs-example">
 
-				<input type="radio" name="rejected" value="0" data-toggle="collapse" data-parent="#accordion"
+				<input type="checkbox" name="rejected" value="0" data-toggle="collapse" data-parent="#accordion"
 					href="#collapseOne" checked> Bueno
 
-				<input type="radio" name="rejected" value="1" data-toggle="collapse" data-parent="#accordion"
+				<input type="checkbox" name="rejected" value="1" data-toggle="collapse" data-parent="#accordion"
 					href="#collapseOne"> Rechazado
 
 				<div class="panel-group" id="accordion">

@@ -12,6 +12,7 @@ class DummyData extends Seeder
      */
     public function run()
     {
+
         $this->exportadores();
         $this->calidades();
         $this->provedores();
@@ -23,6 +24,12 @@ class DummyData extends Seeder
         $this->Estatus();
         $this->Formatos();
         $this->Temporadas();
+        $this->TipoTransporte();
+        $this->TipoProducto();
+
+        factory(App\Reception::class,1000)->create();
+        factory(App\Process::class,1000)->create();
+        factory(App\Process_Reception::class,500)->create();
 
        // factory(App\Reception::class,30)->create();
     }
@@ -282,6 +289,50 @@ class DummyData extends Seeder
 
         DB::table('formats')->insert($fruits);
     }
+    public function TipoTransporte()
+    {
+        $now = \Carbon\Carbon::now();
 
+        $fruits = [
+
+            ['Barco'],
+            ['Camión'],
+            ['Avión'],
+            ['Auto'],
+        ];
+
+
+        $fruits = array_map(function ($fruits) use ($now) {
+            return [
+                'name' => $fruits[0],
+                'updated_at' => $now,
+                'created_at' => $now,
+            ];
+        }, $fruits);
+
+        DB::table('tipo_transportes')->insert($fruits);
+    }
+    public function TipoProducto()
+    {
+        $now = \Carbon\Carbon::now();
+
+        $fruits = [
+            ['Frutillas'],
+            ['Almendras'],
+            ['No sé'],
+            ['Autos'],
+        ];
+
+
+        $fruits = array_map(function ($fruits) use ($now) {
+            return [
+                'name' => $fruits[0],
+                'updated_at' => $now,
+                'created_at' => $now,
+            ];
+        }, $fruits);
+
+        DB::table('tipo_producto_dispatches')->insert($fruits);
+    }
 
 }

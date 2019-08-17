@@ -169,6 +169,7 @@
 		if(sum > {{ $peso }}){
 			swal("Peso Superado!", "Por favor, ingrese la información correcta", "error");
 			document.getElementById('save').setAttribute("disabled","disabled");
+			var quantityBox = document.getElementById('cantidad').value = '';
 
 		}else{
 			document.getElementById('save').removeAttribute("disabled");

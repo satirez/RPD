@@ -13,7 +13,7 @@ class CreateProcessReceptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('process_reception', function (Blueprint $table) {
+        Schema::create('process__receptions', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('process_id')->unsigned();
@@ -41,6 +41,6 @@ class CreateProcessReceptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('process_reception');
+        Schema::dropIfExists('process__receptions');
     }
 }

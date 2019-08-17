@@ -29,9 +29,11 @@
 		$range =($acumWeight*100)/$peso
 )
 
-<div class="progress progress-small">
-	<div style="width: {{$range}}% ; backbroud-color: #green; !important;" class="progress-bar"></div>
+<div class="progress progress-small" style="height: 30px;">
+	<div style="width: {{$range}}% ; backbroud-color: #green; !important;" class="progress-bar bg-success"> {{$range}}% </div>
 </div>
+<br>
+<br>
 
 <div class="card">
 	<div class="card-body"$>
@@ -111,22 +113,38 @@
 			</div>
 		</div>
 
+		<div class="col-md-12 text-center">
+	<div class="form-group text">
+		{{ Form::submit('Guardar', ['class' => 'btn btn-success','id' =>'save']) }}
+	</div>
+</div>
 
 		<table class="table table-striped table-hover"> 
                        <thead>
                            <tr>
+                               <th>Selecciona</th>
                                <th>Nª de tarja</th>
                                <th>Cantidad</th>
                                <th>Formato</th>
                                <th>Calidad</th>
                                <th>Estatus</th>
-                               
-                               
                                <th colspan="3">&nbsp;</th>
                            </tr>
                        </thead>
                        <tbody>
-                       
+					   @foreach($subprocesses as $subprocess)
+					   <tr>
+					   <th>{{ Form::checkbox('subprocesses[]', $subprocess->id, null, ['value'=>'$subprocess->id', 'onclick'=>'loteCreate(this)']) }}
+									</th>
+                               <td> SP0{{$subprocess->id}} </td>
+                               <td> {{$subprocess->format->name}} </td>
+                               <td> {{$subprocess->quality->name}} </td>
+                               <td> {{$subprocess->quantity}} </td>
+                               <td> {{$subprocess->quantity}} </td>
+							
+                           </tr>
+						   @endforeach
+						   {{ $subprocesses->render() }}
                        </tbody>
                    </table>
 	</div>
@@ -134,11 +152,6 @@
 
 <br>
 
-<div class="col-md-12 text-center">
-	<div class="form-group text">
-		{{ Form::submit('Guardar', ['class' => 'btn btn-success','id' =>'save']) }}
-	</div>
-</div>
 
 <script>
 	function getWeightFormat(){

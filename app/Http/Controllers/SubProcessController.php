@@ -40,13 +40,14 @@ class SubProcessController extends Controller
         $resto = 0;
 
         $idsad = $id;
-
+        $subprocesses = SubProcess::where('process_id', $processId)->paginate();
+        
         //formato y peso para la vista
         $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
 
-        return view('subprocess.create', compact('idsad', 'peso', 'listFormat', 'listQualities', 'listRejecteds', 'acumWeight', 'resto'));
+        return view('subprocess.create', compact('idsad', 'peso', 'listFormat', 'listQualities', 'listRejecteds', 'acumWeight', 'resto', 'subprocesses'));
     }
 
     public function getData()

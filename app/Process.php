@@ -14,7 +14,7 @@ class Process extends Model
 
     public function receptions()
     {
-        return $this->belongsToMany('\App\Reception', 'process_reception')
+        return $this->belongsToMany('\App\Reception', 'process__receptions')
             ->withPivot('process_id');
     }
 

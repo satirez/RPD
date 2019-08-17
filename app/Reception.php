@@ -34,7 +34,7 @@ class Reception extends Model
 
     public function process()
     {
-        return $this->belongsToMany('\App\Process', 'process_reception')
+        return $this->belongsToMany('\App\Process', 'process__receptions')
          ->withPivot('process_id');
     }
 

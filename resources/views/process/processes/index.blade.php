@@ -30,8 +30,7 @@
                     <table id="laravel_datatable" class="table table-striped table-hover "> 
                        <thead>
                            <tr>
-                               <th>Tarja</th>
-                               <th >N° de procesos realizados</th>
+                               <th>Codigo de pallet procesado</th>
                                <th>Creado</th>
                                
                                <th colspan="auto">&nbsp;</th>
@@ -75,9 +74,7 @@
                                 
                             ajax: "{{ url('process-list') }}",
                             columns: [
-                                { data: 'id', name: 'id' },
                                 { data: 'tarja_proceso', name: 'tarja_proceso' },
-                                { data: 'available', name: 'available' },
                                 { data: 'created_at', name: 'created_at ' },
                             ]
                              });

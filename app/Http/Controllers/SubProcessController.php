@@ -30,7 +30,7 @@ class SubProcessController extends Controller
      */
     public function create(Request $request, $id)
     {
-        $process = DB::table('process_reception')->where('process_id', $id)->first();
+        $process = DB::table('process__receptions')->where('process_id', $id)->first();
         $processId = $process->process_id;
         $reception_id = $process->reception_id;
         $reception = DB::table('receptions')->where('id', $reception_id)->first();

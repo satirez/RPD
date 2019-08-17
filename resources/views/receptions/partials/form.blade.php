@@ -202,7 +202,7 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('rate', 'Calidad de producto (Productor)') }}
-					{{ Form::select('rate', array('1' => '10%', '2' => '20%', '3' => '30%', '4' => '40%', '5' => '50%', '6' => '60%', '7' => '70%', '8' => '80%'), 
+					{{ Form::select('rate', array('1' => '10%', '2' => '20%', '3' => '30%', '4' => '40%', '5' => '50%', '6' => '60%', '7' => '70%', '8' => '80%', '9' => '90%', '10' => '100%'), 
 							null ,['class' => 'form-control','required' ,'placeholder'=>'Seleccione una nota'])}}
 				</div>
 			</div>
@@ -236,10 +236,10 @@
 		<div class="form-group">
 			<div class="bs-example">
 
-				<input type="checkbox" name="rejected" value="0" data-toggle="collapse" data-parent="#accordion"
+				<input type="radio" name="rejected" value="0" data-toggle="collapse" data-parent="#accordion"
 					href="#collapseOne" checked> Bueno
 
-				<input type="checkbox" name="rejected" value="1" data-toggle="collapse" data-parent="#accordion"
+				<input type="radio" name="rejected" value="1" data-toggle="collapse" data-parent="#accordion"
 					href="#collapseOne"> Rechazado
 
 				<div class="panel-group" id="accordion">

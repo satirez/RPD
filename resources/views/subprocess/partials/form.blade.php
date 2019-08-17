@@ -26,7 +26,7 @@
 	</tbody>
 </table>
 @php(	
-		$range =($acumWeight*100)/$peso
+		$range = round((($acumWeight*100)/$peso))
 )
 
 <div class="progress progress-small" style="height: 30px;">

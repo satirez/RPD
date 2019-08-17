@@ -78,7 +78,7 @@ class SubProcessController extends Controller
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
 
-        $process = DB::table('process_reception')->where('process_id', $idProcess)->first();
+        $process = DB::table('process__receptions')->where('process_id', $idProcess)->first();
         $reception_id = $process->reception_id;
         $reception = DB::table('receptions')->where('id', $reception_id)->first();
         $peso = $reception->grossweight;

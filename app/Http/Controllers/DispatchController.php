@@ -10,6 +10,7 @@ use App\SubProcess;
 use App\Dispatch;
 use App\Rejected;
 use App\Fruit;
+use App\Lote;
 use App\Quality;
 use App\Format;
 use App\TipoDispatch;
@@ -110,7 +111,7 @@ class DispatchController extends Controller
         $lotes = $request->get('subprocesses');
         //  dd($lotes);
 
-        $ultimolote = Lote::orderBy('DESC', 'id')->first();
+        $ultimolote = Lote::orderBy('id', 'DESC')->first();
         // dd($ultimolote);
 
         if ($ultimolote == 0) {
@@ -134,7 +135,10 @@ class DispatchController extends Controller
             }
         }
 
-        $lote = $lotes->id;
+        $lote = $lotes->numero_lote;
+
+        $lote = Lote::where('numero_lote',$lote)->get();
+
 
         //Guarda la despacho
         $dispatch = Dispatch::create($request->all());
@@ -146,8 +150,6 @@ class DispatchController extends Controller
         foreach ($checklistdata as $key) {
             SubProcess::where('id', $key)->update(['available' => 0]);
         }
-
-
 
         return redirect()->route('dispatch.index', $dispatch->id)->with('info', 'despacho guardado con exito');
     }

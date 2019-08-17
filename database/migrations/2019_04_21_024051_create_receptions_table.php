@@ -26,10 +26,6 @@ class CreateReceptionsTable extends Migration
             $table->Integer('fruit_id')->unsigned();
                 $table->foreign('fruit_id')->references('id')->on('fruits')->onDelete('cascade');
 
-                
-
-
-
             $table->Integer('quality_id')->unsigned();
                 $table->foreign('quality_id')->references('id')->on('qualities')->onDelete('cascade');
 

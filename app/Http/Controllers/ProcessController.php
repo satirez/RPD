@@ -22,17 +22,12 @@ class ProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
-
     public function index()
     {
-
-
         $countSubProcess = SubProcess::where('id')->count();
         $processes = Process::paginate();
 
-        return view('process.processes.index', compact('processes','countSubProcess' ));
+        return view('process.processes.index', compact('processes', 'countSubProcess'));
     }
 
     /**

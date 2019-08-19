@@ -28,7 +28,6 @@
 
 		</div>
 
-
 		<div>
 			<div class="row">
 				<div class="col-md-4">
@@ -149,26 +148,29 @@
 						<div class="table-responsive">
 							<table class="table table-hover">
 								<thead>
-									<tr class="">
+									<tr >
 										<th></th>
-										<th>Tarja id</th>
-										<th>Cantidad</th>
+										<th>Calidad</th>
+										<th>N° Cajas</th>
 										<th>Formato</th>
 										<th>Kilos</th>
-
-										<th>Calidad</th>
+										<th>Tarja</th>
+									
 									</tr>
 								</thead>
-								<tbody>
+								<tbody name="tablareculia"> 
 
 									@forelse($subprocesses as $subprocess)
-									<tr>
-										<th>{{ Form::checkbox('subprocesses[]', $subprocess->id) }} </th>
-										<th>{{ $subprocess->id }}</th>
+									<tr >
+										<th> <input type="checkbox" onclick="chkcontrol( ('{{ $subprocess->quantity }}'),
+																						 ('{{ $subprocess->quality->name }}'),
+																						 ('{{ $subprocess->format->name}}'),
+																						)"> </th>
+										<th>{{ $subprocess->quality->name }}</th>
 										<th>{{ $subprocess->quantity }}</th>
 										<th>{{ $subprocess->format->name}}</th>
 										<th>{{ $subprocess->weight }}</th>
-										<th>{{ $subprocess->quality->name }}</th>
+										<th>SP0{{ $subprocess->id }}</th>
 
 										@php
 										$uno = false;
@@ -185,11 +187,38 @@
 									@endphp
 
 									@endforelse
-
+						
 								</tbody>
 							</table>
 						</div>
+					<script>
 
+	var lote = [];
+	var arrAcum = [];
+
+	function chkcontrol(a, b, c) {
+		
+		if (a,b,c){
+
+			if(a>0){
+				var	newLote = [{
+				quantity: Number(a),
+				quanlity: b,
+				format: c,
+				}]
+			Array.prototype.push.apply(lote, newLote);
+
+			if((lote.reduce((a,b) => a + b.quantity, 0) === 90))
+				alert('puedes guardar');
+			}
+
+		}else{
+			alert('ERROR AL REGISTRAR')
+		}	
+
+	}
+						
+					</script>
 					</ul>
 				</div>
 			</div>

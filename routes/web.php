@@ -143,8 +143,7 @@ Route::middleware('auth')->group(function () {
     Route::get('subprocess-list', 'SubProcessController@getData');
     Route::get('process-list', 'ProcessController@getData');
 
-    Route::get('/print','ReceptionController@print')->name('receptions.print');
-
+    Route::get('/print', 'ReceptionController@print')->name('receptions.print');
 
     //Consulta Ajax Select
 
@@ -385,11 +384,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/camara', 'dispatchcontroller@getProcess')->name('dispatch.getProcess')->middleware('permission:dispatch.getProcess');
 
-
-    
-   
-
-    
     Route::get('dispatch-list', 'DispatchController@getData');
 
     //TipoDespacho

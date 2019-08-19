@@ -57,7 +57,7 @@
 	
 		<div class="col-md-4">
 			<div class="form-group">
-		{{ Form::submit('Guardar', ['class' => 'btn btn-sm  btn-primary']) }}
+		{{ Form::submit('Guardar', ['class' => 'btn btn-sm  btn-success']) }}
 			</div>
 		</div>
 	<br>

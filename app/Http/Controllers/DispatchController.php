@@ -107,7 +107,8 @@ class DispatchController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {       
+
         $lotes = $request->get('subprocesses');
         //  dd($lotes);
         $ultimolote = Lote::orderBy('id', 'DESC')->first();

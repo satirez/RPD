@@ -167,11 +167,11 @@ $range = round((($acumWeight*100)/$peso))
 		var acumWeight = {{ $acumWeight }};
 		var sum = acumWeight + input;
 
-		if(sum > {{ $peso }} == 0){
+		if(sum > {{ $peso }} ){
 			swal("Peso Superado!", "Por favor, ingrese la información correcta", "error");
 			document.getElementById('save').setAttribute("disabled","disabled");
 			var quantityBox = document.getElementById('cantidad').value = '';
-
+			document.getElementById('weight').value = '';
 		}else{
 			document.getElementById('save').removeAttribute("disabled");
 

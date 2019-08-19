@@ -77,8 +77,23 @@ $range = round((($acumWeight*100)/$peso))
 					</div>
 
 				</div>
+				<div class="col-md-2">
+					<div style="text-align:center" class="form-group">
+						<label> inicio Folio </label>
+						<input style="text-align:center" class="form-control">
+					</div>
+
+				</div>
+				<div style="align:center" class="col-md-2">
+					<div style="text-align:center" class="form-group">
+						<label> Fin Folio </label>
+						<input class="form-control">
+					</div>
+
+				</div>
 			</div>
 		</div>
+		
 		<div class="col-md-12">
 			<div class="form-group">
 				<div class="bs-example">
@@ -120,28 +135,24 @@ $range = round((($acumWeight*100)/$peso))
 
 
 	
-		<table class="table table-striped table-hover">
+		<table style="text-align:center" class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<th>Selecciona</th>
 					<th>Nª de tarja</th>
-					<th>Cantidad</th>
 					<th>Formato</th>
 					<th>Calidad</th>
-					<th>Estatus</th>
+					<th>N° de Cajas</th>
 					<th colspan="3">&nbsp;</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach($subprocesses as $subprocess)
 				<tr>
-					<th>{{ Form::checkbox('subprocesses[]', $subprocess->id, null, ['value'=>'$subprocess->id', 'onclick'=>'loteCreate(this)']) }}
-					</th>
 					<td> SP0{{$subprocess->id}} </td>
 					<td> {{$subprocess->format->name}} </td>
 					<td> {{$subprocess->quality->name}} </td>
 					<td> {{$subprocess->quantity}} </td>
-					<td> {{$subprocess->quantity}} </td>
+					
 
 				</tr>
 				@endforeach

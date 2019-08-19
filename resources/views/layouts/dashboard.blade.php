@@ -394,6 +394,7 @@
 
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js">
   </script>
+  
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <script src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>

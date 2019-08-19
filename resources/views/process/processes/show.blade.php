@@ -37,6 +37,10 @@
                                             <th> Kg total </th>
                                             <th> {{$subproces->weight}} </th>
                                         </tr>
+                                        <tr class="">
+                                        <th><button href="{{ Route('subprocess.edit', $subproces->id) }}" class="btn-sm btn-warning">Editar</button></th>
+                                        </tr>
+                                        
                                         
                                         <br>
                                     </tbody>

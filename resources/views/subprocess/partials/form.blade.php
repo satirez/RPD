@@ -124,16 +124,14 @@ $range = round((($acumWeight*100)/$peso))
 				</div>
 			</div>
 		</div>
-
+	
 			
 			<div class="col-md-12 text-center">
 				<div class="form-group text">
-					{{ Form::submit('Guardar', ['class' => 'btn btn-success','id' =>'save']) }}
+					{{ Form::submit('Añadir', ['class' => 'btn btn-success','id' =>'save']) }}
 				</div>
 			</div>
 	
-
-
 	
 		<table style="text-align:center" class="table table-striped table-hover">
 			<thead>
@@ -166,7 +164,11 @@ $range = round((($acumWeight*100)/$peso))
 
 
 <script>
+
+
+
 	function getWeightFormat(){
+
 			var quantityBox = document.getElementById('cantidad').value;
 			var formatWeight = document.getElementById('formatWeight').value;
 			var kgProcesado = Number(quantityBox)*Number(formatWeight);
@@ -174,9 +176,9 @@ $range = round((($acumWeight*100)/$peso))
 			validacion(kgProcesado)
 	}
 	function validacion(kgProcesado){
-		var input = kgProcesado;
+		
 		var acumWeight = {{ $acumWeight }};
-		var sum = acumWeight + input;
+		var sum = acumWeight + kgProcesado;
 
 		if(sum > {{ $peso }} ){
 			swal("Peso Superado!", "Por favor, ingrese la información correcta", "error");
@@ -188,12 +190,8 @@ $range = round((($acumWeight*100)/$peso))
 
 		}
 	}
-	
-	function resto(){
-		
-	}
-</script>
 
+</script>
 
 <!-- Permitir solo numeros, puntos y X-->
 <script type="text/javascript">

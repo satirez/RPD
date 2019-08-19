@@ -69,7 +69,7 @@ class ProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProcess $request)
+    public function store(Request $request)
     {
         //dd($request->input('row'));
 

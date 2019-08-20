@@ -64,10 +64,16 @@ class SubProcessController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        
         //validacion y desactivacion de un proceso
         if($request->format_id === "1.000"){
-               
+            //FINALIZAR UN PROCESO.
+            $weightFormat = $request->get('format_id');
+            $formatId = Format::where('weight', $weightFormat)->first()->id; //obtener el id segun el peso que se obtiene del request
+            //dd($formatId);
+            $request['format_id'] = $formatId;//se le pasa el nuevo parametro (id) a format_id del request!
+
             SubProcess::create($request->all());
 
             $key = $request->get('process_id');

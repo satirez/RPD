@@ -51,14 +51,14 @@ $range = round((($acumWeight*100)/$peso))
 				<div class="col-md-2">
 					<div class="form-group">
 						{{ Form::label('quantity', 'Cantidad de Cajas') }}
-						{{ Form::text('quantity', null, ['class' => 'form-control','id'=>'cantidad','oninput'=>'getWeightFormat()']) }}
+						{{ Form::number('quantity', null, ['class' => 'form-control','id'=>'cantidad','oninput'=>'getWeightFormat()']) }}
 					</div>
 				</div>
 
 				<div class="col-md-2">
 					<div class="form-group">
 						{{ Form::label('format_id', 'Formato') }}
-						{{ Form::select('format_id',$listFormat, null, ['class' => 'form-control input-number','id'=>'formatWeight','oninput'=>'getWeightFormat()']) }}
+						{{ Form::select('format_id',$listFormat, null, ['class' => 'form-control input-number','id'=>'formatWeight','oninput'=>'getWeightFormat(), validacionTrash()', 'placeholder'=>'selecciona']) }}
 					</div>
 				</div>
 
@@ -169,14 +169,13 @@ $range = round((($acumWeight*100)/$peso))
 
 	function getWeightFormat(){
 
-			var quantityBox = document.getElementById('cantidad').value;
-			var formatWeight = document.getElementById('formatWeight').value;
+				var quantityBox = document.getElementById('cantidad').value;
+				var formatWeight = document.getElementById('formatWeight').value;
 			var kgProcesado = Number(quantityBox)*Number(formatWeight);
 			document.getElementById('weight').value = kgProcesado;
 			validacion(kgProcesado)
 	}
 	function validacion(kgProcesado){
-		
 		var acumWeight = {{ $acumWeight }};
 		var sum = acumWeight + kgProcesado;
 
@@ -189,6 +188,23 @@ $range = round((($acumWeight*100)/$peso))
 			document.getElementById('save').removeAttribute("disabled");
 
 		}
+	}
+	function validacionTrash(kgProcesado){
+		
+			var quantityBox = document.getElementById('cantidad').value;
+			var formatWeight = document.getElementById('formatWeight').value;
+
+		if(formatWeight === '1.000'){
+			var zeroProcess = Number({{$resto}}) - Number(kgProcesado);
+			
+			if(zeroProcess < 0 || zeroProcess > 0){
+			swal("Formato mal seleccionado!", "Por favor, ingrese la información correcta", "error");
+			document.getElementById('save').setAttribute("disabled","disabled");
+			var quantityBox = document.getElementById('cantidad').value = '';
+			document.getElementById('weight').value = '';
+		}
+		}
+	
 	}
 
 </script>

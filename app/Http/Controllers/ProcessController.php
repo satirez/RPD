@@ -98,8 +98,10 @@ class ProcessController extends Controller
     }
 
     public function getData()
-    {
-        return Datatables::of(Process::query())->make(true);
+    {  //devolver todos los processos disponibles
+        $process = Process::where('available', 0);
+
+        return Datatables::of($process)->make(true);
     }
 
     /**

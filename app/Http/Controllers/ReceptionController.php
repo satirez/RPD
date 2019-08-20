@@ -35,17 +35,9 @@ class ReceptionController extends Controller
         $receptionWeight = Reception::where('available', 1)->sum('netweight');
         $receptionQuantity = Reception::where('available', 1)->sum('quantity');
         $receptionCount = Reception::where('available', 1)->count();
-        //$ = Reception::paginate();
+        $historico = Reception::paginate(100);
 
         return view('receptions.index', compact('receptions', 'receptionWeight', 'receptionQuantity', 'receptionCount'));
-    }
-
-    public function inprocess()
-    {
-        //procesadas
-        $inprocess = Reception::where('available', 0)->paginate();
-
-        return view('receptions.inprocess', compact('inprocess'));
     }
 
     //funcion creada para hacer reportes
@@ -79,7 +71,7 @@ class ReceptionController extends Controller
     }
 
     public function getData()
-    {
+    { 
         $receptions = Reception::where('available', 1)->with([
             'fruit',
             'provider',
@@ -87,7 +79,8 @@ class ReceptionController extends Controller
             'season',
             'quality',
             
-        ]);
+            
+        ]); 
 
 
         return Datatables::of($receptions)
@@ -105,6 +98,9 @@ class ReceptionController extends Controller
             })
             ->editColumn('quality', function ($reception) {
                 return $reception->quality->name;
+            })
+            ->editColumn('available', function ($reception) {
+                return ('disponible');
             })
           
       

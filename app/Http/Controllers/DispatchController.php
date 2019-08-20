@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreDispatch;
 use App\Http\Requests\UpdateDispatch;
 use App\Exporter;
 use App\SubProcess;
@@ -19,7 +18,6 @@ use App\TipoTransporte;
 use App\TipoProductoDispatch;
 use Yajra\Datatables\Datatables;
 
-
 class DispatchController extends Controller
 {
     /**
@@ -30,6 +28,7 @@ class DispatchController extends Controller
     public function index()
     {
         $despachos = Dispatch::all();
+
         return view('dispatch.index', compact('despachos'));
     }
 
@@ -39,9 +38,7 @@ class DispatchController extends Controller
             'tipodispatch',
             'tipotransporte',
             'season',
-
         ]);
-
 
         return Datatables::of($dispatches)
             ->addColumn('tipodispatch', function ($dispatch) {
@@ -57,8 +54,6 @@ class DispatchController extends Controller
 
             ->make(true);
     }
-
-
 
     public function getSubProcess()
     {
@@ -107,10 +102,9 @@ class DispatchController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {       
-
+    {
         $lotes = $request->get('subprocesses');
-        //  dd($lotes);
+        dd($request->all());
         $ultimolote = Lote::orderBy('id', 'DESC')->first();
 
         if ($ultimolote == null) {
@@ -123,8 +117,8 @@ class DispatchController extends Controller
                 $lotes = Lote::create($lotes);
             }
         } else {
-           $ultimo =  $ultimolote->numero_lote;
-            $ultimo++;
+            $ultimo = $ultimolote->numero_lote;
+            ++$ultimo;
             foreach ($lotes as $key) {
                 $lotes = [
                     'numero_lote' => $ultimo,
@@ -135,7 +129,7 @@ class DispatchController extends Controller
         }
 
         $lote = $lotes->numero_lote;
-        $lote = Lote::where('numero_lote',$lote)->get();
+        $lote = Lote::where('numero_lote', $lote)->get();
 
         //Guarda la despacho
         $dispatch = Dispatch::create($request->all());
@@ -144,6 +138,7 @@ class DispatchController extends Controller
         foreach ($checklistdata as $key) {
             SubProcess::where('id', $key)->update(['available' => 0]);
         }
+
         return redirect()->route('dispatch.index', $dispatch->id)->with('info', 'despacho guardado con exito');
     }
 

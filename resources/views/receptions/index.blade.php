@@ -29,20 +29,21 @@
                         <thead>
                             <tr class="table-dark text-dark">
                                 <th>N° de tarja</th>
-                                <th>Estado</th>
-                                <th>Peso bruto</th>
-                                <th>Peso neto</th>
-                                <th>N° Bandejas</th>
-                                <th>Productor</th>
                                 <th>Fruta</th>
-                                <th>Tipo Calidad</th>                               
-                                <th>Fecha/Hora</th>
+                                <th>Peso neto</th>
+                                <th>Calidad</th>                               
+                                <th>N° Bandejas</th>
+                                <th>F/H de ingreso</th>
+                                <th>Peso bruto</th>
+                                <th>Productor</th>
                                 <th colspan="auto">&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>  
                         </tbody>
                     <tfoot>
+                
+                    </tfoot>
                     </table>
                     
                 </div>                        
@@ -81,14 +82,13 @@
             ajax: "{{ url('reception-list') }}",
             columns: [
                      { data: 'tarja', name: 'tarja' },
-                     { data: 'available', name: 'available' },
-                     { data: 'grossweight', name: 'grossweight' },
-                     { data: 'netweight', name: 'netweight' },
-                     { data: 'quantity', name: 'quantity' },
-                     { data: 'provider', name: 'provider.name' },
                      { data: 'fruit', name: 'fruit.specie' },
+                     { data: 'netweight', name: 'netweight' },
                      { data: 'quality', name: 'quality.name' },
+                     { data: 'quantity', name: 'quantity' },
                      { data: 'created_at', name: 'created_at' }
+                     { data: 'grossweight', name: 'grossweight' },
+                     { data: 'provider', name: 'provider.name' },
                 ]
          });
 } );

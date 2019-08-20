@@ -25,8 +25,8 @@ class ProcessController extends Controller
     public function index()
     {
         $countSubProcess = SubProcess::where('id')->count();
-        $processes = Process::paginate();
-
+        $processes = Process::where('available', 1)->orderBy('id','ASC')->paginate(100);
+        $historico = Process::orderBy('id', 'ASC')->paginate(100);
         return view('process.processes.index', compact('processes', 'countSubProcess'));
     }
 
@@ -66,7 +66,7 @@ class ProcessController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->input('row'));
+        //dd($request->all());
 
         // Se genera el array con la información de proceso
         $process = [

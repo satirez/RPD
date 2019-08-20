@@ -171,7 +171,8 @@ $range = round((($acumWeight*100)/$peso))
 				var formatWeight = document.getElementById('formatWeight').value;
 			var kgProcesado = Number(quantityBox)*Number(formatWeight);
 			document.getElementById('weight').value = kgProcesado;
-			validacion(kgProcesado)
+			validacion(kgProcesado);
+			validacionTrash(kgProcesado);
 	}
 	function validacion(kgProcesado){
 		var acumWeight = {{ $acumWeight }};
@@ -187,23 +188,21 @@ $range = round((($acumWeight*100)/$peso))
 
 		}
 	}
-	function validacionTrash(kgProcesado){
-		
-			var quantityBox = document.getElementById('cantidad').value;
-			var formatWeight = document.getElementById('formatWeight').value;
+		function validacionTrash(kgProcesado){
 
-		if(formatWeight === '1.000'){
-			var zeroProcess = Number({{$resto}}) - Number(kgProcesado);
+		if(document.getElementById('formatWeight').value === '1.000'){
+			if((Number(kgProcesado) - {{$resto}} === 0 )){
+			}else{
+				document.getElementById('save').setAttribute("disabled","disabled");
+			}
 			
-			if(zeroProcess < 0 || zeroProcess > 0){
-			swal("Formato mal seleccionado!", "Por favor, ingrese la información correcta", "error");
-			document.getElementById('save').setAttribute("disabled","disabled");
-			var quantityBox = document.getElementById('cantidad').value = '';
-			document.getElementById('weight').value = '';
-		}
-		}
 	
+
+			
+		}
 	}
+	
+	
 
 </script>
 

@@ -86,7 +86,7 @@
                      { data: 'netweight', name: 'netweight' },
                      { data: 'quality', name: 'quality.name' },
                      { data: 'quantity', name: 'quantity' },
-                     { data: 'created_at', name: 'created_at' }
+                     { data: 'created_at', name: 'created_at' },
                      { data: 'grossweight', name: 'grossweight' },
                      { data: 'provider', name: 'provider.name' },
                 ]

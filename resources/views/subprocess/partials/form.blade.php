@@ -165,8 +165,6 @@ $range = round((($acumWeight*100)/$peso))
 
 <script>
 
-
-
 	function getWeightFormat(){
 
 			var quantityBox = document.getElementById('cantidad').value;

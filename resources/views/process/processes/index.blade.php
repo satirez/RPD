@@ -47,7 +47,7 @@
                     $('#laravel_datatable thead tr').clone(true).appendTo('#laravel_datatable thead');
                     $('#laravel_datatable thead tr:eq(1) th').each(function(i) {
                         var title = $(this).text();
-                        $(this).html('<input class="form-control" type="text" placeholder="Buscar ' +
+                        $(this).html('<input  class="form-control" type="text" placeholder="Buscar ' +
                             title + '" />');
 
                         $('input', this).on('keyup change', function() {
@@ -66,6 +66,7 @@
                         language: {
                             url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                         },
+
                         dom: 'Bfrtip',
                         buttons: [
                             'excel', 'pdf',
@@ -73,6 +74,7 @@
 
 
                         ajax: "{{ url('process-list') }}",
+
                         columns: [{
                                 data: 'tarja_proceso',
                                 name: 'tarja_proceso'
@@ -85,15 +87,22 @@
                                 "data": 'id',
                                 "render": function(data, type, row, meta) {
                                     if (type === 'display') {
-                                        data = '<a href="processes/' + data + '">Detalle</a>';
+                                        data =
+                                            '<a class="btn-sm btn btn-warning" href="processes/' +
+                                            data + '">Detalle</a>';
                                     }
 
                                     return data;
                                 }
                             }
 
-                        ]
+                        ],
+
                     });
+                    table
+                        .column('0:visible')
+                        .order('desc')
+                        .draw();
                 });
                 </script>
             </div>

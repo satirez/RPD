@@ -146,31 +146,20 @@
 				<div class="form-group">
 					<ul class="list-unstyled">
 						<div class="table-responsive">
-							<table class="table table-hover">
-								<thead>
-									<tr >
-										<th></th>
-										<th>Calidad</th>
-										<th>N° Cajas</th>
-										<th>Formato</th>
-										<th>Kilos</th>
-										<th>Tarja</th>
-									
-									</tr>
-								</thead>
-								<tbody name="tablareculia"> 
+							<table class="table table-hover" id="subprocess">
+
+								<tbody>
 
 									@forelse($subprocesses as $subprocess)
-									<tr >
-										<th> <input type="checkbox" onclick="chkcontrol( ('{{ $subprocess->quantity }}'),
-																						 ('{{ $subprocess->quality->name }}'),
-																						 ('{{ $subprocess->format->name}}'),
-																						)"> </th>
-										<th>{{ $subprocess->quality->name }}</th>
-										<th>{{ $subprocess->quantity }}</th>
-										<th>{{ $subprocess->format->name}}</th>
-										<th>{{ $subprocess->weight }}</th>
-										<th>SP0{{ $subprocess->id }}</th>
+									<tr>
+										<td> 
+											<input type="checkbox" name="subprocess[]" value="{{ $subprocess->id }}"> 
+										</td>
+										<td>{{ $subprocess->quality->name }}</td>
+										<td class="quantity">{{ $subprocess->quantity }}</td>
+										<td>{{ $subprocess->format->name}}</td>
+										<td>{{ $subprocess->weight }}</td>
+										<td>SP0{{ $subprocess->id }}</td>
 
 										@php
 										$uno = false;
@@ -187,38 +176,22 @@
 									@endphp
 
 									@endforelse
-						
+
+
 								</tbody>
+
 							</table>
 						</div>
-					<script>
-
-	var lote = [];
-	var arrAcum = [];
-
-	function chkcontrol(a, b, c) {
-		
-		if (a,b,c){
-
-			if(a>0){
-				var	newLote = [{
-				quantity: Number(a),
-				quanlity: b,
-				format: c,
-				}]
-			Array.prototype.push.apply(lote, newLote);
-
-			if((lote.reduce((a,b) => a + b.quantity, 0) === 90))
-				alert('puedes guardar');
-			}
-
-		}else{
-			alert('ERROR AL REGISTRAR')
-		}	
-
-	}
-						
-					</script>
+						<div class="row">
+							<div class="col-md-4">
+								<h3>TOTAL DE CAJAS</h3>
+							</div>
+							<div class="col-md-4">
+								<strong>
+									<div id="result"></div>
+								</strong>
+							</div>
+						</div>
 					</ul>
 				</div>
 			</div>
@@ -308,16 +281,43 @@
 
 </div>
 
+
 <script>
+	$('#subprocess input[type="checkbox"]').on('change', function() {
+	var table = $(this).closest('#subprocess'),
+	//acá la idea es que se haga un array de todos los checkeados para eso se instancia table.find 
+	  checked = table.find('input[type=checkbox]:checked'),
+	// acá dentro del table tenemos tr y dentro td pero par que la suma sea solo de una columna se agrega la clase quantity asi solo busca esa clase
+	  prices = checked.closest('tr').find('td.quantity'),
+	// luego se hace un map  que busca si es numero, letra todo etc 
+	  sum = prices.map(function() {
+		return parseFloat(this.textContent.trim(), 10) || 0;
+	  }).get().reduce(function(a, b) {
+		return a + b;
+	  });
+
+
+	
+	  if(sum >= 90){
+		swal("No ingrese más cajas aweonao", "Haz la wea bien saco wea", "warning");
+		for(var i = 0; i < checked.length; i++){
+
+			checked[i].checked = false;
+		}
+		
+		$('#result').text('');
+
+	  }else{
+
+		$('#result').text(sum);
+
+	  }
+	  // se imprime todo en result 
+
+
+		
+  }).change();
+
+  
 
 </script>
-
-
-
-<div class="row">
-	@if(session('info'))
-	<div class="alert alert-success">
-		{{session('info')}}
-	</div>
-	@endif
-</div>

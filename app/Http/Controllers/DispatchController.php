@@ -110,7 +110,10 @@ class DispatchController extends Controller
      */
     public function store(Request $request)
     {
+
+        dd($request->all());
         $lotes = $request->get('subprocesses');
+
         $ultimolote = Lote::orderBy('id', 'DESC')->first();
 
         if ($ultimolote == null) {
@@ -137,7 +140,7 @@ class DispatchController extends Controller
         $lote = $lotes->numero_lote;
         $lote = Lote::where('numero_lote', $lote)->get();
 
-        //Guarda la despacho
++        //Guarda la despacho
         $dispatch = Dispatch::create($request->all());
         $dispatch->subprocesses()->attach($request->get('subprocesses'));
         $checklistdata = $request->get('subprocesses');

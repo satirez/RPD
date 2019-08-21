@@ -18,6 +18,8 @@
                         <thead>
                             <tr>
                                 <th>Id de Lote</th>
+                                
+
 
                                 <th colspan="3">&nbsp;</th>
                             </tr>
@@ -27,7 +29,8 @@
                             @foreach($lotes as $lote)
 
                             <tr>
-                                <td>{{ $lote->id  }}</td>
+                                <td>{{ $lote->numero_lote  }}</td>
+                              
 
 
                                 <td width="10px">

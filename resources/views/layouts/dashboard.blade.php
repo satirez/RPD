@@ -193,33 +193,34 @@
 
       @endcan
 
-
-      <!-- Nav Item -->
-      @can('process.processes.index')
-
+<!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ url ('processes') }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport2"
+          aria-expanded="true" aria-controls="collapseReport">
           <i class="fas fa-fw fa-pallet" style="color:#FFEC00"></i>
-          <span>Proceso</span></a>
-      </li>
-
-      @endcan
-
-
-
-      <!-- Nav Item -->
-      @can('lotes.index')
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url ('lotes') }}">
-          <i class="fas fa-fw fa-boxes" style="color:#00F0FF"></i>
-          <span>Lotes </span>
-
+                   <span>Proceso</span></a>
         </a>
+        <div id="collapseReport2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Proceso:</h6>
+             @can('process.processes.index')
+            <a class="collapse-item" href="{{ url ('processes') }}">Proceso</a>
+            @endcan
+
+            @can('lotes.index')
+            <a class="collapse-item" href="{{ url ('lotes') }}">Lotes</a>
+            @endcan
+
+          </div>
+        </div>
       </li>
 
+  
 
 
-      @endcan
+
+
+
 
       <!-- Nav Item -->
       <!-- Nav Item - Pages Collapse Menu -->

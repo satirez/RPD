@@ -41,17 +41,11 @@ class LoteController extends Controller
                //lista de tabla pivote en despacho (checkbox)
                $lotes = Lote::paginate();
                $subprocesses = SubProcess::orderBy('id', 'DES')->where('available', 1)->get();
-               $listexporter = Exporter::OrderBy('id', 'DES')->pluck('name', 'id');
+             
                $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
-               $listtipodispatch = TipoDispatch::OrderBy('id', 'ASC')->pluck('name', 'id');
-               $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'id', 'weight');
-               $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
-               $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
-               $listSeasons = Season::OrderBy('id', 'DES')->pluck('name', 'id');
-               $listTipoTransporte = TipoTransporte::OrderBy('id', 'DES')->pluck('name', 'id');
-               $listTipoProductoDispatch = TipoProductoDispatch::OrderBy('id', 'DES')->pluck('name', 'id');
+               
        
-               return view('lotes.create', compact('listexporter', 'subprocesses', 'listRejecteds', 'listtipodispatch', 'listFormat', 'listFruits', 'listQualities', 'listSeasons', 'listTipoTransporte', 'listTipoProductoDispatch', 'lotes'));
+               return view('lotes.create', compact('lotes','subprocesses','listRejecteds'));
     }
 
     /**
@@ -62,10 +56,43 @@ class LoteController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        $lote = Lote::create($request->all());
         
-        return redirect()->route('lotes.index', $lote->id)->with('info','Lote guardado con exito'); 
+        $lotes = $request->get('subprocess');
+// dd($request->all());
+        $ultimolote = Lote::orderBy('id', 'DESC')->first();
+
+        if ($ultimolote == null) {
+            $ultimolote = 1;
+            foreach ($lotes as $key) {
+                $lotes = [
+                    'numero_lote' => $ultimolote,
+                    'subprocess_id' => $key,
+                ];
+                $lotes = Lote::create($lotes);
+            }
+        } else {
+            $ultimo = $ultimolote->numero_lote;
+            ++$ultimo;
+            foreach ($lotes as $key) {
+                $lotes = [
+                    'numero_lote' => $ultimo,
+                    'subprocess_id' => $key,
+                ];
+                $lotes = Lote::create($lotes);
+
+            }
+        }
+
+        $lote = $lotes->numero_lote;
+        
+         $checklistdata = $request->get('subprocess');
+        foreach ($checklistdata as $key) {
+            SubProcess::where('id', $key)->update(['available' => 0]);
+        }
+
+
+             
+          return redirect()->route('lotes.index')->with('info', 'despacho guardado con exito');
     }
 
     /**

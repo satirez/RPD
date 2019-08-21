@@ -108,9 +108,9 @@ class ReceptionController extends Controller
             ->make(true);
     }
 
-    public function print(){
+    public function print($id){
 
-        $receptions = Reception::first();
+        $receptions = Reception::where('id',$id)->first();
 
         $customPaper = array(0,0,567,378);
         $pdf = PDF::loadView('receptions.print  ',compact('receptions'))->setPaper($customPaper);
@@ -226,7 +226,7 @@ class ReceptionController extends Controller
             $rejected = Rejected::create($rejected);
         } else { }
 
-        return redirect()->route('receptions.create', $reception->id)->with('info', 'Receptiono guardado con exito');
+        return redirect()->route('receptions.print', $reception->id);
     }
 
     /**

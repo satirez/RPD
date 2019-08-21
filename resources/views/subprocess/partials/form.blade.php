@@ -51,14 +51,14 @@ $range = round((($acumWeight*100)/$peso))
 				<div class="col-md-2">
 					<div class="form-group">
 						{{ Form::label('quantity', 'Cantidad de Cajas') }}
-						{{ Form::text('quantity', null, ['class' => 'form-control','id'=>'cantidad','oninput'=>'getWeightFormat()']) }}
+						{{ Form::number('quantity', null, ['class' => 'form-control','id'=>'cantidad','oninput'=>'getWeightFormat()']) }}
 					</div>
 				</div>
 
 				<div class="col-md-2">
 					<div class="form-group">
 						{{ Form::label('format_id', 'Formato') }}
-						{{ Form::select('format_id',$listFormat, null, ['class' => 'form-control input-number','id'=>'formatWeight','oninput'=>'getWeightFormat()']) }}
+						{{ Form::select('format_id',$listFormat, null, ['class' => 'form-control input-number','id'=>'formatWeight','oninput'=>'getWeightFormat(), validacionTrash()', 'placeholder'=>'selecciona']) }}
 					</div>
 				</div>
 
@@ -165,18 +165,16 @@ $range = round((($acumWeight*100)/$peso))
 
 <script>
 
-
-
 	function getWeightFormat(){
 
-			var quantityBox = document.getElementById('cantidad').value;
-			var formatWeight = document.getElementById('formatWeight').value;
+				var quantityBox = document.getElementById('cantidad').value;
+				var formatWeight = document.getElementById('formatWeight').value;
 			var kgProcesado = Number(quantityBox)*Number(formatWeight);
 			document.getElementById('weight').value = kgProcesado;
-			validacion(kgProcesado)
+			validacion(kgProcesado);
+			validacionTrash(kgProcesado);
 	}
 	function validacion(kgProcesado){
-		
 		var acumWeight = {{ $acumWeight }};
 		var sum = acumWeight + kgProcesado;
 
@@ -190,6 +188,21 @@ $range = round((($acumWeight*100)/$peso))
 
 		}
 	}
+		function validacionTrash(kgProcesado){
+
+		if(document.getElementById('formatWeight').value === '1.000'){
+			if((Number(kgProcesado) - {{$resto}} === 0 )){
+			}else{
+				document.getElementById('save').setAttribute("disabled","disabled");
+			}
+			
+	
+
+			
+		}
+	}
+	
+	
 
 </script>
 

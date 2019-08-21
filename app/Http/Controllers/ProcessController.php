@@ -25,8 +25,8 @@ class ProcessController extends Controller
     public function index()
     {
         $countSubProcess = SubProcess::where('id')->count();
-        $processes = Process::paginate();
-
+        $processes = Process::where('available', 1)->orderBy('id','ASC')->paginate(100);
+        $historico = Process::orderBy('id', 'ASC')->paginate(100);
         return view('process.processes.index', compact('processes', 'countSubProcess'));
     }
 
@@ -39,7 +39,10 @@ class ProcessController extends Controller
     {
         $processeslist = Process::paginate();
         $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
-        $receptions = Reception::orderBy('tarja', 'ASC')->where('available', 1)->get();
+
+        $receptions = Reception::OrderBy('id', 'DESC')->where('available', 1)->paginate(10);
+        
+
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
 
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
@@ -66,7 +69,7 @@ class ProcessController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->input('row'));
+        //dd($request->all());
 
         // Se genera el array con la información de proceso
         $process = [
@@ -95,8 +98,10 @@ class ProcessController extends Controller
     }
 
     public function getData()
-    {
-        return Datatables::of(Process::query())->make(true);
+    {  //devolver todos los processos disponibles
+        $process = Process::where('available', 0);
+
+        return Datatables::of($process)->make(true);
     }
 
     /**

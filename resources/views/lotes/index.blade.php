@@ -17,7 +17,7 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Id de Lote</th>
+                                <th>Tarja de producto terminado</th>
                                 
 
 
@@ -29,7 +29,7 @@
                             @foreach($lotes as $lote)
 
                             <tr>
-                                <td>{{ $lote->numero_lote  }}</td>
+                                <td>P00{{ $lote->numero_lote  }}</td>
                               
 
 

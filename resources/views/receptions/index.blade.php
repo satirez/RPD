@@ -37,6 +37,7 @@
                                 <th>Fruta</th>
                                 <th>Tipo Calidad</th>                               
                                 <th>Fecha/Hora</th>
+                                <th>Ver</th>
                                 <th colspan="auto">&nbsp;</th>
                             </tr>
                         </thead>
@@ -44,8 +45,8 @@
                         </tbody>
                     <tfoot>
                     </table>
-                    
-                </div>                        
+                  </div>    
+                </div>                          
             </div>
         </div>
         <script>
@@ -88,7 +89,18 @@
                      { data: 'provider', name: 'provider.name' },
                      { data: 'fruit', name: 'fruit.specie' },
                      { data: 'quality', name: 'quality.name' },
-                     { data: 'created_at', name: 'created_at' }
+                     { data: 'created_at', name: 'created_at' },
+                     { data: 'created_at', name: 'created_at' },
+                     {
+                                "data": 'id',
+                                "render": function(data, type, row, meta) {
+                                    if (type === 'display') {
+                                        data = '<a href="receptions/' + data + '">Ver</a>';
+                                    }
+
+                                    return data;
+                                    }
+                     }
                 ]
          });
 } );

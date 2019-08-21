@@ -13,7 +13,7 @@
     @endif
 
 
-    <div class="row ">
+    <div class="responsive ">
         <div class="col-md-13 ">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -66,7 +66,7 @@
                         language: {
                             url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                         },
-
+                        iDisplayLength: 50,
                         dom: 'Bfrtip',
                         buttons: [
                             'excel', 'pdf',

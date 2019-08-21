@@ -1,6 +1,6 @@
 <div class="form-group">
 	{{ Form::label('name', 'Nombre del Estatus:') }}
-	{{ Form::text('name', null, ['class' => 'form-control ']) }}
+	{{ Form::text('name', null, ['class' => 'form-control ', 'required']) }}
 </div>
 
 

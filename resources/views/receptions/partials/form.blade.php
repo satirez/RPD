@@ -16,7 +16,7 @@
 
        	if(result > 0){
  			if (!isNaN(result)) {
-           		document.getElementById('netweight').value = result;
+           		document.getElementById('netweight').value = result.toFixed(2);
 				document.getElementById('middleweight_trays').value = result2.toFixed(2);
             }
        	}else{
@@ -74,7 +74,7 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('temperature', 'Temperatura de la fruta') }}
-					{{ Form::text('temperature', null, ['class' => 'form-control ']) }}
+					{{ Form::number('temperature', null, ['class' => 'form-control input-number','required']) }}
 				</div>
 			</div>
 
@@ -118,9 +118,8 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('grossweight', 'Peso bruto') }}
-					{{ Form::number('grossweight', null, ['class' => 'form-control ',
+					{{ Form::number('grossweight', null, ['class' => 'form-control input-number','required',
 							'onkeyup'=>'rest()',
-							'onKeyPress'=>'coma(event)',
 							'id'=>'grossweight',
 							'step'=>'any'
 							]) }}
@@ -130,9 +129,8 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('quantity', 'Cantidad de bandejas') }}
-					{{ Form::number('quantity', null, ['class' => 'form-control ',
+					{{ Form::number('quantity', null, ['class' => 'form-control input-number','required',
 							'onkeyup'=>'rest()',
-							'onKeyPress'=>'coma(event)',
 							'id'=>'quantity',
 							'step'=>'any'
 							]) }}
@@ -145,9 +143,8 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('palet_weight', 'Peso del palet') }}
-					{{ Form::number('palet_weight', null, ['class' => 'form-control ',
+					{{ Form::number('palet_weight', null, ['class' => 'form-control input-number','required',
 							'onkeyup'=>'rest()',
-							'onKeyPress'=>'coma(event)',
 							'id'=>'palet_weight',
 							'step'=>'any'
 							]) }}
@@ -157,8 +154,8 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('netweight', 'Peso neto') }}
-					{{ Form::text('netweight', null, ['class' => 'form-control ', 
-							'id'=>'netweight',
+					{{ Form::number('netweight', null, ['class' => 'form-control input-number','required', 
+							'id'=>'netweight',	
 							'readonly'
 							]) }}
 				</div>
@@ -167,7 +164,7 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('middleweight_trays', 'Kg de fruta por bandeja') }}
-					{{ Form::number('middleweight_trays', null, ['class' => 'form-control ',
+					{{ Form::number('middleweight_trays', null, ['class' => 'form-control input-number','required',
 							'id'=>'middleweight_trays',
 							'readonly',
 							'step'=>'any']) }}
@@ -195,7 +192,7 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('name_driver', 'Nombre del conductor') }}
-					{{ Form::text('name_driver', null, ['class' => 'form-control ']) }}
+					{{ Form::text('name_driver', null, ['class' => 'form-control ','required']) }}
 				</div>
 			</div>
 
@@ -209,7 +206,7 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('number_guide', 'Numero de guía') }}
-					{{ Form::text('number_guide', null, ['class' => 'form-control ']) }}
+					{{ Form::text('number_guide', null, ['class' => 'form-control ','required']) }}
 				</div>
 			</div>
 		</div>
@@ -307,27 +304,12 @@
 	</div>
 	@endif
 </div>
+<!-- Permitir solo numeros, puntos y X-->
+<script type="text/javascript">
+	$(document).ready(function (){
+  $('.input-number').keyup(function (){
+	this.value = (this.value + '').replace(/[^.x0-9]/g, '');
+  });
+});
 
-<script>
-	$(function(){
-		$('#fruit_id').on('change', onSelectProyectChange);
-	});
-
-	function onSelectProyectChange(){
-		var fruit_id = $(this).val();
-		
-		if(! fruit_id){
-			$('#variety_id').html('<Option value="">Seleccione Variedad</Option>');
-				return;
-		}
-		// ajax
-
-		$.get('/api/fruit/'+fruit_id+'/variedad', function(data){
-
-			var html_select = '<Option value="">Seleccione Variedad</Option>';
-			for(var i=0; i<data.length; ++i)
-				html_select += '<Option value="'+data[i].id+'">'+data[i].variety+'</option>';
-			$('#variety_id').html(html_select);
-		});
-	}
 </script>

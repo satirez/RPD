@@ -24,7 +24,7 @@
 </div>
 <div class="form-group">
 	{{ Form::label('number_phone', 'Numero de Contacto:') }}
-	{{ Form::text('number_phone', null, ['class' => 'form-control input-number', 'placeholder'=>'ejemplo: 42-123456']) }}
+	{{ Form::number('number_phone', null, ['class' => 'form-control input-number', 'placeholder'=>'ejemplo: 42-123456']) }}
 </div>
 
 <div class="form-group">

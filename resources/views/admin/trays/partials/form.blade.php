@@ -5,8 +5,6 @@
   crossorigin="anonymous">
 </script>
 
-
-
 <div class="col-md-12">
 
     <div class="row">
@@ -42,7 +40,7 @@
 
 	<div class="form-group">
 		{{ Form::label('stock', 'Bandejas disponibles') }}
-		{{ Form::number('stock', $stockbandejas, null, ['class' => 'form-control ', 'readonly',
+		{{ Form::number('stock', $stockbandejas, null, ['class' => 'form-control input-number', 'readonly',
         'id'=>'stockbandejas']) }}
 	</div>
 

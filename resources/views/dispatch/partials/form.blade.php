@@ -299,7 +299,10 @@
 
 	
 	  if(sum >= 90){
+
 		swal("Has exedido el limite de cajas permitida.", "Vuelva a ingresar la información", "warning");
+
+	
 		for(var i = 0; i < checked.length; i++){
 
 			checked[i].checked = false;

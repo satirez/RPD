@@ -11,7 +11,7 @@
 	
 <div class="form-group">
 	{{ Form::label('weight', 'Peso en Kilogramos:') }}
-	{{ Form::text('weight', null, ['class' => 'form-control input-number','placeholder'=>'Ejemplo: 0.45 kg']) }}
+	{{ Form::number('weight', null, ['class' => 'form-control input-number','placeholder'=>'Ejemplo: 0.45 kg']) }}
 </div>
 
 

@@ -17,7 +17,7 @@
 </div>
 <div class="form-group">
 	{{ Form::label('phone', 'Numero de contacto:') }}
-	{{ Form::text('phone', null, ['class' => 'form-control input-number']) }}
+	{{ Form::number('phone', null, ['class' => 'form-control input-number']) }}
 </div>
 <div class="form-group">
 	{{ Form::label('email', 'E-mail:') }}

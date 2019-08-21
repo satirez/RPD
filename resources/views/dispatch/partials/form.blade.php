@@ -299,7 +299,7 @@
 
 	
 	  if(sum >= 90){
-		swal("No ingrese más cajas aweonao", "Haz la wea bien saco wea", "warning");
+		swal("El limite de 90 cajas ha sido superado", "Por favor, ingrese de nuevo", "warning");
 		for(var i = 0; i < checked.length; i++){
 
 			checked[i].checked = false;

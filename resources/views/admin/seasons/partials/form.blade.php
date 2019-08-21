@@ -1,7 +1,7 @@
 <div>
 <div class="form-group">
 	{{ Form::label('name', 'Temporada:') }}
-	{{ Form::select('name', array('2019-2020' => '2019-2020', '2020-2021' => '2020-2021', '2021-2022' => '2021-2022', '2023-2024' => '2023-2024'), null, ['class' => 'form-control', 'class' => 'col-md-4']) }}
+	{{ Form::select('name', array('2019-2020' => '2019-2020', '2020-2021' => '2020-2021', '2021-2022' => '2021-2022', '2023-2024' => '2023-2024', '2024-2025' => '2024-2025', '2025-2026' => '2025-2026'), null, ['class' => 'form-control', 'class' => 'col-md-4']) }}
 </div>
 </div>
 <div class="form-group">

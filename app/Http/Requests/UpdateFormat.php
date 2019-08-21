@@ -4,8 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use ValidateRequests;
-
 class UpdateFormat extends FormRequest
 {
     /**
@@ -23,24 +21,19 @@ class UpdateFormat extends FormRequest
      *
      * @return array
      */
-       public function rules()
+    public function rules()
     {
-       return [
-            'name' => 'required|max:20',
-            'largo' => 'required|max:20',
-            'alto' => 'required|max:20',
-            'ancho' => 'required|max:20',
-            
+        return [
+        'name' => 'required|max:20',
+        'weight' => 'required|max:20',
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
-            'name.required' => 'Falta un campo obligatorio',
-            'largo.required' => 'Falta un campo obligatorio',
-            'alto.required' => 'Falta un campo obligatorio',
-            'ancho.required' => 'Falta un campo obligatorio'
-      
+            'name.required' => 'Falta el nombre del formato',
+            'weight.required' => 'Falta agregar el peso del formato',
         ];
     }
 }

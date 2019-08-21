@@ -51,7 +51,7 @@ $range = round((($acumWeight*100)/$peso))
 				<div class="col-md-2">
 					<div class="form-group">
 						{{ Form::label('quantity', 'Cantidad de Cajas') }}
-						{{ Form::number('quantity', null, ['class' => 'form-control','id'=>'cantidad','oninput'=>'getWeightFormat()']) }}
+						{{ Form::number('quantity', null, ['class' => 'form-control input-number','id'=>'cantidad','oninput'=>'getWeightFormat()']) }}
 					</div>
 				</div>
 
@@ -79,14 +79,14 @@ $range = round((($acumWeight*100)/$peso))
 				</div>
 				<div class="col-md-2">
 					<div style="text-align:center" class="form-group">
-						<label> inicio Folio </label>
+						<label> inicio de Folio </label>
 						<input style="text-align:center" class="form-control">
 					</div>
 
 				</div>
 				<div style="align:center" class="col-md-2">
 					<div style="text-align:center" class="form-group">
-						<label> Fin Folio </label>
+						<label> fin de Folio </label>
 						<input class="form-control">
 					</div>
 
@@ -195,10 +195,7 @@ $range = round((($acumWeight*100)/$peso))
 			}else{
 				document.getElementById('save').setAttribute("disabled","disabled");
 			}
-			
-	
 
-			
 		}
 	}
 	

@@ -26,7 +26,7 @@
                         <br>
                         <br>
                         <thead>
-                            <tr class="table-dark text-dark">
+                            <tr>
                                 <th>N° de tarja</th>
                                 <th>Fruta</th>
                                 <th>Peso neto</th>
@@ -49,7 +49,7 @@
             </div>
         </div>
         <script>
-            $(document).ready(function() {
+        $(document).ready(function() {
     
                 $('#laravel_datatable3 thead tr').clone(true).appendTo( '#laravel_datatable3 thead' );
                 $('#laravel_datatable3 thead tr:eq(1) th').each( function (i) {
@@ -65,32 +65,32 @@
                         }
                     } );
                 } );
- 
+
+
             var table = $('#laravel_datatable3').DataTable({
                 processing: true,
                 serverSide: true,
+                dom: 'Bfrtip',
+                buttons: [
+                'excel', 'pdf', 
+                ],
+                iDisplayLength: 50,
                 language: {
                 url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
-                dom: 'Bfrtip',
-            buttons: [
-                'excel', 'pdf', 
-            ],
-            
-            
-            ajax: "{{ url('reception-list') }}",
-            columns: [
-                     { data: 'tarja', name: 'tarja' },
-                     { data: 'fruit', name: 'fruit.specie' },
-                     { data: 'netweight', name: 'netweight' },
-                     { data: 'quality', name: 'quality.name' },
-                     { data: 'quantity', name: 'quantity' },
-                     { data: 'created_at', name: 'created_at' },
-                     { data: 'grossweight', name: 'grossweight' },
-                     { data: 'provider', name: 'provider.name' },
-                                ]
-                        });
-                } );
+                ajax: "{{ url('reception-list') }}",
+                columns: [
+                        { data: 'tarja', name: 'tarja' },
+                        { data: 'fruit', name: 'fruit.specie' },
+                        { data: 'netweight', name: 'netweight' },
+                        { data: 'quality', name: 'quality.name' },
+                        { data: 'quantity', name: 'quantity' },
+                        { data: 'created_at', name: 'created_at' },
+                        { data: 'grossweight', name: 'grossweight' },
+                        { data: 'provider', name: 'provider.name' },
+                                    ]
+                            });
+            } );
 
         </script>
     </div>

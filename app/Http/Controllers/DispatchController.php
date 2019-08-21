@@ -55,20 +55,20 @@ class DispatchController extends Controller
             ->make(true);
     }
 
-    public function getSubProcess()
+    public function getLotes()
     {
-        $subprocesses = SubProcess::paginate();
+        $lotes = Lote::orderBy('id','ASC')->paginate(20);
 
-        return view('dispatch.camara', compact('subprocesses'));
+        return view('dispatch.camara', compact('lotes'));
     }
 
-    public function showCam(Process $process)
+    public function showCam(Lote $lotes)
     {
-        $subprocess1 = $subprocess->id;
+        $lote1 = $lotes->id;
         // $receptions = Process_Reception::where('process_id',$process1)->get();
-        $receptions = SubProcess::find($subprocess1);
+        $lotes = Lote::find($lote1);
 
-        return view('dispatch.showcam', compact('receptions'));
+        return view('dispatch.showcam', compact('lotes'));
     }
 
     /**

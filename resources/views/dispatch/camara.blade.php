@@ -16,25 +16,20 @@
                        <thead>
                            <tr>
                                <th>Tarja</th>
-                               <th>N° Cajas</th>
+                               <th>Numero de lote</th>
                                <th>Creado</th>
                                
                                <th colspan="3">&nbsp;</th>
                            </tr>
                        </thead>
                        <tbody>
-                        @foreach($subprocesses as $subprocess)
+                        @foreach($lotes as $lote)
                            <tr>
-                                <td>{{ $subprocess->tarja_proceso }}</td>
-                                <td>{{ $subprocess->Box_out  }}</td>
-                                <td>{{ $subprocess->created_at  }}</td>
+                                <td>{{ $lote->id }}</td>
+                                <td>{{ $lote->numero_lote  }}</td>
+                                <td>{{ $lote->created_at  }}</td>
                                
 
-                                <td width="10px">
-                                    @can('subprocess.subsubprocesses.show')
-                                    <a href="{{ Route('subprocess.subsubprocesses.show', $subprocess->id) }}" class="btn btn-sm btn-default">Ver</a>
-                                    @endcan
-                                <td>
                                 
                            
                                  
@@ -43,7 +38,7 @@
                         @endforeach
                        </tbody>
                    </table>
-                   {{ $subprocesses->render() }}
+                   {{ $lotes->render() }}
                 </div>
             </div>
         </div>

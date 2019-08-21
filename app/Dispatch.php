@@ -42,5 +42,9 @@ class Dispatch extends Model
     {
         return $this->belongsTo(TipoTransporte::class);
     }
+        public function lote()
+    {
+        return $this->belongsTo(Lote::class);
+    }
 }
 

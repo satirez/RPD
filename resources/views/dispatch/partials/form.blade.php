@@ -150,16 +150,14 @@
 
 								<tbody>
 
-									@forelse($subprocesses as $subprocess)
+									@forelse($lotes as $lote)
 									<tr>
 										<td> 
-											<input type="checkbox" name="subprocess[]" value="{{ $subprocess->id }}"> 
+											<input type="checkbox" name="lotes[]" value="{{ $lote->numero_lote }}"> 
 										</td>
-										<td>{{ $subprocess->quality->name }}</td>
-										<td class="quantity">{{ $subprocess->quantity }}</td>
-										<td>{{ $subprocess->format->name}}</td>
-										<td>{{ $subprocess->weight }}</td>
-										<td>SP0{{ $subprocess->id }}</td>
+
+										<td>P00{{ $lote->numero_lote }}</td>
+
 
 										@php
 										$uno = false;

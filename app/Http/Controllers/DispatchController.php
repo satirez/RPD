@@ -82,7 +82,7 @@ class DispatchController extends Controller
 
                                                         //cambiar el formato
        // $subprocesses = SubProcess::orderBy('id', 'DES')->where('available', !0 && 'format_id', !6)->get();
-        $subprocesses = SubProcess::orderBy('id', 'DES')->where('available', 1)->get();
+        $lotes = Lotes::orderBy('id', 'DES')->where('available', 1)->get();
         $listexporter = Exporter::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
         $listtipodispatch = TipoDispatch::OrderBy('id', 'ASC')->pluck('name', 'id');
@@ -94,7 +94,7 @@ class DispatchController extends Controller
         $listTipoProductoDispatch = TipoProductoDispatch::OrderBy('id', 'DES')->pluck('name', 'id');
 
         return view('dispatch.create', compact(
-            'listexporter', 'subprocesses',
+            'listexporter', 'lotes',
             'listRejecteds', 'listtipodispatch',
             'listFormat', 'listFruits', 'listQualities', 'listSeasons',
             'listTipoTransporte', 'listTipoProductoDispatch')

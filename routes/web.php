@@ -143,7 +143,7 @@ Route::middleware('auth')->group(function () {
     Route::get('subprocess-list', 'SubProcessController@getData');
     Route::get('process-list', 'ProcessController@getData');
 
-    Route::get('/print', 'ReceptionController@print')->name('receptions.print');
+    Route::get('/print/{reception}', 'ReceptionController@print')->name('receptions.print');
 
     //Consulta Ajax Select
 

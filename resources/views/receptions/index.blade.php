@@ -35,6 +35,12 @@
                                 <th>F/H de ingreso</th>
                                 <th>Peso bruto</th>
                                 <th>Productor</th>
+
+                                <th>Fruta</th>
+                                <th>Tipo Calidad</th>                               
+                                <th>Fecha/Hora</th>
+                                <th>Ver</th>
+
                                 <th colspan="auto">&nbsp;</th>
                             </tr>
                         </thead>
@@ -45,7 +51,11 @@
                         </tfoot>
                     </table>
 
+                  </div>    
+                </div>                          
+
                 </div>
+
             </div>
         </div>
         <script>
@@ -78,19 +88,42 @@
                 language: {
                 url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
-                ajax: "{{ url('reception-list') }}",
-                columns: [
-                        { data: 'tarja', name: 'tarja' },
-                        { data: 'fruit', name: 'fruit.specie' },
-                        { data: 'netweight', name: 'netweight' },
-                        { data: 'quality', name: 'quality.name' },
-                        { data: 'quantity', name: 'quantity' },
-                        { data: 'created_at', name: 'created_at' },
-                        { data: 'grossweight', name: 'grossweight' },
-                        { data: 'provider', name: 'provider.name' },
-                                    ]
-                            });
-            } );
+                dom: 'Bfrtip',
+            buttons: [
+                'excel', 'pdf', 
+            ],
+            
+            
+            ajax: "{{ url('reception-list') }}",
+            columns: [
+                     { data: 'tarja', name: 'tarja' },
+                     { data: 'fruit', name: 'fruit.specie' },
+                     { data: 'netweight', name: 'netweight' },
+                     { data: 'quality', name: 'quality.name' },
+                     { data: 'quantity', name: 'quantity' },
+                     { data: 'created_at', name: 'created_at' },
+                     { data: 'grossweight', name: 'grossweight' },
+                     { data: 'provider', name: 'provider.name' },
+                     { data: 'fruit', name: 'fruit.specie' },
+                     { data: 'quality', name: 'quality.name' },
+                     { data: 'created_at', name: 'created_at' },
+                     { data: 'created_at', name: 'created_at' },
+                     {
+                                "data": 'id',
+                                "render": function(data, type, row, meta) {
+                                    if (type === 'display') {
+                                        data = '<a href="receptions/' + data + '">Ver</a>';
+                                    }
+
+                                    return data;
+                                    }
+                     }
+                ]
+         });
+} );
+
+ 
+
 
         </script>
     </div>

@@ -272,7 +272,7 @@
 					¿Está seguro de guardar los cambios efectuados?
 				</div>
 				<div class="modal-footer">
-					{{ Form::submit('Guardar', ['class' => 'btn btn-primary']) }}
+					{{ Form::submit('Guardar', ['class' => 'btn btn-primary','target'=>'_blank']) }}
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
 			</div>

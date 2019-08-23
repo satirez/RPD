@@ -33,7 +33,7 @@
                         </script>
                         @forelse($receptions as $reception)
                         <tr>
-                            <td>{{ Form::radio('receptions[]', $reception->id, null, ['value'=>'$reception->id', 'onclick'=>'getWeight(tdis)']) }}
+                            <td>{{ Form::checkbox('receptions[]', $reception->id, null, ['value'=>'$reception->id', 'onclick'=>'getWeight(tdis)']) }}
                             </td>
                             <td>{{ $reception->tarja }}</td>
                             <td>{{ $reception->fruit->specie }} - {{ $reception->varieties->variety }}</td>

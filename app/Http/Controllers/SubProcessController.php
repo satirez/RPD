@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Format;
 use App\SubProcess;
 use App\Process;
+use App\Reception;
+
 use App\Quality;
 use App\motivorejected;
 use Illuminate\Support\Facades\DB;
@@ -31,17 +33,26 @@ class SubProcessController extends Controller
      */
     public function create(Request $request, $id)
     {
-        $process = DB::table('process__receptions')->where('process_id', $id)->first();
-        $processId = $process->process_id;
-        $reception_id = $process->reception_id;
-        $reception = DB::table('receptions')->where('id', $reception_id)->first();
 
-        $peso = $reception->grossweight;
-        $acumWeight = SubProcess::where('process_id', $processId)->sum('weight');
+        $processes = DB::table('process__receptions')->where('process_id', $id)->get();
+        $pesos = array();
+        foreach($processes as $process => $value){
+            $reception = DB::table('receptions')->where('id', $value->reception_id)->get();
+            $peso = $reception[0]->grossweight;
+            array_push($pesos,$peso);
+        }
+        $peso = array_sum($pesos);
+
+        $subprocess = SubProcess::where('process_id', $id)->get();
+
+        $acumWeight = SubProcess::where('process_id', $id)->sum('weight');
+
+
         $resto = 0;
 
         $idsad = $id;
-        $subprocesses = SubProcess::where('process_id', $processId)->paginate();
+
+        $subprocesses = SubProcess::where('process_id', $idsad)->paginate();
 
         //formato y peso para la vista
         $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');

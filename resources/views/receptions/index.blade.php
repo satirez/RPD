@@ -8,7 +8,8 @@
                 <div class="panel-heading">
                     <h4 style="text-align:center;">Recepcionados
                         @can('receptions.create')
-                        <a target="_blank" href="{{ Route('receptions.create') }}" class="btn btn-info pull-right btn-sm"> Crear </a>
+                        <a target="_blank" href="{{ Route('receptions.create') }}"
+                            class="btn btn-info pull-right btn-sm"> Crear </a>
                         @endcan
                     </h4>
                 </div>
@@ -27,6 +28,7 @@
                         <br>
                         <thead>
                             <tr>
+                                <th>Imprimir</th>
                                 <th>N° de tarja</th>
                                 <th>Fruta</th>
                                 <th>Peso neto</th>
@@ -37,7 +39,7 @@
                                 <th>Productor</th>
 
                                 <th>Fruta</th>
-                                <th>Tipo Calidad</th>                               
+                                <th>Tipo Calidad</th>
                                 <th>Fecha/Hora</th>
                                 <th>Ver</th>
 
@@ -51,15 +53,15 @@
                         </tfoot>
                     </table>
 
-                  </div>    
-                </div>                          
-
                 </div>
-
             </div>
+
         </div>
-        <script>
-        $(document).ready(function() {
+
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
     
                 $('#laravel_datatable3 thead tr').clone(true).appendTo( '#laravel_datatable3 thead' );
                 $('#laravel_datatable3 thead tr:eq(1) th').each( function (i) {
@@ -94,8 +96,20 @@
             ],
             
             
+            
             ajax: "{{ url('reception-list') }}",
             columns: [
+                {
+                    data: 'id',
+                        "render": function(data, type, row, meta) {
+                            if (type === 'display') {
+                                data = '<a class="btn btn-sm btn-primary" target="_blank" href="print/' + data + '">Imprimir</a>';
+                            }
+
+                            return data;
+                            },
+                          
+                        },
                      { data: 'tarja', name: 'tarja' },
                      { data: 'fruit', name: 'fruit.specie' },
                      { data: 'netweight', name: 'netweight' },
@@ -109,15 +123,18 @@
                      { data: 'created_at', name: 'created_at' },
                      { data: 'created_at', name: 'created_at' },
                      {
-                                "data": 'id',
+                            data: 'id',
                                 "render": function(data, type, row, meta) {
                                     if (type === 'display') {
                                         data = '<a href="receptions/' + data + '">Ver</a>';
                                     }
 
                                     return data;
-                                    }
-                     }
+                                    },
+                                  
+                     },
+
+              
                 ]
          });
 } );
@@ -125,8 +142,8 @@
  
 
 
-        </script>
-    </div>
+</script>
+</div>
 </div>
 
 

@@ -112,10 +112,9 @@ class DispatchController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());
         $lotes = $request->get('subprocesses');
 
-        $ultimolote = Lote::orderBy('id', 'DESC')->first();
+        $ultimolote = Lote::orderBy('id','DESC')->first();
 
         if ($ultimolote == null) {
             $ultimolote = 1;

@@ -8,7 +8,7 @@
                 <div class="panel-heading">
                     <h4 style="text-align:center;">Recepcionados
                         @can('receptions.create')
-                        <a href="{{ Route('receptions.create') }}" class="btn btn-info pull-right btn-sm"> Crear </a>
+                        <a target="_blank" href="{{ Route('receptions.create') }}" class="btn btn-info pull-right btn-sm"> Crear </a>
                         @endcan
                     </h4>
                 </div>

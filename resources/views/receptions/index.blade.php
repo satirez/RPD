@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12 col-md-offset-0">
+
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 style="text-align:center;">Recepcionados

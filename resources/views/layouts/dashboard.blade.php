@@ -13,7 +13,7 @@
   <link href="/webcss/css/sb-admin-2.min.css" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -390,6 +390,9 @@
 
   </div>
   <!-- End of Page Wrapper -->
+
+
+
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 

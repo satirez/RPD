@@ -14,6 +14,12 @@
 
         <div class="col-md-12">
             <h3 class="text-center">Lista de Recepciones</h3>
+                
+            <div class="col-md-4">
+            <p>Filtrar:</p>  
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+            <br>
+            </div>
 			
             <div class="form-group">
                 <table class="table table-bordered">
@@ -27,7 +33,7 @@
                             <th>Calidad</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="myTable">
                         <script>
                         var receptionArray = [];
                         </script>
@@ -70,6 +76,16 @@
                 
             </div>
 			
+            <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
         </div>
     </div>
 
@@ -85,3 +101,4 @@
     @endif
     <br>
     <br>
+

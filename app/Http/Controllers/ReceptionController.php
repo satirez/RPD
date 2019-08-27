@@ -226,7 +226,8 @@ class ReceptionController extends Controller
             $rejected = Rejected::create($rejected);
         } else { }
 
-        return redirect()->route('receptions.print', $reception->id);
+        return redirect()->route('receptions.index', $reception->id)->with('info','Recepcion guardado con exito'); 
+
     }
 
     /**

@@ -174,8 +174,9 @@
 	  });
 	  var url = $("#contable").val();
 
-	  if(sum >= url){
+	  if(sum > url){
 		swal("Has exedido el limite de cajas permitida.", "Vuelva a ingresar la información", "warning");
+		
 		for(var i = 0; i < checked.length; i++){
 
 			checked[i].checked = false;
@@ -184,6 +185,7 @@
 
 		$('#result').text('');
 		$('#save').setAttribute('disabled','disabled');
+		
 	  }else{
 
 		$('#result').text(sum);

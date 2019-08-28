@@ -116,10 +116,12 @@ class DispatchController extends Controller
 
        //Guarda la despacho
         $dispatch = Dispatch::create($request->all());
-        $dispatch->subprocesses()->attach($request->get('subprocesses'));
-        $checklistdata = $request->get('subprocesses');
+        $checklistdata = $request->get('lotes');
+
+
         foreach ($checklistdata as $key) {
-            SubProcess::where('id', $key)->update(['available' => 0]);
+            
+            Lote::where('id', $key)->update(['available' => 0]);
         }
 
         return redirect()->route('dispatch.index', $dispatch->id)->with('info', 'despacho guardado con exito');

@@ -83,7 +83,7 @@ class DispatchController extends Controller
                                                         //cambiar el formato
        // $subprocesses = SubProcess::orderBy('id', 'DES')->where('available','!0' ,'&&', 'format_id', !6)->get();
 
-        $lotes = Lote::orderBy('id', 'DES')->where('available', 1)->get();
+        $lotes = Lote::orderBy('id', 'DES')->where('available', 1)->paginate(10)->get();
         $listexporter = Exporter::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
         $listtipodispatch = TipoDispatch::OrderBy('id', 'ASC')->pluck('name', 'id');
@@ -112,35 +112,9 @@ class DispatchController extends Controller
     public function store(Request $request)
     {
 
-        $lotes = $request->get('subprocesses');
+        
 
-        $ultimolote = Lote::orderBy('id','DESC')->first();
-
-        if ($ultimolote == null) {
-            $ultimolote = 1;
-            foreach ($lotes as $key) {
-                $lotes = [
-                    'numero_lote' => $ultimolote,
-                    'subprocess_id' => $key,
-                ];
-                $lotes = Lote::create($lotes);
-            }
-        } else {
-            $ultimo = $ultimolote->numero_lote;
-            ++$ultimo;
-            foreach ($lotes as $key) {
-                $lotes = [
-                    'numero_lote' => $ultimo,
-                    'subprocess_id' => $key,
-                ];
-                $lotes = Lote::create($lotes);
-            }
-        }
-
-        $lote = $lotes->numero_lote;
-        $lote = Lote::where('numero_lote', $lote)->get();
-
-+        //Guarda la despacho
+       //Guarda la despacho
         $dispatch = Dispatch::create($request->all());
         $dispatch->subprocesses()->attach($request->get('subprocesses'));
         $checklistdata = $request->get('subprocesses');

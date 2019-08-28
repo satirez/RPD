@@ -17,7 +17,7 @@
 
             <div class=" col-md-4">
             <p>Filtrar:</p>  
-            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+            <input class="form-control" id="myInput" type="text" placeholder="Buscar..">
             <br>
             </div>
 			

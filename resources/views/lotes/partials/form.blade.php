@@ -22,6 +22,17 @@
 					<ul class="list-unstyled">
 						<div class="table-responsive">
 							<table class="table table-hover" id="subprocess">
+								<thead>
+									<tr>
+									<th>Seleccione</th>	
+									<th>Calidad</th>
+									<th>Cantidad</th>
+									<th>Formato</th>
+									<th>Peso</th>
+									<th>Tarja Subproceso</th>
+									</tr>
+
+								</thead>
 
 								<tbody>
 

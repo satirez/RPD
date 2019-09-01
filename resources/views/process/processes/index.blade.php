@@ -66,7 +66,8 @@
                         language: {
                             url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                         },
-                        iDisplayLength: 50,
+                        iDisplayLength: 100,
+                        order: [[ 0, 'desc' ]],
                         dom: 'Bfrtip',
                         buttons: [
                             'excel', 'pdf',

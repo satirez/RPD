@@ -13,9 +13,44 @@
         </div>
 
         <div class="col-md-12">
-            <h3 class="text-center">Lista de Recepciones</h3>
+            <h3 class="text-center">Lista de Recepciones pendientes</h3>
 			
             <div class="form-group">
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="">
+                            <th>Tarja</th>
+                            <th> ... </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <script>
+                        var receptionArray = [];
+                        </script>
+                        @forelse($processPending as $pending)
+                        <tr>  
+                            <td>{{ $pending->tarja_proceso }}</td>
+                            <td> <a class="btn btn-sm btn-primary" href=" {{Route('subprocess.create', $pending->id)}} "> Reanudar </a> </td>
+                            @php
+                            $uno = false;
+                            @endphp
+                        </tr>
+
+                        @empty
+                        <h4> Sin Registros </h4>
+                        @php
+                        $uno = true;
+                        @endphp
+                        @endforelse
+                    </tbody>
+					<div class="float-left">
+                    {{ $processPending->render() }}
+                </div>
+                </table>
+        
+                <div>
                 <table class="table table-bordered">
                     <thead>
                         <tr class="">
@@ -65,8 +100,9 @@
                     </tbody>
 					<div class="float-left">
                     {{ $receptions->render() }}
-                </div>
+                
                 </table>
+                </div>
                 
             </div>
 			

@@ -1,7 +1,7 @@
 <div class="card">
 	<div class="card-header">
 		<div class="badge badge-pill badge-warning float-left"> 3 </div>
-		Selección de procesos:
+		Selección de procesos: 
 	</div>
 
 	<div class="card-body">
@@ -12,7 +12,7 @@
 					<ul class="list-unstyled">
 						<div class="table-responsive">
 							<table class="table table-hover" id="subprocess">
-
+							Tope de pallet	<input type="number" id="topePallet"> <br> <br>
 								<tbody>
 
 									@forelse($subprocesses as $subprocess)
@@ -89,7 +89,6 @@
 										{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
 										{{Form::label('commentrejected', 'Comentario Adicional') }}
 										{{Form::textarea('commentrejected',null,['class'=>'form-control'])}}
-
 									</div>
 								</div>
 							</div>
@@ -139,21 +138,24 @@
 
 
 <script>
+	function getTope(){
+	 let n = document.getElementById('topePallet').value;
+	 return n;
+	}
+
 	$('#subprocess input[type="checkbox"]').on('change', function() {
-	var table = $(this).closest('#subprocess'),
-	//acá la idea es que se haga un array de todos los checkeados para eso se instancia table.find 
+	 var table = $(this).closest('#subprocess'),
+	 //acá la idea es que se haga un array de todos los checkeados para eso se instancia table.find 
 	  checked = table.find('input[type=checkbox]:checked'),
-	// acá dentro del table tenemos tr y dentro td pero par que la suma sea solo de una columna se agrega la clase quantity asi solo busca esa clase
+	 // acá dentro del table tenemos tr y dentro td pero par que la suma sea solo de una columna se agrega la clase quantity asi solo busca esa clase
 	  prices = checked.closest('tr').find('td.quantity'),
-	// luego se hace un map  que busca si es numero, letra todo etc 
+	 // luego se hace un map  que busca si es numero, letra todo etc 
 	  sum = prices.map(function() {
 		return parseFloat(this.textContent.trim(), 10) || 0;
 	  }).get().reduce(function(a, b) {
 		return a + b;
 	  });
 
-
-	
 	  if(sum >= 90){
 		swal("Has exedido el limite de cajas permitida.", "Vuelva a ingresar la información", "warning");
 		for(var i = 0; i < checked.length; i++){

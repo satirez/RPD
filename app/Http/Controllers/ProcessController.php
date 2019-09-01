@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Process;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreProcess;
 use App\Reception;
 use App\Rejected;
 use App\Fruit;
@@ -25,8 +24,9 @@ class ProcessController extends Controller
     public function index()
     {
         $countSubProcess = SubProcess::where('id')->count();
-        $processes = Process::where('available', 1)->orderBy('id','ASC')->paginate(100);
+        $processes = Process::where('available', 1)->orderBy('id', 'ASC')->paginate(100);
         $historico = Process::orderBy('id', 'ASC')->paginate(100);
+
         return view('process.processes.index', compact('processes', 'countSubProcess'));
     }
 
@@ -41,7 +41,7 @@ class ProcessController extends Controller
         $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
 
         $receptions = Reception::OrderBy('id', 'DESC')->where('available', 1)->paginate(10);
-        
+        $processPending = Process::where('available', 1)->orderBy('id', 'DESC')->paginate(10);
 
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
 
@@ -57,7 +57,7 @@ class ProcessController extends Controller
         }
 
         return view('process.processes.create', compact('lastid','receptions','processeslist',
-        'listRejecteds', 'listFruits', 'listQualities', 'listFormat', 'listStatus'));
+        'listRejecteds', 'listFruits', 'listQualities', 'listFormat', 'listStatus', 'processPending'));
     }
 
     /**

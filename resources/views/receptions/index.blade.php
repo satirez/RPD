@@ -51,6 +51,8 @@
                         </tfoot>
                     </table>
 
+                    
+
                   </div>    
                 </div>                          
 
@@ -84,7 +86,8 @@
                 buttons: [
                 'excel', 'pdf', 
                 ],
-                iDisplayLength: 50,
+                order: [[ 0, 'desc' ]], //cambiar dspues
+                iDisplayLength: 100,
                 language: {
                 url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },

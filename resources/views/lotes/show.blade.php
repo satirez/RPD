@@ -1,4 +1,4 @@
-    @extends('layouts.dashboard')
+@extends('layouts.dashboard')
 
 @section('section')
 <div class="container">
@@ -18,25 +18,12 @@
 
                                 <tr class="table-dark text-dark">
                                     <th> Tarjas </th>
-                                    <th> SP0{{ $subproces->id }}</th>
+                                    <th> SP0{{ $subproces->subprocesses->id }}</th>
                                 </tr>
 
-                                <tr>
-                                    <th> Formato </th>
-                                    <th> {{$subproces->format->name}} </th>
-                                </tr>
-                                <tr>
-                                    <th> Tipo de Calidad </th>
-                                    <th> {{$subproces->quality->name}} </th>
-                                </tr>
-                                <tr>
-                                    <th> N° de producto terminado </th>
-                                    <th> {{$subproces->quantity}} </th>
-                                </tr>
-                                <tr class="table-warning">
-                                    <th> Kg total </th>
-                                    <th> {{$subproces->weight}} </th>
-                                </tr>
+                               
+                               
+                              
                               
 
 

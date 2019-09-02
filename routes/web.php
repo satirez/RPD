@@ -140,6 +140,7 @@ Route::middleware('auth')->group(function () {
                                 ->middleware('permission:receptions.edit');
 
     Route::get('reception-list', 'ReceptionController@getData');
+    Route::get('lote-list', 'LoteController@getData');
     Route::get('subprocess-list', 'SubProcessController@getData');
     Route::get('process-list', 'ProcessController@getData');
 
@@ -174,6 +175,10 @@ Route::middleware('auth')->group(function () {
     Route::group(['middleware' => 'auth'], function () {
         Route::resource('lotes', 'LoteController')->names('lotes')->parameters(['lotes' => 'lote']);
     });
+
+
+
+    
 
     Route::get('/subprocess/create/{subprocess}', 'SubProcessController@create')->name('subprocess.create')->middleware('permission:subprocess.create');
 
@@ -210,7 +215,7 @@ Route::middleware('auth')->group(function () {
     //Route::get('/providers/{provider}/edit', 'ProviderController@edit')->name('admin.providers.edit')->middleware('permission:admin.providers.edit');
 
     //Fruta
-
+//Lote
     Route::group(['middleware' => 'auth'], function () {
         Route::resource('fruits', 'FruitController')->names('admin.fruits')->parameters(['fruits' => 'fruit']);
     });

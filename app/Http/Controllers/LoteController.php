@@ -16,7 +16,8 @@ use App\TipoDispatch;
 use App\Season;
 use App\TipoTransporte;
 use App\TipoProductoDispatch;
-
+use Yajra\Datatables\Datatables;
+use DB;
 
 class LoteController extends Controller
 {
@@ -83,6 +84,8 @@ class LoteController extends Controller
             }
         }
 
+        $lotes->subprocesses()->attach($request->get('subprocess'));
+
         $lote = $lotes->numero_lote;
         
          $checklistdata = $request->get('subprocess');
@@ -101,9 +104,27 @@ class LoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+
+     public function getData()
+    {  //devolver todos los processos disponibles
+        $lotes = Lote::where('available', 1);
+
+        return Datatables::of($lotes)->make(true);
+    }
+
+
+
     public function show(Lote $lote)
     {
-       return view('lotes.show', compact('lote'));
+        
+        
+
+        $subprocess = DB::table('lote_sub_process')->where('lote_id',$lote->id)->get();
+        
+        dd($subprocess[0]->subprocesses);
+       return view('lotes.show', compact('subprocess'));
     }
 
     /**
@@ -112,7 +133,7 @@ class LoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lote $lote)
+    public function edit(Lote $lote, $id)
     {
         return view('lotes.edit', compact('lote'));
     }

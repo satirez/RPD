@@ -16,7 +16,7 @@
                <div class="card-body"> 
                 <table class="table table-responsive" id="laravel_datatable3" style="width:100%">
                     <thead>
-                        
+                            <th></th>
                             <th>Id</th>
                             <th>Tipo de Despacho </th>
                             <th>Consignatario</th>
@@ -54,6 +54,7 @@
     } );
  
     var table = $('#laravel_datatable3').DataTable({
+<<<<<<< HEAD
             processing: true,
             serverSide: true,
               language: {
@@ -62,19 +63,44 @@
              dom: 'Bfrtip',
              iDisplayLength: 100,
              order: [[ 0, 'desc' ]],
+=======
+        processing: true,
+        serverSide: true,
+        dom: 'Bfrtip',
+>>>>>>> 2fa96b1e65e311ce6f06a2563f36099501cf3a05
         buttons: [
-            'excel', 'pdf', 
+        'excel', 'pdf', 
         ],
+        iDisplayLength: 50,
+        language: {
+        url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+        },
+        dom: 'Bfrtip',
+    buttons: [
+        'excel', 'pdf', 
+    ],
             
             
             ajax: "{{ url('dispatch-list') }}",
             columns: [
+                {
+                    data: 'id',
+                        "render": function(data, type, row, meta) {
+                            if (type === 'display') {
+                                data = '<a class="btn btn-sm btn-primary" target="_blank" href="print/' + data + '">Imprimir</a>';
+                            }
+
+                            return data;
+                            },
+                          
+                        },
                      { data: 'id', name: 'id' },
                      { data: 'tipodispatch', name: 'tipodispatch.name' },
                      { data: 'consignatario', name: 'consignatario' },
                      { data: 'tipotransporte', name: 'tipotransporte.name' },                 
                      { data: 'season', name: 'season.name' },
-                     { data: 'created_at', name: 'created_at' }
+                     { data: 'created_at', name: 'created_at' },
+                     
                   ]
          });
 } );

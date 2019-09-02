@@ -9,16 +9,41 @@
 			<div class="col-md-12">
 				<h3 class="text-center">Listado de productos en camara</h3>
 				<div class="form-group">
+
+					<div class="h3 alert-danger ">
+						<p class="text-uppercase"> Debe ingresar el numero de cajas primero </p>
+					</div>
+
+					<div class="my-5">
+						<label for="lote"> Numero de Cajas</label>
+						<input name="lote" id="contable" type="text" class="form-control">
+					</div>
+
 					<ul class="list-unstyled">
 						<div class="table-responsive">
 							<table class="table table-hover" id="subprocess">
+<<<<<<< HEAD
 							Tope de pallet	<input type="number" id="topePallet"> <br> <br>
+=======
+								<thead>
+									<tr>
+									<th>Seleccione</th>	
+									<th>Calidad</th>
+									<th>Cantidad</th>
+									<th>Formato</th>
+									<th>Peso</th>
+									<th>Tarja Subproceso</th>
+									</tr>
+
+								</thead>
+
+>>>>>>> 2fa96b1e65e311ce6f06a2563f36099501cf3a05
 								<tbody>
 
 									@forelse($subprocesses as $subprocess)
 									<tr>
-										<td> 
-											<input type="checkbox" name="subprocess[]" value="{{ $subprocess->id }}"> 
+										<td>
+											<input type="checkbox" name="subprocess[]" value="{{ $subprocess->id }}">
 										</td>
 										<td>{{ $subprocess->quality->name }}</td>
 										<td class="quantity">{{ $subprocess->quantity }}</td>
@@ -127,7 +152,7 @@
 				</div>
 				<div class="modal-footer">
 					{{ Form::submit('Guardar', ['class' => 'btn btn-primary','target'=>'_blank']) }}
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" id="save" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
@@ -155,16 +180,20 @@
 	  }).get().reduce(function(a, b) {
 		return a + b;
 	  });
+	  var url = $("#contable").val();
 
-	  if(sum >= 90){
+	  if(sum > url){
 		swal("Has exedido el limite de cajas permitida.", "Vuelva a ingresar la información", "warning");
+		
 		for(var i = 0; i < checked.length; i++){
 
 			checked[i].checked = false;
 		}
-		
-		$('#result').text('');
+		 $("#contable").val('');
 
+		$('#result').text('');
+		$('#save').setAttribute('disabled','disabled');
+		
 	  }else{
 
 		$('#result').text(sum);

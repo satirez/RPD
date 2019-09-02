@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDispatchSubProcessTable extends Migration
+class LoteSubProcessTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,20 @@ class CreateDispatchSubProcessTable extends Migration
      */
     public function up()
     {
-        Schema::create('dispatch_sub_process', function (Blueprint $table) {
+        Schema::create('lote_sub_process', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('lote_id')->unsigned();
             $table->integer('sub_process_id')->unsigned();
-            $table->integer('dispatch_id')->unsigned();
             
             $table->timestamps();
     
             //relation
-            $table->foreign('sub_process_id')->references('id')->on('sub_processes')
+            $table->foreign('lote_id')->references('id')->on('lotes')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
     
-            $table->foreign('dispatch_id')->references('id')->on('dispatches')
+            $table->foreign('sub_process_id')->references('id')->on('sub_processes')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
@@ -39,6 +39,6 @@ class CreateDispatchSubProcessTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dispatch__sub_process');
+         Schema::dropIfExists('lote_sub_process');
     }
 }

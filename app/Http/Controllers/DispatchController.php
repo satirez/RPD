@@ -113,40 +113,16 @@ class DispatchController extends Controller
     public function store(Request $request)
     {
 
-        $lotes = $request->get('subprocesses');
+        
 
-        $ultimolote = Lote::orderBy('id','DESC')->first();
-
-        if ($ultimolote == null) {
-            $ultimolote = 1;
-            foreach ($lotes as $key) {
-                $lotes = [
-                    'numero_lote' => $ultimolote,
-                    'subprocess_id' => $key,
-                ];
-                $lotes = Lote::create($lotes);
-            }
-        } else {
-            $ultimo = $ultimolote->numero_lote;
-            ++$ultimo;
-            foreach ($lotes as $key) {
-                $lotes = [
-                    'numero_lote' => $ultimo,
-                    'subprocess_id' => $key,
-                ];
-                $lotes = Lote::create($lotes);
-            }
-        }
-
-        $lote = $lotes->numero_lote;
-        $lote = Lote::where('numero_lote', $lote)->get();
-
-+        //Guarda la despacho
+       //Guarda la despacho
         $dispatch = Dispatch::create($request->all());
-        $dispatch->subprocesses()->attach($request->get('subprocesses'));
-        $checklistdata = $request->get('subprocesses');
+        $checklistdata = $request->get('lotes');
+
+
         foreach ($checklistdata as $key) {
-            SubProcess::where('id', $key)->update(['available' => 0]);
+            
+            Lote::where('id', $key)->update(['available' => 0]);
         }
 
         return redirect()->route('dispatch.index', $dispatch->id)->with('info', 'despacho guardado con exito');

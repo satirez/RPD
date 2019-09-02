@@ -3,7 +3,7 @@
         <div class="row">
             <div class="form-group col-md-4">
                 {{ Form::label('tarja_proceso', 'Numero de tarja') }}
-                {{ Form::text('tarja_proceso','Pallet_'.$lastid, ['class' => 'form-control', 'readonly']) }}
+                {{ Form::text('tarja_proceso','Proceso - '.$lastid, ['class' => 'form-control', 'readonly']) }}
             </div>
             <div class="form-group col-md-4">
                 {{ Form::label('wash', 'Lavado') }}
@@ -15,7 +15,7 @@
         <div class="col-md-12">
             <h3 class="text-center">Lista de Recepciones pendientes</h3>
 			
-            <div class="form-group">
+            <div class="form-group"> 
 
                 <table class="table table-bordered">
                     <thead>

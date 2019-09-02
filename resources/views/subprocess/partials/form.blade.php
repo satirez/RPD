@@ -25,9 +25,22 @@
 		</tr>
 	</tbody>
 </table>
-@php(
-$range = round((($acumWeight*100)/$peso))
-)
+
+
+	@if($acumWeight <= 0)
+		@php(
+			$range = round(((100)/$peso))
+		)
+	@else
+		@php(
+			$range = round((($acumWeight*100)/$peso))
+			)
+	
+
+	@endif
+
+	
+
 
 <div class="progress progress-small" style="height: 30px;">
 	<div style="width: {{$range}}% ; backbroud-color: #green; !important;" class="progress-bar bg-success"> {{$range}}%

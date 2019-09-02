@@ -1,89 +1,112 @@
 @extends('layouts.dashboard')
-
 @section('section')
 <div class="container">
-    <div class="row">
-        <div class="col-md-12 col-md-offset-0">
+
+    @if (\Session::has('success'))
+    <div class="col-md-12">
+        <div class="alert alert-success">
+            <ul>
+                <li>{!! \Session::get('success') !!}</li>
+            </ul>
+        </div>
+    </div>
+    @endif
+
+
+    <div class="responsive ">
+        <div class="col-md-13 ">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 style="text-align:center;">Listado de Lotes Disponibles:
+                    <h4 style="text-align:center;">Listado de lotes
                         @can('lotes.create')
-                        <a href="{{ Route('lotes.create') }}" class="btn btn-info pull-right btn-sm"> Crear </a>
+                        <a href="{{ Route('lotes.create') }}" class="btn btn-info pull-right btn-sm"> Crear
+                        </a>
                         @endcan
                     </h4>
+
+
                 </div>
 
-                <div class="panel-body">
-                    <table class="table table-striped table-hover">
+                <div class="table-responsive">
+                    <table id="laravel_datatable5" style="width:100%" class=" cell-border order-column">
                         <thead>
                             <tr>
-                                <th>Tarja de producto terminado</th>
-                                
+                                <th>Codigo de pallet procesado</th>
+                                <th>Creado</th>
 
-
-                                <th colspan="3">&nbsp;</th>
+                                <th colspan="auto">&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
-
-                            @foreach($lotes as $lote)
-
-                            <tr>
-                                <td>P00{{ $lote->numero_lote  }}</td>
-                              
-
-
-                                <td width="10px">
-                                    @can('lotes.edit')
-                                    <a href="{{ Route('lotes.edit', $lote->id) }}" class="btn btn-sm btn-info">
-                                        Editar
-                                    </a>
-                                    @endcan
-                                </td>
-                                <td width="10px">
-
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
-                                        data-target="#exampleModalCenter{{$lote->id}}">
-                                        Eliminar
-                                    </button>
-
-                                </td>
-
-                            </tr>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter{{$lote->id}}" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Eliminar</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            ¿Esta seguro que desea eliminar?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-sm btn-secondary"
-                                                data-dismiss="modal">Cerrar</button>
-                                            @can('lotes.destroy')
-                                            {!! Form::open(['route' => ['lotes.destroy', $lote->id],
-                                            'method' => 'DELETE' ]) !!}
-                                            <button class="btn btn-sm btn-danger">Eliminar</button>
-                                            {!! Form::close() !!}
-                                            @endcan </div>
-                                    </div>
-                                </div>
-                                @endforeach
-
                         </tbody>
                     </table>
-                    {{ $lotes->render() }}
                 </div>
+                <script>
+                $(document).ready(function() {
+
+                    $('#laravel_datatable5 thead tr').clone(true).appendTo('#laravel_datatable5 thead');
+                    $('#laravel_datatable5 thead tr:eq(1) th').each(function(i) {
+                        var title = $(this).text();
+                        $(this).html('<input  class="form-control" type="text" placeholder="Buscar ' +
+                            title + '" />');
+
+                        $('input', this).on('keyup change', function() {
+                            if (table.column(i).search() !== this.value) {
+                                table
+                                    .column(i)
+                                    .search(this.value)
+                                    .draw();
+                            }
+                        });
+                    });
+
+                    var table = $('#laravel_datatable5').DataTable({
+                        processing: true,
+                        serverSide: true,
+                        language: {
+                            url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                        },
+                        iDisplayLength: 50,
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'excel', 'pdf',
+                        ],
+
+
+                        ajax: "{{ url('lote-list') }}",
+
+                        columns: [{
+                                data: 'numero_lote',
+                                name: 'numero_lote'
+                            },
+                            {
+                                data: 'created_at',
+                                name: 'created_at '
+                            },
+                            {
+                                "data": 'id',
+                                "render": function(data, type, row, meta) {
+                                    if (type === 'display') {
+                                        data =
+                                            '<a class="btn-sm btn btn-warning" href="lotes/' +
+                                            data + '">Detalle</a>';
+                                    }
+
+                                    return data;
+                                }
+                            }
+
+                        ],
+
+                    });
+                    table
+                        .column('0:visible')
+                        .order('desc')
+                        .draw();
+                });
+                </script>
             </div>
         </div>
     </div>
 </div>
-@stop
+@endsection

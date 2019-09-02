@@ -24,7 +24,7 @@
 
 
                     <!--comienzo de la tabla-->
-                    <table id="laravel_datatable3" class="table responsive ">
+                    <table id="laravel_datatable3" class="table-responsive">
                         <br>
                         <br>
                         <thead>
@@ -51,6 +51,8 @@
                         </tbody>
                         <tfoot>
 
+                         
+      
                         </tfoot>
                     </table>
 

@@ -30,4 +30,9 @@ class SubProcess extends Model
     {
         return $this->belongsToMany(Dispatch::class);
     }
+     public function lotes()
+    {
+        return $this->belongsToMany('\App\Lote', 'lote_sub_process')
+            ->withPivot('lote_id');
+    }
 }

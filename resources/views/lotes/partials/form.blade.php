@@ -22,9 +22,9 @@
 					<ul class="list-unstyled">
 						<div class="table-responsive">
 							<table class="table table-hover" id="subprocess">
-<<<<<<< HEAD
+
 							Tope de pallet	<input type="number" id="topePallet"> <br> <br>
-=======
+
 								<thead>
 									<tr>
 									<th>Seleccione</th>	
@@ -37,7 +37,7 @@
 
 								</thead>
 
->>>>>>> 2fa96b1e65e311ce6f06a2563f36099501cf3a05
+
 								<tbody>
 
 									@forelse($subprocesses as $subprocess)

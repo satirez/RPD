@@ -84,11 +84,15 @@ class LoteController extends Controller
             }
         }
 
-        $lotes->subprocesses()->attach($request->get('subprocess'));
+        
+        $lotes->subprocess()->attach($request->get('subprocess'));
+
 
         $lote = $lotes->numero_lote;
         
          $checklistdata = $request->get('subprocess');
+      
+
         foreach ($checklistdata as $key) {
             SubProcess::where('id', $key)->update(['available' => 0]);
         }

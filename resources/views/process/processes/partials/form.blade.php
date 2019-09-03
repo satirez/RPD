@@ -13,9 +13,9 @@
         </div>
 
         <div class="col-md-12">
-<<<<<<< HEAD
+
             <h3 class="text-center">Lista de Recepciones pendientes</h3>
-=======
+
             <h3 class="text-center">Lista de Recepciones</h3>
 
             <div class=" col-md-4">
@@ -23,8 +23,7 @@
             <input class="form-control" id="myInput" type="text" placeholder="Buscar..">
             <br>
             </div>
->>>>>>> 2fa96b1e65e311ce6f06a2563f36099501cf3a05
-			
+
             <div class="form-group"> 
 
                 <table class="table table-bordered">

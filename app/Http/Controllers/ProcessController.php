@@ -40,13 +40,13 @@ class ProcessController extends Controller
         $processeslist = Process::paginate();
         $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
 
-<<<<<<< HEAD
+
         $receptions = Reception::OrderBy('id', 'DESC')->where('available', 1)->paginate(10);
         $processPending = Process::where('available', 1)->orderBy('id', 'DESC')->paginate(10);
-=======
+
         $receptions = Reception::OrderBy('tarja', 'DESC')->where('available', 1)->paginate(10);
         
->>>>>>> 2fa96b1e65e311ce6f06a2563f36099501cf3a05
+
 
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
 

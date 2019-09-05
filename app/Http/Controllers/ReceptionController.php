@@ -36,6 +36,7 @@ class ReceptionController extends Controller
         $receptionQuantity = Reception::where('available', 1)->sum('quantity');
         $receptionCount = Reception::where('available', 1)->count();
         $historico = Reception::paginate(100);
+        
 
         return view('receptions.index', compact('receptions', 'receptionWeight', 'receptionQuantity', 'receptionCount'));
     }

@@ -41,12 +41,19 @@ class LoteController extends Controller
     {
                //lista de tabla pivote en despacho (checkbox)
                $lotes = Lote::paginate();
-               $subprocesses = SubProcess::orderBy('id', 'DES')->where('available', 1)->get();
-             
+               $subprocesses = SubProcess::orderBy('id', 'DES')->where('available', 1)->where('format_id','!=', 5)->paginate(10);
+                
                $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
+                $last = Lote::OrderBy('id', 'DES')->first();
+
+                if ($last == null) {
+                    $lastid = 1;
+                } else {
+                    $lastid = $last->id + 1;
+                }
                
        
-               return view('lotes.create', compact('lotes','subprocesses','listRejecteds'));
+               return view('lotes.create', compact('lotes','lastid','subprocesses','listRejecteds'));
     }
 
     /**

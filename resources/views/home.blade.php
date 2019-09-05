@@ -23,18 +23,13 @@
                                         <h2><i class="fa fa-boxes fa-3x" style="color:#00F0FF"></i></h2>
                                     </div>
                                     <div class="row p-2 no-gutters">
-                                        <div class="col-6">
+                                        <div class="col-12">
                                             <div class="card card-block text-info rounded-0 border-left-0 border-top-o border-bottom-0">
                                                 <h3>{{ $cuentaReception }}</h3>
                                                 <span class="small text-uppercase">Realizas Hoy</span>
                                             </div>
                                         </div>
-                                        <div class="col-6">
-                                            <div class="card card-block text-info rounded-0 border-right-0 border-top-o border-bottom-0">
-                                                <h3>30%</h3>
-                                                <span class="small text-uppercase">savings</span>
-                                            </div>
-                                        </div>
+                                     
                                     </div>
                                     <div class="card card-block">
                                             <div class="card-footer text-center">
@@ -50,18 +45,13 @@
                                         <h2><i class="fa fa-pallet fa-3x" style="color:#FFEC00" ></i></h2>
                                     </div>
                                     <div class="row p-2 no-gutters">
-                                        <div class="col-6">
+                                        <div class="col-12">
                                             <div class="card card-block text-info rounded-0 border-left-0 border-top-o border-bottom-0">
                                                 <h3>{{ $cuentaProcess}}</h3>
                                                 <span class="small text-uppercase">Realizados Hoy</span>
                                             </div>
                                         </div>
-                                        <div class="col-6">
-                                            <div class="card card-block text-info rounded-0 border-right-0 border-top-o border-bottom-0">
-                                                <h3>30%</h3>
-                                                <span class="small text-uppercase">savings</span>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                     <div class="card card-block">
                                             <div class="card-footer text-center">
@@ -78,18 +68,13 @@
                                         <h2><i class="fa fa-truck-loading fa-3x" style="color:#55FF00"></i></h2>
                                     </div>
                                     <div class="row p-2 no-gutters">
-                                        <div class="col-6">
+                                        <div class="col-12">
                                             <div class="card card-block text-info rounded-0 border-left-0 border-top-o border-bottom-0">
                                                 <h3>{{ $cuentaDispatch }}</h3>
                                                 <span class="small text-uppercase">Realizados Hoy</span>
                                             </div>
                                         </div>
-                                        <div class="col-6">
-                                            <div class="card card-block text-info rounded-0 border-right-0 border-top-o border-bottom-0">
-                                                <h3>30%</h3>
-                                                <span class="small text-uppercase">savings</span>
-                                            </div>
-                                        </div>
+                                       
                                     </div>
                                     <div class="card card-block">
                                             <div class="card-footer text-center">

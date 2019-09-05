@@ -1,7 +1,8 @@
+<br>
 <div class="card">
 	<div class="card-header">
-		<div class="badge badge-pill badge-warning float-left"> 3 </div>
-		Selección de procesos: 
+		<div class="badge badge-pill badge-warning float-left"> 1 </div>
+		<h6>Selección de subprocesos:</h6> 
 	</div>
 
 	<div class="card-body">
@@ -13,17 +14,42 @@
 					<div class="h3 alert-danger ">
 						<p class="text-uppercase"> Debe ingresar el numero de cajas primero </p>
 					</div>
+					<div class="row">
+					<div class="col-md-4">
+	                {{ Form::label('numero_lote', 'Numero de tarja') }}
+	                {{ Form::text('numero_lote','P00'.$lastid, ['class' => 'form-control', 'readonly']) }}
+            		</div>
+            		</div>
+            		<br>
 
-					<div class="my-5">
+					
+				
+
+
+				
+		         
+
+					<div class="row">
+						<div class="col-md-4">
 						<label for="lote"> Numero de Cajas</label>
-						<input name="lote" id="contable" type="text" class="form-control">
+						<input name="lote" id="contable" type="text" placeholder="Ej: 90" class="form-control">
+						</div>
+
+						<div class="col-md-4">
+						<label for="lote"> Filtrar</label>
+						<input class="form-control" id="myInput" type="text" placeholder="Buscar..">
+						</div>
 					</div>
 
-					<ul class="list-unstyled">
-						<div class="table-responsive">
-							<table class="table table-hover" id="subprocess">
+					<br>
+					<br>
 
-							Tope de pallet	<input type="number" id="topePallet"> <br> <br>
+					<ul class="list-unstyled">
+						
+						<div class="table-responsive">
+							<table class="table table-bordered">
+
+							
 
 								<thead>
 									<tr>
@@ -38,7 +64,7 @@
 								</thead>
 
 
-								<tbody>
+								<tbody id="myTable3">
 
 									@forelse($subprocesses as $subprocess)
 									<tr>
@@ -69,21 +95,36 @@
 
 
 								</tbody>
+								{{ $subprocesses->render() }}
 
 							</table>
 						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<h3>TOTAL DE CAJAS</h3>
-							</div>
-							<div class="col-md-4">
-								<strong>
-									<div id="result"></div>
-								</strong>
-							</div>
-						</div>
+						
+										<div class="row">
+										<div class="col-md-4">
+											<h3>TOTAL DE CAJAS</h3>
+										</div>
+										<div class="col-md-4">
+											<strong>
+												<div id="result"></div>
+											</strong>
+										</div>
+
+										</div>
 					</ul>
 				</div>
+
+
+				<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable3 tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 			</div>
 		</div>
 	</div>

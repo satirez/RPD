@@ -7,6 +7,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 style="text-align:center;">Detalle de Lote</h4>
+                    <a class="btn btn-sm btn-danger pull-left " href="{{ Route ('process.processes.index') }}"> Salir </a>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -51,6 +52,7 @@
                 <!-- /.panel-body -->
             </div>
             <!-- /.panel -->
+            
         </div>
     </div>
 </div>

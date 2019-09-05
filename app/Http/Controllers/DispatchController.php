@@ -83,7 +83,7 @@ class DispatchController extends Controller
                                                         //cambiar el formato
        // $subprocesses = SubProcess::orderBy('id', 'DES')->where('available','!0' ,'&&', 'format_id', !6)->get();
 
-        $lotes = Lote::orderBy('id', 'DES')->where('available', 1)->get();
+        $lotes = Lote::orderBy('id', 'DES')->where('available', 1)->paginate(10);
 
         $listexporter = Exporter::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');

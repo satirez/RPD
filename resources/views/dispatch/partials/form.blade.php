@@ -144,11 +144,34 @@
 			<div class="col-md-12">
 				<h3 class="text-center">Listado de productos en camara</h3>
 				<div class="form-group">
-					<ul class="list-unstyled">
-						<div class="table-responsive">
-							<table class="table table-hover" id="subprocess">
+					<div class="row">
+					<div class="col-md-4">
+						<label for="lote"> Filtrar</label>
+						<input class="form-control" id="myInput" type="text" placeholder="Buscar..">
+						</div>
+					</div>
+				</div>
 
-								<tbody>
+					<br>
+					<br>
+
+					<ul class="list-unstyled">
+						
+						<div class="table-responsive">
+							<table class="table table-bordered">
+
+							
+
+								<thead>
+									<tr>
+									<th>Seleccione</th>	
+									<th>Calidad</th>
+									</tr>
+
+								</thead>
+
+
+								<tbody id="myTable5">
 
 									@forelse($lotes as $lote)
 									<tr>
@@ -177,21 +200,37 @@
 
 
 								</tbody>
+								{{ $lotes->render() }}
 
 							</table>
 						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<h3>TOTAL DE CAJAS</h3>
-							</div>
-							<div class="col-md-4">
-								<strong>
-									<div id="result"></div>
-								</strong>
-							</div>
+						
+										
+					</ul>
+
+
+									
+
+
+								</tbody>
+
+
+							</table>
+
 						</div>
+					
 					</ul>
 				</div>
+					<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable5 tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 			</div>
 		</div>
 	</div>

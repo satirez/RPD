@@ -14,7 +14,14 @@
                         @endcan
                     </h4>
                 </div>
+                <br>
+                <br>
+            <div class="panel panel-primary">
+                        <div class="panel-heading">
+                        <h4 style="text-align:center;">Total de Kilos Recepcionados: <strong style="color:green;">{{ $receptionWeight}}Kg</strong></h4>
 
+                    </div>
+                </div>
                 <div class="table-responsive">
 
                     <div class="form-group container">
@@ -50,20 +57,19 @@
                         <tbody>
                         </tbody>
                         <tfoot>
-
-                         
+                        
+                           
       
                         </tfoot>
                     </table>
 
-<<<<<<< HEAD
+
                     
 
                   </div>    
                 </div>                          
 
-=======
->>>>>>> 2fa96b1e65e311ce6f06a2563f36099501cf3a05
+
                 </div>
             </div>
 

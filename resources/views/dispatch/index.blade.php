@@ -87,7 +87,7 @@
                     data: 'id',
                         "render": function(data, type, row, meta) {
                             if (type === 'display') {
-                                data = '<a class="btn btn-sm btn-primary" target="_blank" href="print/' + data + '">Imprimir</a>';
+                                data = '<a class="btn btn-sm btn-primary" target="_blank" href="printdispatch/' + data + '">Imprimir</a>';
                             }
 
                             return data;

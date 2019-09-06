@@ -17,6 +17,7 @@ use App\Season;
 use App\TipoTransporte;
 use App\TipoProductoDispatch;
 use Yajra\Datatables\Datatables;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class DispatchController extends Controller
 {
@@ -126,6 +127,17 @@ class DispatchController extends Controller
         }
 
         return redirect()->route('dispatch.index', $dispatch->id)->with('info', 'despacho guardado con exito');
+    }
+
+    public function print($id){
+
+        $receptions = Dispatch::where('id',$id)->first();
+
+        $customPaper = array(0,0,567,378);
+        $pdf = PDF::loadView('dispatch.print  ',compact('receptions'))->setPaper($customPaper);
+    
+        return $pdf->stream();
+
     }
 
     /**

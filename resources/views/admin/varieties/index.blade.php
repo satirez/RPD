@@ -14,9 +14,9 @@
                     </h4>
                 </div>
 
-                <div class="panel-body">
-                    <table class="table table-striped table-hover">
-                        <thead>
+                <div class="form-group">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
                             <tr>
                                 <th>Variedad</th>
                                 <th>Fruta </th>

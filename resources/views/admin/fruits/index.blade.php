@@ -14,8 +14,8 @@
                 </div>
 
                 <div class="panel-body">
-                    <table class="table table-striped table-hover">
-                        <thead>
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
                             <tr>
                                 <th>Nombre de la fruta</th>
 

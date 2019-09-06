@@ -132,7 +132,7 @@ class DispatchController extends Controller
     public function print($id){
 
         $receptions = Dispatch::where('id',$id)->first();
-
+        
         $customPaper = array(0,0,567,378);
         $pdf = PDF::loadView('dispatch.print  ',compact('receptions'))->setPaper($customPaper);
     

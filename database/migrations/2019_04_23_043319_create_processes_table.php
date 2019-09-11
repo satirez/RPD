@@ -18,7 +18,13 @@ class CreateProcessesTable extends Migration
             $table->String('tarja_proceso');
             $table->Boolean('available')->default('1');     
             $table->Boolean('wash')->default('1');
-            
+            $table->int('fruit_id');
+            $table->int('variety_id');
+            $table->int('quality_id');
+
+            $table->foreign('fruit_id')->references('id')->on('fruits');
+            $table->foreign('variety_id')->references('id')->on('varieties');
+            $table->foreign('quality_id')->references('id')->on('qualities');
 
             $table->timestamps();
         });

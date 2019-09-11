@@ -18,6 +18,8 @@ Route::get('/', function () {
 });
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/auditoria/rejected', 'auditoriaController@index');
+
 Route::get('/charts', function () {
     return view('mcharts');
 });
@@ -176,10 +178,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('lotes', 'LoteController')->names('lotes')->parameters(['lotes' => 'lote']);
     });
 
-
-
-    
-
     Route::get('/subprocess/create/{subprocess}', 'SubProcessController@create')->name('subprocess.create')->middleware('permission:subprocess.create');
 
     Route::post('/subprocess/store', 'SubProcessController@store')->name('subprocess.store')->middleware('permission:subprocess.create');
@@ -215,7 +213,7 @@ Route::middleware('auth')->group(function () {
     //Route::get('/providers/{provider}/edit', 'ProviderController@edit')->name('admin.providers.edit')->middleware('permission:admin.providers.edit');
 
     //Fruta
-//Lote
+    //Lote
     Route::group(['middleware' => 'auth'], function () {
         Route::resource('fruits', 'FruitController')->names('admin.fruits')->parameters(['fruits' => 'fruit']);
     });

@@ -74,10 +74,12 @@ class ProcessController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        dd($request->all());
 
         // Se genera el array con la información de proceso
         $process = [
+            'fruit_id' => $request->get('fruit_id'),
+            'quality_id' => $request->get('quality_id'),
             'tarja_proceso' => $request->get('tarja_proceso'),
             'rejected' => $request->get('rejected'),
             'wash' => $request->get('wash'),

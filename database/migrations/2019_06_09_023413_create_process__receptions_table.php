@@ -30,7 +30,6 @@ class CreateProcessReceptionsTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-
         });
     }
 

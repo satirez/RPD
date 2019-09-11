@@ -30,6 +30,7 @@ class ProviderController extends Controller
      */
     public function create()
     {
+
         return view('admin.providers.create');
     }
  
@@ -42,10 +43,8 @@ class ProviderController extends Controller
      */
     public function store(StoreProviders $request)
     {
-       
         $providers = Providers::create($request->all());
         
-
         return redirect()->route('admin.providers.index', $providers->id)->with('info', 'Proveedor guardado con exito');
     }
 

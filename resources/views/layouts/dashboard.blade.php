@@ -50,18 +50,21 @@
         <a class="nav-link" href="{{ url ('home') }}">
           <i class="fas fa-fw fa-home" style="color:#FF9E00"></i>
           <span>Principal</span></a>
-
-
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-
       <!-- Heading -->
       <div class="sidebar-heading">
         Panel Administrativo
       </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url ('auditoria/rejected') }}">
+          <i class="far fa-calendar-check" style="color:#44D829"></i>
+          <span>Aditoria</span></a>
+      </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -86,14 +89,14 @@
           </div>
         </div>
       </li>
-
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
           aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Autocompletados</span>
+          <span>Configuraciones</span>
         </a>
+
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Herramientas:</h6>

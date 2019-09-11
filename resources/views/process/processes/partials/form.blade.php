@@ -77,23 +77,16 @@
                         </script>
                         @forelse($receptions as $reception)
                         <tr>
-                            <td>{{ Form::checkbox('receptions[]', $reception->id, null, ['value'=>'$reception->id', 'onclick'=>'getWeight(tdis)']) }}
+                            <td>{{ Form::checkbox('receptions[]', $reception->id, null, ['value'=>'$reception->id']) }}
                             </td>
                             <td>{{ $reception->tarja }}</td>
                             <td>{{ $reception->fruit->specie }} - {{ $reception->varieties->variety }}</td>
                             <td>{{ $reception->grossweight }}</td>
                             <td>{{ $reception->quantity }}</td>
                             <td>{{ $reception->quality->name }}</td>
+                            
                             <script>
-                            receptionArray.push({
-                                {
-                                    $reception - > grossweight
-                                }
-                            }, {
-                                {
-                                    $reception - > id
-                                }
-                            });
+                                console.log(receptionArray);
                             </script>
                             @php
                             $uno = false;

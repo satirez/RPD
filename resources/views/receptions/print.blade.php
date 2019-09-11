@@ -10,7 +10,7 @@
 <body>
 
 <div class="col-md-12">
-    <h1> Tarja </h1>
+    <h1> Recepcion </h1>
     <table class="table table-responsive" style="width:100%">
         <thead>
             <tr>

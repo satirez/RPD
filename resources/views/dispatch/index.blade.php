@@ -54,7 +54,7 @@
     } );
  
     var table = $('#laravel_datatable3').DataTable({
-<<<<<<< HEAD
+
             processing: true,
             serverSide: true,
               language: {
@@ -63,11 +63,11 @@
              dom: 'Bfrtip',
              iDisplayLength: 100,
              order: [[ 0, 'desc' ]],
-=======
+
         processing: true,
         serverSide: true,
         dom: 'Bfrtip',
->>>>>>> 2fa96b1e65e311ce6f06a2563f36099501cf3a05
+
         buttons: [
         'excel', 'pdf', 
         ],
@@ -87,7 +87,7 @@
                     data: 'id',
                         "render": function(data, type, row, meta) {
                             if (type === 'display') {
-                                data = '<a class="btn btn-sm btn-primary" target="_blank" href="print/' + data + '">Imprimir</a>';
+                                data = '<a class="btn btn-sm btn-primary" target="_blank" href="printdispatch/' + data + '">Imprimir</a>';
                             }
 
                             return data;

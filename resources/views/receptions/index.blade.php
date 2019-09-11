@@ -2,12 +2,12 @@
 
 @section('section')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12 col-md-offset-0">
+    <div class="responsive">
+        <div class="col-md-13 ">    
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 style="text-align:center;">Recepcionados
+                    <h4 style="text-align:center;">RECEPCION
                         @can('receptions.create')
                         <a target="_blank" href="{{ Route('receptions.create') }}"
                             class="btn btn-info pull-right btn-sm"> Crear </a>
@@ -22,33 +22,31 @@
 
                     </div>
                 </div>
-                <div class="table-responsive">
-
-                    <div class="form-group container">
-
-
-                    </div>
-
-
+<br>
+          
+<div class="card">
+    <div class="card-header">
+        
+        <h5 style="text-align:center;">Tabla de datos:</h5> 
+    </div>
+    <br>
+                <div class="col-md-12">
+                 <div class="table-responsive">
                     <!--comienzo de la tabla-->
-                    <table id="laravel_datatable3" class="table-responsive">
-                        <br>
-                        <br>
-                        <thead>
+                    <table id="laravel_datatable3"  class=" cell-border order-column">
+                      
+                         <thead>
                             <tr>
                                 <th>Imprimir</th>
-                                <th>N° de tarja</th>
-                                <th>Fruta</th>
-                                <th>Peso neto</th>
-                                <th>Calidad</th>
-                                <th>N° Bandejas</th>
-                                <th>F/H de ingreso</th>
-                                <th>Peso bruto</th>
+                                <th>Fecha Ingreso</th>
+                                <th>N° de tarja</th> 
                                 <th>Productor</th>
-
+                                <th>Calidad</th>
                                 <th>Fruta</th>
-                                <th>Tipo Calidad</th>
-                                <th>Fecha/Hora</th>
+                                <th>Variedad</th>
+                                <th>Cantidad de bandejas</th>
+                                <th>Peso neto</th>
+                                <th>Peso bruto</th>
                                 <th>Ver</th>
 
                                 <th colspan="auto">&nbsp;</th>
@@ -68,15 +66,14 @@
 
                   </div>    
                 </div>                          
-
+                </div>
 
                 </div>
             </div>
 
         </div>
-
-    </div>
 </div>
+   
 <script>
     $(document).ready(function() {
     
@@ -99,19 +96,13 @@
             var table = $('#laravel_datatable3').DataTable({
                 processing: true,
                 serverSide: true,
-                dom: 'Bfrtip',
-                buttons: [
-                'excel', 'pdf', 
-                ],
+               
                 order: [[ 0, 'desc' ]], //cambiar dspues
                 iDisplayLength: 100,
                 language: {
                 url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
-                dom: 'Bfrtip',
-            buttons: [
-                'excel', 'pdf', 
-            ],
+                
             
             
             
@@ -121,25 +112,28 @@
                     data: 'id',
                         "render": function(data, type, row, meta) {
                             if (type === 'display') {
-                                data = '<a class="btn btn-sm btn-primary" target="_blank" href="print/' + data + '">Imprimir</a>';
+                                data = '<a class="btn btn-sm btn-primary" target="_blank" href="printreception/' + data + '">Imprimir</a>';
                             }
 
                             return data;
                             },
                           
+
+                            
+
                         },
+                     { data: 'created_at', name: 'created_at' },
                      { data: 'tarja', name: 'tarja' },
-                     { data: 'fruit', name: 'fruit.specie' },
-                     { data: 'netweight', name: 'netweight' },
-                     { data: 'quality', name: 'quality.name' },
-                     { data: 'quantity', name: 'quantity' },
-                     { data: 'created_at', name: 'created_at' },
-                     { data: 'grossweight', name: 'grossweight' },
                      { data: 'provider', name: 'provider.name' },
-                     { data: 'fruit', name: 'fruit.specie' },
                      { data: 'quality', name: 'quality.name' },
-                     { data: 'created_at', name: 'created_at' },
-                     { data: 'created_at', name: 'created_at' },
+                     { data: 'fruit', name: 'fruit.specie' },
+                     { data: 'fruit', name: 'fruit' },
+                     { data: 'quantity', name: 'quantity' },
+                     { data: 'netweight', name: 'netweight' },
+                     { data: 'grossweight', name: 'grossweight' },
+                     
+                     
+                   
                      {
                             data: 'id',
                                 "render": function(data, type, row, meta) {

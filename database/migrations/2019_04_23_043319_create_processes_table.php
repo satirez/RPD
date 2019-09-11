@@ -13,14 +13,14 @@ class CreateProcessesTable extends Migration
      */
     public function up()
     {
-         Schema::create('processes', function (Blueprint $table) {
+        Schema::create('processes', function (Blueprint $table) {
             $table->increments('id');
             $table->String('tarja_proceso');
-            $table->Boolean('available')->default('1');     
+            $table->Boolean('available')->default('1');
             $table->Boolean('wash')->default('1');
-            $table->int('fruit_id');
-            $table->int('variety_id');
-            $table->int('quality_id');
+            $table->integer('fruit_id')->unsigned();
+            $table->integer('variety_id')->unsigned();
+            $table->integer('quality_id')->unsigned();
 
             $table->foreign('fruit_id')->references('id')->on('fruits');
             $table->foreign('variety_id')->references('id')->on('varieties');

@@ -607,6 +607,7 @@ class ComposerStaticInitfb31c1b769dd9a4e4ac23eda912e5e43
         'App\\Http\\Controllers\\TrayInController' => __DIR__ . '/../..' . '/app/Http/Controllers/TrayInController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Controllers\\VarietyController' => __DIR__ . '/../..' . '/app/Http/Controllers/VarietyController.php',
+        'App\\Http\\Controllers\\auditoriaController' => __DIR__ . '/../..' . '/app/Http/Controllers/auditoriaController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',

@@ -43,6 +43,7 @@ return array(
     'App\\Http\\Controllers\\TrayInController' => $baseDir . '/app/Http/Controllers/TrayInController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Controllers\\VarietyController' => $baseDir . '/app/Http/Controllers/VarietyController.php',
+    'App\\Http\\Controllers\\auditoriaController' => $baseDir . '/app/Http/Controllers/auditoriaController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',

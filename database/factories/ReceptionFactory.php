@@ -10,7 +10,7 @@ $factory->define(App\Reception::class, function (Faker $faker) {
         'fruit_id' => $faker->numberBetween($min = 1, $max = 4),
         'quality_id' => $faker->numberBetween($min = 1, $max = 4),
         'netweight' => $faker->numberBetween($min = 100, $max = 499),
-        'status_id' => $faker->numberBetween($min = 1, $max = 4),
+        'status_id' => $faker->numberBetween($min = 1, $max = 2),
         'rejected'=> 0,
         'number_guide' => $faker->numberBetween($min = 1, $max = 1000),
         'name_driver' => $faker->name,

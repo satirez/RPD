@@ -35,9 +35,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <script>
-                        var receptionArray = [];
-                        </script>
+
                         @forelse($processPending as $pending)
                         <tr>  
                             <td>{{ $pending->tarja_proceso }}</td>
@@ -71,23 +69,20 @@
                             <th>Calidad</th>
                         </tr>
                     </thead>
-                    <tbody id="myTable">
-                        <script>
-                        var receptionArray = [];
-                        </script>
+
+                    </br>
+                    </br>
+
+                    <tbody id="myTable"> 
                         @forelse($receptions as $reception)
                         <tr>
-                            <td>{{ Form::checkbox('receptions[]', $reception->id, null, ['value'=>'$reception->id']) }}
-                            </td>
+                            <td>{{ Form::checkbox('receptions[]', $reception->id ) }}</td> 
                             <td>{{ $reception->tarja }}</td>
-                            <td>{{ $reception->fruit->specie }} - {{ $reception->varieties->variety }}</td>
+                            <td>{{ $reception->fruit->specie}} - {{ $reception->varieties->variety }}</td>
                             <td>{{ $reception->grossweight }}</td>
                             <td>{{ $reception->quantity }}</td>
                             <td>{{ $reception->quality->name }}</td>
-                            
-                            <script>
-                                console.log(receptionArray);
-                            </script>
+
                             @php
                             $uno = false;
                             @endphp
@@ -102,21 +97,20 @@
                     </tbody>
 					<div class="float-left">
                     {{ $receptions->render() }}
-                
                 </table>
                 </div>
                 
             </div>
-			<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
+            <script>
+                $(document).ready(function(){
+                    $("#myInput").on("keyup", function() {
+                        var value = $(this).val().toLowerCase();
+                        $("#myTable tr").filter(function() {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                    });
+                });
+            </script>
         </div>
     </div>
 

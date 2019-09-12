@@ -40,13 +40,10 @@ class ProcessController extends Controller
         $processeslist = Process::paginate();
         $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
 
-
         $receptions = Reception::OrderBy('id', 'DESC')->where('available', 1)->paginate(10);
         $processPending = Process::where('available', 1)->orderBy('id', 'DESC')->paginate(10);
 
         $receptions = Reception::OrderBy('tarja', 'DESC')->where('available', 1)->paginate(10);
-        
-
 
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
 
@@ -74,17 +71,24 @@ class ProcessController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $receptionId = $request->get('receptions');
 
+        $fruit_id = Reception::where('id', $receptionId)->first()->fruit_id;
+        $quality_id = Reception::where('id', $receptionId)->first()->quality_id;
+        $variety_id = Reception::where('id', $receptionId)->first()->variety_id;
+        
+        
         // Se genera el array con la información de proceso
         $process = [
-            'fruit_id' => $request->get('fruit_id'),
-            'quality_id' => $request->get('quality_id'),
+
+            'variety_id' => $variety_id,
+            'quality_id' => $quality_id,
+            'fruit_id' => $fruit_id,
             'tarja_proceso' => $request->get('tarja_proceso'),
             'rejected' => $request->get('rejected'),
             'wash' => $request->get('wash'),
-        ];
 
+        ];
         // Se crea
         $process = Process::create($process);
         //se establece la relación con receptions

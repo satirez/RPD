@@ -23,7 +23,7 @@ class CreateSubProcessesTable extends Migration
             $table->foreign('process_id')->references('id')->on('processes');
 
             $table->Integer('format_id')->unsigned();
-            $table->foreign('format_id')->references('id')->on('formats');
+            $table->foreign('format_id')->references('id')->on('formats')->onDelete('cascade');;
             
             $table->Integer('quality_id')->unsigned();
             $table->foreign('quality_id')->references('id')->on('qualities');

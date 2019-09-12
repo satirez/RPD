@@ -30,8 +30,10 @@
                     <thead>
                         <tr class="">
                             <th>Tarja</th>
-                            <th> ... </th>
-
+                            <th>Especie</th>
+                            <th>Variedad</th>
+                            <th>Calidad</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,6 +41,9 @@
                         @forelse($processPending as $pending)
                         <tr>  
                             <td>{{ $pending->tarja_proceso }}</td>
+                            <td>{{ $pending->fruit->specie }}</td>
+                            <td>{{ $pending->varieties->variety }}</td>
+                            <td>{{ $pending->quality->name}}</td>
                             <td> <a class="btn btn-sm btn-primary" href=" {{Route('subprocess.create', $pending->id)}} "> Reanudar </a> </td>
                             @php
                             $uno = false;

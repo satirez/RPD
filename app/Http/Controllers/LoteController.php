@@ -65,8 +65,14 @@ class LoteController extends Controller
     public function store(Request $request)
     {
         
+
         $lotes = $request->get('subprocess');
-// dd($request->all());
+
+        $fruit = SubProcess::where('id', $lotes)->first()->fruit_id;
+        $variety = SubProcess::where('id', $lotes)->first()->variety_id;
+        $format = SubProcess::where('id', $lotes)->first()->format_id;
+        $quality = SubProcess::where('id', $lotes)->first()->quality_id;
+  
         $ultimolote = Lote::orderBy('id', 'DESC')->first();
 
         if ($ultimolote == null) {
@@ -75,7 +81,12 @@ class LoteController extends Controller
                 $lotes = [
                     'numero_lote' => $ultimolote,
                     'subprocess_id' => $key,
+                    'fruit_id' => $fruit,
+                    'variety_id' => $variety,
+                    'quality_id' => $quality,
+                    'format_id' => $format,
                 ];
+
                 $lotes = Lote::create($lotes);
             }
         } else {
@@ -85,6 +96,10 @@ class LoteController extends Controller
                 $lotes = [
                     'numero_lote' => $ultimo,
                     'subprocess_id' => $key,
+                        'fruit_id' => $fruit,
+                    'variety_id' => $variety,
+                    'quality_id' => $quality,
+                    'format_id' => $format,
                 ];
                 $lotes = Lote::create($lotes);
 
@@ -134,7 +149,7 @@ class LoteController extends Controller
 
         $subprocess = DB::table('lote_sub_process')->where('lote_id',$lote->id)->get();
         
-        dd($subprocess[0]->subprocesses);
+        
        return view('lotes.show', compact('subprocess'));
     }
 

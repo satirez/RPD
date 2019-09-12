@@ -5,7 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Lote extends Model
-{
+{   
+    protected $primaryKey = 'id';
+    
     protected $fillable = [
         'numero_lote','subprocess_id', 'fruit_id',
         'quality_id', 'variety_id'

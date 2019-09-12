@@ -16,7 +16,7 @@ class auditoriaController extends Controller
      */
     public function index()
     {
-        $rejecteds = SubProcess::where('available', 0)->get();
+        $rejecteds = SubProcess::where('rejected', 1)->get();
         return view ('auditoria.rejected', compact('rejecteds'));
     }
 
@@ -27,7 +27,7 @@ class auditoriaController extends Controller
      */
     public function create()
     {
-        //
+    
     }
 
     /**
@@ -38,7 +38,13 @@ class auditoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $availableSubProcces = $request->get('rejecteds');
+
+        foreach ($availableSubProcess as $key) {
+            $SubProcess = SubProcess::where('id', $key)->first();
+            SubProcess::where('id', $key)->update(['rejected' => 0]);
+        }
+        return view('home');
     }
 
     /**

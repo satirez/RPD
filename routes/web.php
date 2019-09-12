@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/auditoria/rejected', 'auditoriaController@index');
+Route::post('/auditoria/rejected', 'auditoriaController@store')->name('rejected');
 
 Route::get('/charts', function () {
     return view('mcharts');

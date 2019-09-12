@@ -33,6 +33,8 @@
                             <tr>
                                 <th>Codigo de pallet procesado</th>
                                 <th>Creado</th>
+                                <th>Fruta</th>
+                                <th>Variedad</th>
 
                                 <th colspan="auto">&nbsp;</th>
                             </tr>
@@ -81,6 +83,17 @@
                                 data: 'created_at',
                                 name: 'created_at '
                             },
+                            
+                            
+                            { 
+                                data: 'fruit',
+                                name: 'fruit.specie' 
+                            },
+                            { 
+                                data: 'varieties', 
+                                name: 'varieties.variety' 
+                            },
+
                             {
                                 "data": 'id',
                                 "render": function(data, type, row, meta) {

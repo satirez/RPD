@@ -87,8 +87,8 @@ class ProcessController extends Controller
             'tarja_proceso' => $request->get('tarja_proceso'),
             'rejected' => $request->get('rejected'),
             'wash' => $request->get('wash'),
-
         ];
+
         // Se crea
         $process = Process::create($process);
         //se establece la relación con receptions
@@ -110,9 +110,21 @@ class ProcessController extends Controller
 
     public function getData()
     {  //devolver todos los processos disponibles
-        $process = Process::where('available', 0);
 
-        return Datatables::of($process)->make(true);
+        $process = Process::where('available', 0)->with([
+            'fruit',
+            'quality',
+            'varieties'
+        ]); 
+        return Datatables::of($process)
+            ->addColumn('fruit', function ($process) {
+                return $process->fruit->specie;
+            })->editColumn('quality', function ($process) {
+                return $process->quality->name;
+            })->editColumn('varieties', function ($process) {
+                return $process->varieties->variety;
+            })->make(true);
+
     }
 
     /**

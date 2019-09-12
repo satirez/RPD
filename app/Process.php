@@ -9,7 +9,7 @@ class Process extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'tarja_proceso', 'rejected_id',
+        'tarja_proceso', 'rejected_id', 'variety_id', 'quality_id', 'fruit_id'
     ];
 
     public function receptions()
@@ -31,5 +31,19 @@ class Process extends Model
     public function subprocess()
     {
         return $this->hasMany(SubProcess::class);
+    }
+
+    public function fruit()
+    {
+        return $this->belongsTo(Fruit::class);
+    }
+    public function varieties()
+    {
+        return $this->belongsTo(Variety::class,'variety_id');
+    }
+
+    public function quality()
+    {
+        return $this->belongsTo(Quality::class);
     }
 }

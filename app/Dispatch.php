@@ -10,7 +10,8 @@ class Dispatch extends Model
 	
     protected $fillable = [
         
-            'exporter_id', 'planilla_dispatch','numero_guia','numero_despacho','season_id','tipodispatch_id','puerto_salida','puerto_destino','consignatario','numero_contenedor','nombre_chofer','patente_vehiculo','patente_rampla','rejected','comment','tipoproductodispatch_id','tipotransporte_id'    
+            'exporter_id', 'planilla_dispatch','numero_guia','numero_despacho','season_id','tipodispatch_id','puerto_salida','puerto_destino','consignatario','numero_contenedor','nombre_chofer','patente_vehiculo','patente_rampla','rejected','comment','tipoproductodispatch_id','tipotransporte_id','fruit_id',
+            'quality_id', 'variety_id'
     ];
 
     public function processes()

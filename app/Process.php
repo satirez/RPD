@@ -9,7 +9,7 @@ class Process extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'tarja_proceso', 'rejected_id',
+        'tarja_proceso', 'rejected_id', 'fruit_id', 'variety_id', 'quality_id'
     ];
 
     public function receptions()

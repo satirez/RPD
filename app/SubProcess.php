@@ -10,7 +10,8 @@ class SubProcess extends Model
 
     protected $fillable = [
         'process_id', 'format_id', 'quality_id', 'quantity','weight',
-         'available', 'rejected', 'reason', 'comment'
+        'available', 'rejected', 'reason', 'comment', 'fruit_id',
+        'quality_id', 'variety_id'
     ];
 
     public function process()

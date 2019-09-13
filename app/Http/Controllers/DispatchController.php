@@ -59,7 +59,6 @@ class DispatchController extends Controller
     public function getLotes()
     {
         $lotes = Lote::orderBy('id','ASC')->paginate(20);
-
         return view('dispatch.camara', compact('lotes'));
     }
 

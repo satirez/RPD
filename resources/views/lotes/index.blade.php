@@ -33,6 +33,8 @@
                             <tr>
                                 <th>Codigo de pallet procesado</th>
                                 <th>Creado</th>
+                                <th>Fruta</th>
+                                <th>variedad</th>
 
                                 <th colspan="auto">&nbsp;</th>
                             </tr>
@@ -78,6 +80,14 @@
                         columns: [{
                                 data: 'numero_lote',
                                 name: 'numero_lote'
+                            },
+                            {
+                                data: 'fruit',
+                                name: 'fruit.specie'
+                            },
+                            {
+                                data: 'varieties',
+                                name: 'varieties.variety'
                             },
                             {
                                 data: 'created_at',

@@ -15,8 +15,10 @@
                     <table class="table table-striped table-hover "> 
                        <thead>
                            <tr>
+                               
                                <th>Tarja</th>
-                               <th>Numero de lote</th>
+                               <th>Fruta</th>
+                               <th>Variedad</th>
                                <th>Creado</th>
                                
                                <th colspan="3">&nbsp;</th>
@@ -25,15 +27,10 @@
                        <tbody>
                         @foreach($lotes as $lote)
                            <tr>
-                                <td>{{ $lote->id }}</td>
                                 <td>{{ $lote->numero_lote  }}</td>
+                                <td>{{ $lote->fruit->specie  }}</td>
+                                <td>{{ $lote->varieties->variety  }}</td>
                                 <td>{{ $lote->created_at  }}</td>
-                               
-
-                                
-                           
-                                 
-
                            </tr>
                         @endforeach
                        </tbody>

@@ -53,12 +53,13 @@
 
 								<thead>
 									<tr>
-									<th>Seleccione</th>	
+									<th>Seleccione</th>
+									<th>Tarja Subproceso</th>	
 									<th>Calidad</th>
 									<th>Cantidad</th>
 									<th>Formato</th>
-									<th>Peso</th>
-									<th>Tarja Subproceso</th>
+									<th>Fruta - Variedad</th>
+									
 									</tr>
 
 								</thead>
@@ -71,11 +72,13 @@
 										<td>
 											<input type="checkbox" name="subprocess[]" value="{{ $subprocess->id }}">
 										</td>
+										<td>SP0{{ $subprocess->id }}</td>
 										<td>{{ $subprocess->quality->name }}</td>
 										<td class="quantity">{{ $subprocess->quantity }}</td>
 										<td>{{ $subprocess->format->name}}</td>
-										<td>{{ $subprocess->weight }}</td>
-										<td>SP0{{ $subprocess->id }}</td>
+										<td>{{ $subprocess->fruit->specie}}   - {{$subprocess->varieties->variety}} </td>
+										
+										
 
 										@php
 										$uno = false;

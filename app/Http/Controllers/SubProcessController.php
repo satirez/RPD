@@ -52,7 +52,7 @@ class SubProcessController extends Controller
 
         $idsad = $id;
 
-        $subprocesses = SubProcess::where('process_id', $idsad)->paginate();
+        $subprocesses = SubProcess::where('process_id', $idsad)->where('rejected', 0)->paginate();
 
         //formato y peso para la vista
         $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');

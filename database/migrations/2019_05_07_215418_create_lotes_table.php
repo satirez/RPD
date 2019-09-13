@@ -16,13 +16,16 @@ class CreateLotesTable extends Migration
         Schema::create('lotes', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('numero_lote');
+            $table->String('numero_lote');
             $table->Boolean('available')->default('1');     
 
-            $table->integer('subprocess_id')->unsigned();
-            $table->foreign('subprocess_id')->references('id')->on('sub_processes')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                $table->integer('fruit_id')->unsigned();
+                $table->integer('variety_id')->unsigned();
+                $table->integer('quality_id')->unsigned();
+    
+                $table->foreign('fruit_id')->references('id')->on('fruits');
+                $table->foreign('variety_id')->references('id')->on('varieties');
+                $table->foreign('quality_id')->references('id')->on('qualities');
 
             $table->timestamps();
         });

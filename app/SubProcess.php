@@ -10,7 +10,8 @@ class SubProcess extends Model
 
     protected $fillable = [
         'process_id', 'format_id', 'quality_id', 'quantity','weight',
-         'available', 'rejected', 'reason', 'comment'
+        'available', 'rejected', 'reason', 'comment', 'fruit_id',
+        'quality_id', 'variety_id'
     ];
 
     public function process()
@@ -33,6 +34,14 @@ class SubProcess extends Model
      public function lotes()
     {
         return $this->belongsToMany('\App\Lote', 'lote_sub_process')
-            ->withPivot('lote_id');
+            ->withPivot('sub_process_id');
+    }
+    public function fruit()
+    {
+        return $this->belongsTo(Fruit::class);
+    }
+    public function varieties()
+    {
+        return $this->belongsTo(Variety::class,'variety_id');
     }
 }

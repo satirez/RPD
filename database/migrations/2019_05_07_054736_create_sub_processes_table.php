@@ -28,6 +28,12 @@ class CreateSubProcessesTable extends Migration
             $table->Integer('quality_id')->unsigned();
             $table->foreign('quality_id')->references('id')->on('qualities');
 
+            $table->Integer('fruit_id')->unsigned();
+            $table->foreign('fruit_id')->references('id')->on('fruits');
+
+            $table->Integer('variety_id')->unsigned();
+            $table->foreign('variety_id')->references('id')->on('varieties');
+
             $table->Integer('quantity');
             
             $table->Integer('weight');

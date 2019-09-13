@@ -79,12 +79,16 @@ class SubProcessController extends Controller
         
         //validacion y desactivacion de un proceso
         if($request->format_id === "1.000"){
-            //FINALIZAR UN PROCESO.
+            $idProcess = $request->get('process_id');
+            //FINALIZAR UN PROCESO
             $weightFormat = $request->get('format_id');
             $formatId = Format::where('weight', $weightFormat)->first()->id; //obtener el id segun el peso que se obtiene del request
-            //dd($formatId);
             $request['format_id'] = $formatId;//se le pasa el nuevo parametro (id) a format_id del request!
 
+            $fruit_id = Process::where('id', $idProcess)->first()->fruit_id;
+            $variety_id = Process::where('id', $idProcess)->first()->variety_id;
+
+            $request->merge(['fruit_id' => $fruit_id, 'variety_id' => $variety_id]);
             SubProcess::create($request->all());
 
             $key = $request->get('process_id');
@@ -94,13 +98,18 @@ class SubProcessController extends Controller
 
         }else{
             //query pa pasar el peso de formato y sacarle su id y validar lo que se ha usado
-
+            
             $getFormatId = $request->get('format_id');
             $idProcess = $request->get('process_id');
+
+                    $fruit_id = Process::where('id', $idProcess)->first()->fruit_id;
+                    $variety_id = Process::where('id', $idProcess)->first()->variety_id;
 
             $idFormat = Format::where('weight', $getFormatId)->first()->id;
             $request['format_id'] = $idFormat;
 
+            $request->merge(['fruit_id' => $fruit_id, 'variety_id' => $variety_id]);
+            
             SubProcess::create($request->all());
 
             $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');

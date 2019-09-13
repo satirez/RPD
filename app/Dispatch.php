@@ -9,8 +9,8 @@ class Dispatch extends Model
     protected $primaryKey = 'id';
 	
     protected $fillable = [
-        
             'exporter_id', 'planilla_dispatch','numero_guia','numero_despacho','season_id','tipodispatch_id','puerto_salida','puerto_destino','consignatario','numero_contenedor','nombre_chofer','patente_vehiculo','patente_rampla','rejected','comment','tipotransporte_id'    
+
     ];
 
     public function processes()

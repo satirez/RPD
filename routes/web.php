@@ -354,9 +354,7 @@ Route::middleware('auth')->group(function () {
 
     //Tipo de producto para despachos
 
-    Route::group(['middleware' => 'auth'], function () {
-        Route::resource('tipoproductodispatches', 'TipoProductoDispatchController')->names('admin.tipoproductodispatches')->parameters(['tipoproductodispatches' => 'tipoproductodispatch']);
-    });
+    
     //Route::post('/tipoproductodispatches/store', 'TipoProductoDispatchController@store')->name('admin.tipoproductodispatches.store')->middleware('permission:admin.tipoproductodispatches.create');
 
     //Route::get('/tipoproductodispatches', 'TipoProductoDispatchController@index')->name('admin.tipoproductodispatches.index')->middleware('permission:admin.tipoproductodispatches.index');

@@ -37,12 +37,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-4">
-					<div class="form-group">
-						{{ Form::label('tipoproductodispatch_id', 'Selecciona un producto a despachar:') }}
-						{{Form::select('tipoproductodispatch_id', $listTipoProductoDispatch, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
-					</div>
-				</div>
+				
 
 				<div class="col-md-4">
 					<div class="form-group">

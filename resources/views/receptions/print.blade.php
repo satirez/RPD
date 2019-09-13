@@ -1,62 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title> TARJA - {{ $receptions->tarja }}</title>
-</head>
-<body>
 
 <div class="col-md-12">
-    <h1> Recepcion </h1>
-    <table class="table table-responsive" style="width:100%">
+    <h1> Recepcion {{ $receptions->tarja}}  </h1>
+
+<div class="table-responsive">
+    <table  class=" cell-border order-column">
         <thead>
             <tr>
-                <td>Tarja</td>
-                <td> {{ $receptions->tarja}}</td>
+                <td><strong>Tarja  .................................................................................................................................</strong></td>
+                <td><strong> {{ $receptions->tarja}}</strong></td>
             </tr>
 
             <tr>
-                <td>Peso Neto</td>
-                <td> {{ $receptions->grossweight}}</td>
+                <td><strong>Peso Neto .........................................................................................................................</strong></td>
+                <td><strong> {{ $receptions->grossweight}}</strong></td>
             </tr>
 
             <tr>
-                <td>Provedor</td>
-                <td> {{ $receptions->provider->name}}</td>
+                <td><strong>Provedor ...........................................................................................................................</strong></td>
+                <td><strong> {{ $receptions->provider->name}}</strong></td>
             </tr>
 
             <tr>
-                <td>Fruta</td>
-                <td> {{ $receptions->fruit->specie}}</td>
+                <td><strong>Fruta .................................................................................................................................</strong></td>
+                <td><strong> {{ $receptions->fruit->specie}}</strong></td>
             </tr>
 
             <tr>
-                <td>Temporada</td>
-                <td> {{ $receptions->season->name}}</td>
+                <td><strong>Temporada .......................................................................................................................</strong></td>
+                <td><strong> {{ $receptions->season->name}}</strong></td>
             </tr>
 
             <tr>
-                <td>Estatus</td>
-                <td> {{ $receptions->supplies->name }}</td>
+                <td><strong>Estatus  ..............................................................................................................................</strong></td>
+                <td><strong> {{ $receptions->supplies->name }}</strong></td>
             </tr>
 
             <tr>
-                <td>Cantidad</td>
-                <td> {{ $receptions->quantity }}</td>
+                <td><strong>Cantidad ...........................................................................................................................</strong></td>
+                <td><strong> {{ $receptions->quantity }}</strong></td>
             </tr>
 
             <tr>
-                <td>Peso Palet</td>
-                <td> {{ $receptions->palet_weight }}</td>
+                <td><strong>Peso Palet .........................................................................................................................</strong></td>
+                <td><strong> {{ $receptions->palet_weight }}</strong></td>
             </tr>
 
         </thead>
 
     </table>
+    </div>
 </div>
 
-</body>
-</html>

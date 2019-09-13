@@ -1,18 +1,28 @@
 @extends('layouts.dashboard')
 
 @section('section')
-<div class=" col-md-4">
-            <p>Filtrar:</p>  
-            <input class="form-control" id="myInput" type="text" placeholder="Buscar...">
-            <br>
-</div>
 
-   {!! Form::open(['route' => 'rejected']) !!}
-        
-<table  class="table table-bordered responsive">
-                    <thead>
-                        <tr class="">
-                            <th></th>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12 col-md-offset-1 ">       
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 style="text-align:center;">Despachos</h4>
+                        </div>
+
+
+                <div class=" col-md-4">
+                <p>Filtrar:</p>  
+                <input class="form-control" id="myInput" type="text" placeholder="Buscar...">
+                <br>
+                </div>
+               
+                 <div class="panel-body">
+                    <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Selección</th>
                             <th>Tarja</th>
                             <th>Formato</th>
                             <th>Calidad</th>
@@ -31,14 +41,7 @@
                             <td>{{ $rejected->format->name }}</td>
                             <td>{{ $rejected->quality->name }}</td>
                             <td>{{ $rejected->fruit->specie}} - {{ $rejected->varieties->variety }}</td>
-                            <script>
 
-                            //Mostrar los 'Lotes' (availables) y mostrar 'SubProcesses' (availables) para
-                            //enviarlos al coontrolador
-                            //updatearlos Boool
-
-
-                            </script>
                             @php
                             $uno = false;
                             @endphp
@@ -51,7 +54,9 @@
                         @endphp
                         @endforelse
                     </tbody>
-				
+				    </table>
+                </div>
+            </div>
                     <script>
                 $(document).ready(function(){
                     $("#myInput").on("keyup", function() {
@@ -63,21 +68,21 @@
                 });
             </script>
                 
-    </table>
-    {!! Form::close() !!}
+    
+
+</div>
+</div>
+<br>
+{!! Form::open(['route' => 'auditoria.store']) !!} 
+<div class="col-md-12 text-center">
+<div class="form-group">
+    {{ Form::submit('habilitar pallet', $rejecteds, ['class' => 'btn btn-success']) }}
+</div>
+</div>
+   {!! Form::close() !!}
+</div>
 
 
+           
 
-                <br>
-    @if($uno == false)
-    <div class="col-md-12 text-center">
-        <div class="form-group text">
-            {{ Form::submit('ABILITAR PALLET', ['class' => 'btn btn-success']) }}
-        </div>
-    </div>
-    @else
-    <div class="btn btn-lg btn-danger disabled"> No se puede ingresar </div>
-    @endif
-    <br>
-    <br>
-                @stop
+@endsection

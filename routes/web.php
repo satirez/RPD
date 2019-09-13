@@ -18,8 +18,6 @@ Route::get('/', function () {
 });
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/auditoria/rejected', 'auditoriaController@index');
-Route::post('/auditoria/rejected', 'auditoriaController@store')->name('rejected');
 
 Route::get('/charts', function () {
     return view('mcharts');
@@ -90,13 +88,14 @@ Route::middleware('auth')->group(function () {
         Route::resource('supplies', 'SuppliesController')->names('admin.supplies')->parameters(['supplies' => 'supplie']);
     });
 
-    //Route::post('/supplies/store', 'SuppliesController@store')->name('admin.supplies.store')->middleware('permission:admin.supplies.create');
-    //Route::get('/supplies/', 'SuppliesController@index')->name('admin.supplies.index')->middleware('permission:admin.supplies.index');
-    //Route::get('/supplies/create', 'SuppliesController@create')->name('admin.supplies.create')->middleware('permission:admin.supplies.create');
-    //Route::put('/supplies/{supplie}', 'SuppliesController@update')->name('admin.supplies.update')->middleware('permission:admin.supplies.edit');
-    //Route::get('/supplies/{supplie}', 'SuppliesController@show')->name('admin.supplies.show')->middleware('permission:admin.supplies.show');
-    //Route::delete('/supplies/{supplie}', 'SuppliesController@destroy')->name('admin.supplies.destroy')->middleware('permission:admin.supplies.destroy');
-    //Route::get('/supplies/{supplie}/edit', 'SuppliesController@edit')->name('admin.supplies.edit')->middleware('permission:admin.supplies.edit');
+    
+    Route::post('/auditoria/store', 'auditoriaController@store')->name('auditoria.store')->middleware('permission:auditoria.create');
+    Route::get('/auditoria/', 'auditoriaController@index')->name('auditoria.index')->middleware('permission:auditoria.index');
+    Route::get('/auditoria/create', 'auditoriaController@create')->name('auditoria.create')->middleware('permission:auditoria.create');
+    Route::put('/auditoria/{rejected}', 'auditoriaController@update')->name('auditoria.update')->middleware('permission:auditoria.edit');
+    Route::get('/auditoria/{rejected}', 'auditoriaController@show')->name('auditoria.show')->middleware('permission:auditoria.show');
+    Route::delete('/auditoria/{rejected}', 'auditoriaController@destroy')->name('auditoria.destroy')->middleware('permission:auditoria.destroy');
+    Route::get('/auditoria/{rejected}/edit', 'auditoriaController@edit')->name('auditoria.edit')->middleware('permission:auditoria.edit');
 
     //Rechazado
     //ruta 		//focod de la ruta	//Permiso
@@ -158,6 +157,9 @@ Route::middleware('auth')->group(function () {
     Route::group(['middleware' => 'auth'], function () {
         Route::resource('processes', 'ProcessController')->names('process.processes')->parameters(['processes' => 'process']);
     });
+
+
+
 
     //Route::get('/processes/create', 'ProcessController@create')->name('process.processes.create')->middleware('permission:process.processes.create');
     //Route::post('/processes/store', 'ProcessController@store')->name('process.processes.store')->middleware('permission:process.processes.create');

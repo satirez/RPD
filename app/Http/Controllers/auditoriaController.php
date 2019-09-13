@@ -36,15 +36,16 @@ class auditoriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Rejecteds $rejecteds)
     {
+        dd($rejecteds->all);
         $availableSubProcces = $request->get('rejecteds');
 
         foreach ($availableSubProcess as $key) {
             $SubProcess = SubProcess::where('id', $key)->first();
             SubProcess::where('id', $key)->update(['rejected' => 0]);
         }
-        return view('home');
+        return redirect()->route('home')->with('info','Recepcion guardado con exito');
     }
 
     /**

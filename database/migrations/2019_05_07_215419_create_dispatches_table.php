@@ -37,9 +37,7 @@ class CreateDispatchesTable extends Migration
             $table->Integer('tipotransporte_id')->unsigned();
             $table->foreign('tipotransporte_id')->references('id')->on('tipo_transportes')->onDelete('cascade');
 
-            $table->Integer('tipoproductodispatch_id')->unsigned();
-            $table->foreign('tipoproductodispatch_id')->references('id')->on('tipo_producto_dispatches')->onDelete('cascade');
-
+           
 
             $table->String('puerto_salida');
             $table->String('puerto_destino');

@@ -161,10 +161,7 @@
             <a class="collapse-item" href="{{ url ('tipotransportes') }}">Tipo de Transporte</a>
             @endcan
 
-            <!-- Tipos despacho -->
-            @can('admin.tipoproductodispatches.index')
-            <a class="collapse-item" href="{{ url ('tipoproductodispatches') }}">Producto a Despachar</a>
-            @endcan
+           
 
             <!--  Temporada -->
             @can('admin.providers.index')

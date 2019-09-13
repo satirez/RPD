@@ -9,7 +9,7 @@ class Lote extends Model
     protected $primaryKey = 'id';
     
     protected $fillable = [
-        'numero_lote','subprocess_id', 'fruit_id',
+        'numero_lote', 'fruit_id',
         'quality_id', 'variety_id'
     ];
 
@@ -29,6 +29,6 @@ class Lote extends Model
     public function subprocess()
     {
         return $this->belongsToMany('\App\SubProcess', 'lote_sub_process')
-         ->withPivot('sub_process_id');
+         ->withPivot('lote_id');
     }
 }

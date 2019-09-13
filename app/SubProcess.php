@@ -34,7 +34,7 @@ class SubProcess extends Model
      public function lotes()
     {
         return $this->belongsToMany('\App\Lote', 'lote_sub_process')
-            ->withPivot('lote_id');
+            ->withPivot('sub_process_id');
     }
     public function fruit()
     {

@@ -64,7 +64,7 @@ class LoteController extends Controller
      */
     public function store(Request $request)
     {
-        
+       $numero_lote = $request->get('numero_lote');
 
         $lotes = $request->get('subprocess');
 
@@ -75,11 +75,11 @@ class LoteController extends Controller
   
         $ultimolote = Lote::orderBy('id', 'DESC')->first();
 
-        if ($ultimolote == null) {
-            $ultimolote = 1;
-            foreach ($lotes as $key) {
+        if ($numero_lote == null) {
+            $numero_lote = 'P001';
+
                 $lotes = [
-                    'numero_lote' => $ultimolote,
+                    'numero_lote' => $numero_lote,
                     'subprocess_id' => $key,
                     'fruit_id' => $fruit,
                     'variety_id' => $variety,
@@ -88,22 +88,18 @@ class LoteController extends Controller
                 ];
 
                 $lotes = Lote::create($lotes);
-            }
+            
         } else {
-            $ultimo = $ultimolote->numero_lote;
-            ++$ultimo;
-            foreach ($lotes as $key) {
                 $lotes = [
-                    'numero_lote' => $ultimo,
-                    'subprocess_id' => $key,
-                        'fruit_id' => $fruit,
+                    'numero_lote' => $numero_lote,
+                    'fruit_id' => $fruit,
                     'variety_id' => $variety,
                     'quality_id' => $quality,
                     'format_id' => $format,
                 ];
-                $lotes = Lote::create($lotes);
 
-            }
+                $lotes = Lote::create($lotes);
+            
         }
 
         

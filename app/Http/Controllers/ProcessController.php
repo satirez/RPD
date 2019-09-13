@@ -80,7 +80,6 @@ class ProcessController extends Controller
         
         // Se genera el array con la información de proceso
         $process = [
-
             'variety_id' => $variety_id,
             'quality_id' => $quality_id,
             'fruit_id' => $fruit_id,
@@ -91,6 +90,7 @@ class ProcessController extends Controller
 
         // Se crea
         $process = Process::create($process);
+
         //se establece la relación con receptions
         $process->receptions()->attach($request->get('receptions'));
 

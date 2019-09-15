@@ -31,7 +31,7 @@
                     </thead>
                     <tbody id="myTable">
                         <script>
-                        var receptionArray = [];
+                     
                         </script>
                         @forelse($rejecteds as $rejected)
                         <tr>
@@ -73,16 +73,16 @@
 </div>
 </div>
 <br>
-{!! Form::open(['route' => 'auditoria.store']) !!} 
+@if($uno == false)
+    {!! Form::open(['route' => 'auditoria.store']) !!} 
 <div class="col-md-12 text-center">
-<div class="form-group">
-    {{ Form::submit('habilitar pallet', $rejecteds, ['class' => 'btn btn-success']) }}
+    <div class="form-group">
+        {{ Form::submit('habilitar pallet', ['class' => 'btn btn-success']) }}
+    </div>
+    @else
+    <div class="btn btn-lg btn-danger disabled"> No se puede ingresar </div>
+        @endif
+    {!! Form::close() !!}
 </div>
-</div>
-   {!! Form::close() !!}
-</div>
-
-
-           
-
+     
 @endsection

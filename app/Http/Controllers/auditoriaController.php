@@ -14,6 +14,7 @@ class auditoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $rejecteds = SubProcess::where('rejected', 1)->get();
@@ -36,16 +37,16 @@ class auditoriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Rejecteds $rejecteds)
+    public function store(Request $request)
     {
-        dd($rejecteds->all);
-        $availableSubProcces = $request->get('rejecteds');
+        dd($request->all);
+        $availableSubProcess = $request->get('rejecteds');
 
         foreach ($availableSubProcess as $key) {
             $SubProcess = SubProcess::where('id', $key)->first();
             SubProcess::where('id', $key)->update(['rejected' => 0]);
         }
-        return redirect()->route('home')->with('info','Recepcion guardado con exito');
+        return redirect()->route('home')->with('info','Pallets actualizados con exito');
     }
 
     /**

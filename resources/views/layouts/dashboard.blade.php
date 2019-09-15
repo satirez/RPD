@@ -60,10 +60,10 @@
         Panel Administrativo
       </div>
 
-    <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link" href="{{ url ('auditoria/rejected') }}">
           <i class="far fa-calendar-check" style="color:#44D829"></i>
-          <span>Aditoria</span></a>
+          <span>Auditoria</span></a>
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->

@@ -89,13 +89,9 @@ Route::middleware('auth')->group(function () {
     });
 
     
-    Route::post('/auditoria/store', 'auditoriaController@store')->name('auditoria.store')->middleware('permission:auditoria.create');
-    Route::get('/auditoria/', 'auditoriaController@index')->name('auditoria.index')->middleware('permission:auditoria.index');
-    Route::get('/auditoria/create', 'auditoriaController@create')->name('auditoria.create')->middleware('permission:auditoria.create');
-    Route::put('/auditoria/{rejected}', 'auditoriaController@update')->name('auditoria.update')->middleware('permission:auditoria.edit');
-    Route::get('/auditoria/{rejected}', 'auditoriaController@show')->name('auditoria.show')->middleware('permission:auditoria.show');
-    Route::delete('/auditoria/{rejected}', 'auditoriaController@destroy')->name('auditoria.destroy')->middleware('permission:auditoria.destroy');
-    Route::get('/auditoria/{rejected}/edit', 'auditoriaController@edit')->name('auditoria.edit')->middleware('permission:auditoria.edit');
+    Route::put('/auditoria/rejected', 'auditoriaController@store')->name('auditoria.store')->middleware('permission:auditoria.create');
+    Route::get('/auditoria/rejected/', 'auditoriaController@index')->name('auditoria.index')->middleware('permission:auditoria.index');
+
 
     //Rechazado
     //ruta 		//focod de la ruta	//Permiso

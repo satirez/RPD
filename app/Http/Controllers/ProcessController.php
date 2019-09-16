@@ -23,7 +23,7 @@ class ProcessController extends Controller
      */
     public function index()
     {
-        $countSubProcess = SubProcess::where('id')->count();
+        $countSubProcess = SubProcess::where('id')->count();    
         $processes = Process::where('available', 1)->orderBy('id', 'ASC')->paginate(100);
         $historico = Process::orderBy('id', 'ASC')->paginate(100);
 

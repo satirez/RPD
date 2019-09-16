@@ -89,7 +89,7 @@ Route::middleware('auth')->group(function () {
     });
 
     
-    Route::put('/auditoria/rejected', 'auditoriaController@store')->name('auditoria.store')->middleware('permission:auditoria.create');
+    Route::post('/auditoria/rejected/{id} ', 'auditoriaController@store')->name('auditoria.store')->middleware('permission:auditoria.create');
     Route::get('/auditoria/rejected/', 'auditoriaController@index')->name('auditoria.index')->middleware('permission:auditoria.index');
 
 
@@ -184,7 +184,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/subprocess', 'SubProcessController@index')->name('subprocess.index')->middleware('permission:subprocess.index');
 
-    Route::put('/subprocess/{subprocess}', 'SubProcessController@update')->name('subprocess.update')->middleware('permission:subprocess.edit');
+    Route::put('/auditoria/rejected/{subprocess}', 'SubProcessController@update')->name('subprocess.update')->middleware('permission:subprocess.edit');
 
     Route::get('/subprocess/{subprocess}', 'SubProcessController@show')->name('subprocess.show')->middleware('permission:subprocess.show');
 

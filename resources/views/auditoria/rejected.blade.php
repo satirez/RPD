@@ -8,7 +8,7 @@
         <div class="col-md-12 col-md-offset-1 ">       
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4 style="text-align:center;">Despachos</h4>
+                            <h4 style="text-align:center;">Auditoria</h4>
                         </div>
 
 
@@ -35,12 +35,11 @@
                         </script>
                         @forelse($rejecteds as $rejected)
                         <tr>
-                            <td>{{ Form::checkbox('rejecteds[]', $rejected->id, null, ['value'=>'$rejected->id']) }}
-                            </td>
                             <td>SP00{{ $rejected->id }}</td>
                             <td>{{ $rejected->format->name }}</td>
                             <td>{{ $rejected->quality->name }}</td>
                             <td>{{ $rejected->fruit->specie}} - {{ $rejected->varieties->variety }}</td>
+                            <td> <a class="btn btn-sm btn-success" href=" {{Route('subprocess.update', $rejected->id)}} "> Abilitar </a> </td>
 
                             @php
                             $uno = false;
@@ -74,15 +73,13 @@
 </div>
 <br>
 @if($uno == false)
-    {!! Form::open(['route' => 'auditoria.store']) !!} 
+   
 <div class="col-md-12 text-center">
-    <div class="form-group">
-        {{ Form::submit('habilitar pallet', ['class' => 'btn btn-success']) }}
-    </div>
+
     @else
     <div class="btn btn-lg btn-danger disabled"> No se puede ingresar </div>
         @endif
-    {!! Form::close() !!}
+
 </div>
      
 @endsection

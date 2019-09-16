@@ -37,9 +37,8 @@ class auditoriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id)
     {
-        dd($request->all);
         $availableSubProcess = $request->get('rejecteds');
 
         foreach ($availableSubProcess as $key) {

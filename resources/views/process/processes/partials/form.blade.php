@@ -44,7 +44,7 @@
                             <td>{{ $pending->fruit->specie }}</td>
                             <td>{{ $pending->varieties->variety }}</td>
                             <td>{{ $pending->quality->name}}</td>
-                            <td> <a class="btn btn-sm btn-primary" href=" {{Route('subprocess.create', $pending->id)}} "> Reanudar </a> </td>
+                            <td> <a class="btn btn-sm btn-primary" href=" {{Route('rejected.store', $pending->id)}} "> Reanudar </a> </td>
                             @php
                             $uno = false;
                             @endphp

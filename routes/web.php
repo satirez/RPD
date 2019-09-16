@@ -142,6 +142,8 @@ Route::middleware('auth')->group(function () {
     Route::get('subprocess-list', 'SubProcessController@getData');
     Route::get('process-list', 'ProcessController@getData');
 
+    Route::get('receptionsearch/{proveedor}','ReceptionController@byProduction');
+
     Route::get('/printreception/{reception}', 'ReceptionController@print')->name('receptions.print');
     Route::get('/printdispatch/{dispatch}', 'DispatchController@print')->name('dispatchs.print');
 

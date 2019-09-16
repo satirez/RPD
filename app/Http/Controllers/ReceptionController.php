@@ -68,7 +68,11 @@ class ReceptionController extends Controller
 
     public function receptionsperproductor()
     {
-        return view('receptions.receptionsperproductor');
+
+        $listProviders = Providers::OrderBy('id', 'DES')->get();
+        $listSeasons = Season::OrderBy('id', 'DES')->get();
+
+        return view('receptions.receptionsperproductor', compact('listProviders','listSeasons'));
     }
 
     public function getData()
@@ -170,6 +174,39 @@ class ReceptionController extends Controller
     public function byFruit($id)
     {
         return Variety::where('fruit_id', $id)->get();
+    }
+
+    public function byProduction($id)
+    {
+        $receptions = Reception::where('provider_id', $id)->with([
+            'fruit',
+            'provider',
+            'supplies',
+            'season',
+            'quality',
+        ]);
+
+        return Datatables::of($receptions)
+        ->addColumn('fruit', function ($reception) {
+            return $reception->fruit->specie;
+        })
+        ->editColumn('provider', function ($reception) {
+            return $reception->provider->name;
+        })
+        ->editColumn('supplies', function ($reception) {
+            return $reception->supplies->name;
+        })
+        ->editColumn('season', function ($reception) {
+            return $reception->season->name;
+        })
+        ->editColumn('quality', function ($reception) {
+            return $reception->quality->name;
+        })
+        ->editColumn('available', function ($reception) {
+            return ('disponible');
+        })
+        ->make(true);
+
     }
 
     /**

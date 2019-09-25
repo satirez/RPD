@@ -10,26 +10,19 @@
 			<div class="col-md-12">
 				<h3 class="text-center">Listado de productos en camara</h3>
 				<div class="form-group">
-
-					<div class="h3 alert-danger ">
-						<p class="text-uppercase"> Debe ingresar el numero de cajas primero </p>
-					</div>
 					<div class="row">
-					<div class="col-md-4">
-	                {{ Form::label('numero_lote', 'Numero de tarja') }}
-	                {{ Form::text('numero_lote','P00'.$lastid, ['class' => 'form-control', 'readonly']) }}
-            		</div>
+						<div class="col-md-4">
+						{{ Form::label('numero_lote', 'Numero de tarja') }}
+						{{ Form::text('numero_lote','P00'.$lastid, ['class' => 'form-control', 'readonly']) }}
+						</div>
             		</div>
             		<br>
 
-					
-				
-
-
-				
-		         
 
 					<div class="row">
+					<div class="alert alert-danger" role="alert">
+						Ingrese la cantidad de cajas
+					</div>
 						<div class="col-md-4">
 						<label for="lote"> Numero de Cajas</label>
 						<input name="lote" id="contable" type="text" placeholder="Ej: 90" class="form-control">

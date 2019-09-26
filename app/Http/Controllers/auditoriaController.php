@@ -39,13 +39,7 @@ class auditoriaController extends Controller
      */
     public function store($id)
     {
-        $availableSubProcess = $request->get('rejecteds');
-
-        foreach ($availableSubProcess as $key) {
-            $SubProcess = SubProcess::where('id', $key)->first();
-            SubProcess::where('id', $key)->update(['rejected' => 0]);
-        }
-        return redirect()->route('home')->with('info','Pallets actualizados con exito');
+      
     }
 
     /**

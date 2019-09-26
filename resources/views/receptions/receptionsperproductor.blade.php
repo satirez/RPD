@@ -42,9 +42,7 @@
             <script>
                 $(function(){
                         $('#provedor').on('change', onSelectProyectChange);
-                        
-                        
-
+                    
                     });
                 
                     function onSelectProyectChange(){

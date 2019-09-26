@@ -77,9 +77,14 @@ class auditoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $subprocess = SubProcess::where('id', $id)->first();
+
+        $subprocess = SubProcess::where('id', $id)->update(['rejected' => 0]);
+
+        return back()->with('habilitado',"Actualizado!");
+
     }
 
     /**

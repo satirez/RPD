@@ -91,6 +91,7 @@ Route::middleware('auth')->group(function () {
     
     Route::post('/auditoria/rejected/{id} ', 'auditoriaController@store')->name('auditoria.store')->middleware('permission:auditoria.create');
     Route::get('/auditoria/rejected/', 'auditoriaController@index')->name('auditoria.index')->middleware('permission:auditoria.index');
+    Route::get('/auditoria/rejected/{id}', 'auditoriaController@update')->name('auditoria.update')->middleware('permission:auditoria.index');
 
 
     //Rechazado
@@ -188,6 +189,9 @@ Route::middleware('auth')->group(function () {
 
     Route::put('/auditoria/rejected/{subprocess}', 'SubProcessController@update')->name('subprocess.update')->middleware('permission:subprocess.edit');
 
+    Route::post('/auditoria/{id}', 'auditoriaController@update')->name('update.auditoria');
+
+    
     Route::get('/subprocess/{subprocess}', 'SubProcessController@show')->name('subprocess.show')->middleware('permission:subprocess.show');
 
     Route::delete('/subprocess/{subprocess}', 'SubProcessController@destroy')->name('subprocess.destroy')->middleware('permission:subprocess.destroy');

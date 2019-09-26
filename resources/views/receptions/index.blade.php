@@ -1,6 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('section')
+
+
+
+
+
 <div class="container">
     <div class="responsive">
         <div class="col-md-13 ">    
@@ -151,7 +156,6 @@
          });
 } );
 
- 
 
 
 </script>

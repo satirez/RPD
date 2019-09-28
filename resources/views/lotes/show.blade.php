@@ -12,40 +12,37 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="table-responsive">
-                        @foreach($subprocess as $subproces)
+                        
+                        
                         <table class="table table-hover">
 
                             <tbody>
-
+                            @foreach($lotes as $lote)
+                                <tr class="table-dark text-danger">
+                                    <th> Tarja</th>
+                                    <th> {{ $lote->numero_lote }}</th>
+                                </tr>
                                 <tr class="table-dark text-dark">
-
-                                    <th> Tarjas </th>
+                                    <th> Fruta</th>
+                                    <th> {{ $lote->fruit->specie }} - {{$lote->varieties->variety}} </th>
+                                </tr>
+                                <tr class="table-dark text-dark">
+                                    <th> Calidad</th>
+                                    <th> {{ $lote->quality->name }} </th>
+                                </tr>
+                                @endforeach
+                                @foreach($subprocess as $subproces)
+                                <tr class="table-light text-dark">
+                                    <th> Tarja </th>
                                     <th> SP0{{ $subproces->sub_process_id }}</th>
                                 </tr>
-                                <tr>
-                                    <th> Formato </th>
-                                    <th> Formato </th>
-                                </tr>
-                                <tr>
-                                    <th> Fruta </th>
-                                    <th> Fruta </th>
-                                </tr>
-                                <tr>
-                                    <th> Calidad </th>
-                                    <th> Calidad </th>
-                                </tr>
-
-                               
-                               
-                              
-                              
-
-
+                                @endforeach
                                 <br>
                             </tbody>
 
                         </table>
-                        @endforeach
+                        
+                        
                     </div>
                     <!-- /.table-responsive -->
                 </div>

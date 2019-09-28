@@ -123,7 +123,8 @@ class LoteController extends Controller
     public function show(Lote $lote)
     {
         $subprocess = DB::table('lote_sub_process')->where('lote_id', $lote->id)->get();
-        return view('lotes.show', compact('subprocess'));
+        $lotes = Lote::where('id', $lote->id)->get();
+        return view('lotes.show', compact('subprocess', 'lotes'));
     }
 
     /**

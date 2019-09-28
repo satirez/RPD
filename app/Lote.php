@@ -39,4 +39,8 @@ class Lote extends Model
     {
         return $this->belongsTo(Variety::class,'variety_id');
     }
+    public function quality()
+    {
+        return $this->belongsTo(Quality::class);
+    }
 }

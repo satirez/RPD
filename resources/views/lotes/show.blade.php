@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 style="text-align:center;">Detalle de Lote:</h4>
+                    <h4 style="text-align:center;">Detalle de Pallet: </h4>
                     <a class="btn btn-sm btn-danger pull-left " href="{{ Route ('lotes.index') }}"> Salir </a>
                 </div>
                 <!-- /.panel-heading -->
@@ -18,11 +18,21 @@
                             <tbody>
 
                                 <tr class="table-dark text-dark">
+
                                     <th> Tarjas </th>
-                                    <th> SP0{{ $subproces->id }}</th>
-                                    <th> SP0{{ $subproces->fruit->specie }}</th>
-                                    <th> SP0{{ $subproces->varieties->variety }}</th>
-                                    <th> SP0{{ $subproces->quality->name }}</th>
+                                    <th> SP0{{ $subproces->sub_process_id }}</th>
+                                </tr>
+                                <tr>
+                                    <th> Formato </th>
+                                    <th> Formato </th>
+                                </tr>
+                                <tr>
+                                    <th> Fruta </th>
+                                    <th> Fruta </th>
+                                </tr>
+                                <tr>
+                                    <th> Calidad </th>
+                                    <th> Calidad </th>
                                 </tr>
 
                                

@@ -1,48 +1,50 @@
 
 <div class="col-md-12">
-    <h1> Recepcion {{ $receptions->tarja}}  </h1>
+    <h1>## RECEPCION {{ $receptions->tarja}}  ##</h1>
 
 <div class="table-responsive">
     <table  class=" cell-border order-column">
         <thead>
             <tr>
-                <td><strong>Tarja  .................................................................................................................................</strong></td>
-                <td><strong> {{ $receptions->tarja}}</strong></td>
+           
+                <td><h3>TARJA....................................</h3></td>
+                <td><h3> {{ $receptions->tarja}}</h3></td>
+                
             </tr>
 
             <tr>
-                <td><strong>Peso Neto .........................................................................................................................</strong></td>
-                <td><strong> {{ $receptions->grossweight}}</strong></td>
+                <td><h3>PESO NETO..........................</h3></td>
+                <td><h3> {{ $receptions->grossweight}}</h3></td>
             </tr>
 
             <tr>
-                <td><strong>Provedor ...........................................................................................................................</strong></td>
-                <td><strong> {{ $receptions->provider->name}}</strong></td>
+                <td><h3>PROVEEDOR.......................</h3></td>
+                <td><h3> {{ $receptions->provider->name}}</h3></td>
             </tr>
 
             <tr>
-                <td><strong>Fruta .................................................................................................................................</strong></td>
-                <td><strong> {{ $receptions->fruit->specie}}</strong></td>
+                <td><h3>FRUTA...................................</h3></td>
+                <td><h3> {{ $receptions->fruit->specie}}</h3></td>
             </tr>
 
             <tr>
-                <td><strong>Temporada .......................................................................................................................</strong></td>
-                <td><strong> {{ $receptions->season->name}}</strong></td>
+                <td><h3>TEMPORADA........................</h3></td>
+                <td><h3> {{ $receptions->season->name}}</h3></td>
             </tr>
 
             <tr>
-                <td><strong>Estatus  ..............................................................................................................................</strong></td>
-                <td><strong> {{ $receptions->supplies->name }}</strong></td>
+                <td><h3>ESTATUS..............................</h3></td>
+                <td><h3> {{ $receptions->supplies->name }}</h3></td>
             </tr>
 
             <tr>
-                <td><strong>Cantidad ...........................................................................................................................</strong></td>
-                <td><strong> {{ $receptions->quantity }}</strong></td>
+                <td><h3>CANTIDAD...........................</h3></td>
+                <td><h3> {{ $receptions->quantity }}</h3></td>
             </tr>
 
             <tr>
-                <td><strong>Peso Palet .........................................................................................................................</strong></td>
-                <td><strong> {{ $receptions->palet_weight }}</strong></td>
+                <td><h3>PESO PALET...........................</h3></td>
+                <td><h3> {{ $receptions->palet_weight }}</h3></td>
             </tr>
 
         </thead>

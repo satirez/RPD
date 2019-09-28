@@ -19,76 +19,45 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/charts', function () {
-    return view('mcharts');
-});
-Route::get('/tables', function () {
-    return view('table');
-});
-Route::get('/forms', function () {
-    return view('form');
-});
-Route::get('/grid', function () {
-    return view('grid');
-});
-Route::get('/buttons', function () {
-    return view('buttons');
-});
-Route::get('/icons', function () {
-    return view('icons');
-});
-Route::get('/panels', function () {
-    return view('panel');
-});
-Route::get('/typography', function () {
-    return view('typography');
-});
-Route::get('/notifications', function () {
-    return view('notifications');
-});
-Route::get('/blank', function () {
-    return view('blank');
-});
-Route::get('/documentation', function () {
-    return view('documentation');
-});
 Route::middleware('auth')->group(function () {
     //Roles
     //ruta 		//nombre de ruta 	//Permiso
 
-    Route::group(['middleware' => 'auth'], function () {
-        Route::resource('roles', 'RoleController')->names('roles')->parameters(['roles' => 'role']);
-    });
-
-    //Route::post('/roles/store', 'RoleController@store')->name('roles.store')->middleware('permission:roles.create');
-    //Route::get('/roles', 'RoleController@index')->name('roles.index')->middleware('permission:roles.index');
-    //Route::get('/roles/create', 'RoleController@create')->name('roles.create')->middleware('permission:roles.create');
-    //Route::put('/roles/{role}', 'RoleController@update')->name('roles.update')->middleware('permission:roles.edit');
-    //Route::get('/roles/{role}', 'RoleController@show')->name('roles.show')->middleware('permission:roles.show');
-    //Route::delete('/roles/{role}', 'RoleController@destroy')->name('roles.destroy')->middleware('permission:roles.destroy');
-    //Route::get('/roles/{role}/edit', 'RoleController@edit')->name('roles.edit')->middleware('permission:roles.edit');
+    Route::post('/roles/store', 'RoleController@store')->name('roles.store')->middleware('permission:roles.create');
+    Route::get('/roles', 'RoleController@index')->name('roles.index')->middleware('permission:roles.index');
+    Route::get('/roles/create', 'RoleController@create')->name('roles.create')->middleware('permission:roles.create');
+    Route::put('/roles/{role}', 'RoleController@update')->name('roles.update')->middleware('permission:roles.edit');
+    Route::get('/roles/{role}', 'RoleController@show')->name('roles.show')->middleware('permission:roles.show');
+    Route::delete('/roles/{role}', 'RoleController@destroy')->name('roles.destroy')->middleware('permission:roles.destroy');
+    Route::get('/roles/{role}/edit', 'RoleController@edit')->name('roles.edit')->middleware('permission:roles.edit');
+    
+    
     //Users
     //ruta 		//nombre de ruta 	//Permiso
 
-    Route::group(['middleware' => 'auth'], function () {
-        Route::resource('users', 'UserController')->names('users')->parameters(['users' => 'user']);
-    });
+    Route::get('/users', 'UserController@index')->name('users.index')->middleware('permission:users.index');
+    Route::get('/users/create', 'UserController@create')->name('users.create')->middleware('permission:users.create');
+    Route::post('/users/store', 'UserController@store')->name('users.store')->middleware('permission:users.create');
 
-    //Route::get('/users', 'UserController@index')->name('users.index')->middleware('permission:users.index');
-    //Route::get('/users/create', 'UserController@create')->name('users.create')->middleware('permission:users.create');
-    //Route::post('/users/store', 'UserController@store')->name('users.store')->middleware('permission:users.create');
-
-    //Route::put('/users/{user}', 'UserController@update')->name('users.update')->middleware('permission:users.edit');
-    //Route::get('/users/{user}', 'UserController@show')->name('users.show')->middleware('permission:users.show');
-    //Route::delete('/users/{user}', 'UserController@destroy')->name('users.destroy')->middleware('permission:users.destroy');
-    //Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit')->middleware('permission:users.edit');
+    Route::put('/users/{user}', 'UserController@update')->name('users.update')->middleware('permission:users.edit');
+    Route::get('/users/{user}', 'UserController@show')->name('users.show')->middleware('permission:users.show');
+    Route::delete('/users/{user}', 'UserController@destroy')->name('users.destroy')->middleware('permission:users.destroy');
+    Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit')->middleware('permission:users.edit');
+    
+    
     //Supplies
     //ruta 		//nombre de ruta 	//Permiso
-    Route::group(['middleware' => 'auth'], function () {
-        Route::resource('supplies', 'SuppliesController')->names('admin.supplies')->parameters(['supplies' => 'supplie']);
-    });
-
     
+    Route::get('/supplies', 'SuppliesController@index')->name('admin.supplies.index')->middleware('permission:admin.supplies.index');
+    Route::get('/supplies/create', 'SuppliesController@create')->name('admin.supplies.create')->middleware('permission:admin.supplies.create');
+    Route::post('/supplies/store', 'SuppliesController@store')->name('admin.supplies.store')->middleware('permission:admin.supplies.create');
+
+    Route::put('/supplies/{supplie}', 'SuppliesController@update')->name('admin.supplies.update')->middleware('permission:admin.supplies.edit');
+    Route::get('/supplies/{supplie}', 'SuppliesController@show')->name('admin.supplies.show')->middleware('permission:admin.supplies.show');
+    Route::delete('/supplies/{supplie}', 'SuppliesController@destroy')->name('admin.supplies.destroy')->middleware('permission:admin.supplies.destroy');
+    Route::get('/supplies/{supplie}/edit', 'SuppliesController@edit')->name('admin.supplies.edit')->middleware('permission:admin.supplies.edit');
+
+    //Auditoria
     Route::post('/auditoria/rejected/{id} ', 'auditoriaController@store')->name('auditoria.store')->middleware('permission:auditoria.create');
     Route::get('/auditoria/rejected/', 'auditoriaController@index')->name('auditoria.index')->middleware('permission:auditoria.index');
     Route::get('/auditoria/rejected/{id}', 'auditoriaController@update')->name('auditoria.update')->middleware('permission:auditoria.index');

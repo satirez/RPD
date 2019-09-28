@@ -28,7 +28,7 @@
 
                                 <tr>
                                     <th> Temporada </th>
-                                    <th><h5> {{ $reception->season_id }}</h5></th>
+                                    <th><h5> {{ $reception->season->name }}</h5></th>
                                 </tr>
                                 
                                 <tr class="table-warning">
@@ -47,12 +47,12 @@
                                 
                                 <tr>
                                     <th> Fruta </th>
-                                    <th><h5> {{ $reception->fruit_id }}</h5></th>
+                                    <th><h5> {{ $reception->fruit->specie }} - {{$reception->varieties->variety}} </h5></th>
                                 </tr>
                                 
                                 <tr>
                                     <th> Calidad </th>
-                                    <th><h5> {{ $reception->quality_id }}</h5></th>
+                                    <th><h5> {{ $reception->quality->name }}</h5></th>
                                 </tr>
                                  <tr>
                                     <th> Nombre de conductor </th>

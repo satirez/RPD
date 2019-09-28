@@ -19,7 +19,10 @@
 
                                 <tr class="table-dark text-dark">
                                     <th> Tarjas </th>
-                                    <th> SP0{{ $subproces->subprocesses->id }}</th>
+                                    <th> SP0{{ $subproces->id }}</th>
+                                    <th> SP0{{ $subproces->fruit->specie }}</th>
+                                    <th> SP0{{ $subproces->varieties->variety }}</th>
+                                    <th> SP0{{ $subproces->quality->name }}</th>
                                 </tr>
 
                                

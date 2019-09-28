@@ -68,4 +68,5 @@ class Reception extends Model
         return $this->belongsTo(Variety::class,'variety_id');
     }
     
+    
 }

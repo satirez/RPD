@@ -101,6 +101,10 @@
             var table = $('#laravel_datatable3').DataTable({
                 processing: true,
                 serverSide: true,
+                       dom: 'Bfrtip',
+                   buttons: [
+                             'excel', 'pdf'
+                            ],
                
                 order: [[ 0, 'desc' ]], //cambiar dspues
                 iDisplayLength: 100,
@@ -132,13 +136,10 @@
                      { data: 'provider', name: 'provider.name' },
                      { data: 'quality', name: 'quality.name' },
                      { data: 'fruit', name: 'fruit.specie' },
-                     { data: 'fruit', name: 'fruit' },
+                     { data: 'varieties', name: 'varieties.variety' },
                      { data: 'quantity', name: 'quantity' },
                      { data: 'netweight', name: 'netweight' },
                      { data: 'grossweight', name: 'grossweight' },
-                     
-                     
-                   
                      {
                             data: 'id',
                                 "render": function(data, type, row, meta) {
@@ -148,7 +149,6 @@
 
                                     return data;
                                     },
-                                  
                      },
 
               

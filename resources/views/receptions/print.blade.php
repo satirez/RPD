@@ -4,48 +4,19 @@
 
 <div class="table-responsive">
     <table  class=" cell-border order-column">
-        <thead>
-            <tr>
-                <td><strong>Tarja  ..........</strong></td>
-                <td><strong> {{ $receptions->tarja}}</strong></td>
-            </tr>
-
-            <tr>
-                <td><strong>Peso Neto ..........</strong></td>
-                <td><strong> {{ $receptions->grossweight}}</strong></td>
-            </tr>
-
-            <tr>
-                <td><strong>Provedor ..........</strong></td>
-                <td><strong> {{ $receptions->provider->name}}</strong></td>
-            </tr>
-
-            <tr>
-                <td><strong>Fruta ..........</strong></td>
-                <td><strong> {{ $receptions->fruit->specie}}</strong></td>
-            </tr>
-
-            <tr>
-                <td><strong>Temporada ..........</strong></td>
-                <td><strong> {{ $receptions->season->name}}</strong></td>
-            </tr>
-
-            <tr>
-                <td><strong>Estatus  ..........</strong></td>
-                <td><strong> {{ $receptions->supplies->name }}</strong></td>
-            </tr>
-
-            <tr>
-                <td><strong>Cantidad ..........</strong></td>
-                <td><strong> {{ $receptions->quantity }}</strong></td>
-            </tr>
-
-            <tr>
-                <td><strong>Peso Palet ..........</strong></td>
-                <td><strong> {{ $receptions->palet_weight }}</strong></td>
-            </tr>
-
-        </thead>
+        
+           
+                <h3>Tarja  ........................................................ {{ $receptions->tarja}}</h3>
+                <h3>Peso Neto ................................................. {{ $receptions->grossweight}} Kg.</h3>
+                <h3>Provedor .................................................. {{ $receptions->provider->name}} </h3>
+                <h3>Fruta ....................................................... {{ $receptions->fruit->specie}}</h3>
+                <h3>Temporada ............................................ {{ $receptions->season->name}}</h3>
+                <h3>Estatus  .................................................. {{ $receptions->supplies->name }}</h3>
+                <h3>Cantidad .................................................. {{ $receptions->quantity }} Kg.</h3>
+                <h3>Peso Palet ................................................ {{ $receptions->palet_weight }} Kg.</h3>
+              
+           
+        
 
     </table>
     </div>

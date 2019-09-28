@@ -93,13 +93,13 @@ class DispatchController extends Controller
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $listSeasons = Season::OrderBy('id', 'DES')->pluck('name', 'id');
         $listTipoTransporte = TipoTransporte::OrderBy('id', 'DES')->pluck('name', 'id');
-        $listTipoProductoDispatch = TipoProductoDispatch::OrderBy('id', 'DES')->pluck('name', 'id');
+       
 
         return view('dispatch.create', compact(
             'listexporter', 'lotes',
             'listRejecteds', 'listtipodispatch',
             'listFormat', 'listFruits', 'listQualities', 'listSeasons',
-            'listTipoTransporte', 'listTipoProductoDispatch')
+            'listTipoTransporte')
         );
     }
 

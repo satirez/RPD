@@ -117,7 +117,7 @@ class ReceptionController extends Controller
 
         $receptions = Reception::where('id',$id)->first();
 
-        $customPaper = array(0,0,567,378);
+        $customPaper = array(0,0,378,567);
         $pdf = PDF::loadView('receptions.print  ',compact('receptions'))->setPaper($customPaper);
     
         return $pdf->stream();

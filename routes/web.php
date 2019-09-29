@@ -122,32 +122,27 @@ Route::middleware('auth')->group(function () {
     //Process
     //ruta 		//referencia de la ruta 	//con la función...
 
-    Route::group(['middleware' => 'auth'], function () {
-        Route::resource('processes', 'ProcessController')->names('process.processes')->parameters(['processes' => 'process']);
-    });
+    Route::get('/processes/create', 'ProcessController@create')->name('process.processes.create')->middleware('permission:process.processes.create');
+    Route::post('/processes/store', 'ProcessController@store')->name('process.processes.store')->middleware('permission:process.processes.create');
+    Route::get('/processes', 'ProcessController@index')->name('process.processes.index')->middleware('permission:process.processes.index');
+    Route::put('/processes/{process}', 'ProcessController@update')->name('process.processes.update')->middleware('permission:process.processes.edit');
+    Route::get('/processes/{process}', 'ProcessController@show')->name('process.processes.show')->middleware('permission:process.processes.show');
 
+    Route::delete('/processes/{process}', 'ProcessController@destroy')->name('process.processes.destroy')->middleware('permission:process.processes.destroy');
 
+    Route::get('/processes/{process}/edit', 'ProcessController@edit')->name('process.processes.edit')->middleware('permission:process.processes.edit');
 
-
-    //Route::get('/processes/create', 'ProcessController@create')->name('process.processes.create')->middleware('permission:process.processes.create');
-    //Route::post('/processes/store', 'ProcessController@store')->name('process.processes.store')->middleware('permission:process.processes.create');
-    //Route::get('/processes', 'ProcessController@index')->name('process.processes.index')->middleware('permission:process.processes.index');
-    //Route::put('/processes/{process}', 'ProcessController@update')->name('process.processes.update')->middleware('permission:process.processes.edit');
-    //Route::get('/processes/{process}', 'ProcessController@show')->name('process.processes.show')->middleware('permission:process.processes.show');
-
-    //Route::delete('/processes/{process}', 'ProcessController@destroy')->name('process.processes.destroy')->middleware('permission:process.processes.destroy');
-
-    //Route::get('/processes/{process}/edit', 'ProcessController@edit')->name('process.processes.edit')->middleware('permission:process.processes.edit');
-
-    //SubProcess
-
-    Route::group(['middleware' => 'auth'], function () {
-        Route::resource('subprocess', 'SubProcessController')->names('subprocess')->parameters(['subprocess' => 'subprocess']);
-    });
+   
 
     // lote
     Route::group(['middleware' => 'auth'], function () {
         Route::resource('lotes', 'LoteController')->names('lotes')->parameters(['lotes' => 'lote']);
+    });
+
+     //SubProcess
+
+     Route::group(['middleware' => 'auth'], function () {
+        Route::resource('subprocess', 'SubProcessController')->names('subprocess')->parameters(['subprocess' => 'subprocess']);
     });
 
     Route::get('/subprocess/create/{subprocess}', 'SubProcessController@create')->name('subprocess.create')->middleware('permission:subprocess.create');
@@ -173,19 +168,19 @@ Route::middleware('auth')->group(function () {
         Route::resource('providers', 'ProviderController')->names('admin.providers')->parameters(['providers' => 'provider']);
     });
 
-    //Route::post('/providers/store', 'ProviderController@store')->name('admin.providers.store')->middleware('permission:admin.providers.create');
+    Route::post('/providers/store', 'ProviderController@store')->name('admin.providers.store')->middleware('permission:admin.providers.create');
 
-    //Route::get('/providers/', 'ProviderController@index')->name('admin.providers.index')->middleware('permission:admin.providers.index');
+    Route::get('/providers', 'ProviderController@index')->name('admin.providers.index')->middleware('permission:admin.providers.index');
 
-    //Route::get('/providers/create', 'ProviderController@create')->name('admin.providers.create')->middleware('permission:admin.providers.create');
+    Route::get('/providers/create', 'ProviderController@create')->name('admin.providers.create')->middleware('permission:admin.providers.create');
 
-    //Route::put('/providers/{provider}', 'ProviderController@update')->name('admin.providers.update')->middleware('permission:admin.providers.edit');
+    Route::put('/providers/{provider}', 'ProviderController@update')->name('admin.providers.update')->middleware('permission:admin.providers.edit');
 
-    //Route::get('/providers/{provider}', 'ProviderController@show')->name('admin.providers.show')->middleware('permission:admin.providers.show');
+    Route::get('/providers/{provider}', 'ProviderController@show')->name('admin.providers.show')->middleware('permission:admin.providers.show');
 
-    //Route::delete('/providers/{provider}', 'ProviderController@destroy')->name('admin.providers.destroy')->middleware('permission:admin.providers.destroy');
+    Route::delete('/providers/{provider}', 'ProviderController@destroy')->name('admin.providers.destroy')->middleware('permission:admin.providers.destroy');
 
-    //Route::get('/providers/{provider}/edit', 'ProviderController@edit')->name('admin.providers.edit')->middleware('permission:admin.providers.edit');
+    Route::get('/providers/{provider}/edit', 'ProviderController@edit')->name('admin.providers.edit')->middleware('permission:admin.providers.edit');
 
     //Fruta
     //Lote

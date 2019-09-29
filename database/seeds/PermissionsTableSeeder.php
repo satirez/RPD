@@ -107,7 +107,70 @@ class PermissionsTableSeeder extends Seeder
 			        "description" => 'Eliminar insumo',
 			    ]);      
 
+				//Rechazos	
+			    Permission::create([
+			    	"name" => 'Navegar rechazos',
+			        "slug" => 'admin.rejecteds.index',
+			        "description" => 'Ver Insumos',
+			    ]);
+
+			    Permission::create([
+			        "name" => 'Ver detalle del rechazo',
+			        "slug" => 'admin.rejecteds.show',
+			        "description" => 'Detalle rechazo',
+			    ]);
+
+			    Permission::create([
+			       	"name" => 'Creacion rechazo',
+			        "slug" => 'admin.rejecteds.create',
+			        "description" => 'Crear rechazo',
+			    ]);
+
+			    Permission::create([
+			        "name" => 'Edicion rechazo',
+			        "slug" => 'admin.rejecteds.edit',
+			        "description" => 'Editar rechazo',
+			    ]);
+
+			    Permission::create([
+			        "name" => 'Eliminar rechazo',
+			        "slug" => 'admin.rejecteds.destroy',
+			        "description" => 'Eliminar rechazo',
+				]);  
+				
+				//Proveedores	
+			    Permission::create([
+			    	"name" => 'Navegar proveedores',
+			        "slug" => 'admin.providers.index',
+			        "description" => 'Ver proveedor',
+			    ]);
+
+			    Permission::create([
+			        "name" => 'Ver detalle del proveedor',
+			        "slug" => 'admin.providers.show',
+			        "description" => 'Detalle proveedor',
+			    ]);
+
+			    Permission::create([
+			       	"name" => 'Creacion proveedor',
+			        "slug" => 'admin.providers.create',
+			        "description" => 'Crear proveedor',
+			    ]);
+
+			    Permission::create([
+			        "name" => 'Edicion proveedor',
+			        "slug" => 'admin.providers.edit',
+			        "description" => 'Editar proveedor',
+			    ]);
+
+			    Permission::create([
+			        "name" => 'Eliminar proveedor',
+			        "slug" => 'admin.providers.destroy',
+			        "description" => 'Eliminar proveedor',
+			    ]);  
 		
+
+
 		//Fin administracion	             
 
 		//Recepcion 
@@ -147,38 +210,66 @@ class PermissionsTableSeeder extends Seeder
 		//Proceso 
 				Permission::create([
 			    	"name" => 'Navegar en proceso',
-			        "slug" => 'processes.index',
+			        "slug" => 'process.processes.index',
 			        "description" => 'Ver proceso',
 			    ]);
 
 			    Permission::create([
 			        "name" => 'Ver detalle de lo procesado',
-			        "slug" => 'processes.show',
+			        "slug" => 'process.processes.show',
 			        "description" => 'Detalle procesado'
 			    ]);
 
 			  	Permission::create([
 			       	"name" => 'Ingresar proceso',
-			        "slug" => 'processes.create',
+			        "slug" => 'process.processes.create',
 			        "description" => 'Ingresar proceso',
 			    ]);
 
 			    Permission::create([
 			        "name" => 'Edicion cualquier activo procesado',
-			        "slug" => 'processes.edit',
+			        "slug" => 'process.processes.edit',
 			        "description" => 'Editar procesado',
 			    ]);
 
 			    Permission::create([
 			        "name" => 'Eliminar activo procesado',
-			        "slug" => 'processes.destroy',
+			        "slug" => 'process.processes.destroy',
 			        "description" => 'Eliminar procesado',
 			    ]); 
 
 		//Fin Proceso 
 
-		//Proceso
+		//SubProceso
+		Permission::create([
+			"name" => 'Accesos a subprocesos',
+			"slug" => 'subprocess.index',
+			"description" => 'Acceso especiales',
+		]);
 
+		Permission::create([
+			"name" => 'Accesos a subprocesos',
+			"slug" => 'subprocess.show',
+			"description" => 'Acceso especiales'
+		]);
+
+		  Permission::create([
+			   "name" => 'Accesos a subprocesos ',
+			"slug" => 'subprocess.create',
+			"description" => 'Acceso especiales',
+		]);
+
+		Permission::create([
+			"name" => 'Accesos a subprocesos',
+			"slug" => 'subprocess.edit',
+			"description" => 'Acceso especiales',
+		]);
+
+		Permission::create([
+			"name" => 'Accesos a subprocesos ',
+			"slug" => 'subprocess.destroy ',
+			"description" => 'Acceso especiales',
+		]); 
         //Despacho
 
         //Aqui se hacen los permisos 

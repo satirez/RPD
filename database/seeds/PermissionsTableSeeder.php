@@ -167,10 +167,162 @@ class PermissionsTableSeeder extends Seeder
 			        "name" => 'Eliminar proveedor',
 			        "slug" => 'admin.providers.destroy',
 			        "description" => 'Eliminar proveedor',
-			    ]);  
+				]);  
+				
+					//Frutas	
+					Permission::create([
+						"name" => 'Navegar frutas',
+						"slug" => 'admin.fruits.index',
+						"description" => 'Ver proveedor',
+					]);
+	
+					Permission::create([
+						"name" => 'Ver detalle del fruta',
+						"slug" => 'admin.fruits.show',
+						"description" => 'Detalle fruta',
+					]);
+	
+					Permission::create([
+						   "name" => 'Creacion fruta',
+						"slug" => 'admin.fruits.create',
+						"description" => 'Crear fruta',
+					]);
+	
+					Permission::create([
+						"name" => 'Edicion fruta',
+						"slug" => 'admin.fruits.edit',
+						"description" => 'Editar fruta',
+					]);
+	
+					Permission::create([
+						"name" => 'Eliminar fruta',
+						"slug" => 'admin.fruits.destroy',
+						"description" => 'Eliminar fruta',
+					]); 
 		
+					//variedad	
+					Permission::create([
+						"name" => 'Navegar variedades',
+						"slug" => 'admin.varieties.index',
+						"description" => 'Ver veriedades',
+					]);
+	
+					Permission::create([
+						"name" => 'Ver detalle de la variedad',
+						"slug" => 'admin.varieties.show',
+						"description" => 'Detalle variedad',
+					]);
+	
+					Permission::create([
+						   "name" => 'Creacion de variedad',
+						"slug" => 'admin.varieties.create',
+						"description" => 'Crear variedad',
+					]);
+	
+					Permission::create([
+						"name" => 'Edicion variedad',
+						"slug" => 'admin.varieties.edit',
+						"description" => 'Editar variedad',
+					]);
+	
+					Permission::create([
+						"name" => 'Eliminar variedad',
+						"slug" => 'admin.varieties.destroy',
+						"description" => 'Eliminar variedad',
+					]); 
 
+					//Formato
+					Permission::create([
+						"name" => 'Navegar formato',
+						"slug" => 'admin.formats.index',
+						"description" => 'Ver formatos',
+					]);
+	
+					Permission::create([
+						"name" => 'Ver detalle del formato',
+						"slug" => 'admin.formats.show',
+						"description" => 'Detalle formato',
+					]);
+	
+					Permission::create([
+						   "name" => 'Creacion de formato',
+						"slug" => 'admin.formats.create',
+						"description" => 'Crear formato',
+					]);
+	
+					Permission::create([
+						"name" => 'Edicion formato',
+						"slug" => 'admin.formats.edit',
+						"description" => 'Editar formato',
+					]);
+	
+					Permission::create([
+						"name" => 'Eliminar formato',
+						"slug" => 'admin.formats.destroy',
+						"description" => 'Eliminar formato',
+					]); 
 
+					//Calidad
+					Permission::create([
+						"name" => 'Navegar calidad',
+						"slug" => 'admin.quality.index',
+						"description" => 'Ver calidad',
+					]);
+	
+					Permission::create([
+						"name" => 'Ver detalle del calidad',
+						"slug" => 'admin.quality.show',
+						"description" => 'Detalle de calidad',
+					]);
+	
+					Permission::create([
+						   "name" => 'Creacion de calidad',
+						"slug" => 'admin.quality.create',
+						"description" => 'Crear calidad',
+					]);
+	
+					Permission::create([
+						"name" => 'Edicion calidad',
+						"slug" => 'admin.quality.edit',
+						"description" => 'Editar calidad',
+					]);
+	
+					Permission::create([
+						"name" => 'Eliminar calidad',
+						"slug" => 'admin.quality.destroy',
+						"description" => 'Eliminar calidad',
+					]); 
+
+					//Exportadores
+					Permission::create([
+						"name" => 'Navegar exportadores',
+						"slug" => 'admin.exporters.index',
+						"description" => 'Ver exportadores',
+					]);
+	
+					Permission::create([
+						"name" => 'Ver detalle del exportador',
+						"slug" => 'admin.exporters.show',
+						"description" => 'Detalle de exportador',
+					]);
+	
+					Permission::create([
+						   "name" => 'Creacion de exportador',
+						"slug" => 'admin.exporters.create',
+						"description" => 'Crear exportador',
+					]);
+	
+					Permission::create([
+						"name" => 'Edicion exportador',
+						"slug" => 'admin.exporters.edit',
+						"description" => 'Editar exportador',
+					]);
+	
+					Permission::create([
+						"name" => 'Eliminar exportador',
+						"slug" => 'admin.exporters.destroy',
+						"description" => 'Eliminar exportador',
+					]); 
 		//Fin administracion	             
 
 		//Recepcion 

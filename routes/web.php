@@ -183,24 +183,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/providers/{provider}/edit', 'ProviderController@edit')->name('admin.providers.edit')->middleware('permission:admin.providers.edit');
 
     //Fruta
-    //Lote
     Route::group(['middleware' => 'auth'], function () {
         Route::resource('fruits', 'FruitController')->names('admin.fruits')->parameters(['fruits' => 'fruit']);
     });
 
-    //Route::post('/fruits/store', 'FruitController@store')->name('admin.fruits.store')->middleware('permission:admin.fruits.create');
+    Route::post('/fruits/store', 'FruitController@store')->name('admin.fruits.store')->middleware('permission:admin.fruits.create');
 
-    //Route::get('/fruits/', 'FruitController@index')->name('admin.fruits.index')->middleware('permission:admin.fruits.index');
+    Route::get('/fruits', 'FruitController@index')->name('admin.fruits.index')->middleware('permission:admin.fruits.index');
 
-    //Route::get('/fruits/create', 'FruitController@create')->name('admin.fruits.create')->middleware('permission:admin.fruits.create');
+    Route::get('/fruits/create', 'FruitController@create')->name('admin.fruits.create')->middleware('permission:admin.fruits.create');
 
-    //Route::put('/fruits/{fruit}', 'FruitController@update')->name('admin.fruits.update')->middleware('permission:admin.fruits.edit');
+    Route::put('/fruits/{fruit}', 'FruitController@update')->name('admin.fruits.update')->middleware('permission:admin.fruits.edit');
 
-    //Route::get('/fruits/{fruit}', 'FruitController@show')->name('admin.fruits.show')->middleware('permission:admin.fruits.show');
+    Route::get('/fruits/{fruit}', 'FruitController@show')->name('admin.fruits.show')->middleware('permission:admin.fruits.show');
 
-    //Route::delete('/fruits/{fruit}', 'FruitController@destroy')->name('admin.fruits.destroy')->middleware('permission:admin.fruits.destroy');
+    Route::delete('/fruits/{fruit}', 'FruitController@destroy')->name('admin.fruits.destroy')->middleware('permission:admin.fruits.destroy');
 
-    //Route::get('/fruits/{fruit}/edit', 'FruitController@edit')->name('admin.fruits.edit')->middleware('permission:admin.fruits.edit');
+    Route::get('/fruits/{fruit}/edit', 'FruitController@edit')->name('admin.fruits.edit')->middleware('permission:admin.fruits.edit');
 
     //Variead de fruta
 
@@ -208,19 +207,19 @@ Route::middleware('auth')->group(function () {
         Route::resource('varieties', 'VarietyController')->names('admin.varieties')->parameters(['varieties' => 'variety']);
     });
 
-    //Route::post('/varieties/store', 'VarietyController@store')->name('admin.varieties.store')->middleware('permission:admin.varieties.create');
+    Route::post('/varieties/store', 'VarietyController@store')->name('admin.varieties.store')->middleware('permission:admin.varieties.create');
 
-    //Route::get('/varieties/', 'VarietyController@index')->name('admin.varieties.index')->middleware('permission:admin.varieties.index');
+    Route::get('/varieties', 'VarietyController@index')->name('admin.varieties.index')->middleware('permission:admin.varieties.index');
 
-    //Route::get('/varieties/create', 'VarietyController@create')->name('admin.varieties.create')->middleware('permission:admin.varieties.create');
+    Route::get('/varieties/create', 'VarietyController@create')->name('admin.varieties.create')->middleware('permission:admin.varieties.create');
 
-    //Route::put('/varieties/{variety}', 'VarietyController@update')->name('admin.varieties.update')->middleware('permission:admin.varieties.edit');
+    Route::put('/varieties/{variety}', 'VarietyController@update')->name('admin.varieties.update')->middleware('permission:admin.varieties.edit');
 
-    //Route::get('/varieties/{variety}', 'VarietyController@show')->name('admin.varieties.show')->middleware('permission:admin.varieties.show');
+    Route::get('/varieties/{variety}', 'VarietyController@show')->name('admin.varieties.show')->middleware('permission:admin.varieties.show');
 
-    //Route::delete('/varieties/{variety}', 'VarietyController@destroy')->name('admin.varieties.destroy')->middleware('permission:admin.varieties.destroy');
+    Route::delete('/varieties/{variety}', 'VarietyController@destroy')->name('admin.varieties.destroy')->middleware('permission:admin.varieties.destroy');
 
-    //Route::get('/varieties/{variety}/edit', 'VarietyController@edit')->name('admin.varieties.edit')->middleware('permission:admin.varieties.edit');
+    Route::get('/varieties/{variety}/edit', 'VarietyController@edit')->name('admin.varieties.edit')->middleware('permission:admin.varieties.edit');
 
     //Formato
 
@@ -228,19 +227,19 @@ Route::middleware('auth')->group(function () {
         Route::resource('formats', 'FormatController')->names('admin.formats')->parameters(['formats' => 'format']);
     });
 
-    //Route::post('/formats/store', 'FormatController@store')->name('admin.formats.store')->middleware('permission:admin.formats.create');
+    Route::post('/formats/store', 'FormatController@store')->name('admin.formats.store')->middleware('permission:admin.formats.create');
 
-    //Route::get('/formats/', 'FormatController@index')->name('admin.formats.index')->middleware('permission:admin.formats.index');
+    Route::get('/formats', 'FormatController@index')->name('admin.formats.index')->middleware('permission:admin.formats.index');
 
-    //Route::get('/formats/create', 'FormatController@create')->name('admin.formats.create')->middleware('permission:admin.formats.create');
+    Route::get('/formats/create', 'FormatController@create')->name('admin.formats.create')->middleware('permission:admin.formats.create');
 
-    //Route::put('/formats/{format}', 'FormatController@update')->name('admin.formats.update')->middleware('permission:admin.formats.edit');
+    Route::put('/formats/{format}', 'FormatController@update')->name('admin.formats.update')->middleware('permission:admin.formats.edit');
 
-    //Route::get('/formats/{format}', 'FormatController@show')->name('admin.formats.show')->middleware('permission:admin.formats.show');
+    Route::get('/formats/{format}', 'FormatController@show')->name('admin.formats.show')->middleware('permission:admin.formats.show');
 
-    //Route::delete('/formats/{format}', 'FormatController@destroy')->name('admin.formats.destroy')->middleware('permission:admin.formats.destroy');
+    Route::delete('/formats/{format}', 'FormatController@destroy')->name('admin.formats.destroy')->middleware('permission:admin.formats.destroy');
 
-    //Route::get('/formats/{format}/edit', 'FormatController@edit')->name('admin.formats.edit')->middleware('permission:admin.formats.edit');
+    Route::get('/formats/{format}/edit', 'FormatController@edit')->name('admin.formats.edit')->middleware('permission:admin.formats.edit');
 
     //Quality
 
@@ -248,19 +247,19 @@ Route::middleware('auth')->group(function () {
         Route::resource('quality', 'QualityController')->names('admin.quality')->parameters(['quality' => 'quality']);
     });
 
-    //Route::post('/quality/store', 'QualityController@store')->name('admin.quality.store')->middleware('permission:admin.quality.create');
+    Route::post('/quality/store', 'QualityController@store')->name('admin.quality.store')->middleware('permission:admin.quality.create');
 
-    //Route::get('/quality/', 'QualityController@index')->name('admin.quality.index')->middleware('permission:admin.quality.index');
+    Route::get('/quality', 'QualityController@index')->name('admin.quality.index')->middleware('permission:admin.quality.index');
 
-    //Route::get('/quality/create', 'QualityController@create')->name('admin.quality.create')->middleware('permission:admin.quality.create');
+    Route::get('/quality/create', 'QualityController@create')->name('admin.quality.create')->middleware('permission:admin.quality.create');
 
-    //Route::put('/quality/{quality}', 'QualityController@update')->name('admin.quality.update')->middleware('permission:admin.quality.edit');
+    Route::put('/quality/{quality}', 'QualityController@update')->name('admin.quality.update')->middleware('permission:admin.quality.edit');
 
-    //Route::get('/quality/{quality}', 'QualityController@show')->name('admin.quality.show')->middleware('permission:admin.quality.show');
+    Route::get('/quality/{quality}', 'QualityController@show')->name('admin.quality.show')->middleware('permission:admin.quality.show');
 
-    //Route::delete('/quality/{quality}', 'QualityController@destroy')->name('admin.quality.destroy')->middleware('permission:admin.quality.destroy');
+    Route::delete('/quality/{quality}', 'QualityController@destroy')->name('admin.quality.destroy')->middleware('permission:admin.quality.destroy');
 
-    //Route::get('/quality/{quality}/edit', 'QualityController@edit')->name('admin.quality.edit')->middleware('permission:admin.quality.edit');
+    Route::get('/quality/{quality}/edit', 'QualityController@edit')->name('admin.quality.edit')->middleware('permission:admin.quality.edit');
 
     //Exportadores
 
@@ -268,19 +267,19 @@ Route::middleware('auth')->group(function () {
         Route::resource('exporters', 'ExporterController')->names('admin.exporters')->parameters(['exporters' => 'exporter']);
     });
 
-    //Route::post('/exporters/store', 'ExporterController@store')->name('admin.exporters.store')->middleware('permission:admin.exporters.create');
+    Route::post('/exporters/store', 'ExporterController@store')->name('admin.exporters.store')->middleware('permission:admin.exporters.create');
 
-    //Route::get('/exporters/', 'ExporterController@index')->name('admin.exporters.index')->middleware('permission:admin.exporters.index');
+    Route::get('/exporters', 'ExporterController@index')->name('admin.exporters.index')->middleware('permission:admin.exporters.index');
 
-    //Route::get('/exporters/create', 'ExporterController@create')->name('admin.exporters.create')->middleware('permission:admin.exporters.create');
+    Route::get('/exporters/create', 'ExporterController@create')->name('admin.exporters.create')->middleware('permission:admin.exporters.create');
 
-    //Route::put('/exporters/{exporter}', 'ExporterController@update')->name('admin.exporters.update')->middleware('permission:admin.exporters.edit');
+    Route::put('/exporters/{exporter}', 'ExporterController@update')->name('admin.exporters.update')->middleware('permission:admin.exporters.edit');
 
-    //Route::get('/exporters/{exporter}', 'ExporterController@show')->name('admin.exporter.show')->middleware('permission:admin.exporter.show');
+    Route::get('/exporters/{exporter}', 'ExporterController@show')->name('admin.exporter.show')->middleware('permission:admin.exporter.show');
 
-    //Route::delete('/exporter/{exporter}', 'ExporterController@destroy')->name('admin.exporters.destroy')->middleware('permission:admin.exporters.destroy');
+    Route::delete('/exporter/{exporter}', 'ExporterController@destroy')->name('admin.exporters.destroy')->middleware('permission:admin.exporters.destroy');
 
-    //Route::get('/exporters/{exporter}/edit', 'ExporterController@edit')->name('admin.exporters.edit')->middleware('permission:admin.exporters.edit');
+    Route::get('/exporters/{exporter}/edit', 'ExporterController@edit')->name('admin.exporters.edit')->middleware('permission:admin.exporters.edit');
 
     //Season
     Route::group(['middleware' => 'auth'], function () {

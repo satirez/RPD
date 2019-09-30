@@ -6,12 +6,14 @@ use App\Format;
 use App\SubProcess;
 use App\Process;
 use App\Reception;
-
 use App\Quality;
 use App\motivorejected;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
+
+use Yajra\Datatables\Datatables;
+
 class SubProcessController extends Controller
 {
     /**
@@ -80,24 +82,20 @@ class SubProcessController extends Controller
         $subprocesses = SubProcess::where('available', 1)->with([
             'format',
             'quality',
-            
-            
         ]); 
-
 
         return Datatables::of($subprocesses)
             ->addColumn('format', function ($subprocess) {
-                return $subprocesses->format->name  2
+                return $subprocess->format->name;
             })
-            
             ->editColumn('quality', function ($subprocess) {
-                return $subprocesses->quality->name;
+                return $subprocess->quality->name;
             })
             
-      
-
             ->make(true);
     
+
+
     }
 
     /**

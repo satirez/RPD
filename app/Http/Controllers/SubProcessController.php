@@ -11,7 +11,7 @@ use App\Quality;
 use App\motivorejected;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
+use Barryvdh\DomPDF\Facade as PDF;
 class SubProcessController extends Controller
 {
     /**
@@ -31,6 +31,18 @@ class SubProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function print($id){
+
+        $subprocesses = SubProcess::where('id',$id)->first();
+
+        $customPaper = array(0,0,378,567);
+        $pdf = PDF::loadView('subprocess.print  ',compact('subprocesses'))->setPaper($customPaper);
+    
+        return $pdf->stream();
+
+    }
+
     public function create(Request $request, $id)
     {
 
@@ -64,7 +76,28 @@ class SubProcessController extends Controller
 
     public function getData()
     {
-        return Datatables::of(SubProcess::query())->make(true);
+        
+        $subprocesses = SubProcess::where('available', 1)->with([
+            'format',
+            'quality',
+            
+            
+        ]); 
+
+
+        return Datatables::of($subprocesses)
+            ->addColumn('format', function ($subprocess) {
+                return $subprocesses->format->name  2
+            })
+            
+            ->editColumn('quality', function ($subprocess) {
+                return $subprocesses->quality->name;
+            })
+            
+      
+
+            ->make(true);
+    
     }
 
     /**

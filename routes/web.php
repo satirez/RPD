@@ -116,6 +116,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/printreception/{reception}', 'ReceptionController@print')->name('receptions.print');
     Route::get('/printdispatch/{dispatch}', 'DispatchController@print')->name('dispatchs.print');
+    Route::get('/printsubprocess/{subprocess}', 'SubProcessController@print')->name('subprocess.print');
 
     //Consulta Ajax Select
 
@@ -354,13 +355,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dispatch/{dispatch}', 'DispatchController@show')->name('dispatch.show')->middleware('permission:dispatch.show');
 
-    Route::delete('/dispatch/{dispatch}', 'dispatchcontroller@destroy')->name('dispatch.destroy')->middleware('permission:dispatch.destroy');
+    Route::delete('/dispatch/{dispatch}', 'Dispatchcontroller@destroy')->name('dispatch.destroy')->middleware('permission:dispatch.destroy');
 
-    Route::get('/dispatch/{dispatch}/edit', 'dispatchcontroller@edit')->name('dispatch.edit')->middleware('permission:dispatch.edit');
+    Route::get('/dispatch/{dispatch}/edit', 'Dispatchcontroller@edit')->name('dispatch.edit')->middleware('permission:dispatch.edit');
 
-    Route::get('/camara', 'dispatchcontroller@getLotes')->name('dispatch.getProcess')->middleware('permission:dispatch.getProcess');
-
+    Route::get('/camara', 'Dispatchcontroller@getLotes')->name('dispatch.getProcess')->middleware('permission:dispatch.getProcess');
     Route::get('dispatch-list', 'DispatchController@getData');
+  
 
     //TipoDespacho
 

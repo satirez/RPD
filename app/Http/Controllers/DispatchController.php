@@ -62,6 +62,10 @@ class DispatchController extends Controller
         return view('dispatch.camara', compact('lotes'));
     }
 
+
+   
+    
+
     public function showCam(Lote $lotes)
     {
         $lote1 = $lotes->id;

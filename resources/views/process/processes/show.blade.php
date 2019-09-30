@@ -12,10 +12,14 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="table-responsive">
+                        
                         @foreach($subprocess as $subproces)
                         <table class="table table-hover">
 
-                            <tbody>
+
+                            <tbody> 
+
+                            
 
                                 <tr class="table-dark text-dark">
                                     <th> Tarjas </th>

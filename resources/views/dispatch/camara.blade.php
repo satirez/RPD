@@ -12,32 +12,91 @@
                 </div>
 
                  <div class="table-responsive">
-                    <table class="table table-striped table-hover "> 
+                   <table class="table table-responsive" id="laravel_datatable201" style="width:100%"> 
                        <thead>
                            <tr>
-                               
+
+                               <th>Imprimir</th>
                                <th>Tarja</th>
-                               <th>Fruta</th>
-                               <th>Variedad</th>
-                               <th>Creado</th>
+                               <th>Formato</th>
+                               <th>Calidad</th>
+                               <th>Cantidad de cajas</th>
+                               <th>Peso total</th>
+                               <th>Fecha de creacion</th>
                                
-                               <th colspan="3">&nbsp;</th>
+                              
                            </tr>
                        </thead>
                        <tbody>
-                        @foreach($lotes as $lote)
-                           <tr>
-                                <td>{{ $lote->numero_lote  }}</td>
-                                <td>{{ $lote->fruit->specie  }}</td>
-                                <td>{{ $lote->varieties->variety  }}</td>
-                                <td>{{ $lote->created_at  }}</td>
-                           </tr>
-                        @endforeach
+                       
                        </tbody>
                    </table>
-                   {{ $lotes->render() }}
+                  
                 </div>
             </div>
+<script>
+      
+    $(document).ready(function() {
+    
+    $('#laravel_datatable201 thead tr').clone(true).appendTo( '#laravel_datatable201 thead' );
+    $('#laravel_datatable201 thead tr:eq(1) th').each( function (i) {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Buscar '+title+'" />' );
+ 
+        $( 'input', this ).on( 'keyup change', function () {
+            if ( table.column(i).search() !== this.value ) {
+                table
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+ 
+    var table = $('#laravel_datatable201').DataTable({
+
+            processing: true,
+            serverSide: true,
+              language: {
+               url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+              },
+             
+             iDisplayLength: 100,
+             order: [[ 0, 'desc' ]],
+             dom: 'Bfrtip',
+             buttons: [
+            'excel', 'pdf',],
+            
+            
+            ajax: "{{ url('subprocess-list') }}",
+            columns: [
+                {
+                    data: 'id',
+                        "render": function(data, type, row, meta) {
+                            if (type === 'display') {
+                                data = '<a class="btn btn-sm btn-primary" target="_blank" href="printsubprocess/' + data + '">Imprimir</a>';
+                            }
+
+                            return data;
+                            },
+                          
+                        },
+                     { data: 'id', name: 'id' },
+                     { data: 'format', name: 'format.name' },
+                     { data: 'quality', name: 'quality.name' },
+                     { data: 'quantity', name: 'quantity' },                 
+                     { data: 'weight', name: 'weight' },
+                     { data: 'created_at', name: 'created_at' },
+                     
+                  ]
+         });
+} );
+
+
+
+      
+</script>
+
         </div>
     </div>
 </div>

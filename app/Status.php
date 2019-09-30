@@ -11,4 +11,8 @@ class Status extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function receptions(){
+        return $this->hasMany(Reception::class);
+    }
 }

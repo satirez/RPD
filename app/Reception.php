@@ -67,5 +67,10 @@ class Reception extends Model
     {
         return $this->belongsTo(Variety::class,'variety_id');
     }
+
+     public function status()
+    {
+        return $this->belongsTo(Status::class,'status_id');
+    }
     
 }

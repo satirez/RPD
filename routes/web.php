@@ -60,7 +60,7 @@ Route::middleware('auth')->group(function () {
     //Auditoria
     Route::post('/auditoria/rejected/{id} ', 'auditoriaController@store')->name('auditoria.store')->middleware('permission:auditoria.create');
     Route::get('/auditoria/rejected/', 'auditoriaController@index')->name('auditoria.index')->middleware('permission:auditoria.index');
-    Route::get('/auditoria/rejected/{id}', 'auditoriaController@update')->name('auditoria.update')->middleware('permission:auditoria.index');
+    Route::get('/auditoria/rejected/{id}', 'auditoriaController@update')->name('auditoria.update')->middleware('permission:auditoria.edit');
 
 
     //Rechazado
@@ -70,13 +70,13 @@ Route::middleware('auth')->group(function () {
         Route::resource('rejecteds', 'MotivorejectedController')->names('admin.rejecteds')->parameters(['rejecteds' => 'motivorejected']);
     });
 
-    //Route::post('/rejecteds/store', 'MotivorejectedController@store')->name('admin.rejecteds.store')->middleware('permission:admin.rejecteds.create');
-    //Route::get('/rejecteds/', 'MotivorejectedController@index')->name('admin.rejecteds.index')->middleware('permission:admin.rejecteds.index');
-    //Route::get('/rejecteds/create', 'MotivorejectedController@create')->name('admin.rejecteds.create')->middleware('permission:admin.rejecteds.create');
-    //Route::put('/rejecteds/{motivorejected}', 'MotivorejectedController@update')->name('admin.rejecteds.update')->middleware('permission:admin.rejecteds.edit');
-    //Route::get('/rejecteds/{motivorejected}', 'MotivorejectedController@show')->name('admin.rejecteds.show')->middleware('permission:admin.rejecteds.show');
-    //Route::delete('/rejecteds/{motivorejected}', 'MotivorejectedController@destroy')->name('admin.rejecteds.destroy')->middleware('permission:admin.rejecteds.destroy');
-    //Route::get('/rejecteds/{motivorejected}/edit', 'MotivorejectedController@edit')->name('admin.rejecteds.edit')->middleware('permission:admin.rejecteds.edit');
+    Route::post('/rejecteds/store', 'MotivorejectedController@store')->name('admin.rejecteds.store')->middleware('permission:admin.rejecteds.create');
+    Route::get('/rejecteds', 'MotivorejectedController@index')->name('admin.rejecteds.index')->middleware('permission:admin.rejecteds.index');
+    Route::get('/rejecteds/create', 'MotivorejectedController@create')->name('admin.rejecteds.create')->middleware('permission:admin.rejecteds.create');
+    Route::put('/rejecteds/{motivorejected}', 'MotivorejectedController@update')->name('admin.rejecteds.update')->middleware('permission:admin.rejecteds.edit');
+    Route::get('/rejecteds/{motivorejected}', 'MotivorejectedController@show')->name('admin.rejecteds.show')->middleware('permission:admin.rejecteds.show');
+    Route::delete('/rejecteds/{motivorejected}', 'MotivorejectedController@destroy')->name('admin.rejecteds.destroy')->middleware('permission:admin.rejecteds.destroy');
+    Route::get('/rejecteds/{motivorejected}/edit', 'MotivorejectedController@edit')->name('admin.rejecteds.edit')->middleware('permission:admin.rejecteds.edit');
 
     //Reception
     //ruta 		//nombre de ruta 	//Permiso
@@ -85,12 +85,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/receptions', 'ReceptionController@index')->name('receptions.index')
                                 ->middleware('permission:receptions.index');
 
-    Route::get('/receptionsdaily', 'ReceptionController@receptionsdaily')->name('receptions.receptionsdaily')
-                                ->middleware('permission:receptions.receptionsdaily');
-    Route::get('/receptionsperfruit', 'ReceptionController@receptionsperfruit')->name('receptions.receptionsperfruit')
-                                ->middleware('permission:receptions.receptionsperfruit');
-    Route::get('/receptionsperproductor', 'ReceptionController@receptionsperproductor')->name('receptions.receptionsperproductor')
-                                ->middleware('permission:receptions.receptionsperproductor');
+    Route::get('/receptionsdaily', 'ReceptionController@receptionsdaily')->name('receptions.receptionsdaily');
+    Route::get('/receptionsperfruit', 'ReceptionController@receptionsperfruit')->name('receptions.receptionsperfruit');
+    Route::get('/receptionsperproductor', 'ReceptionController@receptionsperproductor')->name('receptions.receptionsperproductor');
 
     Route::get('/inprocess', 'ReceptionController@inprocess')->name('receptions.inprocess'); //agregar permiso
 
@@ -352,7 +349,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dispatch/{dispatch}/edit', 'Dispatchcontroller@edit')->name('dispatch.edit')->middleware('permission:dispatch.edit');
 
-    Route::get('/camara', 'Dispatchcontroller@getLotes')->name('dispatch.getProcess')->middleware('permission:dispatch.getProcess');
+    Route::get('/camara', 'Dispatchcontroller@getLotes')->name('dispatch.getProcess')->middleware('permission:dispatch.index');
     Route::get('dispatch-list', 'DispatchController@getData');
   
 

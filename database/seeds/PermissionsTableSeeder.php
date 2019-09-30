@@ -480,6 +480,8 @@ class PermissionsTableSeeder extends Seeder
 											"slug" => 'admin.trays.destroy',
 											"description" => 'Eliminar ingreso de bandejas',
 										]); 
+
+										
 		//Fin administracion	             
 
 		//Recepcion 
@@ -642,6 +644,30 @@ class PermissionsTableSeeder extends Seeder
 			"slug" => 'admin.tipodispatches.destroy ',
 			"description" => 'eliminar un tipo despacho',
 		]);
+
+		//Auditoria
+		
+		Permission::create([
+			"name" => 'Accesos a listado de auditorias',
+			"slug" => 'auditoria.index',
+			"description" => 'Acceso a listado de auditorias',
+		]);
+
+		
+
+		  Permission::create([
+			   "name" => 'crear tipos de despacho ',
+			"slug" => 'auditoria.create',
+			"description" => 'crear un tipo despacho',
+		]);
+
+		Permission::create([
+			"name" => 'editar un tipo despacho',
+			"slug" => 'auditoria.edit',
+			"description" => 'editar un tipo despacho',
+		]);
+
+	
 
         //Aqui se hacen los permisos 
     }

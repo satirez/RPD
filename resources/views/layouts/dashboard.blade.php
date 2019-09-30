@@ -264,17 +264,15 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
 
-            @can('receptions.receptionsdaily')
+           
             <a class="collapse-item" href="{{ url ('receptionsdaily') }}">Diario</a>
-            @endcan
+            
 
-            @can('receptions.receptionsperfruit')
+            
             <a class="collapse-item" href="{{ url ('receptionsperfruit') }}">Por Fruta</a>
-            @endcan
+            
 
-            @can('receptions.receptionsperproductor')
             <a class="collapse-item" href="{{ url ('receptionsperproductor') }}">Por Productor</a>
-            @endcan
 
           </div>
         </div>

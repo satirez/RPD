@@ -120,14 +120,14 @@
             @endcan
 
             <!-- Quality -->
-            @can('admin.providers.index')
+            @can('admin.quality.index')
 
             <a class="collapse-item" href="{{ url ('quality') }}">Calidad</a>
 
             @endcan
 
             <!-- Exportadores -->
-            @can('admin.providers.index')
+            @can('admin.exporters.index')
 
             <a class="collapse-item" href="{{ url ('exporters') }}">Exportadores</a>
 
@@ -143,12 +143,12 @@
             @endcan
 
             <!-- Tipos Frutas -->
-            @can('admin.providers.index')
+            @can('admin.fruits.index')
             <a class="collapse-item" href="{{ url ('fruits') }}">Fruta</a>
             @endcan
 
-            <!-- Tipos Frutas -->
-            @can('admin.providers.index')
+            <!-- Tipos variedades -->
+            @can('admin.varieties.index')
             <a class="collapse-item" href="{{ url ('varieties') }}">Variedad de fruta</a>
             @endcan
 
@@ -165,7 +165,7 @@
            
 
             <!--  Temporada -->
-            @can('admin.providers.index')
+            @can('admin.seasons.index')
             <a class="collapse-item" href="{{ url ('seasons') }}">Temporada</a>
             @endcan
 

@@ -174,7 +174,7 @@
 											<input type="checkbox" name="lotes[]" value="{{ $lote->numero_lote }}"> 
 										</td>
 
-										<td>P00{{ $lote->numero_lote }}</td>
+										<td>{{ $lote->numero_lote }}</td>
 
 
 										@php

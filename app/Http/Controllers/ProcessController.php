@@ -23,7 +23,7 @@ class ProcessController extends Controller
      */
     public function index()
     {
-        $countSubProcess = SubProcess::where('id')->count();    
+        $countSubProcess = SubProcess::where('id')->count();
         $processes = Process::where('available', 1)->orderBy('id', 'ASC')->paginate(100);
         $historico = Process::orderBy('id', 'ASC')->paginate(100);
 
@@ -76,17 +76,18 @@ class ProcessController extends Controller
         $fruit_id = Reception::where('id', $receptionId)->first()->fruit_id;
         $quality_id = Reception::where('id', $receptionId)->first()->quality_id;
         $variety_id = Reception::where('id', $receptionId)->first()->variety_id;
-        
-        
+        $status_id = Reception::where('id', $receptionId)->first()->status_id;
+
         // Se genera el array con la información de proceso
         $process = [
             'variety_id' => $variety_id,
             'quality_id' => $quality_id,
             'fruit_id' => $fruit_id,
+            'status_id' => $status_id,
             'tarja_proceso' => $request->get('tarja_proceso'),
             'rejected' => $request->get('rejected'),
             'wash' => $request->get('wash'),
-        ];
+        ];  
 
         // Se crea
         $process = Process::create($process);
@@ -110,12 +111,12 @@ class ProcessController extends Controller
 
     public function getData()
     {  //devolver todos los processos disponibles
-
         $process = Process::where('available', 0)->with([
             'fruit',
             'quality',
-            'varieties'
-        ]); 
+            'varieties',
+        ]);
+
         return Datatables::of($process)
             ->addColumn('fruit', function ($process) {
                 return $process->fruit->specie;
@@ -124,7 +125,6 @@ class ProcessController extends Controller
             })->editColumn('varieties', function ($process) {
                 return $process->varieties->variety;
             })->make(true);
-
     }
 
     /**

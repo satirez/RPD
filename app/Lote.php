@@ -5,22 +5,20 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Lote extends Model
-{   
+{
     protected $primaryKey = 'id';
-    
+
     protected $fillable = [
         'numero_lote', 'fruit_id',
-        'quality_id', 'variety_id'
+        'quality_id', 'variety_id', 'format_id',
     ];
 
-
-     public function dispatches()
+    public function dispatches()
     {
         return $this->belongsTo(Dispatch::class);
     }
-  
 
-     public function subprocesses()
+    public function subprocesses()
     {
         return $this->belongsToMany('\App\Lote', 'lote_sub_process')
             ->withPivot('sub_process_id');
@@ -31,12 +29,19 @@ class Lote extends Model
         return $this->belongsToMany('\App\SubProcess', 'lote_sub_process')
          ->withPivot('lote_id');
     }
+
     public function fruit()
     {
         return $this->belongsTo(Fruit::class);
     }
+
     public function varieties()
     {
-        return $this->belongsTo(Variety::class,'variety_id');
+        return $this->belongsTo(Variety::class, 'variety_id');
+    }
+
+    public function quality()
+    {
+        return $this->belongsTo(Quality::class);
     }
 }

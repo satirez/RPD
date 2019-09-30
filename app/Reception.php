@@ -73,4 +73,5 @@ class Reception extends Model
         return $this->belongsTo(Status::class,'status_id');
     }
     
+    
 }

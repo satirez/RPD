@@ -78,6 +78,7 @@ class LoteController extends Controller
                     'variety_id' => $variety,
                     'quality_id' => $quality,
                     'format_id' => $format,
+                    'format_id' => $format,
                 ];
 
             $lotes = Lote::create($lotes);
@@ -88,6 +89,7 @@ class LoteController extends Controller
                     'variety_id' => $variety,
                     'quality_id' => $quality,
                     'format_id' => $format,
+                    'quantity' => $format,
                 ];
 
             $lotes = Lote::create($lotes);
@@ -124,6 +126,7 @@ class LoteController extends Controller
     {
         $subprocess = DB::table('lote_sub_process')->where('lote_id', $lote->id)->get();
         $lotes = Lote::where('id', $lote->id)->get();
+
         return view('lotes.show', compact('subprocess', 'lotes'));
     }
 

@@ -287,55 +287,54 @@ Route::middleware('auth')->group(function () {
         Route::resource('seasons', 'SeasonController')->names('admin.seasons')->parameters(['seasons' => 'season']);
     });
 
-    //Route::post('/seasons/store', 'SeasonController@store')->name('admin.seasons.store')->middleware('permission:admin.seasons.create');
+    Route::post('/seasons/store', 'SeasonController@store')->name('admin.seasons.store')->middleware('permission:admin.seasons.create');
 
-    //Route::get('/seasons', 'SeasonController@index')->name('admin.seasons.index')->middleware('permission:admin.seasons.index');
+    Route::get('/seasons', 'SeasonController@index')->name('admin.seasons.index')->middleware('permission:admin.seasons.index');
 
-    //Route::get('/seasons/create', 'SeasonController@create')->name('admin.seasons.create')->middleware('permission:admin.seasons.create');
+    Route::get('/seasons/create', 'SeasonController@create')->name('admin.seasons.create')->middleware('permission:admin.seasons.create');
 
-    //Route::put('/seasons/{season}', 'SeasonController@update')->name('admin.seasons.update')->middleware('permission:admin.seasons.edit');
+    Route::put('/seasons/{season}', 'SeasonController@update')->name('admin.seasons.update')->middleware('permission:admin.seasons.edit');
 
-    //Route::get('/seasons/{season}', 'SeasonController@show')->name('admin.season.show')->middleware('permission:admin.season.show');
+    Route::get('/seasons/{season}', 'SeasonController@show')->name('admin.season.show')->middleware('permission:admin.season.show');
 
-    //Route::delete('/season/{season}', 'SeasonController@destroy')->name('admin.seasons.destroy')->middleware('permission:admin.seasons.destroy');
+    Route::delete('/season/{season}', 'SeasonController@destroy')->name('admin.seasons.destroy')->middleware('permission:admin.seasons.destroy');
 
-    //Route::get('/seasons/{season}/edit', 'SeasonController@edit')->name('admin.seasons.edit')->middleware('permission:admin.seasons.edit');
+    Route::get('/seasons/{season}/edit', 'SeasonController@edit')->name('admin.seasons.edit')->middleware('permission:admin.seasons.edit');
 
     //TipoTransportes
     Route::group(['middleware' => 'auth'], function () {
         Route::resource('tipotransportes', 'TipoTransporteController')->names('admin.tipotransportes')->parameters(['tipotransportes' => 'tipotransporte']);
     });
 
-    //Route::post('/tipotransportes/store', 'TipoTransporteController@store')->name('admin.tipotransportes.store')->middleware('permission:admin.tipotransportes.create');
+    Route::post('/tipotransportes/store', 'TipoTransporteController@store')->name('admin.tipotransportes.store')->middleware('permission:admin.tipotransportes.create');
 
-    //Route::get('/tipotransportes', 'TipoTransporteController@index')->name('admin.tipotransportes.index')->middleware('permission:admin.tipotransportes.index');
+    Route::get('/tipotransportes', 'TipoTransporteController@index')->name('admin.tipotransportes.index')->middleware('permission:admin.tipotransportes.index');
 
-    //Route::get('/tipotransportes/create', 'TipoTransporteController@create')->name('admin.tipotransportes.create')->middleware('permission:admin.tipotransportes.create');
+    Route::get('/tipotransportes/create', 'TipoTransporteController@create')->name('admin.tipotransportes.create')->middleware('permission:admin.tipotransportes.create');
 
-    //Route::put('/tipotransportes/{tipotransporte}', 'TipoTransporteController@update')->name('admin.tipotransportes.update')->middleware('permission:admin.tipotransportes.edit');
+    Route::put('/tipotransportes/{tipotransporte}', 'TipoTransporteController@update')->name('admin.tipotransportes.update')->middleware('permission:admin.tipotransportes.edit');
 
-    //Route::get('/tipotransportes/{tipotransporte}', 'TipoTransporteController@show')->name('admin.tipotransportes.show')->middleware('permission:admin.tipotransportes.show');
+    Route::get('/tipotransportes/{tipotransporte}', 'TipoTransporteController@show')->name('admin.tipotransportes.show')->middleware('permission:admin.tipotransportes.show');
 
-    //Route::delete('/tipotransporte/{tipotransporte}', 'TipoTransporteController@destroy')->name('admin.tipotransportes.destroy')->middleware('permission:admin.tipotransportes.destroy');
+    Route::delete('/tipotransporte/{tipotransporte}', 'TipoTransporteController@destroy')->name('admin.tipotransportes.destroy')->middleware('permission:admin.tipotransportes.destroy');
 
-    //Route::get('/tipotransportes/{tipotransporte}/edit', 'TipoTransporteController@edit')->name('admin.tipotransportes.edit')->middleware('permission:admin.tipotransportes.edit');
+    Route::get('/tipotransportes/{tipotransporte}/edit', 'TipoTransporteController@edit')->name('admin.tipotransportes.edit')->middleware('permission:admin.tipotransportes.edit');
 
     //Tipo de producto para despachos
-
     
-    //Route::post('/tipoproductodispatches/store', 'TipoProductoDispatchController@store')->name('admin.tipoproductodispatches.store')->middleware('permission:admin.tipoproductodispatches.create');
+    Route::post('/tipoproductodispatches/store', 'TipoProductoDispatchController@store')->name('admin.tipoproductodispatches.store')->middleware('permission:admin.tipoproductodispatches.create');
 
-    //Route::get('/tipoproductodispatches', 'TipoProductoDispatchController@index')->name('admin.tipoproductodispatches.index')->middleware('permission:admin.tipoproductodispatches.index');
+    Route::get('/tipoproductodispatches', 'TipoProductoDispatchController@index')->name('admin.tipoproductodispatches.index')->middleware('permission:admin.tipoproductodispatches.index');
 
-    //Route::get('/tipoproductodispatches/create', 'TipoProductoDispatchController@create')->name('admin.tipoproductodispatches.create')->middleware('permission:admin.tipoproductodispatches.create');
+    Route::get('/tipoproductodispatches/create', 'TipoProductoDispatchController@create')->name('admin.tipoproductodispatches.create')->middleware('permission:admin.tipoproductodispatches.create');
 
-    //Route::put('/tipoproductodispatches/{tipoproductodispatch}', 'TipoProductoDispatchController@update')->name('admin.tipoproductodispatches.update')->middleware('permission:admin.tipoproductodispatches.edit');
+    Route::put('/tipoproductodispatches/{tipoproductodispatch}', 'TipoProductoDispatchController@update')->name('admin.tipoproductodispatches.update')->middleware('permission:admin.tipoproductodispatches.edit');
 
-    //Route::get('/tipoproductodispatches/{tipoproductodispatch}', 'TipoProductoDispatchController@show')->name('admin.tipoproductodispatches.show')->middleware('permission:admin.tipoproductodispatches.show');
+    Route::get('/tipoproductodispatches/{tipoproductodispatch}', 'TipoProductoDispatchController@show')->name('admin.tipoproductodispatches.show')->middleware('permission:admin.tipoproductodispatches.show');
 
-    //Route::delete('/tipoproductodispatch/{tipoproductodispatch}', 'TipoProductoDispatchController@destroy')->name('admin.tipoproductodispatches.destroy')->middleware('permission:admin.tipoproductodispatches.destroy');
+    Route::delete('/tipoproductodispatch/{tipoproductodispatch}', 'TipoProductoDispatchController@destroy')->name('admin.tipoproductodispatches.destroy')->middleware('permission:admin.tipoproductodispatches.destroy');
 
-    //Route::get('/tipoproductodispatches/{tipoproductodispatch}/edit', 'TipoProductoDispatchController@edit')->name('admin.tipoproductodispatches.edit')->middleware('permission:admin.tipoproductodispatches.edit');
+    Route::get('/tipoproductodispatches/{tipoproductodispatch}/edit', 'TipoProductoDispatchController@edit')->name('admin.tipoproductodispatches.edit')->middleware('permission:admin.tipoproductodispatches.edit');
 
     //Despachos
 
@@ -363,19 +362,19 @@ Route::middleware('auth')->group(function () {
         Route::resource('tipodispatches', 'TipoDispatchController')->names('admin.tipodispatches')->parameters(['tipodispatches' => 'tipodispatch']);
     });
 
-    //Route::post('/tipodispatches/store', 'TipoDispatchController@store')->name('admin.tipodispatches.store')->middleware('permission:admin.tipodispatches.create');
+    Route::post('/tipodispatches/store', 'TipoDispatchController@store')->name('admin.tipodispatches.store')->middleware('permission:admin.tipodispatches.create');
 
-    //Route::get('/tipodispatches', 'TipoDispatchController@index')->name('admin.tipodispatches.index')->middleware('permission:admin.tipodispatches.index');
+    Route::get('/tipodispatches', 'TipoDispatchController@index')->name('admin.tipodispatches.index')->middleware('permission:admin.tipodispatches.index');
 
-    //Route::get('/tipodispatches/create', 'TipoDispatchController@create')->name('admin.tipodispatches.create')->middleware('permission:admin.tipodispatches.create');
+    Route::get('/tipodispatches/create', 'TipoDispatchController@create')->name('admin.tipodispatches.create')->middleware('permission:admin.tipodispatches.create');
 
-    //Route::put('/tipodispatches/{tipodispatch}', 'TipoDispatchController@update')->name('admin.tipodispatches.update')->middleware('permission:admin.tipodispatches.edit');
+    Route::put('/tipodispatches/{tipodispatch}', 'TipoDispatchController@update')->name('admin.tipodispatches.update')->middleware('permission:admin.tipodispatches.edit');
 
-    //Route::get('/tipodispatches/{tipodispatch}', 'TipoDispatchContr oller@show')->name('admin.tipodispatch.show')->middleware('permission:admin.tipodispatch.show');
+    Route::get('/tipodispatches/{tipodispatch}', 'TipoDispatchContr oller@show')->name('admin.tipodispatch.show')->middleware('permission:admin.tipodispatch.show');
 
-    //Route::delete('/tipodispatch/{tipodispatch}', 'TipoDispatchController@destroy')->name('admin.tipodispatches.destroy')->middleware('permission:admin.tipodispatches.destroy');
+    Route::delete('/tipodispatch/{tipodispatch}', 'TipoDispatchController@destroy')->name('admin.tipodispatches.destroy')->middleware('permission:admin.tipodispatches.destroy');
 
-    //Route::get('/tipodispatches/{tipodispatch}/edit', 'TipoDispatchController@edit')->name('admin.tipodispatches.edit')->middleware('permission:admin.tipodispatches.edit');
+    Route::get('/tipodispatches/{tipodispatch}/edit', 'TipoDispatchController@edit')->name('admin.tipodispatches.edit')->middleware('permission:admin.tipodispatches.edit');
 
     //Estatus
 
@@ -383,19 +382,19 @@ Route::middleware('auth')->group(function () {
         Route::resource('statuses', 'StatusController')->names('admin.statuses')->parameters(['statuses' => 'status']);
     });
 
-    // Route::post('/statuses/store', 'StatusController@store')->name('admin.statuses.store')->middleware('permission:admin.statuses.create');
+     Route::post('/statuses/store', 'StatusController@store')->name('admin.statuses.store')->middleware('permission:admin.statuses.create');
 
-    // Route::get('/statuses', 'StatusController@index')->name('admin.statuses.index')->middleware('permission:admin.statuses.index');
+     Route::get('/statuses', 'StatusController@index')->name('admin.statuses.index')->middleware('permission:admin.statuses.index');
 
-    // Route::get('/statuses/create', 'StatusController@create')->name('admin.statuses.create')->middleware('permission:admin.statuses.create');
+     Route::get('/statuses/create', 'StatusController@create')->name('admin.statuses.create')->middleware('permission:admin.statuses.create');
 
-    // Route::put('/statuses/{status}', 'StatusController@update')->name('admin.statuses.update')->middleware('permission:admin.statuses.edit');
+     Route::put('/statuses/{status}', 'StatusController@update')->name('admin.statuses.update')->middleware('permission:admin.statuses.edit');
 
-    // Route::get('/statuses/{status}', 'StatusController@show')->name('admin.statuses.show')->middleware('permission:admin.statuses.show');
+     Route::get('/statuses/{status}', 'StatusController@show')->name('admin.statuses.show')->middleware('permission:admin.statuses.show');
 
-    // Route::delete('/statuses/{status}', 'StatusController@destroy')->name('admin.statuses.destroy')->middleware('permission:admin.statuses.destroy');
+     Route::delete('/statuses/{status}', 'StatusController@destroy')->name('admin.statuses.destroy')->middleware('permission:admin.statuses.destroy');
 
-    // Route::get('/statuses/{status}/edit', 'StatusController@edit')->name('admin.statuses.edit')->middleware('permission:admin.statuses.edit');
+     Route::get('/statuses/{status}/edit', 'StatusController@edit')->name('admin.statuses.edit')->middleware('permission:admin.statuses.edit');
 
     //TrayINNNNNNNNsssssssssssssssssssssssssssssssssssss STORE
 
@@ -403,17 +402,17 @@ Route::middleware('auth')->group(function () {
         Route::resource('trays', 'TrayInController')->names('admin.trays')->parameters(['trays' => 'tray']);
     });
 
-    // Route::post('/trays/store', 'TrayInController@store')->name('admin.trays.store')->middleware('permission:admin.trays.create');
+     Route::post('/trays/store', 'TrayInController@store')->name('admin.trays.store')->middleware('permission:admin.trays.create');
 
-   // Route::get('/trays', 'TrayInController@index')->name('admin.trays.index')->middleware('permission:admin.trays.index');
+    Route::get('/trays', 'TrayInController@index')->name('admin.trays.index')->middleware('permission:admin.trays.index');
 
-   // Route::get('/trays/create', 'TrayInController@create')->name('admin.trays.create')->middleware('permission:admin.trays.create');
+    Route::get('/trays/create', 'TrayInController@create')->name('admin.trays.create')->middleware('permission:admin.trays.create');
 
-   // Route::put('/trays/{tray}', 'TrayInController@update')->name('admin.trays.update')->middleware('permission:admin.trays.edit');
+    Route::put('/trays/{tray}', 'TrayInController@update')->name('admin.trays.update')->middleware('permission:admin.trays.edit');
 
-   // Route::get('/trays/{tray}', 'TrayInController@show')->name('admin.trays.show')->middleware('permission:admin.trays.show');
+    Route::get('/trays/{tray}', 'TrayInController@show')->name('admin.trays.show')->middleware('permission:admin.trays.show');
 
-   // Route::delete('/trays/{tray}', 'TrayInController@destroy')->name('admin.trays.destroy')->middleware('permission:admin.trays.destroy');
+    Route::delete('/trays/{tray}', 'TrayInController@destroy')->name('admin.trays.destroy')->middleware('permission:admin.trays.destroy');
 
-   // Route::get('/trays/{tray}/edit', 'TrayInController@edit')->name('admin.trays.edit')->middleware('permission:admin.trays.edit');
+    Route::get('/trays/{tray}/edit', 'TrayInController@edit')->name('admin.trays.edit')->middleware('permission:admin.trays.edit');
 });

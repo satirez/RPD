@@ -323,6 +323,163 @@ class PermissionsTableSeeder extends Seeder
 						"slug" => 'admin.exporters.destroy',
 						"description" => 'Eliminar exportador',
 					]); 
+
+						//Temporadas
+						Permission::create([
+							"name" => 'Navegar Temporadas',
+							"slug" => 'admin.seasons.index',
+							"description" => 'Ver Temporadas',
+						]);
+		
+						Permission::create([
+							"name" => 'Ver detalle de la temporada',
+							"slug" => 'admin.seasons.show',
+							"description" => 'Detalle de temporada',
+						]);
+		
+						Permission::create([
+							   "name" => 'Creacion de temporada',
+							"slug" => 'admin.seasons.create',
+							"description" => 'Crear temporada',
+						]);
+		
+						Permission::create([
+							"name" => 'Edicion de temporada',
+							"slug" => 'admin.seasons.edit',
+							"description" => 'Editar temporada',
+						]);
+		
+						Permission::create([
+							"name" => 'Eliminar temporada',
+							"slug" => 'admin.seasons.destroy',
+							"description" => 'Eliminar temporada',
+						]); 
+
+							//Tipo de transporte
+						Permission::create([
+							"name" => 'Navegar tipos de transportes',
+							"slug" => 'admin.tipotransportes.index',
+							"description" => 'Ver transportes',
+						]);
+		
+						Permission::create([
+							"name" => 'Ver detalle del transporte',
+							"slug" => 'admin.tipotransportes.show',
+							"description" => 'Detalle de transportes',
+						]);
+		
+						Permission::create([
+							   "name" => 'Creacion de transporte',
+							"slug" => 'admin.tipotransportes.create',
+							"description" => 'Crear transporte',
+						]);
+		
+						Permission::create([
+							"name" => 'Edicion de transporte',
+							"slug" => 'admin.tipotransportes.edit',
+							"description" => 'Editar transporte',
+						]);
+		
+						Permission::create([
+							"name" => 'Eliminar transporte',
+							"slug" => 'admin.tipotransportes.destroy',
+							"description" => 'Eliminar transporte',
+						]); 
+
+
+								//Tipo de producto
+								Permission::create([
+									"name" => 'Navegar tipos de productos a despachar',
+									"slug" => 'admin.tipoproductodispatches.index',
+									"description" => 'Ver tipos de productos a despachar',
+								]);
+				
+								Permission::create([
+									"name" => 'Ver detalle del producto a despachar',
+									"slug" => 'admin.tipoproductodispatches.show',
+									"description" => 'Detalle del producto a despachar',
+								]);
+				
+								Permission::create([
+									   "name" => 'Creacion del producto a despachar',
+									"slug" => 'admin.tipoproductodispatches.create',
+									"description" => 'Crear producto a despachar',
+								]);
+				
+								Permission::create([
+									"name" => 'Edicion de producto a despachar',
+									"slug" => 'admin.tipoproductodispatches.edit',
+									"description" => 'Editar producto a despachar',
+								]);
+				
+								Permission::create([
+									"name" => 'Eliminar producto a despachar',
+									"slug" => 'admin.tipoproductodispatches.destroy',
+									"description" => 'Eliminar producto a despachar',
+								]); 
+
+
+									//Estatus
+									Permission::create([
+										"name" => 'Navegar estatus',
+										"slug" => 'admin.statuses.index',
+										"description" => 'Ver estatus de frutas',
+									]);
+					
+									Permission::create([
+										"name" => 'Ver detalle del estatus',
+										"slug" => 'admin.statuses.show',
+										"description" => 'Detalle del estatus',
+									]);
+					
+									Permission::create([
+										   "name" => 'Creacion del estatus',
+										"slug" => 'admin.statuses.create',
+										"description" => 'Crear estatus',
+									]);
+					
+									Permission::create([
+										"name" => 'Edicion de estatus',
+										"slug" => 'admin.statuses.edit',
+										"description" => 'Editar estatus',
+									]);
+					
+									Permission::create([
+										"name" => 'Eliminar estatus',
+										"slug" => 'admin.statuses.destroy',
+										"description" => 'Eliminar estatus',
+									]); 
+
+										//Conteo de bandejas
+										Permission::create([
+											"name" => 'ver registro de bandejas',
+											"slug" => 'admin.trays.index',
+											"description" => 'registro de bandejas',
+										]);
+						
+										Permission::create([
+											"name" => 'detalle de bandejas',
+											"slug" => 'admin.trays.show',
+											"description" => 'Detalle de bandejas',
+										]);
+						
+										Permission::create([
+											   "name" => 'Ingreso de bandejas',
+											"slug" => 'admin.trays.create',
+											"description" => 'Ingreso de bandejas',
+										]);
+						
+										Permission::create([
+											"name" => 'Edicion de ingreso de bandejas',
+											"slug" => 'admin.trays.edit',
+											"description" => 'Editar ingreso de bandejas',
+										]);
+						
+										Permission::create([
+											"name" => 'Eliminar ingreso de bandejas',
+											"slug" => 'admin.trays.destroy',
+											"description" => 'Eliminar ingreso de bandejas',
+										]); 
 		//Fin administracion	             
 
 		//Recepcion 
@@ -422,7 +579,69 @@ class PermissionsTableSeeder extends Seeder
 			"slug" => 'subprocess.destroy ',
 			"description" => 'Acceso especiales',
 		]); 
-        //Despacho
+		//Despacho
+		
+		Permission::create([
+			"name" => 'Accesos a despacho',
+			"slug" => 'dispatch.index',
+			"description" => 'Acceso a lista de depachos',
+		]);
+
+		Permission::create([
+			"name" => 'Mostrar despachos',
+			"slug" => 'dispatch.show',
+			"description" => 'mostrar un depacho'
+		]);
+
+		  Permission::create([
+			"name" => 'crear despachos ',
+			"slug" => 'dispatch.create',
+			"description" => 'crear un depacho',
+		]);
+
+		Permission::create([
+			"name" => 'editar un despacho',
+			"slug" => 'dispatch.edit',
+			"description" => 'editar un depacho',
+		]);
+
+		Permission::create([
+			"name" => 'eliminar un despacho ',
+			"slug" => 'dispatch.destroy ',
+			"description" => 'eliminar un depacho',
+		]); 
+
+		//TipoDespacho
+		
+		Permission::create([
+			"name" => 'Accesos a tipos de despacho',
+			"slug" => 'admin.tipodispatches.index',
+			"description" => 'Acceso a lista de tipos de despacho',
+		]);
+
+		Permission::create([
+			"name" => 'Mostrar tipo de despacho',
+			"slug" => 'admin.tipodispatches.show',
+			"description" => 'mostrar un tipo de despacho'
+		]);
+
+		  Permission::create([
+			   "name" => 'crear tipos de despacho ',
+			"slug" => 'admin.tipodispatches.create',
+			"description" => 'crear un tipo despacho',
+		]);
+
+		Permission::create([
+			"name" => 'editar un tipo despacho',
+			"slug" => 'admin.tipodispatches.edit',
+			"description" => 'editar un tipo despacho',
+		]);
+
+		Permission::create([
+			"name" => 'eliminar un tipo despacho ',
+			"slug" => 'admin.tipodispatches.destroy ',
+			"description" => 'eliminar un tipo despacho',
+		]);
 
         //Aqui se hacen los permisos 
     }

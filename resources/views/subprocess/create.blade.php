@@ -6,7 +6,7 @@
         <div class="col-md-12 col-md-offset-2">       
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4 style="text-align:center;">Creación de Subprocesos</h4>
+                            <h4 style="text-align:center;">Creacion de Producto Terminado:</h4>
                         </div>
                 @include('subprocess.partials.errors')
                 <div class="panel-body">

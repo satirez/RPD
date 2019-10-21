@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Process;
 use Illuminate\Http\Request;
 use App\Reception;
+use App\SubReprocess;
 use App\Rejected;
 use App\Fruit;
 use App\Quality;
@@ -26,42 +27,34 @@ class ProcessController extends Controller
         $countSubProcess = SubProcess::where('id')->count();
         $processes = Process::where('available', 1)->orderBy('id', 'ASC')->paginate(100);
         $historico = Process::orderBy('id', 'ASC')->paginate(100);
-
         return view('process.processes.index', compact('processes', 'countSubProcess'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         $processeslist = Process::paginate();
         $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
-
         $receptions = Reception::OrderBy('id', 'DESC')->where('available', 1)->paginate(10);
         $processPending = Process::where('available', 1)->orderBy('id', 'DESC')->paginate(10);
-
         $receptions = Reception::OrderBy('tarja', 'DESC')->where('available', 1)->paginate(10);
-
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
-
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'id', 'weight');
         $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
         $last = Process::OrderBy('id', 'DES')->first();
-
         if ($last == null) {
             $lastid = 1;
         } else {
             $lastid = $last->id + 1;
         }
-
         return view('process.processes.create', compact('lastid','receptions','processeslist',
         'listRejecteds', 'listFruits', 'listQualities', 'listFormat', 'listStatus', 'processPending'));
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -71,14 +64,15 @@ class ProcessController extends Controller
      */
     public function store(Request $request)
     {
+
         $receptionId = $request->get('receptions');
 
         $fruit_id = Reception::where('id', $receptionId)->first()->fruit_id;
         $quality_id = Reception::where('id', $receptionId)->first()->quality_id;
         $variety_id = Reception::where('id', $receptionId)->first()->variety_id;
         $status_id = Reception::where('id', $receptionId)->first()->status_id;
-
         // Se genera el array con la información de proceso
+    
         $process = [
             'variety_id' => $variety_id,
             'quality_id' => $quality_id,
@@ -87,28 +81,25 @@ class ProcessController extends Controller
             'tarja_proceso' => $request->get('tarja_proceso'),
             'rejected' => $request->get('rejected'),
             'wash' => $request->get('wash'),
-        ];  
-
+        ];
         // Se crea
         $process = Process::create($process);
-
         //se establece la relación con receptions
+        
         $process->receptions()->attach($request->get('receptions'));
-
         //se obtiene el id del ultimo
         $process_id = $process->id;
-
         //se obtienen todas las recepciones para crear un update de las recepciones que no estaran disponibles
+
         $checklistdata = $request->get('receptions');
 
         foreach ($checklistdata as $key) {
             $cualquiercosa = Reception::where('id', $key)->first();
             Reception::where('id', $key)->update(['available' => 0]);
         }
-
+    
         return redirect()->route('subprocess.create', $process_id)->with('success', 'Proceso guardado con exito');
     }
-
     public function getData()
     {  //devolver todos los processos disponibles
         $process = Process::where('available', 0)->with([
@@ -116,7 +107,6 @@ class ProcessController extends Controller
             'quality',
             'varieties',
         ]);
-
         return Datatables::of($process)
             ->addColumn('fruit', function ($process) {
                 return $process->fruit->specie;
@@ -126,7 +116,6 @@ class ProcessController extends Controller
                 return $process->varieties->variety;
             })->make(true);
     }
-
     /**
      * Display the specified resource.
      *
@@ -139,10 +128,8 @@ class ProcessController extends Controller
         // $receptions = Process_Reception::where('process_id',$process1)->get();
         $receptions = Process::find($process);
         $subprocess = SubProcess::where('process_id', $process->id)->get();
-
         return view('process.processes.show', compact('process', 'subprocess'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -153,10 +140,8 @@ class ProcessController extends Controller
     public function edit(Process $process)
     {
         $subprocesses = SubProcess::where('process_id', $process->id)->get();
-
         return view('subprocess.processes.edit', compact('process', 'subprocesses'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -171,7 +156,6 @@ class ProcessController extends Controller
 
         return redirect()->route('process.processes.index', $process->id)->with('info', 'procesos actualizado con exito');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -185,6 +169,4 @@ class ProcessController extends Controller
 
         return back()->with('info', 'Eliminado con exito');
     }
-
-    ///////////////////////////////////////funciones/////////////
 }

@@ -7,18 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class SubProcess extends Model
 {
     protected $primaryKey = 'id';
-
     protected $fillable = [
         'process_id', 'format_id', 'quality_id', 'quantity','weight',
-        'available', 'rejected', 'reason', 'comment', 'fruit_id',
-        'quality_id', 'variety_id'
-    ];
+        'available', 'rejected', 'reason', 'comment', 'variety_id', 'fruit_id',
+        'status_id','folioStart', 'folioEnd', 'tarja'
 
+    ];
     public function process()
     {
         return $this->hasOne(Process::class);
     }
-
     public function format()
     {
         return $this->belongsTo(Format::class);
@@ -36,9 +34,12 @@ class SubProcess extends Model
         return $this->belongsToMany('\App\Lote', 'lote_sub_process')
             ->withPivot('sub_process_id');
     }
-    public function fruit()
+       public function fruit()
     {
         return $this->belongsTo(Fruit::class);
+    }   public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
     public function varieties()
     {

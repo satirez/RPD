@@ -1,245 +1,134 @@
-<br>
-<div class="card">
-	<div class="card-header">
-		<div class="badge badge-pill badge-warning float-left"> 1 </div>
-		<h6>Selección de subprocesos:</h6> 
-	</div>
+@extends('layouts.dashboard')
 
-	<div class="card-body">
-		<div class="row">
-			<div class="col-md-12">
-				<h3 class="text-center">Listado de productos en camara</h3>
-				<div class="form-group">
-					<div class="row">
-						<div class="col-md-4">
-						{{ Form::label('numero_lote', 'Numero de tarja') }}
-						{{ Form::text('numero_lote','P00'.$lastid, ['class' => 'form-control', 'readonly']) }}
-						</div>
-            		</div>
-            		<br>
-
-
-					<div class="row">
-					<div class="alert alert-danger" role="alert">
-						Ingrese la cantidad de cajas
-					</div>
-						<div class="col-md-4">
-						<label for="lote"> Numero de Cajas</label>
-						<input name="lote" id="contable" type="text" placeholder="Ej: 90" class="form-control">
-						</div>
-
-						<div class="col-md-4">
-						<label for="lote"> Filtrar</label>
-						<input class="form-control" id="myInput" type="text" placeholder="Buscar..">
-						</div>
-					</div>
-
-					<br>
-					<br>
-
-					<ul class="list-unstyled">
-						
-						<div class="table-responsive">
-							<table class="table table-bordered">
-
-							
-
-								<thead>
-									<tr>
-									<th>Seleccione</th>
-									<th>Tarja Subproceso</th>	
-									<th>Calidad</th>
-									<th>Cantidad</th>
-									<th>Formato</th>
-									<th>Fruta - Variedad</th>
-									
-									</tr>
-
-								</thead>
-
-
-								<tbody id="myTable3">
-
-									@forelse($subprocesses as $subprocess)
-									<tr>
-										<td>
-											<input type="checkbox" name="subprocess[]" value="{{ $subprocess->id }}">
-										</td>
-										<td>SP0{{ $subprocess->id }}</td>
-										<td>{{ $subprocess->quality->name }}</td>
-										<td class="quantity">{{ $subprocess->quantity }}</td>
-										<td>{{ $subprocess->format->name}}</td>
-										<td>{{ $subprocess->fruit->specie}}   - {{$subprocess->varieties->variety}} </td>
-										
-										
-
-										@php
-										$uno = false;
-										@endphp
-
-									</tr>
-
-									@empty
-
-									<h4> Sin Registros </h4>
-
-									@php
-									$uno = true;
-									@endphp
-
-									@endforelse
-
-
-								</tbody>
-								{{ $subprocesses->render() }}
-
-							</table>
-						</div>
-						
-										<div class="row">
-										<div class="col-md-4">
-											<h3>TOTAL DE CAJAS</h3>
-										</div>
-										<div class="col-md-4">
-											<strong>
-												<div id="result"></div>
-											</strong>
-										</div>
-
-										</div>
-					</ul>
+@section('section')
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h4 style="text-align:center;">Ingresar Nuevo Lote a camara:</h4>
 				</div>
 
+				@include('lotes.partials.errors')
+				<div class="panel-body">
 
-				<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable3 tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
-			</div>
-		</div>
-	</div>
+					<br>
+					<div class="card">
+						<div class="card-header">
+							<div class="badge badge-pill badge-warning float-left"> 1 </div>
+							<h6>Selección de subprocesos:</h6>
+						</div>
+
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-12">
+									<h3 class="text-center">Listado de productos en camara</h3>
+									<div class="form-group">
 
 
+										<div class="row">
+											<form method="POST" action="{{ route('lote.createrial') }}">
+												@csrf
 
-</div>
+												<div class="col-md-12">
+													<div class="row">
+														<div class="col-md-4">
+															<div class="form-group">
+																<label for="fruit_id">Fruta</label>
+																<select class="form-control" name="fruit_id" id="fruit_id">
+																	<option value=""> Fruta </option>
+																	@foreach ($fruits as $fruit)
+																	<option value="{{ $fruit->id }}"> {{ $fruit->specie }}</option>
+																	@endforeach
+																</select>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="form-group">
+																<label for="variety_id">Variedad</label>
+																<select class="form-control" name="variety_id" id="variety_id" required>
+																	<option value=""> Variedad de Fruta </option>
+																</select>
+															</div>
+														</div>
 
-<div class="row">
 
-	<div class="col-md-12">
-		<div class="form-group">
-			<div class="bs-example">
+														<div class="col-md-4">
+															<div class="form-group">
+																{{ Form::label('quality_id', 'Calidad') }}
+																{{Form::select('quality_id', $qualities, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+															</div>
+														</div>
 
-				<input type="radio" name="rejected" value="0" data-toggle="collapse" data-parent="#accordion"
-					href="#collapseOne" checked> Bueno
 
-				<input type="radio" name="rejected" value="1" data-toggle="collapse" data-parent="#accordion"
-					href="#collapseOne"> Rechazado
+														<div class="col-md-6 mt-4">
 
-				<div class="panel-group" id="accordion">
-					<div class="panel panel-default">
-						<div id="collapseOne" class="panel-collapse collapse in">
-							<div class="panel-body">
-								<div class="card">
-									<div class="card-body">
-										{{Form::label('reason', 'Selecciona motivo de rechazo') }}
-										{{Form::select('reason', $listRejecteds, null, ['class' => 'form-control', 'placeholder'=>'Seleccione una opción'])}}
-										{{Form::label('commentrejected', 'Comentario Adicional') }}
-										{{Form::textarea('commentrejected',null,['class'=>'form-control'])}}
+															<div class="form-group">
+																<button type="submit" class="btn btn-primary">
+																	<span class="fas fa-search"></span> Buscar
+																</button>
+															</div>
+
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+
 									</div>
+
+									<br>
+									<br>
+
+
 								</div>
+
+
+
 							</div>
 						</div>
 					</div>
+
+
+
+
+					<script type="text/javascript">
+						$(document).ready(function (){
+						$('.input-number').keyup(function (){
+							this.value = (this.value + '').replace(/[^.x0-9]/g, '');
+						});
+						});
+					
+					
+					
+						$(function(){
+							$('#fruit_id').on('change', onSelectProyectChange);
+						});
+					
+						function onSelectProyectChange(){
+							var fruit_id = $(this).val();
+							
+							if(! fruit_id){
+								$('#variety_id').html('<Option value="">Seleccione Variedad</Option>');
+									return;
+							}
+							// ajax
+					
+							$.get('/api/fruit/'+fruit_id+'/variedad', function(data){
+					
+								var html_select = '<Option value="">Seleccione Variedad</Option>';
+								for(var i=0; i<data.length; ++i)
+									html_select += '<Option value="'+data[i].id+'">'+data[i].variety+'</option>';
+								$('#variety_id').html(html_select);
+							});
+						}
+					
+					
+					</script>
+
 				</div>
-
-
 			</div>
 		</div>
-
 	</div>
-
-	<div class="col-md-12 text-center">
-		<div class="form-group">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-				Guardar
-			</button>
-		</div>
-	</div>
-
-
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Guardar</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					¿Está seguro de guardar los cambios efectuados?
-				</div>
-				<div class="modal-footer">
-					{{ Form::submit('Guardar', ['class' => 'btn btn-primary','target'=>'_blank']) }}
-					<button type="button" id="save" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
 </div>
-
-
-
-<script>
-	function getTope(){
-	 let n = document.getElementById('topePallet').value;
-	 return n;
-	}
-
-	$('#subprocess input[type="checkbox"]').on('change', function() {
-	 var table = $(this).closest('#subprocess'),
-	 //acá la idea es que se haga un array de todos los checkeados para eso se instancia table.find 
-	  checked = table.find('input[type=checkbox]:checked'),
-	 // acá dentro del table tenemos tr y dentro td pero par que la suma sea solo de una columna se agrega la clase quantity asi solo busca esa clase
-	  prices = checked.closest('tr').find('td.quantity'),
-	 // luego se hace un map  que busca si es numero, letra todo etc 
-	  sum = prices.map(function() {
-		return parseFloat(this.textContent.trim(), 10) || 0;
-	  }).get().reduce(function(a, b) {
-		return a + b;
-	  });
-	  var url = $("#contable").val();
-
-	  if(sum > url){
-		swal("Has exedido el limite de cajas permitida.", "Vuelva a ingresar la información", "warning");
-		
-		for(var i = 0; i < checked.length; i++){
-
-			checked[i].checked = false;
-		}
-		 $("#contable").val('');
-
-		$('#result').text('');
-		$('#save').setAttribute('disabled','disabled');
-		
-	  }else{
-
-		$('#result').text(sum);
-
-	  }
-	  // se imprime todo en result 
-
-
-		
-  }).change();
-
-</script>
+@stop

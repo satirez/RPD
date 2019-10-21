@@ -55,8 +55,8 @@
 			<div class="row">
 				<div class="col-md-2">
 					<div class="form-group">
-						{{ Form::label('', 'N° Proceso') }}
-						{{ Form::text('', 'Proceso '.$idsad, ['class' => 'form-control','readonly']) }}
+						{{ Form::label('', 'N° Tarja') }}
+						{{ Form::text('tarja', 'PT00'.$lastid, ['class' => 'form-control','readonly']) }}
 					</div>
 
 					<input name="process_id" type="hidden" value={{$idsad}}>
@@ -74,7 +74,6 @@
 						{{ Form::select('format_id',$listFormat, null, ['class' => 'form-control input-number','id'=>'formatWeight','oninput'=>'getWeightFormat(), validacionTrash()', 'placeholder'=>'selecciona']) }}
 					</div>
 				</div>
-
 				<div class="col-md-3">
 					<div class="form-group">
 						{{ Form::label('quality_id', 'Calidad') }}
@@ -88,23 +87,21 @@
 							onpaste="this.onchange();" oninput="this.onchange();" onchange="validacion()" type="number"
 							readonly>
 					</div>
-
-				</div>
-			<!--	<div class="col-md-2">
-					<div style="text-align:center" class="form-group">
-						<label> inicio de Folio </label>
-						<input style="text-align:center" class="form-control">
+			</div class="col-xl-10">
+				<div class="col-md-6">
+					<div  class="form-group">
+						<label> Inicio de folio </label>
+						<input name="folioStart" class="form-control" required>
 					</div>
-
 				</div>
-				<div style="align:center" class="col-md-2">
-					<div style="text-align:center" class="form-group">
-						<label> fin de Folio </label>
-						<input class="form-control">
+
+				<div  class="col-md-6">
+					<div  class="form-group">
+						<label> Fin de folio </label>
+						<input name="folioEnd" class="form-control" required>
 					</div>
-
+				
 				</div>
-			-->	
 			</div>
 		</div>
 		
@@ -114,7 +111,7 @@
 
 					<h5>¿ El Proceso está? </h5>
 					<input type="radio" name="rejected" value="0" data-toggle="collapse" data-parent="#accordion"
-						href="#collapseOne" checked> Bueno
+						href="#collapseOne" checked> Aprobado
 
 					<input type="radio" name="rejected" value="1" data-toggle="collapse" data-parent="#accordion"
 						href="#collapseOne"> Rechazado
@@ -154,16 +151,20 @@
 					<th>Formato</th>
 					<th>Calidad</th>
 					<th>N° de Cajas</th>
+					<th>inicio Folio</th>
+					<th>termino Folio</th>
 					<th colspan="3">&nbsp;</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach($subprocesses as $subprocess)
 				<tr>
-					<td> SP0{{$subprocess->id}} </td>
+					<td> SP00{{$subprocess->id}} </td>
 					<td> {{$subprocess->format->name}} </td>
 					<td> {{$subprocess->quality->name}} </td>
 					<td> {{$subprocess->quantity}} </td>
+					<td> {{$subprocess->folioStart}} </td>
+					<td> {{$subprocess->folioEnd}} </td>
 					
 
 				</tr>

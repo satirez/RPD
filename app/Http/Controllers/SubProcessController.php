@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Format;
+use App\Fruit;
+use App\Variety;
 use App\SubProcess;
 use App\Process;
-use App\Reception;
 use App\Quality;
+use App\Status;
 use App\motivorejected;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
-
 use Yajra\Datatables\Datatables;
 
 class SubProcessController extends Controller
@@ -33,34 +34,40 @@ class SubProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function print($id)
+    {
+        $subprocesses = SubProcess::where('id', $id)->first();
 
-    public function print($id){
+        $customPaper = array(0, 0, 410,750  );
+        $pdf = PDF::loadView('subprocess.print  ', compact('subprocesses'))->setPaper($customPaper);
 
-        $subprocesses = SubProcess::where('id',$id)->first();
-
-        $customPaper = array(0,0,378,567);
-        $pdf = PDF::loadView('subprocess.print  ',compact('subprocesses'))->setPaper($customPaper);
-    
         return $pdf->stream();
-
     }
 
-    public function create(Request $request, $id)
+    public function create($id)
     {
+
+        //obtener la ultima id
+        $last = SubProcess::OrderBy('id', 'DES')->first();
+        if ($last == null) {
+            $lastid = 1;
+        } else {
+            $lastid = $last->id + 1;
+        }
 
         $processes = DB::table('process__receptions')->where('process_id', $id)->get();
         $pesos = array();
-        foreach($processes as $process => $value){
+        foreach ($processes as $process => $value) {
             $reception = DB::table('receptions')->where('id', $value->reception_id)->get();
             $peso = $reception[0]->grossweight;
-            array_push($pesos,$peso);
+            array_push($pesos, $peso);
         }
+
         $peso = array_sum($pesos);
 
         $subprocess = SubProcess::where('process_id', $id)->get();
 
         $acumWeight = SubProcess::where('process_id', $id)->sum('weight');
-
 
         $resto = 0;
 
@@ -72,30 +79,51 @@ class SubProcessController extends Controller
         $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
+         $listFruits = Fruit::OrderBy('id', 'DES')->get();
 
-        return view('subprocess.create', compact('idsad', 'peso', 'listFormat', 'listQualities', 'listRejecteds', 'acumWeight', 'resto', 'subprocesses'));
+        $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
+       
+
+        $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
+
+        return view('subprocess.create', compact('lastid', 'idsad', 'peso', 'listFormat', 'listQualities', 'listRejecteds', 'acumWeight', 'resto', 'subprocesses','listFruits','listVariety','listStatus'));
     }
 
     public function getData()
     {
-        
         $subprocesses = SubProcess::where('available', 1)->with([
+            'fruit',           
             'format',
             'quality',
-        ]); 
+          
+            'varieties',
+            'status',
+        ]);
 
         return Datatables::of($subprocesses)
+            ->addColumn('fruit', function ($subprocess) {
+                return $subprocess->fruit->specie;
+            })
             ->addColumn('format', function ($subprocess) {
                 return $subprocess->format->name;
+            })
+            ->addColumn('status', function ($subprocess) {
+                return $subprocess->status->name;
             })
             ->editColumn('quality', function ($subprocess) {
                 return $subprocess->quality->name;
             })
+          
+           
+            ->editColumn('varieties', function ($subprocess) {
+                return $subprocess->varieties->variety;            
+            })
+           
+          
+          
             
+
             ->make(true);
-    
-
-
     }
 
     /**
@@ -106,62 +134,48 @@ class SubProcessController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        
+    {
         //validacion y desactivacion de un proceso
-        if($request->format_id === "1.000"){
+        if ($request->format_id === '1.000') {
             $idProcess = $request->get('process_id');
             //FINALIZAR UN PROCESO
             $weightFormat = $request->get('format_id');
-            $formatId = Format::where('weight', $weightFormat)->first()->id; //obtener el id segun el peso que se obtiene del request
-            $request['format_id'] = $formatId;//se le pasa el nuevo parametro (id) a format_id del request!
+            $formatId = Format::where('weight', $weightFormat)->first()->id; //obtener el id segun el peso que se obtiene del requesta
+            $request['format_id'] = $formatId; //se le pasa el nuevo parametro (id) a format_id del request!
 
             $fruit_id = Process::where('id', $idProcess)->first()->fruit_id;
+            $status_id = Process::where('id', $idProcess)->first()->status_id;
             $variety_id = Process::where('id', $idProcess)->first()->variety_id;
+            $status_id = Process::where('id', $idProcess)->first()->status_id;
+            
+            $request->merge(['fruit_id' => $fruit_id, 'variety_id' => $variety_id, 'status_id' => $status_id]);
 
-            $request->merge(['fruit_id' => $fruit_id, 'variety_id' => $variety_id]);
             SubProcess::create($request->all());
 
             $key = $request->get('process_id');
 
             Process::where('id', $key)->update(['available' => 0]);
-            return redirect()->route('process.processes.index')->with('info', 'Proceso finalizado con exito');
 
-        }else{
+            return redirect()->route('process.processes.index')->with('info', 'Proceso finalizado con exito');
+        } else {
             //query pa pasar el peso de formato y sacarle su id y validar lo que se ha usado
-            
+
             $getFormatId = $request->get('format_id');
             $idProcess = $request->get('process_id');
 
-                    $fruit_id = Process::where('id', $idProcess)->first()->fruit_id;
-                    $variety_id = Process::where('id', $idProcess)->first()->variety_id;
+            $fruit_id = Process::where('id', $idProcess)->first()->fruit_id;
+            $variety_id = Process::where('id', $idProcess)->first()->variety_id;
+            $status_id = Process::where('id', $idProcess)->first()->status_id;
 
             $idFormat = Format::where('weight', $getFormatId)->first()->id;
             $request['format_id'] = $idFormat;
 
-            $request->merge(['fruit_id' => $fruit_id, 'variety_id' => $variety_id]);
+            $request->merge(['fruit_id' => $fruit_id, 'variety_id' => $variety_id, 'status_id' => $status_id]);
             
             SubProcess::create($request->all());
 
-            $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');
-            $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
-            $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
-
-            $process = DB::table('process__receptions')->where('process_id', $idProcess)->first();
-
-            $reception_id = $process->reception_id;
-            $reception = DB::table('receptions')->where('id', $reception_id)->first();
-            $peso = $reception->grossweight;
-            $idsad = $idProcess;
-            //sumas y restas
-            $acumWeight = SubProcess::where('process_id', $idProcess)->sum('weight');
-            $resto = $peso - $acumWeight;
-
             return redirect()->route('subprocess.create', $idProcess)->with('info', 'Temprada guardado con exito');
         }
-
-            
-
     }
 
     /**
@@ -173,7 +187,6 @@ class SubProcessController extends Controller
      */
     public function show(SubProcess $subProcess)
     {
-        
     }
 
     /**
@@ -185,7 +198,7 @@ class SubProcessController extends Controller
      */
     public function edit(SubProcess $subProcess)
     {
-        dd($subProcess->all());
+        
 
         return view('subprocess.edit', compact('subProcess'));
     }

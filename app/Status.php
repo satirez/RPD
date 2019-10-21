@@ -14,5 +14,15 @@ class Status extends Model
 
     public function receptions(){
         return $this->hasMany(Reception::class);
+    } 
+
+    public function subprocesses(){
+        return $this->hasMany(SubProcess::class);
+    }
+     public function lote(){
+        return $this->hasMany(Reception::class);
+    }
+     public function dispatchs(){
+        return $this->hasMany(Dispatch::class);
     }
 }

@@ -20,4 +20,13 @@ class Quality extends Model
     {
         return $this->belongsTo(SubProcess::class);
     }
+
+    public function lotes()
+    {
+        return $this->belongsTo(Lote::class);
+    }
+
+     public function dispatchs(){
+        return $this->hasMany(Dispatch::class);
+    }
 }

@@ -29,6 +29,25 @@
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
+            @if(count($errors))
+
+
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">
+                    &times;
+
+                </button>
+
+                <ul>
+                    @foreach($errors->all() as $error)
+
+                    <li>{{  $error  }}</li>
+                    @endforeach
+                </ul>
+
+            </div>
+
+            @endif
             <div class="col-xl-10 col-lg-12 col-md-9">
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
@@ -86,7 +105,7 @@
     <script src="/webcss/js/sb-admin-2.min.js"></script>
 
     <script>
-    function checkRut(rut) {
+        function checkRut(rut) {
         // Despejar Puntos
         var valor = rut.value.replace('.', '');
         // Despejar Guión

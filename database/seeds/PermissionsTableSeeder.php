@@ -550,38 +550,6 @@ class PermissionsTableSeeder extends Seeder
 			    ]); 
 
 		//Fin Proceso 
-		Permission::create([
-			    	"name" => 'Navegar en proceso',
-			        "slug" => 'reprocess.reprocesses.index',
-			        "description" => 'Ver proceso',
-			    ]);
-
-			    Permission::create([
-			        "name" => 'Ver detalle de lo procesado',
-			        "slug" => 'reprocess.reprocesses.show',
-			        "description" => 'Detalle procesado'
-			    ]);
-
-			  	Permission::create([
-			       	"name" => 'Ingresar proceso',
-			        "slug" => 'reprocess.reprocesses.create',
-			        "description" => 'Ingresar proceso',
-			    ]);
-
-			    Permission::create([
-			        "name" => 'Edicion cualquier activo procesado',
-			        "slug" => 'reprocess.reprocesses.edit',
-			        "description" => 'Editar procesado',
-			    ]);
-
-			    Permission::create([
-			        "name" => 'Eliminar activo procesado',
-			        "slug" => 'reprocess.reprocesses.destroy',
-			        "description" => 'Eliminar procesado',
-			    ]); 
-		//Reproceso
-
-		//fin Reporceso
 
 		//SubProceso
 		Permission::create([
@@ -684,7 +652,21 @@ class PermissionsTableSeeder extends Seeder
 			"slug" => 'auditoria.index',
 			"description" => 'Acceso a listado de auditorias',
 		]);
+
 		
+
+		  Permission::create([
+			   "name" => 'crear tipos de despacho ',
+			"slug" => 'auditoria.create',
+			"description" => 'crear un tipo despacho',
+		]);
+
+		Permission::create([
+			"name" => 'editar un tipo despacho',
+			"slug" => 'auditoria.edit',
+			"description" => 'editar un tipo despacho',
+		]);
+
 	
 
         //Aqui se hacen los permisos 

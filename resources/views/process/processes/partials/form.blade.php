@@ -7,7 +7,7 @@
             </div>
             <div class="form-group col-md-4">
                 {{ Form::label('wash', 'Lavado') }}
-                {{ Form::select('wash', array('1' => 'Si', '2' => 'No'), 
+                {{ Form::select('wash', array('Lavado' => 'Si', 'No lavado' => 'No'), 
 							null ,['class' => 'form-control','required' ,'placeholder'=>'¿Esta Lavado?'])}}
             </div>
         </div>
@@ -29,10 +29,11 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr class="">
-                            <th>Tarja</th>
+                            <th>N°</th>
                             <th>Especie</th>
                             <th>Variedad</th>
                             <th>Calidad</th>
+                            <th>Condición</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -44,13 +45,13 @@
                             <td>{{ $pending->fruit->specie }}</td>
                             <td>{{ $pending->varieties->variety }}</td>
                             <td>{{ $pending->quality->name}}</td>
+                            <td>{{ $pending->status->name}}</td>
                             <td> <a class="btn btn-sm btn-primary" href=" 
                             {{Route('subprocess.create', $pending->id)}} "> Reanudar </a> </td>
                             @php
                             $uno = false;
                             @endphp
                         </tr>
-
                         @empty
                         <h4> Sin Registros </h4>
                         @php
@@ -70,9 +71,10 @@
                             <th></th>
                             <th>Tarja</th>
                             <th>Fruta</th>
-                            <th>Peso Bruto</th>
+                            <th>Peso Neto</th>
                             <th>Rejillas</th>
                             <th>Calidad</th>
+                            <th>Condición</th>
                         </tr>
                     </thead>
 
@@ -85,9 +87,10 @@
                             <td>{{ Form::checkbox('receptions[]', $reception->id ) }}</td> 
                             <td>{{ $reception->tarja }}</td>
                             <td>{{ $reception->fruit->specie}} - {{ $reception->varieties->variety }}</td>
-                            <td>{{ $reception->grossweight }}</td>
+                            <td>{{ $reception->netweight }}</td>
                             <td>{{ $reception->quantity }}</td>
                             <td>{{ $reception->quality->name }}</td>
+                            <td>{{ $reception->status->name }}</td>
 
                             @php
                             $uno = false;

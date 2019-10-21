@@ -20,8 +20,9 @@
                                <th>Formato</th>
                                <th>Calidad</th>
                                <th>Estatus</th>
-                               
-                               
+                               <th>Inicio Folio</th>
+                               <th>Fin Folio</th>
+
                                <th colspan="3">&nbsp;</th>
                            </tr>
                        </thead>
@@ -33,6 +34,8 @@
                                 <td>{{ $subprocess->format->name  }}</td>
                                 <td>{{ $subprocess->quality->name  }}</td>
                                 <td>{{ $subprocess->weight  }}</td>
+                                <td>{{ $subprocess->folioStart  }}</td>
+                                <td>{{ $subprocess->folioEnd  }}</td>
  
                                 <td width="10px">
                                     @can('subprocess.edit')

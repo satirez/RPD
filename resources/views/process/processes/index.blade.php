@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('section')
-<div class="container">
+<div class="container-fluid px-4">
 
     @if (\Session::has('success'))
     <div class="col-md-12">
@@ -17,26 +17,38 @@
         <div class="col-md-13 ">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 style="text-align:center;">Procesos
-                        @can('process.processes.create')
-                        <a href="{{ Route('process.processes.create') }}" class="btn btn-info pull-right btn-sm"> Crear
+                    <h4 style="text-align:center;">Procesos:</h4>
+                    <div class="text-center">
+                    @can('process.processes.create')
+                        <a href="{{ Route('process.processes.create') }}" class="btn btn-info pull-left btn-sm" > Crear
                         </a>
                         @endcan
-                    </h4>
-
+                    </div>
 
                 </div>
-
+               
+                <h4>Tabla de Datos:</h4>
+                <br>
+                
+                <br>
                 <div class="table-responsive">
-                    <table id="laravel_datatable" style="width:100%" class=" cell-border order-column">
+                    <table id="laravel_datatable" style="width:100%" class=" table table-responsive">
                         <thead>
                             <tr>
                                 <th>Codigo de pallet procesado</th>
-                                <th>Creado</th>
+                                <th>Fecha Ingreso</th>
+                                <th>Estatus</th>
                                 <th>Fruta</th>
                                 <th>Variedad</th>
+                                
+                                <th>Fruta Lavada</th>
+                                <th>Detalle</th>
 
-                                <th colspan="auto">&nbsp;</th>
+
+
+                                        
+
+
                             </tr>
                         </thead>
                         <tbody>
@@ -84,7 +96,10 @@
                                 name: 'created_at '
                             },
                             
-                            
+                             { 
+                                data: 'status',
+                                name: 'status.name' 
+                            },
                             { 
                                 data: 'fruit',
                                 name: 'fruit.specie' 
@@ -92,6 +107,10 @@
                             { 
                                 data: 'varieties', 
                                 name: 'varieties.variety' 
+                            },
+                             { 
+                                data: 'wash', 
+                                name: 'wash.name' 
                             },
 
                             {

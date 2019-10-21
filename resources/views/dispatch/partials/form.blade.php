@@ -1,9 +1,18 @@
+<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						{{ Form::label('numero_despacho', 'Numero de Despacho') }}
+						{{ Form::text('numero_despacho', 'D00'.$lastid, ['class' => 'form-control','readonly']) }}
+					</div>
+				</div>
+				</div>
 <div class="card">
 	<div class="card-header">
 		<div class="badge badge-pill badge-primary float-left"> 1 </div>
 		Selección e ingreso de exportacion:
 	</div>
 	<div class="card-body">
+
 		<div class="row">
 
 			<div class="col-md-4">
@@ -39,12 +48,6 @@
 
 				
 
-				<div class="col-md-4">
-					<div class="form-group">
-						{{ Form::label('numero_despacho', 'Numero de Despacho') }}
-						{{ Form::text('numero_despacho', null, ['class' => 'form-control ']) }}
-					</div>
-				</div>
 
 			</div>
 
@@ -116,12 +119,7 @@
 					{{ Form::text('puerto_salida', null, ['class' => 'form-control ']) }}
 				</div>
 			</div>
-			<div class="col-md-4">
-				<div class="form-group">
-					{{ Form::label('puerto_destino', 'Puerto de Destino') }}
-					{{ Form::text('puerto_destino', null, ['class' => 'form-control ']) }}
-				</div>
-			</div>
+			
 		</div>
 	</div>
 </div>
@@ -159,8 +157,14 @@
 
 								<thead>
 									<tr>
-									<th>Seleccione</th>	
+									<th></th>	
+									<th>Tarja</th>
+									<th>Fruta - variedad</th>
 									<th>Calidad</th>
+									<th>Formato</th>
+									<th>Cajas</th>
+									<th>peso de pallet</th>
+
 									</tr>
 
 								</thead>
@@ -171,10 +175,15 @@
 									@forelse($lotes as $lote)
 									<tr>
 										<td> 
-											<input type="checkbox" name="lotes[]" value="{{ $lote->numero_lote }}"> 
+											<input type="checkbox" name="lotes[]" value="{{ $lote->id }}"> 
 										</td>
 
 										<td>{{ $lote->numero_lote }}</td>
+										<td>{{ $lote->fruit->specie }} - {{ $lote->varieties->variety }}</td>
+										<td>{{ $lote->quality->name }}</td>
+										<td>{{ $lote->format->name }}</td>
+										<td>{{ $lote->quantity }}</td>
+										<td class="palletWeight">{{ $lote->palletWeight }}</td>
 
 
 										@php
@@ -199,22 +208,18 @@
 
 							</table>
 						</div>
-						
-										
-					</ul>
-
-
-									
-
-
-								</tbody>
-
-
-							</table>
-
+							<div class="row">
+						<div class="col-md-4">
+							<h3>Peso Total</h3>
 						</div>
-					
-					</ul>
+						<div class="col-md-4">
+							<strong>
+								<input readonly name="palletWeight" id="result"></input>
+							</strong>
+						</div>
+
+					</div>
+			
 				</div>
 					<script>
 $(document).ready(function(){
@@ -229,7 +234,10 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
+
 </div>
+
+
 
 <br>
 
@@ -288,6 +296,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 
+	
 
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -315,12 +324,12 @@ $(document).ready(function(){
 
 
 <script>
-	$('#subprocess input[type="checkbox"]').on('change', function() {
-	var table = $(this).closest('#subprocess'),
+	$('table input[type="checkbox"]').on('change', function() {
+	var table = $(this).closest('table'),
 	//acá la idea es que se haga un array de todos los checkeados para eso se instancia table.find 
 	  checked = table.find('input[type=checkbox]:checked'),
 	// acá dentro del table tenemos tr y dentro td pero par que la suma sea solo de una columna se agrega la clase quantity asi solo busca esa clase
-	  prices = checked.closest('tr').find('td.quantity'),
+	  prices = checked.closest('tr').find('td.palletWeight'),
 	// luego se hace un map  que busca si es numero, letra todo etc 
 	  sum = prices.map(function() {
 		return parseFloat(this.textContent.trim(), 10) || 0;
@@ -330,24 +339,10 @@ $(document).ready(function(){
 
 
 	
-	  if(sum >= 90){
-
-		swal("Has exedido el limite de cajas permitida.", "Vuelva a ingresar la información", "warning");
-
-	
-		for(var i = 0; i < checked.length; i++){
-
-			checked[i].checked = false;
-		}
-		
-		$('#result').text('');
-
-	  }else{
-
 		$('#result').text(sum);
+		document.getElementById('result').value=sum;
 
-	  }
-	  // se imprime todo en result 
+
 
 
 		

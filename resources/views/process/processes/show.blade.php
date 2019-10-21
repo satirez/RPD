@@ -19,8 +19,6 @@
 
                             <tbody> 
 
-                            
-
                                 <tr class="table-dark text-dark">
                                     <th> Tarjas </th>
                                     <th> SP0{{ $subproces->id }}</th>

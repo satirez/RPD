@@ -19,5 +19,9 @@ class Format extends Model
         return $this->belongsTo(SubProcess::class);
     }
     
+  	public function lotes()
+    {
+        return $this->belongsTo(Lote::class);
+    }
   
 }

@@ -11,7 +11,7 @@
 
 <div class="form-group">
 	{{ Form::label('weight', 'Peso: (Ejem: 0.2)') }}
-	{{ Form::number('weight', null, ['class' => 'form-control input-number', 'placeholder'=>'kg']) }}
+	{{ Form::text('weight', null, ['class' => 'form-control', 'placeholder'=>'kg']) }}
 </div>
 
 <div class="form-group">
@@ -21,9 +21,8 @@
 <!-- Permitir solo numeros, puntos y X-->
 <script type="text/javascript">
 	$(document).ready(function (){
-  $('.input-number').keyup(function (){
-	this.value = (this.value + '').replace(/[^.x0-9]/g, '');
-  });
+		$('.input-number').keyup(function (){
+			this.value = this.value.replace(/[a-zA-Z0-9\.]*$/g, '').replace(/,/g, '.');
+    }
 });
-
 </script>

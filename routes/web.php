@@ -222,7 +222,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/subprocess', 'SubProcessController@index')->name('subprocess.index')->middleware('permission:subprocess.index');
 
-    //auditoria
     Route::put('/auditoria/rejected/{subprocess}', 'SubProcessController@update')->name('subprocess.update')->middleware('permission:subprocess.edit');
 
     Route::post('/auditoria/{id}', 'auditoriaController@update')->name('update.auditoria');

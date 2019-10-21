@@ -20,7 +20,7 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 
 
@@ -62,9 +62,23 @@
       </div>
 
       <li class="nav-item">
-        <a class="nav-link" href="{{ url ('auditoria/rejected') }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseone" aria-expanded="true"
+          aria-controls="collapseone">
           <i class="far fa-calendar-check" style="color:#44D829"></i>
-          <span>Auditoria</span></a>
+          <span>Aseguramiento Calidad</span>
+        </a>
+        <div id="collapseone" class="collapse" aria-labelledby="headingone" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Componentes:</h6>
+
+            <a class="collapse-item" href="{{ url ('auditoria/rejected') }}">Proceso</a>
+
+            <a class="collapse-item" href="{{ url ('auditoria/rejectedLote') }}">Producto terminado</a>
+
+            <a class="collapse-item" href="{{ url ('auditoria/rejectedReception') }}">Recepción</a>
+
+          </div>
+        </div>
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -162,7 +176,7 @@
             <a class="collapse-item" href="{{ url ('tipotransportes') }}">Tipo de Transporte</a>
             @endcan
 
-           
+
 
             <!--  Temporada -->
             @can('admin.seasons.index')
@@ -195,17 +209,17 @@
 
       @endcan
 
-<!-- Nav Item - Pages Collapse Menu -->
+      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport2"
           aria-expanded="true" aria-controls="collapseReport">
           <i class="fas fa-fw fa-pallet" style="color:#FFEC00"></i>
-                   <span>Proceso</span></a>
+          <span>Proceso</span></a>
         </a>
         <div id="collapseReport2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Proceso:</h6>
-             @can('process.processes.index')
+            @can('process.processes.index')
             <a class="collapse-item" href="{{ url ('processes') }}">Proceso</a>
             @endcan
 
@@ -217,8 +231,8 @@
         </div>
       </li>
 
-  
 
+    
 
 
 
@@ -227,28 +241,54 @@
       <!-- Nav Item -->
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport1"
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport10"
           aria-expanded="true" aria-controls="collapseReport">
-          <i class="fas fa-fw fa-truck-loading" style="color:#55FF00"></i>
+          <i class="fas fa-fw fa-archive" style="color:#DE850C"></i>
           <span>Camara</span>
         </a>
-        <div id="collapseReport1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseReport10" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
             @can('dispatch.index')
-            <a class="collapse-item" href="{{ url ('camara') }}">Camara</a>
+            <a class="collapse-item" href="{{ url ('camara') }}">Sin Paletizar</a>
             @endcan
-
-            @can('dispatch.index')
-            <a class="collapse-item" href="{{ url ('dispatch') }}">Despachar</a>
+            @can('lotes.camaralote')
+            <a class="collapse-item" href="{{ url ('camaralote') }}">Paletizados</a>
             @endcan
+         
 
           </div>
         </div>
       </li>
 
+    @can('dispatch.index')
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url ('dispatch') }}">
+          <i class="fas fa-fw fa-truck-loading" style="color:#55FF00"></i>
+          <span>Despachar </span>
+
+        </a>
+      </li>
 
 
+
+      @endcan
+
+
+        @can('reprocess.reprocesses.index')
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url ('reprocesses') }}">
+          <i class="fas fa-retweet" style="color:#F99E00"></i>
+          <span>Reproceso </span>
+
+        </a>
+      </li>
+
+
+
+      @endcan
+
+  <
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -262,17 +302,27 @@
         </a>
         <div id="collapseReport" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
 
-           
-            <a class="collapse-item" href="{{ url ('receptionsdaily') }}">Diario</a>
-            
+            <h6 class="collapse-header">Recepción:</h6>
 
+            <a class="collapse-item" href="{{ url ('receptionsdaily') }}">Recepción Diario</a>
+            <a class="collapse-item" href="{{ url ('receptionsperfruit') }}">Recepción Por Fruta</a>
+            <a class="collapse-item" href="{{ url ('receptionsperproductor') }}">Recepción Por Productor</a>
             
-            <a class="collapse-item" href="{{ url ('receptionsperfruit') }}">Por Fruta</a>
-            
+            <div class="dropdown-divider"></div>
+            <h6 class="collapse-header">Proceso:</h6>
 
-            <a class="collapse-item" href="{{ url ('receptionsperproductor') }}">Por Productor</a>
+            <a class="collapse-item" href="{{ Route ('reporteProcesoDaily') }}">Proceso Diario</a>
+            <a class="collapse-item" href="{{ Route ('reporteProcesoFruit') }}">Proceso Por Fruta</a>
+            <a class="collapse-item" href="{{ Route ('reporteProcesoProvider') }}">Proceso Por Productor</a>
+
+            <div class="dropdown-divider"></div>
+            <h6 class="collapse-header ">Despacho:</h6>
+
+            <a class="collapse-item" href="{{ Route ('reporteDespachoDaily') }}">Despacho Diario</a>
+            <a class="collapse-item" href="{{ Route ('reporteDespachoFruit') }}">Despacho Por Fruta</a>
+            <a class="collapse-item" href="{{ Route ('reporteDespachoProvider') }}">Despacho Por Productor</a>
+            <div class="dropdown-divider"></div>
 
           </div>
         </div>
@@ -364,7 +414,7 @@
 
           <div class="row">
 
-              
+
 
             @yield('section')
 
@@ -402,7 +452,6 @@
 
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-  <script src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
 
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>

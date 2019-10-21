@@ -9,8 +9,15 @@ class Dispatch extends Model
     protected $primaryKey = 'id';
 	
     protected $fillable = [
-            'exporter_id', 'planilla_dispatch','numero_guia','numero_despacho','season_id','tipodispatch_id','puerto_salida','puerto_destino','consignatario','numero_contenedor','nombre_chofer','patente_vehiculo','patente_rampla','rejected','comment','tipotransporte_id'
+            'exporter_id', 'planilla_dispatch','numero_guia','numero_despacho','season_id','tipodispatch_id','puerto_salida','consignatario','numero_contenedor','nombre_chofer','patente_vehiculo','patente_rampla','rejected','comment','tipotransporte_id','fruit_id','quality_id','status_id', 'variety_id','palletWeight', 'format_id'
     ];
+
+
+   public function lote()
+    {
+        return $this->belongsToMany('\App\Lote', 'Dispatch_Lote')
+            ->withPivot('lote_id');
+    }  //falta crear la modelo pivote dispatch lote
 
     public function processes()
     {
@@ -41,9 +48,25 @@ class Dispatch extends Model
     {
         return $this->belongsTo(TipoTransporte::class);
     }
-        public function lote()
+       
+    
+    public function fruit()
     {
-        return $this->belongsTo(Lote::class);
+        return $this->belongsTo(Fruit::class);
+    }
+
+ public function quality()
+    {
+        return $this->belongsTo(Quality::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
+    public function varieties()
+    {
+        return $this->belongsTo(Variety::class, 'variety_id');
     }
 }
 

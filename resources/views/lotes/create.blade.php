@@ -13,7 +13,7 @@
                 <div class="panel-body">
                 	{!! Form::open(['route' => 'lotes.store']) !!} 
 
-                	@include('lotes.partials.form')
+                	@include('lotes.partials.formsearch')
 
                 	{!! Form::close() !!}
 

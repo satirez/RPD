@@ -15,7 +15,21 @@ class Fruit extends Model
         return $this->hasMany(Reception::class);
     }
 
+
+     public function subprocesses(){
+        return $this->hasMany(SubProcess::class);
+    }
+   
+     public function dispatch(){
+        return $this->hasMany(Dispatch::class);
+    }
+
      public function variety(){
         return $this->belongsTo(Variety::class);
     }
+
+     public function lote(){
+        return $this->hasMany(Lote::class);
+    }
+    
 }

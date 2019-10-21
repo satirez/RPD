@@ -1,8 +1,13 @@
 <?php
+
 namespace App\Http\Controllers;
+
+
 use Caffeinated\Shinobi\Models\Role;
 use Caffeinated\Shinobi\Models\Permission;
+
 use Illuminate\Http\Request;
+
 class RoleController extends Controller
 {
     /**
@@ -16,6 +21,7 @@ class RoleController extends Controller
         $roles = Role::paginate();
         return view('roles.index', compact('roles')); 
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,8 +30,10 @@ class RoleController extends Controller
    public function create()
     {
         $permissions = Permission::get();
+
         return view('roles.create', compact('permissions'));
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -35,10 +43,14 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $role = Role::create($request->all());
+
+
         //Actualizar permisos
         $role->permissions()->sync($request->get('permissions'));
-        return redirect()->route('roles.index', $role->id)->with('info', 'Role guardado con exito');
+
+        return redirect()->route('roles.edit', $role->id)->with('info', 'Role guardado con exito');
     }
+
     /**
      * Display the specified resource.
      *
@@ -50,6 +62,7 @@ class RoleController extends Controller
         $role = Role::find($id);
         return view('roles.show', compact('role'));
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -62,6 +75,7 @@ class RoleController extends Controller
         $permissions = Permission::get();
         return view('roles.edit', compact('role', 'permissions'));
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -77,6 +91,7 @@ class RoleController extends Controller
         return redirect()->route('roles.edit', $role->id)
             ->with('info', 'Rol guardado con éxito');
     }
+
     /**
      * Remove the specified resource from storage.
      *

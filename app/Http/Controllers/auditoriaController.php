@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Reception;
 use App\SubProcess;
+use App\Lote;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,11 +15,24 @@ class auditoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        $rejecteds = SubProcess::where('rejected', 1)->get();
-        return view ('auditoria.rejected', compact('rejecteds'));
+
+        $subProcessRejecteds = SubProcess::where('rejected', 1)->get();
+        return view ('auditoria.rejected', compact('subProcessRejecteds'));
+
+    }
+
+    public function indexLote()
+    {
+        $loteRejecteds = Lote::where('rejected', 1)->get();
+        return view ('auditoria.rejectedLote', compact('loteRejecteds'));
+    }
+
+    public function indexReception()
+    {
+        $receptionRejecteds = Reception::where('rejected', 1)->get();
+        return view ('auditoria.rejectedReception', compact('receptionRejecteds'));
     }
 
     /**
@@ -72,13 +86,24 @@ class auditoriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update($id)
-    {
-        $subprocess = SubProcess::where('id', $id)->first();
+    { 
 
-        $subprocess = SubProcess::where('id', $id)->update(['rejected' => 0]);
+        SubProcess::where('id', $id)->update(['rejected' => 0]);
 
         return back()->with('habilitado',"Actualizado!");
+    }
+    public function updateLote($id)
+    { 
+        Lote::where('id', $id)->update(['rejected' => 0]);
 
+        return back()->with('habilitado',"Actualizado!");
+    }
+    public function updateReception($id)
+    { 
+
+        Reception::where('id', $id)->update(['rejected' => 0]);
+
+        return back()->with('habilitado',"Actualizado!");
     }
 
     /**

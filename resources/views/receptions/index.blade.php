@@ -3,83 +3,63 @@
 @section('section')
 
 
-
-
-
-<div class="container">
+<div class="container-fluid px-4">
     <div class="responsive">
-        <div class="col-md-13 ">    
+        <div class=" ">
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 style="text-align:center;">RECEPCION
                         @can('receptions.create')
-                        <a href="{{ Route('receptions.create') }}"
-                            class="btn btn-info pull-right btn-sm"> Crear </a>
+                        <a href="{{ Route('receptions.create') }}" class="btn btn-info pull-right btn-sm"> Crear </a>
                         @endcan
                     </h4>
                 </div>
                 <br>
-                <br>
-            <div class="panel panel-primary">
-                        <div class="panel-heading">
-                        <h4 style="text-align:center;">Total de Kilos Recepcionados: <strong style="color:green;">{{ $receptionWeight}}Kg</strong></h4>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 style="text-align:center;">Total de Kilos Recepcionados: <strong
+                                style="color:green;">{{ $receptionWeight}}Kg</strong></h4>
 
                     </div>
                 </div>
-<br>
-          
-<div class="card">
-    <div class="card-header">
-        
-        <h5 style="text-align:center;">Tabla de datos:</h5> 
-    </div>
-    <br>
-                <div class="col-md-12">
-                 <div class="table-responsive">
-                    <!--comienzo de la tabla-->
-                    <table id="laravel_datatable3"  class=" cell-border order-column">
-                      
-                         <thead>
-                            <tr>
-                                <th>Imprimir</th>
-                                <th>Fecha Ingreso</th>
-                                <th>N° de tarja</th> 
-                                <th>Productor</th>
-                                <th>Calidad</th>
-                                <th>Fruta</th>
-                                <th>Variedad</th>
-                                <th>Cantidad de bandejas</th>
-                                <th>Peso neto</th>
-                                <th>Peso bruto</th>
-                                <th>Ver</th>
+                <br>
+                <br>
+                <br>
+                    <h4>Tabla de Datos:</h4>
+                    <br>
+                  
+                        <div class="table-responsive">
+                            <!--comienzo de la tabla-->
+                            <table id="laravel_datatable3" class=" table table-responsive" style="width:100%">
 
-                                <th colspan="auto">&nbsp;</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                        <tfoot>
-                        
-                           
-      
-                        </tfoot>
-                    </table>
+                                <thead>
+                                    <tr>
+                                        <th>Imprimir</th>
+                                        <th>Fecha Ingreso</th>
+                                        <th>N° de tarja</th>
+                                        <th>Productor</th>
+                                        <th>Calidad</th>
+                                        <th>Fruta</th>
+                                        <th>Variedad</th>
+                                        <th>Cantidad de bandejas</th>
+                                        <th>Peso neto</th>
+                                        <th>Peso bruto</th>
+                                        <th>Ver</th>
+
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
 
 
-                    
 
-                  </div>    
-                </div>                          
-                </div>
+                                </tfoot>
+                            </table>
 
-                </div>
-            </div>
-
-        </div>
-</div>
-   
-<script>
+                            <script>
     $(document).ready(function() {
     
                 $('#laravel_datatable3 thead tr').clone(true).appendTo( '#laravel_datatable3 thead' );
@@ -101,20 +81,13 @@
             var table = $('#laravel_datatable3').DataTable({
                 processing: true,
                 serverSide: true,
-                       dom: 'Bfrtip',
-                   buttons: [
-                             'excel', 'pdf'
-                            ],
+                       
                
                 order: [[ 0, 'desc' ]], //cambiar dspues
                 iDisplayLength: 100,
                 language: {
                 url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
-                
-            
-            
-            
             ajax: "{{ url('reception-list') }}",
             columns: [
                 {
@@ -159,8 +132,16 @@
 
 
 </script>
-</div>
-</div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
 
 
 

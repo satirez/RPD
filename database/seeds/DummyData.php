@@ -257,7 +257,7 @@ class DummyData extends Seeder
             ['3x3', 3],
             ['4x4', 4],
             ['5x5', 5],
-            ['NULO', 1.000],
+            ['NULO', 1,000],
         ];
 
         $fruits = array_map(function ($fruits) use ($now) {

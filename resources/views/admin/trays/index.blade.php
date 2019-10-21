@@ -33,23 +33,7 @@
                               
                     
                            
-                                <td width="10px">
-                                    @can('admin.trays.edit')
-                                    <a 
-                                    href="{{ Route('admin.trays.edit', $tray->id) }}" 
-                                    class="btn btn-sm btn-info">
-                                          Editar
-                                    </a>
-                                    @endcan
-                                </td>
-                                <td width="10px">
-                                    @can('admin.trays.destroy')
-                                    {!! Form::open(['route' => ['admin.trays.destroy', $tray->id],
-                                    'method' => 'DELETE' ]) !!}
-                                        <button class="btn btn-sm btn-danger">Eliminar</button>
-                                    {!! Form::close() !!}
-                                    @endcan
-                                </td>    
+                          
 
                            </tr>
                         @endforeach

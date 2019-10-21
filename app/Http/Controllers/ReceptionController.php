@@ -12,14 +12,14 @@ use App\Status;
 use App\Rejected;
 use App\Season;
 use App\Rate;
+use App\User;
 use App\motivorejected;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateReception;
 use Carbon\Carbon;
 use Yajra\Datatables\Datatables;
 use Barryvdh\DomPDF\Facade as PDF;
-
-
+use Illuminate\Support\Facades\Input;
 
 class ReceptionController extends Controller
 {
@@ -36,7 +36,6 @@ class ReceptionController extends Controller
         $receptionQuantity = Reception::where('available', 1)->sum('quantity');
         $receptionCount = Reception::where('available', 1)->count();
         $historico = Reception::paginate(100);
-        
 
         return view('receptions.index', compact('receptions', 'receptionWeight', 'receptionQuantity', 'receptionCount'));
     }
@@ -44,50 +43,35 @@ class ReceptionController extends Controller
     //funcion creada para hacer reportes
     public function receptionsdaily()
     {
-        //Carbon(agarra las fecha segun el metodo'today') hecho para hoy
-        $today = Carbon::today();
-        //agarra toda la lista de recepciones ingresadas hoy
-        $inprocess = Reception::where('created_at', '>=', $today)->paginate();
-        //cuenta todas las recepciones de hoy
-        $cuenta = Reception::where('created_at', '>=', $today)->count();
-        //suma todos los pesos brutos de hoy
-        $pesobruto = Reception::Where('created_at', '>=', $today)->sum('grossweight');
-        //suma todos los pesos netos de hoy
-        $pesoneto = Reception::Where('created_at', '>=', $today)->sum('netweight');
-
-        return view('receptions.receptionsdaily', compact('inprocess', 'pesobruto', 'pesoneto', 'cuenta'));
+        return view('receptions.receptionsdaily');
     }
+
 
     public function receptionsperfruit()
     {
-        //procesadas
-        $inprocess = Reception::where('available', 0)->paginate();
+        $fruits = Fruit::all();
 
-        return view('receptions.receptionsperfruit', compact('inprocess'));
+        return view('receptions.receptionsperfruit', compact('fruits'));
     }
 
     public function receptionsperproductor()
     {
-
         $listProviders = Providers::OrderBy('id', 'DES')->get();
         $listSeasons = Season::OrderBy('id', 'DES')->get();
 
-        return view('receptions.receptionsperproductor', compact('listProviders','listSeasons'));
+        return view('receptions.receptionsperproductor', compact('listProviders', 'listSeasons'));
     }
 
     public function getData()
-    { 
+    {
         $receptions = Reception::where('available', 1)->with([
             'fruit',
             'provider',
             'supplies',
             'season',
             'quality',
-            'varieties'
-            
-            
-        ]); 
-
+            'varieties',
+        ]);
 
         return Datatables::of($receptions)
             ->addColumn('fruit', function ($reception) {
@@ -106,27 +90,27 @@ class ReceptionController extends Controller
                 return $reception->quality->name;
             })
             ->editColumn('available', function ($reception) {
-                return ('disponible');
+                return 'disponible';
             })
             ->editColumn('varieties', function ($reception) {
-                return $reception->supplies->name;
-            })
+
+                return $reception->varieties->variety;
+            })  
           
-      
+
 
             ->make(true);
     }
 
-    public function print($id){
+    public function print($id)
+    {
+        $receptions = Reception::where('id', $id)->first();
 
-        $receptions = Reception::where('id',$id)->first();
+        $customPaper = array(0, 0,410,750);
+        $pdf = PDF::loadView('receptions.print  ', compact('receptions'))->setPaper($customPaper);
 
-        $customPaper = array(0,0,378,567);
-        $pdf = PDF::loadView('receptions.print  ',compact('receptions'))->setPaper($customPaper);
-    
         return $pdf->stream();
-
-    }
+    } 
 
     /**
      * Show the form for creating a new resource.
@@ -180,6 +164,44 @@ class ReceptionController extends Controller
         return Variety::where('fruit_id', $id)->get();
     }
 
+
+    public function dailytotal(Request $request){
+        $q = Input::post('date');
+
+        $receptions = Reception::whereDate('created_at','=',$q)->get();
+        $listProviders = Providers::OrderBy('id', 'DES')->get();
+        $neto = Reception::whereDate('created_at','=',$q)->sum('netweight');
+        $bruto = Reception::whereDate('created_at','=',$q)->sum('grossweight');
+
+        return view('receptions.receptionsdailysearch', compact('receptions','listProviders','neto','bruto'));
+
+    }
+
+    public function fruittotal(Request $request){
+
+        $q = Input::post('fruit_id');
+        $receptions = Reception::where('fruit_id',$q)->get();
+        $neto = Reception::where('fruit_id',$q)->sum('netweight');
+        $bruto = Reception::where('fruit_id',$q)->sum('grossweight');
+        $fruits = Fruit::all();
+        
+        return view('receptions.receptionsperfruitsearch', compact('receptions','neto','bruto','fruits'));
+
+    }
+
+    public function productortotal(Request $request){
+
+        $q = Input::post('provider_id');
+        $receptions = Reception::all()->where('provider_id', $q);
+        $listProviders = Providers::OrderBy('id', 'DES')->get();
+        $neto = Reception::all()->where('provider_id', $q)->sum('netweight');
+        $bruto = Reception::all()->where('provider_id', $q)->sum('grossweight');
+
+        return view('receptions.receptionsperproductornothing', compact('receptions','listProviders','neto','bruto'));
+
+    }
+
+
     public function byProduction($id)
     {
         $receptions = Reception::where('provider_id', $id)->with([
@@ -207,10 +229,9 @@ class ReceptionController extends Controller
             return $reception->quality->name;
         })
         ->editColumn('available', function ($reception) {
-            return ('disponible');
+            return 'disponible';
         })
         ->make(true);
-
     }
 
     /**
@@ -222,9 +243,6 @@ class ReceptionController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
         // rate,reason y coment deben ir en el mismo request y tabla, ya que eliminamos la tabla rejected de la db
 
         $rejected = $request->get('rejected');
@@ -266,10 +284,11 @@ class ReceptionController extends Controller
                 'commentrejected' => $comment,
             ];
             $rejected = Rejected::create($rejected);
-        } else { }
+        } else {
 
-        return redirect()->route('receptions.index', $reception->id)->with('info','Recepcion guardado con exito'); 
+        }
 
+        return redirect()->route('receptions.index', $reception->id)->with('info', 'Recepcion guardado con exito');
     }
 
     /**
@@ -343,6 +362,7 @@ class ReceptionController extends Controller
      */
 
     //revisar UpdateRequest (no funca con eso)
+
     public function update(UpdateReception $request, Reception $reception)
     {
         $rejected = $reception->rejected;

@@ -23,11 +23,21 @@ class CreateLotesTable extends Migration
             $table->integer('variety_id')->unsigned();
             $table->integer('quality_id')->unsigned();
             $table->integer('format_id')->unsigned();
-
+            $table->integer('status_id')->unsigned();
+            $table->integer('quantity')->unsigned();
+            $table->integer('palletWeight')->unsigned();
+            
+            
+            
+            $table->Boolean('rep')->default('0');
+        
+            $table->foreign('status_id')->references('id')->on('statuses');
             $table->foreign('fruit_id')->references('id')->on('fruits');
             $table->foreign('variety_id')->references('id')->on('varieties');
             $table->foreign('quality_id')->references('id')->on('qualities');
             $table->foreign('format_id')->references('id')->on('formats');
+
+            $table->Boolean('rejected')->default('0');
 
             $table->timestamps();
         });

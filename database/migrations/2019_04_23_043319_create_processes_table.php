@@ -17,7 +17,7 @@ class CreateProcessesTable extends Migration
             $table->increments('id');
             $table->String('tarja_proceso');
             $table->Boolean('available')->default('1');
-            $table->Boolean('wash')->default('1');
+            $table->String('wash');
             $table->integer('fruit_id')->unsigned();
             $table->integer('variety_id')->unsigned();
             $table->integer('quality_id')->unsigned();

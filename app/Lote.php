@@ -10,12 +10,14 @@ class Lote extends Model
 
     protected $fillable = [
         'numero_lote', 'fruit_id',
-        'quality_id', 'variety_id', 'format_id',
+        'quality_id', 'variety_id', 'format_id', 'quantity', 'palletWeight', 'status_id'
     ];
 
-    public function dispatches()
+    public function dispatch()
     {
-        return $this->belongsTo(Dispatch::class);
+       
+        return $this->belongsToMany('\App\Dispatch', 'Dispatch_Lote')
+            ->withPivot('dispatch_id');
     }
 
     public function subprocesses()
@@ -35,6 +37,11 @@ class Lote extends Model
         return $this->belongsTo(Fruit::class);
     }
 
+    public function format()
+    {
+        return $this->belongsTo(Format::class);
+    }
+
     public function varieties()
     {
         return $this->belongsTo(Variety::class, 'variety_id');
@@ -43,5 +50,10 @@ class Lote extends Model
     public function quality()
     {
         return $this->belongsTo(Quality::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 }

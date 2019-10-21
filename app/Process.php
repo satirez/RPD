@@ -9,7 +9,7 @@ class Process extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'tarja_proceso', 'rejected_id', 'variety_id', 'quality_id', 'fruit_id', 'status_id',
+        'tarja_proceso', 'rejected_id', 'variety_id', 'quality_id', 'fruit_id', 'status_id','wash'
     ];
 
     public function receptions()
@@ -46,5 +46,9 @@ class Process extends Model
     public function quality()
     {
         return $this->belongsTo(Quality::class);
+    }
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 }

@@ -20,5 +20,14 @@ class Variety extends Model
     public function receptions(){
         return $this->hasMany(Reception::class);
     }
+     public function subprocess(){
+        return $this->hasMany(SubProcess::class);
+    }
     
+    public function lote(){
+        return $this->hasMany(Lote::class);
+    }
+     public function dispatch(){
+        return $this->hasMany(Dispatch::class);
+    }
 }

@@ -1,49 +1,58 @@
 @extends('layouts.dashboard')
 
 @section('section')
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css"
+    integrity="sha256-b5ZKCi55IX+24Jqn638cP/q3Nb2nlx+MH/vMMqrId6k=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
+    integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"
+    integrity="sha256-5YmaxAwMjIpMrVlK84Y/+NjCpKnFYa8bWWBbUHSBGfU=" crossorigin="anonymous"></script>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10 col-md-offset-1 ">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 style="text-align:center;">Recepcionados en proceso
-                        @can('inprocess.create')
-                        <a href="{{ Route('receptions.create') }}" class="btn btn-sm btn-primary pull-right"> Crear </a>
-                        @endcan
+                    <h4 style="text-align:center;"> Fruta Procesada
+
                 </div>
 
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr class="">
 
-                                <th>Peso bruto</th>
-                                <th>Peso neto</th>
+                <form method="POST" action="{{ route('receptionfruit') }}">
+                    @csrf
+
+                    <div class="col-md-12">
+                            <div class="row">
+                                 <div class="col-md-4">
+                                         <div class="form-group">
+                                             <label for="fruit_id">Fruta</label>
+                                             <select class="form-control" name="fruit_id" id="fruit_id">
+                                                 <option value=""> Fruta </option>
+                                                 @foreach ($fruits as $fruit)
+                                                 <option value="{{ $fruit->id }}"> {{ $fruit->specie }}</option>
+                                                 @endforeach
+                                             </select>
+                                         </div>
+                                     </div>
+             
+                           
+             
+                                 <div class="col-md-6 mt-4">
+                                 
+                                         <div class="form-group">
+                                             <button type="submit" class="btn btn-primary">
+                                                 <span class="fas fa-search"></span> Buscar
+                                             </button>
+                                         </div>
+             
+                                     </div>
+                            </div>
+                     </div>
+                </form>
 
 
-                                <th colspan="auto">&nbsp;</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($inprocess as $inprocesslis)
-                            <tr>
-                                <td>{{ $inprocesslis->grossweight  }} Kg.</td>
-                                <td>{{ $inprocesslis->netweight  }} Kg.</td>
-
-                            </tr>
-                            @endforeach
-
-                        </tbody>
-                    </table>
-                    {{ $inprocess->render() }}
-                   <table class="table responsive">
-                       <h3> Total </h3>
-                    <tr style="font-size:24px">
-                        <td>{{ $inprocess->sum('grossweight') }} </td>
-                        <td>{{ $inprocess->sum('netweight') }} </td>
-                    </tr>
-                   </table>
-                </div>
             </div>
         </div>
     </div>

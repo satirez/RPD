@@ -8,6 +8,7 @@ use App\Exporter;
 use App\SubProcess;
 use App\Dispatch;
 use App\Rejected;
+use App\Variety;
 use App\Fruit;
 use App\Lote;
 use App\Quality;
@@ -15,7 +16,6 @@ use App\Format;
 use App\TipoDispatch;
 use App\Season;
 use App\TipoTransporte;
-use App\TipoProductoDispatch;
 use Yajra\Datatables\Datatables;
 use Barryvdh\DomPDF\Facade as PDF;
 
@@ -39,6 +39,13 @@ class DispatchController extends Controller
             'tipodispatch',
             'tipotransporte',
             'season',
+            'fruit',           
+           
+            'quality',
+          
+            'varieties',
+            'status',
+
         ]);
 
         return Datatables::of($dispatches)
@@ -48,23 +55,35 @@ class DispatchController extends Controller
             ->editColumn('tipotransporte', function ($dispatch) {
                 return $dispatch->tipotransporte->name;
             })
-
             ->editColumn('season', function ($dispatch) {
                 return $dispatch->season->name;
             })
 
+             ->addColumn('fruit', function ($dispatch) {
+                return $dispatch->fruit->specie;
+            })
+            
+            ->addColumn('status', function ($dispatch) {
+                return $dispatch->status->name;
+            })
+            ->editColumn('quality', function ($dispatch) {
+                return $dispatch->quality->name;
+            })
+          
+           
+            ->editColumn('varieties', function ($dispatch) {
+                return $dispatch->varieties->variety;            
+            })
             ->make(true);
+
     }
 
-    public function getLotes()
+    public function getSubprocess()
     {
-        $lotes = Lote::orderBy('id','ASC')->paginate(20);
-        return view('dispatch.camara', compact('lotes'));
+        $subprocesses = SubProcess::orderBy('id', 'ASC')->paginate(20);
+
+        return view('dispatch.camara', compact('subprocesses'));
     }
-
-
-   
-    
 
     public function showCam(Lote $lotes)
     {
@@ -84,8 +103,10 @@ class DispatchController extends Controller
     {
         //lista de tabla pivote en despacho (checkbox)
 
-                                                        //cambiar el formato
-       // $subprocesses = SubProcess::orderBy('id', 'DES')->where('available','!0' ,'&&', 'format_id', !6)->get();
+          $numero_despacho = 'D001';
+
+        //cambiar el formato
+        // $subprocesses = SubProcess::orderBy('id', 'DES')->where('available','!0' ,'&&', 'format_id', !6)->get();
 
         $lotes = Lote::orderBy('id', 'DES')->where('available', 1)->paginate(10);
 
@@ -94,16 +115,24 @@ class DispatchController extends Controller
         $listtipodispatch = TipoDispatch::OrderBy('id', 'ASC')->pluck('name', 'id');
         $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'id', 'weight');
         $listFruits = Fruit::OrderBy('id', 'DES')->pluck('specie', 'id');
+        $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $listSeasons = Season::OrderBy('id', 'DES')->pluck('name', 'id');
         $listTipoTransporte = TipoTransporte::OrderBy('id', 'DES')->pluck('name', 'id');
-       
+
+         $last = Dispatch::OrderBy('id', 'DES')->first();
+
+        if ($last == null) {
+            $lastid = 1;
+        } else {
+            $lastid = $last->id + 1;
+        }
 
         return view('dispatch.create', compact(
             'listexporter', 'lotes',
             'listRejecteds', 'listtipodispatch',
             'listFormat', 'listFruits', 'listQualities', 'listSeasons',
-            'listTipoTransporte')
+            'listTipoTransporte','listVariety','lastid')
         );
     }
 
@@ -114,33 +143,66 @@ class DispatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function store(Request $request)
+
     {
 
         
+        $numero_despacho = $request->get('numero_despacho');
+        $dispatchs = $request->get('lotes');
 
-       //Guarda la despacho
+     
+   
+       
+        $fruit = Lote::where('id', $dispatchs)->first()->fruit_id;
+          
+
+        $variety = Lote::where('id', $dispatchs)->first()->variety_id;
+        $format = Lote::where('id', $dispatchs)->first()->format_id;
+
+        $status = Lote::where('id', $dispatchs)->first()->status_id;
+                
+        $quality = Lote::where('id', $dispatchs)->first()->quality_id;
+
+       
+        
+
+        $ultimodespacho = Dispatch::orderBy('id', 'DESC')->first();
+
+
+          
+        $request->merge(['fruit_id' => $fruit, 'format_id' => $format, 'status_id' => $status, 'quality_id' =>$quality, 'variety_id' => $quality]);
+
+        //Guarda la despacho
         $dispatch = Dispatch::create($request->all());
-        $checklistdata = $request->get('lotes');
 
-
-        foreach ($checklistdata as $key) {
+    
+        $dispatch->lote()->attach($request->get('lote'));
             
+        $dispatch = $dispatch->numero_despacho;
+
+
+       
+
+        $checklistdata = $request->get('lotes');
+        foreach ($checklistdata as $key) {
+            $cualquiercosa = Lote::where('id', $key)->first();
             Lote::where('id', $key)->update(['available' => 0]);
         }
 
-        return redirect()->route('dispatch.index', $dispatch->id)->with('info', 'despacho guardado con exito');
+        return redirect()->route('dispatch.index')->with('info', 'despacho guardado con exito');
     }
 
-    public function print($id){
+    public function print($id)
+    {
+        $receptions = Dispatch::where('id', $id)->first();
 
-        $receptions = Dispatch::where('id',$id)->first();
-        
-        $customPaper = array(0,0,567,378);
-        $pdf = PDF::loadView('dispatch.print  ',compact('receptions'))->setPaper($customPaper);
-    
+        $customPaper = array(0, 0, 567, 378);
+        $pdf = PDF::loadView('dispatch.print  ', compact('receptions'))->setPaper($customPaper);
+
         return $pdf->stream();
-
     }
 
     /**

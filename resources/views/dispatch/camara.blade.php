@@ -1,12 +1,12 @@
 @extends('layouts.dashboard')
 
 @section('section')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12 col-md-offset-0">       
+<div class="container-fluid px-4">
+    <div class="responsive">
+        <div class=" ">    
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4 style="text-align:center;">Camara</h4>
+                            <h4 style="text-align:center;">Camara de Producto Terminado Sin Paletizar:</h4>
                         
                     
                 </div>
@@ -18,8 +18,14 @@
 
                                <th>Imprimir</th>
                                <th>Tarja</th>
-                               <th>Formato</th>
+                               <th>Estatus</th>
+                               <th>Fruta</th>
+                               <th>Variedad</th>
+                               
                                <th>Calidad</th>
+                               <th>Inicio Folio</th>
+                               <th>Fin de Folio</th>
+                               <th>Formato</th>
                                <th>Cantidad de cajas</th>
                                <th>Peso total</th>
                                <th>Fecha de creacion</th>
@@ -63,9 +69,7 @@
              
              iDisplayLength: 100,
              order: [[ 0, 'desc' ]],
-             dom: 'Bfrtip',
-             buttons: [
-            'excel', 'pdf',],
+           
             
             
             ajax: "{{ url('subprocess-list') }}",
@@ -81,9 +85,15 @@
                             },
                           
                         },
-                     { data: 'id', name: 'id' },
-                     { data: 'format', name: 'format.name' },
+                     { data: 'tarja', name: 'tarja' },
+                     { data: 'status', name: 'status.name' },
+                     { data: 'fruit', name: 'fruit.specie' },
+                     { data: 'varieties', name: 'varieties.variety' },
+                    
                      { data: 'quality', name: 'quality.name' },
+                     { data: 'folioStart', name: 'folioStart' },
+                     { data: 'folioEnd', name: 'folioEnd' },
+                      { data: 'format', name: 'format.name' },
                      { data: 'quantity', name: 'quantity' },                 
                      { data: 'weight', name: 'weight' },
                      { data: 'created_at', name: 'created_at' },

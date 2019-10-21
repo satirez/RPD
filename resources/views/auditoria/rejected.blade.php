@@ -13,13 +13,15 @@
               @endif
 
 <div class="container">
+
     <div class="row justify-content-center">
+
         <div class="col-md-12 col-md-offset-1 ">
             <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4 style="text-align:center;">Auditoria</h4>
-                </div>
 
+                <div class="panel-heading">
+                    <h4 style="text-align:center;">Aseguramiento de Calidad</h4>
+                </div>
 
                 <div class=" col-md-4">
                     <p>Filtrar:</p>
@@ -28,40 +30,39 @@
                 </div>
 
                 <div class="panel-body">
-                    <table class="table table-bordered table-striped">
+                <div class="card">
+
+  <div class="card">
+    <table class="table table-bordered table-striped">
+                    
                         <thead class="thead-dark">
                             <tr>
-                                <th>Selección</th>
                                 <th>Tarja</th>
                                 <th>Formato</th>
                                 <th>Calidad</th>
                                 <th>Fruta - Variedad</th>
+                                <th>Folio</th>
+                                <th></th>
                             </tr>
                         </thead>
+                        
                         <tbody id="myTable">
                             <script>
-
                             </script>
-                            @forelse($rejecteds as $rejected)
+                            @forelse($subProcessRejecteds as $rejected)
                             <tr>
                                 <td>SP00{{ $rejected->id }}</td>
                                 <td>{{ $rejected->format->name }}</td>
                                 <td>{{ $rejected->quality->name }}</td>
                                 <td>{{ $rejected->fruit->specie}} - {{ $rejected->varieties->variety }}</td>
-
-
-                                <td>
-                                    
-                                <a href="{{ route('auditoria.update', $rejected->id) }}" class="btn btn-sm btn-success">Habilitar</a>
-
-            
+                                <td>{{ $rejected->folioStart}} - {{ $rejected->folioEnd }}</td>
+                                <td>                                    
+                                <a href="{{ route('auditoria.update', $rejected->id) }}" class="btn btn-sm btn-success">Habilitar</a>           
                                 </td>
-
                                 @php
                                 $uno = false;
                                 @endphp
                             </tr>
-
                             @empty
                             <h4> Sin Registros </h4>
                             @php
@@ -70,6 +71,14 @@
                             @endforelse
                         </tbody>
                     </table>
+                </div>
+                <br/>
+                <br/>
+  </div>
+  <br/>
+  <br/>
+
+  </div>
                 </div>
             </div>
             <script>

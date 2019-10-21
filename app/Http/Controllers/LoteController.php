@@ -6,7 +6,13 @@ use Illuminate\Http\Request;
 use App\SubProcess;
 use App\Rejected;
 use App\Lote;
+use App\Fruit;
+
+use App\Format;
+use App\Quality;
+use App\Variety;
 use Yajra\Datatables\Datatables;
+use Barryvdh\DomPDF\Facade as PDF;
 use DB;
 
 class LoteController extends Controller
@@ -28,13 +34,21 @@ class LoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //lista de tabla pivote en despacho (checkbox)
+
+        
         $lotes = Lote::paginate();
 
         //modificar condicion al ponerlo en produccion!!!
-        $subprocesses = SubProcess::orderBy('id', 'DES')->where('available', 1)->where('format_id', '!=', 5)->where('rejected', 0)->paginate(10);
+        $subprocesses = SubProcess::orderBy('id', 'DES')
+        ->where('available', 1)
+        ->where('format_id', '!=', 5)
+        ->where('rejected', 0)
+        ->where('fruit_id',$request->fruit_id)
+        ->where('variety_id', $request->variety_id)
+        ->where('quality_id',$request->quality_id)->paginate(10);
 
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
         $last = Lote::OrderBy('id', 'DES')->first();
@@ -48,6 +62,23 @@ class LoteController extends Controller
         return view('lotes.create', compact('lotes', 'lastid', 'subprocesses', 'listRejecteds'));
     }
 
+    public function createsearch(){
+
+        $fruits = Fruit::OrderBy('id', 'DES')->get();
+
+        $varieties = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
+
+        
+        $qualities = Quality::pluck('name','id');
+
+        return view('lotes.partials.form', compact('varieties', 'fruits','qualities'));
+    }
+
+    public function byFruit($id)
+    {
+        return Variety::where('fruit_id', $id)->get();
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -57,14 +88,22 @@ class LoteController extends Controller
      */
     public function store(Request $request)
     {
-        $numero_lote = $request->get('numero_lote');
 
+        $numero_lote = $request->get('numero_lote');
         $lotes = $request->get('subprocess');
 
+
+        $quantity = $request->get('lote');
         $fruit = SubProcess::where('id', $lotes)->first()->fruit_id;
         $variety = SubProcess::where('id', $lotes)->first()->variety_id;
         $format = SubProcess::where('id', $lotes)->first()->format_id;
+        $status = SubProcess::where('id', $lotes)->first()->status_id;
+                
         $quality = SubProcess::where('id', $lotes)->first()->quality_id;
+
+        $weight = Format::where('id', $format)->first()->weight;
+
+                $palletWeight = $quantity * $weight;
 
         $ultimolote = Lote::orderBy('id', 'DESC')->first();
 
@@ -73,12 +112,13 @@ class LoteController extends Controller
 
             $lotes = [
                     'numero_lote' => $numero_lote,
-                    'subprocess_id' => $key,
                     'fruit_id' => $fruit,
                     'variety_id' => $variety,
                     'quality_id' => $quality,
                     'format_id' => $format,
-                    'format_id' => $format,
+                    'quantity' => $quantity,
+                    'palletWeight' => $palletWeight,
+                    'status_id' => $status,
                 ];
 
             $lotes = Lote::create($lotes);
@@ -89,7 +129,9 @@ class LoteController extends Controller
                     'variety_id' => $variety,
                     'quality_id' => $quality,
                     'format_id' => $format,
-                    'quantity' => $format,
+                    'quantity' => $quantity,
+                    'palletWeight' => $palletWeight,
+                    'status_id' => $status,
                 ];
 
             $lotes = Lote::create($lotes);
@@ -117,9 +159,58 @@ class LoteController extends Controller
      */
     public function getData()
     {  //devolver todos los processos disponibles
-        $lotes = Lote::where('available', 1);
+        $lotes = Lote::where('available', 1)->with([
+            'format',
+            'quality',
+            'fruit',
+            'varieties',
+            'status',
+            
+        ]); 
 
-        return Datatables::of($lotes)->make(true);
+      
+
+
+        return Datatables::of($lotes)
+            ->addColumn('format', function ($lote) {
+                return $lote->format->name;
+            })
+            ->editColumn('quality', function ($lote) {
+                return $lote->quality->name;
+            })
+
+             ->addColumn('fruit', function ($lote) {
+                return $lote->fruit->specie;
+            })
+            ->editColumn('varieties', function ($lote) {
+                return $lote->varieties->variety;            
+            })
+            ->editColumn('status', function ($lote) {
+                return $lote->status->name;            
+            })
+           
+          
+          
+            
+
+            ->make(true);
+    }
+
+    public function getLotes()
+    {
+        $lotes = Lote::orderBy('id', 'ASC')->paginate(20);
+
+        return view('lotes.camaralote', compact('lotes'));
+    }
+
+    public function print($id)
+    {
+        $lotes = Lote::where('id', $id)->first();
+
+        $customPaper = array(0, 0, 410,750);
+        $pdf = PDF::loadView('lotes.print  ', compact('lotes'))->setPaper($customPaper);
+
+        return $pdf->stream();
     }
 
     public function show(Lote $lote)

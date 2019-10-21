@@ -1,59 +1,81 @@
 
-<div class="col-md-12">
-    <h1>TARJA DE RECEPCIÓN: </h1>
+<style type="text/css">
 
-<div class="table-responsive">
+  
+h1{
+    font-size: 40px;
+
+  
+
+}
+h2{
+    font-size: 27px;
+
+
+text-transform:uppercase;
+letter-spacing: 1px;
+box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+{margin:0;padding:0;border: 0 none;position: relative;}
+}
+td{
+  line-height : 22px;
+}
+
+    
+
+</style>
+<div class="container-fluid px-4">
+    <div class="responsive">
+        <div class="card-body ">    
+<div class="col-md-12">
+<h1 >RECEPCIÓN Nº {{ $receptions->tarja}} </h1>
+<div  class="table-responsive" >
     <table  class=" cell-border order-column">
 
         
            <thead>
 
+          
+
             <tr>
-                <td><p> NUMERO DE TARJA ..............................</p></td>
-                <td><strong>Nº {{ $receptions->tarja}}</strong></td> 
+                <td><h2>INGRESO   </h2></td>
+                <td><h2 style="text-align: center;"> {{ $receptions->created_at}}</h2></td> 
             </tr>
 
             <tr>
-                <td><p>FECHA DE GUIA    .....................................</p></td>
-                <td><strong>___/___/___</strong></td> 
+                <td><h2>PROVEEDOR </h2></td>
+                 <td><h2 style="text-align: center;">   {{ $receptions->provider->name}} </h2></td> 
             </tr>
 
             <tr>
-                <td><p>PROVEEDOR        ............................................ </p></td>
-                 <td><strong>   {{ $receptions->provider->name}} </strong></td> 
+                <td><h2>CALIDAD</h2></td> 
+                  <td><h2 style="text-align: center;">  {{ $receptions->quality->name}} </h2></td> 
             </tr>
 
             <tr>
-                <td><p>CALIDAD  .................................................</p></td> 
-                  <td><strong>  {{ $receptions->quality->name}} </strong></td> 
+                <td><h2>ESTATUS </h2></td>
+                 <td><h2 style="text-align: center;">   {{ $receptions->status->name }}</h2></td> 
             </tr>
 
             <tr>
-                <td><p>ESTATUS      ................................................ </p></td>
-                 <td><strong>   {{ $receptions->status->name }}</strong></td> 
-            </tr>
-
-            <tr>
-                <td><p>ESPECIE    .................................................... </p></td>
-                  <td><strong>  {{ $receptions->fruit->specie}}</strong></td> 
+                <td><h2>ESPECIE </h2></td>
+                  <td><h2 style="text-align: center;">  {{ $receptions->fruit->specie}}</h2></td> 
 
             </tr>
+            <tr>
+                <td><h2>VARIEDAD </h2></td>
+                <td><h2 style="text-align: center;">    {{ $receptions->varieties->variety}} </h2></td> 
+            </tr>
 
-            <tr>
-                <td><p>VARIEDAD  .............................................. </p></td>
-                <td><strong>    {{ $receptions->varieties->variety}} </strong></td> 
-            </tr>
-            <tr>
-                <td><p>EMBALAJE     ............................................</p></td>
-                <td><strong> {{ $receptions->supplies->name }}</strong></td> 
-            </tr>
              <tr>
-                <td><p>PESO NETO    ..............................................</p></td>
-                 <td><strong>   {{ $receptions->grossweight}} Kg.</strong></td> 
+                <td><h2>PESO NETO</h2></td>
+                 <td><h2 style="text-align: center;">   {{ $receptions->grossweight}} Kg.</h2></td> 
             </tr>
             <tr>
-                <td><p>CANTIDAD DE CAJAS .............................</p></td>
-                  <td><strong>  {{ $receptions->quantity }} </strong></td>
+                <td><h2>Nª REJILLAS</h2></td>
+                  <td><h2 style="text-align: center;">  {{ $receptions->quantity }} </h2></td>
             </tr>
 
            
@@ -70,4 +92,5 @@
     </table>
     </div>
 </div>
-
+</div>
+</div>

@@ -13,8 +13,8 @@
 <hr>
 <h3>Permiso especial</h3>
 <div class="form-group">
-    <label> {{ Form::radio('special', 'all-access') }} Acceso total </label>
-    <label> {{ Form::radio('special', 'no-access') }} Ningun Acceso </label>
+    <label> {{ Form::checkbox('special', 'all-access') }} Acceso total </label>
+    <label> {{ Form::checkbox('special', 'no-access') }} Ningun Acceso </label>
 
 </div>
 
@@ -39,11 +39,13 @@
                     <td>{{ $permission->name }}</td>
                     <td>({{ $permission->description ?: 'Sin descripción' }})</td>
                 </tr>
-				
+
                 @endforeach
 
             </tbody>
+
         </table>
+
     </ul>
     <br>
     <div class="form-group">

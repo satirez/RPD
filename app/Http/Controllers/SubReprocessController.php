@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\SubReprocess;
 use App\ReProcess;
-use App\Lote;
 use App\Format;
 use App\Fruit;
 use App\Status;
@@ -30,50 +29,61 @@ class SubReprocessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($subreprocess_id, $identificador)
+    public function create($reprocess_id, $identificador)
     {
-    
+     
         $last = SubReprocess::OrderBy('id', 'DES')->first();
         if ($last == null) {
             $lastid = 1;
         } else {
             $lastid = $last->id + 1;
         }
-        if($identificador){
-            return ('hola');
-        }
+   
 
-            $reprocess_lotes = DB::table('lote_reprocess')->where('reprocess_id', $subreprocess_id)->get();
-        
+        if ($identificador = 's') {
+
+             $re_subprocesses = DB::table('reprocess_sub_process')->where('reprocess_id', $reprocess_id)->get();
+      
             $pesos = array();
-        
-            foreach ($reprocess_lotes as $reprocess_lote) {
-                $lote = DB::table('lotes')->where('id', $reprocess_lote->lote_id)->get();
-                $peso = $lote[0]->palletWeight;
+
+            foreach ($re_subprocesses as $re_subprocess) {
+       
+                $sub = DB::table('sub_processes')->where('id', $re_subprocess->sub_process_id)->get();
+               
+                $peso = $sub[0]->weight;
+                
                 array_push($pesos, $peso);
             }
-    
-        $peso = array_sum($pesos);
-        
-        $subrId = SubReprocess::where('reprocess_id', $subreprocess_id)->first();
-       
-        $acumWeight = SubReprocess::where('reprocess_id', $subrId->id)->sum('weight');
-       
-        $resto = 0;
 
-        $subprocesses = SubReprocess::where('reprocess_id', $subreprocess_id)->where('rejected', 0)->paginate();
+            $peso = array_sum($pesos);
+          
 
-        //formato y peso para la vista
-        $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');
-        $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
-        $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
-        $listFruits = Fruit::OrderBy('id', 'DES')->get();
+         
+            $subrId = SubReprocess::where('reprocess_id', $reprocess_id)->get();
 
-        $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
-       
-        $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
-            
-        return view('subreprocess.create', compact('lastid', 'subreprocess_id', 'peso', 'listFormat', 'listQualities', 'listRejecteds', 'acumWeight', 'resto', 'subprocesses','listFruits','listVariety','listStatus'));
+            if(!empty($subrId)){
+                $acumWeight = 0;
+            }else{
+                $acumWeight = SubReprocess::where('reprocess_id', $subrId)->sum('weight');
+            }
+         
+            $resto = 0;
+
+            $subprocesses = SubReprocess::where('reprocess_id', $reprocess_id)->where('rejected', 0)->paginate();
+
+            //formato y peso para la vista
+            $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');
+            $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
+            $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
+            $listFruits = Fruit::OrderBy('id', 'DES')->get();
+
+            $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
+
+            $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
+
+            return view('subreprocess.create', compact('lastid', 'reprocess_id', 'peso', 'listFormat', 'listQualities', 'listRejecteds', 'acumWeight', 'resto', 'subprocesses', 'listFruits', 'listVariety', 'listStatus'));
+        }
+            //hacer que muestre lotes;;;;;;;;;;;;
     }
 
     /**
@@ -85,7 +95,6 @@ class SubReprocessController extends Controller
      */
     public function store(Request $request)
     {
-
         //validacion y desactivacion de un reproceso
         if ($request->format_id === '1.000') {
             $idReProcess = $request->get('process_id'); //id de proceso
@@ -106,7 +115,6 @@ class SubReprocessController extends Controller
 
             return redirect()->route('reprocesses.create')->with('info', 'Re-Proceso finalizado con exito');
         } else {
-
             $idReProcess = $request->get('reprocess_id'); //id de reproceso
 
             $weightFormat = $request->get('format_id'); //se obtiene el peso del formato
@@ -122,14 +130,12 @@ class SubReprocessController extends Controller
                 'fruit_id' => $fruit_id,
                 'variety_id' => $variety_id,
                 'status_id' => $status_id,
-                'reprocess_id' => $idReProcess,]);
+                'reprocess_id' => $idReProcess, ]);
 
             SubReprocess::create($request->all());
 
             return redirect()->route('subre process.create', $idReProcess)->with('info', 're proceso guardado con exito');
-
         }
-      
     }
 
     /**

@@ -59,7 +59,7 @@
 						{{ Form::text('tarja', 'RPT '.$lastid, ['class' => 'form-control','readonly']) }}
 					</div>
 
-					<input name="reprocess_id" type="hidden" value={{$subreprocess_id}}>
+					<input name="reprocess_id" type="hidden" value={{$reprocess_id}}>
 				</div>
 				<div class="col-md-2">
 					<div class="form-group">

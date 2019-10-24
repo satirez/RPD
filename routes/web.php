@@ -18,7 +18,6 @@ Route::get('/', function () {
 });
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::middleware('auth')->group(function () {
     //Roles
     //ruta 		//nombre de ruta 	//Permiso
@@ -31,7 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/roles/{role}', 'RoleController@destroy')->name('roles.destroy')->middleware('permission:roles.destroy');
     Route::get('/roles/{role}/edit', 'RoleController@edit')->name('roles.edit')->middleware('permission:roles.edit');
 
-
     //Users
     //ruta 		//nombre de ruta 	//Permiso
 
@@ -43,7 +41,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/{user}', 'UserController@show')->name('users.show')->middleware('permission:users.show');
     Route::delete('/users/{user}', 'UserController@destroy')->name('users.destroy')->middleware('permission:users.destroy');
     Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit')->middleware('permission:users.edit');
-
 
     //Supplies
     //ruta 		//nombre de ruta 	//Permiso
@@ -88,8 +85,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/receptions', 'ReceptionController@index')->name('receptions.index')
         ->middleware('permission:receptions.index');
 
-
-
     Route::get('/inprocess', 'ReceptionController@inprocess')->name('receptions.inprocess'); //agregar permiso
 
     Route::get('/receptions/create', 'ReceptionController@create')->name('receptions.create')
@@ -110,7 +105,7 @@ Route::middleware('auth')->group(function () {
     Route::get('subprocess-list', 'SubProcessController@getData');
     Route::get('process-list', 'ProcessController@getData');
 
-    // START reportes 
+    // START reportes
 
     // Recepcion View
     Route::get('/receptionsdaily', 'ReceptionController@receptionsdaily')->name('receptions.receptionsdaily');
@@ -143,9 +138,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/dispatchFruitSearch', 'ReportesController@reporteDespachoFruitSearch')->name('reporteDespachoFruitSearch');
     Route::post('/dispatchProviderSearch', 'ReportesController@reporteDespachoProviderSearch')->name('reporteDespachoProviderSearch');
 
-
-    // END REPORTES  
-
+    // END REPORTES
 
     Route::get('/printreception/{reception}', 'ReceptionController@print')->name('receptions.print');
     Route::get('/printdispatch/{dispatch}', 'DispatchController@print')->name('dispatchs.print');
@@ -167,9 +160,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/processes/{process}/edit', 'ProcessController@edit')->name('process.processes.edit')->middleware('permission:process.processes.edit');
 
-
     // reproceso
-
 
     Route::get('/reprocesses/create', 'ReprocessController@create')->name('reprocess.reprocesses.create')->middleware('permission:reprocess.reprocesses.create');
     Route::post('/reprocesses/store', 'ReprocessController@store')->name('reprocess.reprocesses.store')->middleware('permission:reprocess.reprocesses.create');
@@ -181,10 +172,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/reprocesses/{reprocess}/edit', 'ReprocessController@edit')->name('reprocess.reprocesses.edit')->middleware('permission:reprocess.reprocesses.edit');
 
-
     // resubproceso
 
-    Route::get('/subreprocesses/create/{subreprocess}/{identificador}', 'SubReprocessController@create')->name('subreprocess.create')->middleware('permission:subreprocesses.create');
+    Route::get('/subreprocesses/create/{reprocess_id}/{identificador}', 'SubReprocessController@create')->name('subreprocess.create')->middleware('permission:subreprocesses.create');
     Route::post('/subreprocesses/store', 'SubReprocessController@store')->name('subreprocess.store')->middleware('permission:subreprocesses.create');
     Route::get('/subreprocesses', 'SubReprocessController@index')->name('subreprocess.index')->middleware('permission:subreprocesses.index');
     Route::put('/subreprocesses/{subreprocess}', 'SubReprocessController@update')->name('subreprocess.update')->middleware('permission:subreprocesses.edit');
@@ -194,8 +184,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/subreprocesses/{subreprocess}/edit', 'SubReprocessController@edit')->name('subreprocess.edit')->middleware('permission:subreprocesses.edit');
 
-
-
     // lote
     Route::group(['middleware' => 'auth'], function () {
         Route::resource('lotes', 'LoteController')->names('lotes')->parameters(['lotes' => 'lote']);
@@ -204,9 +192,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/lotescreate', 'LoteController@create')->name('lote.createrial');
 
     Route::get('/createsearch', 'LoteController@createsearch')->name('lote.createsearch');
-
-
-
 
     Route::get('/camaralote', 'LoteController@getLotes')->name('Lote.getLotes')->middleware('permission:Lote.index');
 
@@ -225,7 +210,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/auditoria/rejected/{subprocess}', 'SubProcessController@update')->name('subprocess.update')->middleware('permission:subprocess.edit');
 
     Route::post('/auditoria/{id}', 'auditoriaController@update')->name('update.auditoria');
-
 
     Route::get('/subprocess/{subprocess}', 'SubProcessController@show')->name('subprocess.show')->middleware('permission:subprocess.show');
 
@@ -424,7 +408,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/camara', 'Dispatchcontroller@getSubprocess')->name('dispatch.getProcess')->middleware('permission:dispatch.index');
     Route::get('dispatch-list', 'DispatchController@getData');
-
 
     //TipoDespacho
 

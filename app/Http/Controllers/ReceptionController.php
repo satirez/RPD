@@ -12,11 +12,9 @@ use App\Status;
 use App\Rejected;
 use App\Season;
 use App\Rate;
-use App\User;
 use App\motivorejected;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateReception;
-use Carbon\Carbon;
 use Yajra\Datatables\Datatables;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Input;
@@ -45,7 +43,6 @@ class ReceptionController extends Controller
     {
         return view('receptions.receptionsdaily');
     }
-
 
     public function receptionsperfruit()
     {
@@ -93,11 +90,8 @@ class ReceptionController extends Controller
                 return 'disponible';
             })
             ->editColumn('varieties', function ($reception) {
-
                 return $reception->varieties->variety;
-            })  
-          
-
+            })
 
             ->make(true);
     }
@@ -106,11 +100,11 @@ class ReceptionController extends Controller
     {
         $receptions = Reception::where('id', $id)->first();
 
-        $customPaper = array(0, 0,410,750);
+        $customPaper = array(0, 0, 410, 750);
         $pdf = PDF::loadView('receptions.print  ', compact('receptions'))->setPaper($customPaper);
 
         return $pdf->stream();
-    } 
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -164,43 +158,43 @@ class ReceptionController extends Controller
         return Variety::where('fruit_id', $id)->get();
     }
 
-
-    public function dailytotal(Request $request){
+    public function dailytotal(Request $request)
+    {
         $q = Input::post('date');
 
-        $receptions = Reception::whereDate('created_at','=',$q)->get();
-        $listProviders = Providers::OrderBy('id', 'DES')->get();
-        $neto = Reception::whereDate('created_at','=',$q)->sum('netweight');
-        $bruto = Reception::whereDate('created_at','=',$q)->sum('grossweight');
+        $from = date('Y-m-d'.' 07:00:00', time()); //Fecha inicio
+        $to = date('Y-m-d'.' 06:59:59', time());  //Fecha término
 
-        return view('receptions.receptionsdailysearch', compact('receptions','listProviders','neto','bruto'));
-
-    }
-
-    public function fruittotal(Request $request){
-
-        $q = Input::post('fruit_id');
-        $receptions = Reception::where('fruit_id',$q)->get();
-        $neto = Reception::where('fruit_id',$q)->sum('netweight');
-        $bruto = Reception::where('fruit_id',$q)->sum('grossweight');
-        $fruits = Fruit::all();
         
-        return view('receptions.receptionsperfruitsearch', compact('receptions','neto','bruto','fruits'));
+        $receptions = Reception::whereDate('created_at', '=', $q)->whereBetween('created_at', array($from, $to))->first();
+        $listProviders = Providers::OrderBy('id', 'DES')->get();
+        $neto = Reception::whereDate('created_at', '=', $q)->sum('netweight');
+        $bruto = Reception::whereDate('created_at', '=', $q)->sum('grossweight');
 
+        return view('receptions.receptionsdailysearch', compact('receptions', 'listProviders', 'neto', 'bruto'));
     }
 
-    public function productortotal(Request $request){
+    public function fruittotal(Request $request)
+    {
+        $q = Input::post('fruit_id');
+        $receptions = Reception::where('fruit_id', $q)->get();
+        $neto = Reception::where('fruit_id', $q)->sum('netweight');
+        $bruto = Reception::where('fruit_id', $q)->sum('grossweight');
+        $fruits = Fruit::all();
 
+        return view('receptions.receptionsperfruitsearch', compact('receptions', 'neto', 'bruto', 'fruits'));
+    }
+
+    public function productortotal(Request $request)
+    {
         $q = Input::post('provider_id');
         $receptions = Reception::all()->where('provider_id', $q);
         $listProviders = Providers::OrderBy('id', 'DES')->get();
         $neto = Reception::all()->where('provider_id', $q)->sum('netweight');
         $bruto = Reception::all()->where('provider_id', $q)->sum('grossweight');
 
-        return view('receptions.receptionsperproductornothing', compact('receptions','listProviders','neto','bruto'));
-
+        return view('receptions.receptionsperproductornothing', compact('receptions', 'listProviders', 'neto', 'bruto'));
     }
-
 
     public function byProduction($id)
     {
@@ -285,7 +279,6 @@ class ReceptionController extends Controller
             ];
             $rejected = Rejected::create($rejected);
         } else {
-
         }
 
         return redirect()->route('receptions.index', $reception->id)->with('info', 'Recepcion guardado con exito');

@@ -38,7 +38,7 @@ class SubProcessController extends Controller
     {
         $subprocesses = SubProcess::where('id', $id)->first();
 
-        $customPaper = array(0, 0, 410,750  );
+        $customPaper = array(0, 0, 410, 750);
         $pdf = PDF::loadView('subprocess.print  ', compact('subprocesses'))->setPaper($customPaper);
 
         return $pdf->stream();
@@ -59,7 +59,7 @@ class SubProcessController extends Controller
         $pesos = array();
         foreach ($processes as $process => $value) {
             $reception = DB::table('receptions')->where('id', $value->reception_id)->get();
-            $peso = $reception[0]->grossweight;
+            $peso = $reception[0]->netweight;
             array_push($pesos, $peso);
         }
 
@@ -79,23 +79,22 @@ class SubProcessController extends Controller
         $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
-         $listFruits = Fruit::OrderBy('id', 'DES')->get();
+        $listFruits = Fruit::OrderBy('id', 'DES')->get();
 
         $listVariety = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
-       
 
         $listStatus = Status::OrderBy('id', 'DES')->pluck('name', 'id');
 
-        return view('subprocess.create', compact('lastid', 'idsad', 'peso', 'listFormat', 'listQualities', 'listRejecteds', 'acumWeight', 'resto', 'subprocesses','listFruits','listVariety','listStatus'));
+        return view('subprocess.create', compact('lastid', 'idsad', 'peso', 'listFormat', 'listQualities', 'listRejecteds', 'acumWeight', 'resto', 'subprocesses', 'listFruits', 'listVariety', 'listStatus'));
     }
 
     public function getData()
     {
         $subprocesses = SubProcess::where('available', 1)->with([
-            'fruit',           
+            'fruit',
             'format',
             'quality',
-          
+
             'varieties',
             'status',
         ]);
@@ -113,15 +112,10 @@ class SubProcessController extends Controller
             ->editColumn('quality', function ($subprocess) {
                 return $subprocess->quality->name;
             })
-          
-           
+
             ->editColumn('varieties', function ($subprocess) {
-                return $subprocess->varieties->variety;            
+                return $subprocess->varieties->variety;
             })
-           
-          
-          
-            
 
             ->make(true);
     }
@@ -147,7 +141,7 @@ class SubProcessController extends Controller
             $status_id = Process::where('id', $idProcess)->first()->status_id;
             $variety_id = Process::where('id', $idProcess)->first()->variety_id;
             $status_id = Process::where('id', $idProcess)->first()->status_id;
-            
+
             $request->merge(['fruit_id' => $fruit_id, 'variety_id' => $variety_id, 'status_id' => $status_id]);
 
             SubProcess::create($request->all());
@@ -171,7 +165,7 @@ class SubProcessController extends Controller
             $request['format_id'] = $idFormat;
 
             $request->merge(['fruit_id' => $fruit_id, 'variety_id' => $variety_id, 'status_id' => $status_id]);
-            
+
             SubProcess::create($request->all());
 
             return redirect()->route('subprocess.create', $idProcess)->with('info', 'Temprada guardado con exito');
@@ -198,8 +192,6 @@ class SubProcessController extends Controller
      */
     public function edit(SubProcess $subProcess)
     {
-        
-
         return view('subprocess.edit', compact('subProcess'));
     }
 

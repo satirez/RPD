@@ -3,7 +3,7 @@
         <div class="row">
             <div class="form-group col-md-4">
                 {{ Form::label('tarja_reproceso', 'Numero de tarja') }}
-                {{ Form::text('tarja_reproceso','RP00'.$lastid, ['class' => 'form-control', 'readonly']) }}
+                {{ Form::text('tarja_reproceso','Re-proceso '.$lastid, ['class' => 'form-control', 'readonly']) }}
             </div>
             <div class="form-group col-md-4">
                 {{ Form::label('wash', 'Lavado') }}

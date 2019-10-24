@@ -71,7 +71,7 @@ td{
 
              <tr>
                 <td><h2>PESO NETO</h2></td>
-                 <td><h2 style="text-align: center;">   {{ $receptions->grossweight}} Kg.</h2></td> 
+                 <td><h2 style="text-align: center;">   {{ $receptions->netweight}} Kg.</h2></td> 
             </tr>
             <tr>
                 <td><h2>Nª REJILLAS</h2></td>

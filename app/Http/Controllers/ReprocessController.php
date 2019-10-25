@@ -33,7 +33,7 @@ class ReprocessController extends Controller
     {
         $processeslist = Process::paginate();
 
-        $lotes = Lote::orderBy('id', 'DES')->where('available', 1)->paginate(10);
+        $lotes = Lote::orderBy('id', 'DES')->where('available', 1)->where('format_id', '!=', 5)->where('rejected', 0)->paginate(10);
 
         $subprocesses = SubProcess::orderBy('id', 'DES')->where('available', 1)->where('format_id', '!=', 5)->where('rejected', 0)->paginate(10);
 
@@ -85,8 +85,8 @@ class ReprocessController extends Controller
             $checklistdata = $request->get('lotes');
 
             foreach ($checklistdata as $key) {
-                $cualquiercosa = Reception::where('id', $key)->first();
-                Reception::where('id', $key)->update(['available' => 0]);
+                $cualquiercosa = Lote::where('id', $key)->first();
+                Lote::where('id', $key)->update(['available' => 0]);
             }
             $identificador = 'l';
 

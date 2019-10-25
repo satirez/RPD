@@ -16,7 +16,7 @@
 					<div class="card">
 						<div class="card-header">
 							<div class="badge badge-pill badge-warning float-left"> 1 </div>
-							<h6>Selección de subprocesos:</h6>
+							<h6>Selección:</h6>
 						</div>
 
 						<div class="card-body">
@@ -57,6 +57,14 @@
 															<div class="form-group">
 																{{ Form::label('quality_id', 'Calidad') }}
 																{{Form::select('quality_id', $qualities, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+															</div>
+														</div>
+
+														<div class="col-md-4">
+															<div class="form-group">
+																{{ Form::label('Producto', '') }}
+																{{ Form::select('Producto', array( 'RP' => 'Producto Reprocesado', 'PT' => 'Producto Terminado'), 
+							null ,['class' => 'form-control','required' ,'placeholder'=>'seleccione ...'])}}
 															</div>
 														</div>
 

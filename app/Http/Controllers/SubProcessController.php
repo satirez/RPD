@@ -66,7 +66,7 @@ class SubProcessController extends Controller
         $peso = array_sum($pesos);
 
         $subprocess = SubProcess::where('process_id', $id)->get();
-
+  
         $acumWeight = SubProcess::where('process_id', $id)->sum('weight');
 
         $resto = 0;

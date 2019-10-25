@@ -64,20 +64,19 @@
 
 							<tbody id="myTable3">
 
-								@forelse($subprocesses as $subprocess)
+								@forelse($coleccion as $subprocess)
+
 								<tr>
 									<td>
 										<input type="checkbox" name="subprocess[]" value="{{ $subprocess->id }}">
 									</td>
-									<td>SP0{{ $subprocess->id }}</td>
+									<td>{{ $subprocess->tarja }}</td>
 									<td>{{ $subprocess->quality->name }}</td>
 									<td class="quantity">{{ $subprocess->quantity }}</td>
 									<td>{{ $subprocess->format->name}}</td>
 									<td>{{ $subprocess->fruit->specie}} - {{$subprocess->varieties->variety}} </td>
 									<td>{{ $subprocess->folioStart}}</td>
 									<td>{{ $subprocess->folioEnd}}</td>
-
-
 
 									@php
 									$uno = false;
@@ -93,11 +92,12 @@
 								$uno = true;
 								@endphp
 
+								
 								@endforelse
 
 
 							</tbody>
-							{{ $subprocesses->render() }}
+							{{ $coleccion->render() }}
 
 						</table>
 					</div>

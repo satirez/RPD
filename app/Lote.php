@@ -31,6 +31,11 @@ class Lote extends Model
         return $this->belongsToMany('\App\SubProcess', 'lote_sub_process')
          ->withPivot('lote_id');
     }
+    public function subreprocess()
+    {
+        return $this->belongsToMany('\App\SubReprocess', 'lote__sub_reprocess')
+         ->withPivot('lote_id');
+    }
 
     public function fruit()
     {

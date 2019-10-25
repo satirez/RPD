@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SubProcess;
+use App\SubReprocess;
 use App\Rejected;
 use App\Lote;
 use App\Fruit;
@@ -37,18 +38,26 @@ class LoteController extends Controller
     public function create(Request $request)
     {
         //lista de tabla pivote en despacho (checkbox)
-
         
         $lotes = Lote::paginate();
+        if($request->Producto == 'RP'){
 
-        //modificar condicion al ponerlo en produccion!!!
-        $subprocesses = SubProcess::orderBy('id', 'DES')
-        ->where('available', 1)
-        ->where('format_id', '!=', 5)
-        ->where('rejected', 0)
-        ->where('fruit_id',$request->fruit_id)
-        ->where('variety_id', $request->variety_id)
-        ->where('quality_id',$request->quality_id)->paginate(10);
+            $coleccion = SubReprocess::orderBy('id', 'DES')
+            ->where('available', 1)
+            ->where('format_id', '!=', 5)
+            ->where('rejected', 0)
+            ->where('fruit_id',$request->fruit_id)
+            ->where('variety_id', $request->variety_id)
+            ->where('quality_id',$request->quality_id)->paginate(10);
+        }else{
+            $coleccion = SubProcess::orderBy('id', 'DES')
+            ->where('available', 1)
+            ->where('format_id', '!=', 5)
+            ->where('rejected', 0)
+            ->where('fruit_id',$request->fruit_id)
+            ->where('variety_id', $request->variety_id)
+            ->where('quality_id',$request->quality_id)->paginate(10);
+        }
 
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
         $last = Lote::OrderBy('id', 'DES')->first();
@@ -59,7 +68,7 @@ class LoteController extends Controller
             $lastid = $last->id + 1;
         }
 
-        return view('lotes.create', compact('lotes', 'lastid', 'subprocesses', 'listRejecteds'));
+        return view('lotes.create', compact('lotes', 'lastid', 'coleccion', 'listRejecteds'));
     }
 
     public function createsearch(){
@@ -91,7 +100,6 @@ class LoteController extends Controller
 
         $numero_lote = $request->get('numero_lote');
         $lotes = $request->get('subprocess');
-
 
         $quantity = $request->get('lote');
         $fruit = SubProcess::where('id', $lotes)->first()->fruit_id;
@@ -136,7 +144,7 @@ class LoteController extends Controller
 
             $lotes = Lote::create($lotes);
         }
-
+        
         $lotes->subprocess()->attach($request->get('subprocess'));
 
         $lote = $lotes->numero_lote;

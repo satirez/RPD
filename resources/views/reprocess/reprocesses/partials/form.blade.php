@@ -23,12 +23,12 @@
             </div>
 
             <div class="form-group"> 
-                <h4 class="text-center">Subprocesos</h4>
+                <h4 class="text-center">Lote</h4>
                 <table class="table table-bordered">
                     <thead>
                         <tr class="">
-                                    <th>Seleccione</th>
-                                    <th>Tarja Subproceso</th>
+                                    <th></th>
+                                    <th>Tarja</th>
                                     <th>Calidad</th>
                                     <th>Cantidad</th>
                                     <th>Formato</th>
@@ -42,7 +42,7 @@
                                     <td>
                                         <input type="checkbox" name="subprocess[]" value="{{ $subprocess->id }}">
                                     </td>
-                                    <td>SP0{{ $subprocess->id }}</td>
+                                    <td>{{ $subprocess->tarja }}</td>
                                     <td>{{ $subprocess->quality->name }}</td>
                                     <td class="quantity">{{ $subprocess->quantity }}</td>
                                     <td>{{ $subprocess->format->name}}</td>
@@ -74,18 +74,23 @@
                 
                 </div>
                 </table>
+                
+                </br>
+                </br>
+                </br>
+                </br>
         
                 <div>
-                    <h4 class="text-center">Lotes</h4>
+                    <h4 class="text-center">Palet</h4>
                 <table class="table table-bordered">
                     <thead>
                         <tr class="">
-                            <th></th>
-                            <th>Tarja</th>
-                            <th>Fruta</th>
-                            <th>Peso Bruto</th>
-                            <th>Rejillas</th>
-                            <th>Calidad</th>
+                        <th></th>
+                                    <th>Tarja</th>
+                                    <th>Calidad</th>
+                                    <th>Cantidad</th>
+                                    <th>Formato</th>
+                                    <th>Fruta - Variedad</th>
                         </tr>
                     </thead>
 
@@ -101,6 +106,10 @@
                                         </td>
 
                                         <td>{{ $lote->numero_lote }}</td>
+                                        <td>{{ $lote->quality->name }}</td>
+                                        <td>{{ $lote->quantity }}</td>
+                                        <td>{{ $lote->format->name }}</td>
+                                        <td>{{ $lote->fruit->specie }} - {{$lote->varieties->variety}}</td>
 
 
                                         @php

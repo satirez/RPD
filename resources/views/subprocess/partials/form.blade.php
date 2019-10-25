@@ -64,7 +64,7 @@
 				<div class="col-md-2">
 					<div class="form-group">
 						{{ Form::label('quantity', 'Cantidad de Cajas') }}
-						{{ Form::number('quantity', null, ['class' => 'form-control input-number','id'=>'cantidad','oninput'=>'getWeightFormat()']) }}
+						{{ Form::text('quantity', null, ['class' => 'form-control input-number','id'=>'cantidad','oninput'=>'getWeightFormat()']) }}
 					</div>
 				</div>
 
@@ -242,15 +242,4 @@
 		}
 	}
 	
-	
-
-</script>
-
-<!-- Permitir solo numeros, puntos y X-->
-<script type="text/javascript">
-	$(document).ready(function (){
-  $('.input-number').keyup(function (){
-	this.value = (this.value + '').replace(/[^.x0-9]/g, '');
-  });
-});
 </script>

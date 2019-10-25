@@ -66,7 +66,7 @@
 				<div class="col-md-2">
 					<div class="form-group">
 						{{ Form::label('quantity', 'Cantidad de Cajas') }}
-						{{ Form::number('quantity', null, ['class' => 'form-control input-number','id'=>'cantidad','oninput'=>'getWeightFormat()']) }}
+						{{ Form::text('quantity', null, ['class' => 'form-control input-number','id'=>'cantidad','oninput'=>'getWeightFormat()']) }}
 					</div>
 				</div>
 
@@ -117,7 +117,7 @@
 
 					<h5>¿ El Proceso está? </h5>
 					<input type="radio" name="rejected" value="0" data-toggle="collapse" data-parent="#accordion"
-						href="#collapseOne" checked> Bueno
+						href="#collapseOne" checked> Aprovado
 
 					<input type="radio" name="rejected" value="1" data-toggle="collapse" data-parent="#accordion"
 						href="#collapseOne"> Rechazado
@@ -246,13 +246,4 @@
 	
 	
 
-</script>
-
-<!-- Permitir solo numeros, puntos y X-->
-<script type="text/javascript">
-	$(document).ready(function (){
-  $('.input-number').keyup(function (){
-	this.value = (this.value + '').replace(/[^.x0-9]/g, '');
-  });
-});
 </script>

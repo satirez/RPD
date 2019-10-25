@@ -168,7 +168,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/reprocesses/{reprocess}', 'ReprocessController@update')->name('reprocess.reprocesses.update')->middleware('permission:reprocess.reprocesses.edit');
     Route::get('/reprocesses/{reprocess}', 'ReprocessController@show')->name('reprocess.reprocesses.show')->middleware('permission:reprocess.reprocesses.show');
 
-    Route::delete('/reprocesses/{reprocess}', 'ReprocessController@destroy')->name('reprocess.reprocesses.destroy')->middleware('permission:reprocess.reprocesses.destroy');
+    Route::get('/reprocesses/{reprocess}', 'ReprocessController@show')->name('reprocess.reprocesses.show')->middleware('permission:reprocess.reprocesses.show');
+
+
+    Route::get('reprocess-list', 'ReprocessController@getData');
 
     Route::get('/reprocesses/{reprocess}/edit', 'ReprocessController@edit')->name('reprocess.reprocesses.edit')->middleware('permission:reprocess.reprocesses.edit');
 

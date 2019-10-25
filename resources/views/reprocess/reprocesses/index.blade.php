@@ -17,7 +17,7 @@
         <div class="col-md-13 ">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 style="text-align:center;">Reprocesos
+                    <h4 style="text-align:center;">Producto en tránsito
                         @can('reprocess.reprocesses.create')
                         <a href="{{ Route('reprocess.reprocesses.create') }}" class="btn btn-info pull-right btn-sm"> Crear
                         </a>
@@ -83,9 +83,19 @@
                                 data: 'created_at',
                                 name: 'created_at '
                             },
+                            {
+                                data: 'fruit',
+                                name: 'fruit.specie '
+                            },
+                            {
+                                data: 'quality',
+                                name: 'quality.name '
+                            },
+                            {
+                                data: 'varieties',
+                                name: 'varieties.variety'
+                            },
                             
-    
-
                             {
                                 "data": 'id',
                                 "render": function(data, type, row, meta) {

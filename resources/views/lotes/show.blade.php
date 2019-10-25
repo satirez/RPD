@@ -34,7 +34,7 @@
                                 @foreach($subprocess as $subproces)
                                 <tr class="table-light text-dark">
                                     <th> Tarja </th>
-                                    <th> SP0{{ $subproces->sub_process_id }}</th>
+                                    <th> PT00{{ $subproces->sub_process_id }}</th>
                                 </tr>
                                 @endforeach
                                 <br>

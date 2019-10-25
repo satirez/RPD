@@ -8,7 +8,6 @@ use App\SubReprocess;
 use App\Rejected;
 use App\Lote;
 use App\Fruit;
-
 use App\Format;
 use App\Quality;
 use App\Variety;
@@ -38,25 +37,24 @@ class LoteController extends Controller
     public function create(Request $request)
     {
         //lista de tabla pivote en despacho (checkbox)
-        
-        $lotes = Lote::paginate();
-        if($request->Producto == 'RP'){
 
+        $lotes = Lote::paginate();
+        if ($request->Producto == 'RP') {
             $coleccion = SubReprocess::orderBy('id', 'DES')
             ->where('available', 1)
             ->where('format_id', '!=', 5)
             ->where('rejected', 0)
-            ->where('fruit_id',$request->fruit_id)
+            ->where('fruit_id', $request->fruit_id)
             ->where('variety_id', $request->variety_id)
-            ->where('quality_id',$request->quality_id)->paginate(10);
-        }else{
+            ->where('quality_id', $request->quality_id)->paginate(10);
+        } else {
             $coleccion = SubProcess::orderBy('id', 'DES')
             ->where('available', 1)
             ->where('format_id', '!=', 5)
             ->where('rejected', 0)
-            ->where('fruit_id',$request->fruit_id)
+            ->where('fruit_id', $request->fruit_id)
             ->where('variety_id', $request->variety_id)
-            ->where('quality_id',$request->quality_id)->paginate(10);
+            ->where('quality_id', $request->quality_id)->paginate(10);
         }
 
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');
@@ -71,16 +69,15 @@ class LoteController extends Controller
         return view('lotes.create', compact('lotes', 'lastid', 'coleccion', 'listRejecteds'));
     }
 
-    public function createsearch(){
-
+    public function createsearch()
+    {
         $fruits = Fruit::OrderBy('id', 'DES')->get();
 
         $varieties = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
 
-        
-        $qualities = Quality::pluck('name','id');
+        $qualities = Quality::pluck('name', 'id');
 
-        return view('lotes.partials.form', compact('varieties', 'fruits','qualities'));
+        return view('lotes.partials.form', compact('varieties', 'fruits', 'qualities'));
     }
 
     public function byFruit($id)
@@ -97,21 +94,23 @@ class LoteController extends Controller
      */
     public function store(Request $request)
     {
-
         $numero_lote = $request->get('numero_lote');
         $lotes = $request->get('subprocess');
+        dd($request->all());
+
+        $value = starts_with('Esto es un texto de prueba', 'Esto');
 
         $quantity = $request->get('lote');
         $fruit = SubProcess::where('id', $lotes)->first()->fruit_id;
         $variety = SubProcess::where('id', $lotes)->first()->variety_id;
         $format = SubProcess::where('id', $lotes)->first()->format_id;
         $status = SubProcess::where('id', $lotes)->first()->status_id;
-                
+
         $quality = SubProcess::where('id', $lotes)->first()->quality_id;
 
         $weight = Format::where('id', $format)->first()->weight;
 
-                $palletWeight = $quantity * $weight;
+        $palletWeight = $quantity * $weight;
 
         $ultimolote = Lote::orderBy('id', 'DESC')->first();
 
@@ -144,7 +143,7 @@ class LoteController extends Controller
 
             $lotes = Lote::create($lotes);
         }
-        
+
         $lotes->subprocess()->attach($request->get('subprocess'));
 
         $lote = $lotes->numero_lote;
@@ -173,11 +172,7 @@ class LoteController extends Controller
             'fruit',
             'varieties',
             'status',
-            
-        ]); 
-
-      
-
+        ]);
 
         return Datatables::of($lotes)
             ->addColumn('format', function ($lote) {
@@ -188,19 +183,14 @@ class LoteController extends Controller
             })
 
              ->addColumn('fruit', function ($lote) {
-                return $lote->fruit->specie;
-            })
+                 return $lote->fruit->specie;
+             })
             ->editColumn('varieties', function ($lote) {
-                return $lote->varieties->variety;            
+                return $lote->varieties->variety;
             })
             ->editColumn('status', function ($lote) {
-                return $lote->status->name;            
+                return $lote->status->name;
             })
-           
-          
-          
-            
-
             ->make(true);
     }
 
@@ -215,7 +205,7 @@ class LoteController extends Controller
     {
         $lotes = Lote::where('id', $id)->first();
 
-        $customPaper = array(0, 0, 410,750);
+        $customPaper = array(0, 0, 410, 750);
         $pdf = PDF::loadView('lotes.print  ', compact('lotes'))->setPaper($customPaper);
 
         return $pdf->stream();
@@ -225,6 +215,7 @@ class LoteController extends Controller
     {
         $subprocess = DB::table('lote_sub_process')->where('lote_id', $lote->id)->get();
         $lotes = Lote::where('id', $lote->id)->get();
+        dd($lotes);
 
         return view('lotes.show', compact('subprocess', 'lotes'));
     }

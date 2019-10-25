@@ -138,6 +138,23 @@ class ReprocessController extends Controller
     {
     }
 
+    public function getData()
+    {  //devolver todos los processos disponibles
+        $reprocess = Reprocess::where('available', 0)->with([
+            'fruit',
+            'quality',
+            'varieties'
+        ]);
+        return Datatables::of($reprocess)
+            ->addColumn('fruit', function ($reprocess) {
+                return $reprocess->fruit->specie;
+            })->editColumn('quality', function ($reprocess) {
+                return $reprocess->quality->name;
+            })->editColumn('varieties', function ($reprocess) {
+                return $reprocess->varieties->variety;
+            })->make(true);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

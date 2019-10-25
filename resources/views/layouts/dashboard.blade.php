@@ -270,16 +270,13 @@
         </a>
       </li>
 
-
-
       @endcan
-
 
         @can('reprocess.reprocesses.index')
       <li class="nav-item">
         <a class="nav-link" href="{{ url ('reprocesses') }}">
           <i class="fas fa-retweet" style="color:#F99E00"></i>
-          <span>Reproceso </span>
+          <span>En Tránsito </span>
 
         </a>
       </li>

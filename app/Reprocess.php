@@ -16,6 +16,10 @@ class Reprocess extends Model
     {
         return $this->belongsToMany(Lote::class);
     }
+    public function Reprocess()
+    {
+        return $this->belongsToMany(Reprocess::class);
+    }
 
     public function subprocess()
     {
@@ -52,4 +56,6 @@ class Reprocess extends Model
     {
         return $this->belongsTo(Quality::class);
     }
+
+    
 }

@@ -96,9 +96,9 @@ class LoteController extends Controller
     {
         $numero_lote = $request->get('numero_lote');
         $lotes = $request->get('subprocess');
-        dd($request->all());
+     //   dd($request->all());
 
-        $value = starts_with('Esto es un texto de prueba', 'Esto');
+      //  $value = starts_with('Esto es un texto de prueba', 'Esto');
 
         $quantity = $request->get('lote');
         $fruit = SubProcess::where('id', $lotes)->first()->fruit_id;

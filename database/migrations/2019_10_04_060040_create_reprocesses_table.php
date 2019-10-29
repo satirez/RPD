@@ -22,6 +22,12 @@ class CreateReprocessesTable extends Migration
             $table->integer('variety_id')->unsigned();
             $table->integer('quality_id')->unsigned();
             $table->integer('status_id')->unsigned();
+            $table->String('identificador');
+
+            $table->foreign('fruit_id')->references('id')->on('fruits');
+            $table->foreign('variety_id')->references('id')->on('varieties');
+            $table->foreign('quality_id')->references('id')->on('qualities');
+            $table->foreign('status_id')->references('id')->on('statuses');
             $table->timestamps();
         });
     }

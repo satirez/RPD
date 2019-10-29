@@ -106,6 +106,7 @@ class ProcessController extends Controller
             'fruit',
             'quality',
             'varieties',
+            'status',
         ]);
         return Datatables::of($process)
             ->addColumn('fruit', function ($process) {
@@ -114,6 +115,8 @@ class ProcessController extends Controller
                 return $process->quality->name;
             })->editColumn('varieties', function ($process) {
                 return $process->varieties->variety;
+            })->editColumn('status', function ($process) {
+                return $process->status->name;
             })->make(true);
     }
     /**

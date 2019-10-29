@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Reprocess;
 use App\Process;
-use App\Reception;
 use App\Lote;
 use App\SubProcess;
+use Illuminate\Support\Facades\DB;
 
 class ReprocessController extends Controller
 {
@@ -33,6 +33,8 @@ class ReprocessController extends Controller
     {
         $processeslist = Process::paginate();
 
+        $reprocessPending = ReProcess::where('available', 1)->paginate(10);
+
         $lotes = Lote::orderBy('id', 'DES')->where('available', 1)->where('format_id', '!=', 5)->where('rejected', 0)->paginate(10);
 
         $subprocesses = SubProcess::orderBy('id', 'DES')->where('available', 1)->where('format_id', '!=', 5)->where('rejected', 0)->paginate(10);
@@ -44,8 +46,7 @@ class ReprocessController extends Controller
         } else {
             $lastid = $last->id + 1;
         }
-
-        return view('reprocess.reprocesses.create', compact('lastid', 'lotes', 'subprocesses'));
+        return view('reprocess.reprocesses.create', compact('lastid', 'lotes', 'subprocesses', 'reprocessPending'));
     }
 
     /**
@@ -58,8 +59,8 @@ class ReprocessController extends Controller
     public function store(Request $request)
     {
         if ($request->get('lotes')) { //el codigo del else hace lo mismo pero con subprocess
-
             $id = $request->get('lotes');
+            $identificador = 'l';
 
             $fruit_id = Lote::where('id', $id)->first()->fruit_id;
             $quality_id = Lote::where('id', $id)->first()->quality_id;
@@ -73,7 +74,7 @@ class ReprocessController extends Controller
                 'quality_id' => $quality_id,
                 'fruit_id' => $fruit_id,
                 'status_id' => $status_id,
-                'tarja_reproceso' => $request->get('tarja_reproceso'),
+                'identificador' => $identificador
             ];
 
             $reprocess = Reprocess::create($reprocess);
@@ -88,12 +89,12 @@ class ReprocessController extends Controller
                 $cualquiercosa = Lote::where('id', $key)->first();
                 Lote::where('id', $key)->update(['available' => 0]);
             }
-            $identificador = 'l';
+           
 
-            return redirect()->route('subreprocess.create', [$reprocess_id, $identificador])->with('success', 'Re Proceso iniciado con éxito');
+            return redirect()->route('subreprocess.create', $reprocess_id)->with('success', 'Re Proceso iniciado con éxito');
         } else {
-
             $id = $request->get('subprocess');
+            $identificador = 's';
 
             $fruit_id = SubProcess::where('id', $id)->first()->fruit_id;
             $quality_id = SubProcess::where('id', $id)->first()->quality_id;
@@ -107,9 +108,10 @@ class ReprocessController extends Controller
                 'quality_id' => $quality_id,
                 'fruit_id' => $fruit_id,
                 'status_id' => $status_id,
+                'identificador' => $identificador
             ];
-  
-            $reprocess = Reprocess::create($reprocess);
+      
+            $reprocess = ReProcess::create($reprocess);
             //se establece la relacion con lotes y su tabla Pivote reprocess_subprocess
             $reprocess->subprocess()->attach($request->get('subprocess'));
             //se obtiene el id del reproceso que se creó
@@ -121,9 +123,9 @@ class ReprocessController extends Controller
                 $cualquiercosa = SubProcess::where('id', $key)->first();
                 SubProcess::where('id', $key)->update(['available' => 0]);
             }
-            $identificador = 's';
+           
 
-            return redirect()->route('subreprocess.create', [$reprocess_id, $identificador])->with('success', 'Re Proceso iniciado con éxito');
+            return redirect()->route('subreprocess.create', $reprocess_id)->with('success', 'Re Proceso iniciado con éxito');
         }
     }
 
@@ -143,8 +145,9 @@ class ReprocessController extends Controller
         $reprocess = Reprocess::where('available', 0)->with([
             'fruit',
             'quality',
-            'varieties'
+            'varieties',
         ]);
+
         return Datatables::of($reprocess)
             ->addColumn('fruit', function ($reprocess) {
                 return $reprocess->fruit->specie;

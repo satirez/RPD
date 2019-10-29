@@ -9,7 +9,7 @@ class Reprocess extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'tarja_reproceso', 'wash', 'rejected_id', 'variety_id', 'quality_id', 'fruit_id', 'status_id',
+        'tarja_reproceso', 'wash', 'rejected_id', 'variety_id', 'quality_id', 'fruit_id', 'status_id','identificador'
     ];
 
     public function lotes()
@@ -35,6 +35,11 @@ class Reprocess extends Model
     public function dispatches()
     {
         return $this->belongsToMany(Dispatch::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 
     public function rejected()

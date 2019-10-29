@@ -16,6 +16,59 @@
 
             <h3 class="text-center">Listado</h3>
 
+
+
+            </br>
+            </br>
+            </br>
+
+          
+
+            <div class="form-group"> 
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="">
+                            <th>N°</th>
+                            <th>Especie</th>
+                            <th>Variedad</th>
+                            <th>Calidad</th>
+                            <th>Condición</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                   
+                        @forelse($reprocessPending as $pending)
+                        <tr>  
+                            <td>{{ $pending->tarja_reproceso }}</td>
+                            <td>{{ $pending->fruit->specie }}</td>
+                            <td>{{ $pending->varieties->variety }}</td>
+                            <td>{{ $pending->quality->name}}</td>
+                            <td>{{ $pending->status->name}}</td>
+                            
+                            <td> <a class="btn btn-sm btn-primary" href=" 
+                            {{Route('subreprocess.create', [$pending->id, $identificador='s'])}} "> Reanudar </a> </td>
+                            @php
+                            $uno = false;
+                            @endphp
+                        </tr>
+                        @empty
+                        <h4> Sin Registros </h4>
+                        @php
+                        $uno = true;
+                        @endphp
+                        @endforelse
+                    </tbody>
+					<div class="float-left">
+                    {{ $reprocessPending->render()}}
+                </div>
+                </table>   
+
+            </br>
+            </br>
+            </br>
+
             <div class=" col-md-4">
             <p>Filtrar:</p>  
             <input class="form-control" id="myInput" type="text" placeholder="Buscar..">
@@ -161,7 +214,7 @@
         </div>
     </div>
     
-    <div class="btn btn-lg btn-danger disabled"> No se puede ingresar </div>
+
    
     <br>
     <br>

@@ -177,7 +177,7 @@ Route::middleware('auth')->group(function () {
 
     // resubproceso
 
-    Route::get('/subreprocesses/create/{reprocess_id}/{identificador}', 'SubReprocessController@create')->name('subreprocess.create')->middleware('permission:subreprocesses.create');
+    Route::get('/subreprocesses/create/{reprocess_id}', 'SubReprocessController@create')->name('subreprocess.create')->middleware('permission:subreprocesses.create');
     Route::post('/subreprocesses/store', 'SubReprocessController@store')->name('subreprocess.store')->middleware('permission:subreprocesses.create');
     Route::get('/subreprocesses', 'SubReprocessController@index')->name('subreprocess.index')->middleware('permission:subreprocesses.index');
     Route::put('/subreprocesses/{subreprocess}', 'SubReprocessController@update')->name('subreprocess.update')->middleware('permission:subreprocesses.edit');
@@ -405,11 +405,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dispatch/{dispatch}', 'DispatchController@show')->name('dispatch.show')->middleware('permission:dispatch.show');
 
-    Route::delete('/dispatch/{dispatch}', 'Dispatchcontroller@destroy')->name('dispatch.destroy')->middleware('permission:dispatch.destroy');
+    Route::delete('/dispatch/{dispatch}', 'DispatchController@destroy')->name('dispatch.destroy')->middleware('permission:dispatch.destroy');
 
-    Route::get('/dispatch/{dispatch}/edit', 'Dispatchcontroller@edit')->name('dispatch.edit')->middleware('permission:dispatch.edit');
+    Route::get('/dispatch/{dispatch}/edit', 'DispatchController@edit')->name('dispatch.edit')->middleware('permission:dispatch.edit');
 
-    Route::get('/camara', 'Dispatchcontroller@getSubprocess')->name('dispatch.getProcess')->middleware('permission:dispatch.index');
+    Route::get('/camara', 'DispatchController@getSubprocess')->name('dispatch.getProcess')->middleware('permission:dispatch.index');
+    
     Route::get('dispatch-list', 'DispatchController@getData');
 
     //TipoDespacho

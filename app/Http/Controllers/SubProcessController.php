@@ -46,7 +46,6 @@ class SubProcessController extends Controller
 
     public function create($id)
     {
-
         //obtener la ultima id
         $last = SubProcess::OrderBy('id', 'DES')->first();
         if ($last == null) {
@@ -66,7 +65,7 @@ class SubProcessController extends Controller
         $peso = array_sum($pesos);
 
         $subprocess = SubProcess::where('process_id', $id)->get();
-  
+
         $acumWeight = SubProcess::where('process_id', $id)->sum('weight');
 
         $resto = 0;
@@ -90,11 +89,10 @@ class SubProcessController extends Controller
 
     public function getData()
     {
-        $subprocesses = SubProcess::where('available', 1)->with([
+        $subprocesses = SubProcess::where('available', 1)->where('format_id', '!=', 5)->with([
             'fruit',
             'format',
             'quality',
-
             'varieties',
             'status',
         ]);
@@ -140,7 +138,6 @@ class SubProcessController extends Controller
             $fruit_id = Process::where('id', $idProcess)->first()->fruit_id;
             $status_id = Process::where('id', $idProcess)->first()->status_id;
             $variety_id = Process::where('id', $idProcess)->first()->variety_id;
-            $status_id = Process::where('id', $idProcess)->first()->status_id;
 
             $request->merge(['fruit_id' => $fruit_id, 'variety_id' => $variety_id, 'status_id' => $status_id]);
 

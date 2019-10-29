@@ -40,12 +40,9 @@ class DispatchController extends Controller
             'tipotransporte',
             'season',
             'fruit',           
-           
             'quality',
-          
             'varieties',
             'status',
-
         ]);
 
         return Datatables::of($dispatches)
@@ -80,9 +77,7 @@ class DispatchController extends Controller
 
     public function getSubprocess()
     {
-        $subprocesses = SubProcess::orderBy('id', 'ASC')->paginate(20);
-
-        return view('dispatch.camara', compact('subprocesses'));
+        return view('dispatch.camara');
     }
 
     public function showCam(Lote $lotes)

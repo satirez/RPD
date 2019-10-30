@@ -12,6 +12,7 @@ use App\Quality;
 use App\motivorejected;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Yajra\Datatables\Datatables;
 
 class SubReprocessController extends Controller
 {
@@ -185,6 +186,35 @@ class SubReprocessController extends Controller
      */
     public function edit($id)
     {
+    }
+            //datatable de 'RPcamara'....
+    public function getData()
+    {
+        $subprocesses = SubReprocess::where('available', 1)->where('format_id', '!=', 5)->with([
+            'fruit',
+            'format',
+            'quality',
+            'varieties',
+            'status',
+        ]);
+
+        return Datatables::of($subprocesses)
+            ->addColumn('fruit', function ($subprocess) {
+                return $subprocess->fruit->specie;
+            })
+            ->addColumn('format', function ($subprocess) {
+                return $subprocess->format->name;
+            })
+            ->addColumn('status', function ($subprocess) {
+                return $subprocess->status->name;
+            })
+            ->editColumn('quality', function ($subprocess) {
+                return $subprocess->quality->name;
+            })
+            ->editColumn('varieties', function ($subprocess) {
+                return $subprocess->varieties->variety;
+            })
+            ->make(true);
     }
 
     /**

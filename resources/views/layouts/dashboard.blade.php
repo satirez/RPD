@@ -73,7 +73,7 @@
 
             <a class="collapse-item" href="{{ url ('auditoria/rejected') }}">Proceso</a>
 
-            <a class="collapse-item" href="{{ url ('auditoria/rejectedLote') }}">Producto terminado</a>
+            <a class="collapse-item" href="{{ url ('auditoria/rejectedLote') }}">Producto Terminado</a>
 
             <a class="collapse-item" href="{{ url ('auditoria/rejectedReception') }}">Recepción</a>
 
@@ -250,7 +250,9 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
             @can('dispatch.index')
-            <a class="collapse-item" href="{{ url ('camara') }}">Sin Paletizar</a>
+            <a class="collapse-item" href="{{ url ('camara') }}">Producto terminado</a>
+
+            <a class="collapse-item" href="{{ url ('RPcamara') }}">En Tránsito Terminado</a>
             @endcan
             @can('lotes.camaralote')
             <a class="collapse-item" href="{{ url ('camaralote') }}">Paletizados</a>

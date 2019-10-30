@@ -103,6 +103,7 @@ Route::middleware('auth')->group(function () {
     Route::get('reception-list', 'ReceptionController@getData');
     Route::get('lotes-list', 'LoteController@getData');
     Route::get('subprocess-list', 'SubProcessController@getData');
+    Route::get('resubprocess-list', 'SubReProcessController@getData');
     Route::get('process-list', 'ProcessController@getData');
 
     // START reportes
@@ -170,7 +171,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/reprocesses/{reprocess}', 'ReprocessController@show')->name('reprocess.reprocesses.show')->middleware('permission:reprocess.reprocesses.show');
 
-
     Route::get('reprocess-list', 'ReprocessController@getData');
 
     Route::get('/reprocesses/{reprocess}/edit', 'ReprocessController@edit')->name('reprocess.reprocesses.edit')->middleware('permission:reprocess.reprocesses.edit');
@@ -195,6 +195,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/lotescreate', 'LoteController@create')->name('lote.createrial');
 
     Route::get('/createsearch', 'LoteController@createsearch')->name('lote.createsearch');
+    Route::get('/RPcamara', 'SubReProcessController@getData')->name('subreprocess.RPcamara');
 
     Route::get('/camaralote', 'LoteController@getLotes')->name('Lote.getLotes')->middleware('permission:Lote.index');
 
@@ -410,7 +411,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dispatch/{dispatch}/edit', 'DispatchController@edit')->name('dispatch.edit')->middleware('permission:dispatch.edit');
 
     Route::get('/camara', 'DispatchController@getSubprocess')->name('dispatch.getProcess')->middleware('permission:dispatch.index');
-    
+
     Route::get('dispatch-list', 'DispatchController@getData');
 
     //TipoDespacho

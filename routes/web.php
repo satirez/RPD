@@ -145,6 +145,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/printreception/{reception}', 'ReceptionController@print')->name('receptions.print');
     Route::get('/printdispatch/{dispatch}', 'DispatchController@print')->name('dispatchs.print');
     Route::get('/printsubprocess/{subprocess}', 'SubProcessController@print')->name('subprocess.print');
+    Route::get('/printsubreprocess/{subreprocess}', 'SubReprocessController@print')->name('subreprocess.print');
     Route::get('/printlote/{lote}', 'LoteController@print')->name('lotes.print');
 
     //Consulta Ajax Select

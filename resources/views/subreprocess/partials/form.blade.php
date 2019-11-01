@@ -56,7 +56,7 @@
 				<div class="col-md-2">
 					<div class="form-group">
 						{{ Form::label('', 'Tarja') }}
-						{{ Form::text('tarja', 'RP00'.$lastid, ['class' => 'form-control','readonly']) }}
+						{{ Form::text('tarja', 'RPT00'.$lastid, ['class' => 'form-control','readonly']) }}
 					</div>
 
 					<input name="reprocess_id" type="hidden" value={{$reprocess_id}}>

@@ -36,7 +36,12 @@ class SubReprocess extends Model
     }
     public function fruit()
     {
+
         return $this->belongsTo(Fruit::class);
+    }
+     public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
     public function varieties()
     {

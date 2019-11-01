@@ -12,6 +12,7 @@ use App\Quality;
 use App\motivorejected;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade as PDF;  
 use Yajra\Datatables\Datatables;
 
 class SubReprocessController extends Controller
@@ -156,6 +157,19 @@ class SubReprocessController extends Controller
 
             ->make(true);
     }
+
+
+    public function print($id)
+    {
+        $subreprocesses = SubReprocess::where('id', $id)->first();
+
+        $customPaper = array(0, 0, 410, 750);
+        $pdf = PDF::loadView('subreprocess.print  ', compact('subreprocesses'))->setPaper($customPaper);
+
+        return $pdf->stream();
+    }
+
+
     public function store(Request $request)
     {
 

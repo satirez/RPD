@@ -19,6 +19,10 @@ class Status extends Model
     public function subprocesses(){
         return $this->hasMany(SubProcess::class);
     }
+
+     public function subreprocesses(){
+        return $this->hasMany(SubProcess::class);
+    }
      public function lote(){
         return $this->hasMany(Reception::class);
     }

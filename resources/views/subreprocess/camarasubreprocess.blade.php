@@ -78,7 +78,7 @@
                     data: 'id',
                         "render": function(data, type, row, meta) {
                             if (type === 'display') {
-                                data = '<a class="btn btn-sm btn-primary" target="_blank" href="printsubprocess/' + data + '">Imprimir</a>';
+                                data = '<a class="btn btn-sm btn-primary" target="_blank" href="printsubreprocess/' + data + '">Imprimir</a>';
                             }
 
                             return data;

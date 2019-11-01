@@ -9,6 +9,9 @@
     integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"
     integrity="sha256-5YmaxAwMjIpMrVlK84Y/+NjCpKnFYa8bWWBbUHSBGfU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous">
+</script>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -36,8 +39,15 @@
                                              </select>
                                          </div>
                                      </div>
-             
-                           
+                    
+                                    <div class="col-md-4">
+                                     <div class="form-group">
+                                          <label for="variety_id">Variedad</label>
+                                          <select class="form-control" name="variety_id" id="variety_id" required>
+                                            <option value=""> Variedad de Fruta </option>
+                                         </select>
+                                     </div>
+                                    </div>                      
              
                                  <div class="col-md-6 mt-4">
                                  
@@ -52,6 +62,39 @@
                      </div>
                 </form>
 
+<script type="text/javascript">
+                        $(document).ready(function (){
+                        $('.input-number').keyup(function (){
+                            this.value = (this.value + '').replace(/[^.x0-9]/g, '');
+                        });
+                        });
+                    
+                    
+                    
+                        $(function(){
+                            $('#fruit_id').on('change', onSelectProyectChange);
+                        });
+                    
+                        function onSelectProyectChange(){
+                            var fruit_id = $(this).val();
+                            
+                            if(! fruit_id){
+                                $('#variety_id').html('<Option value="">Seleccione Variedad</Option>');
+                                    return;
+                            }
+                            // ajax
+                    
+                            $.get('/api/fruit/'+fruit_id+'/variedad', function(data){
+                    
+                                var html_select = '<Option value="">Seleccione Variedad</Option>';
+                                for(var i=0; i<data.length; ++i)
+                                    html_select += '<Option value="'+data[i].id+'">'+data[i].variety+'</option>';
+                                $('#variety_id').html(html_select);
+                            });
+                        }
+                    
+                    
+                    </script>
 
             </div>
         </div>

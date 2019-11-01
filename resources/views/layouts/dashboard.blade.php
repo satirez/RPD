@@ -305,23 +305,26 @@
 
             <h6 class="collapse-header">Recepción:</h6>
 
-            <a class="collapse-item" href="{{ url ('receptionsdaily') }}">Recepción Diario</a>
-            <a class="collapse-item" href="{{ url ('receptionsperfruit') }}">Recepción Por Fruta</a>
-            <a class="collapse-item" href="{{ url ('receptionsperproductor') }}">Recepción Por Productor</a>
+            <a class="collapse-item" href="{{ url ('receptionsdaily') }}">Reporte por Fecha</a>
+            <a class="collapse-item" href="{{ url ('receptionsperfruit') }}">Reporte por Fruta</a>
+            <a class="collapse-item" href="{{ url ('receptionsperproductor') }}">Reporte por Productor</a>
             
             <div class="dropdown-divider"></div>
             <h6 class="collapse-header">Proceso:</h6>
 
-            <a class="collapse-item" href="{{ Route ('reporteProcesoDaily') }}">Proceso Diario</a>
-            <a class="collapse-item" href="{{ Route ('reporteProcesoFruit') }}">Proceso Por Fruta</a>
-            <a class="collapse-item" href="{{ Route ('reporteProcesoProvider') }}">Proceso Por Productor</a>
-
+            <a class="collapse-item" href="{{ Route ('reporteProcesoDaily') }}">Reporte por Fecha</a>
+            <a class="collapse-item" href="{{ Route ('reporteProcesoFruit') }}">Reporte por Fruta</a>
+          
+            <div class="dropdown-divider"></div>
+            <h6 class="collapse-header">Camara:</h6>
+            <a class="collapse-item" href="{{ Route ('reporteProcesoDaily') }}">Total de Productos</a>
+            <a class="collapse-item" href="{{ Route ('reporteProcesoFruit') }}">Reporte por Fruta</a>
+            
             <div class="dropdown-divider"></div>
             <h6 class="collapse-header ">Despacho:</h6>
 
-            <a class="collapse-item" href="{{ Route ('reporteDespachoDaily') }}">Despacho Diario</a>
-            <a class="collapse-item" href="{{ Route ('reporteDespachoFruit') }}">Despacho Por Fruta</a>
-            <a class="collapse-item" href="{{ Route ('reporteDespachoProvider') }}">Despacho Por Productor</a>
+            <a class="collapse-item" href="{{ Route ('reporteDespachoDaily') }}">Despachos Realizados</a>
+            
             <div class="dropdown-divider"></div>
 
           </div>

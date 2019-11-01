@@ -159,7 +159,7 @@
 			<tbody>
 				@foreach($subprocesses as $subprocess)
 				<tr>
-					<td> SP00{{$subprocess->id}} </td>
+					<td> PT00{{$subprocess->id}} </td>
 					<td> {{$subprocess->format->name}} </td>
 					<td> {{$subprocess->quality->name}} </td>
 					<td> {{$subprocess->quantity}} </td>

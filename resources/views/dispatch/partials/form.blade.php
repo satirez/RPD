@@ -162,8 +162,8 @@
 									<th>Fruta - variedad</th>
 									<th>Calidad</th>
 									<th>Formato</th>
-									<th>Cajas</th>
-									<th>peso de pallet</th>
+									<th>Cantidad de cajas</th>
+									<th>Peso de pallet</th>
 
 									</tr>
 

@@ -20,6 +20,7 @@
                                <th>Imprimir</th>
                                <th>Numero de Lote</th>
                                <th>Fruta</th>
+                               <th>Estatus</th>
                                <th>Variedad</th>
                                <th>Formato</th>
                             
@@ -27,8 +28,7 @@
                                <th>Cantidad de cajas</th>
                                <th>Peso total</th>
                                <th>Fecha de creacion</th>
-                               <th colspan="auto">&nbsp;</th>
-                              
+                               
                            </tr>
                        </thead>
                        <tbody>
@@ -83,6 +83,7 @@
                         },
                      { data: 'numero_lote', name: 'numero_lote' },
                      { data: 'fruit', name: 'fruit.specie' },
+                     { data: 'status', name: 'status.name' },
                      { data: 'varieties', name: 'varieties.variety' },
                      { data: 'format', name: 'format.name' },
                    

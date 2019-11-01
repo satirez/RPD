@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Process;
 use App\Fruit;
 use App\Providers;
-
+use App\Variety;
 use App\Dispatch;
 
 use Illuminate\Http\Request;
@@ -38,11 +38,16 @@ class ReportesController extends Controller
     public function reporteProcesoFruitSearch()
     {
 
-        $q = Input::post('fruit_id');
-        $processes = Process::where('fruit_id', $q)->get();
-        $fruits = Fruit::all();
+       $q = Input::post('variety_id');
+        $qq = Input::post('fruit_id');
+        
+        $processes = Process::where('fruit_id', $q)->where('variety_id',$qq)->get();
+        $fruits = Fruit::OrderBy('id', 'DES')->get();
 
-        return view('reportes.procesoFruitSearch', compact('processes', 'fruits'));
+        $varieties = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
+
+
+        return view('reportes.procesoFruitSearch', compact('processes', 'fruits','varieties'));
     }
 
     public function reporteProcesoProvider()

@@ -103,6 +103,7 @@ Route::middleware('auth')->group(function () {
     Route::get('reception-list', 'ReceptionController@getData');
     Route::get('lotes-list', 'LoteController@getData');
     Route::get('subprocess-list', 'SubProcessController@getData');
+    Route::get('subreprocess-list', 'SubReprocessController@getData');
     Route::get('resubprocess-list', 'SubReProcessController@getData');
     Route::get('process-list', 'ProcessController@getData');
 
@@ -186,6 +187,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/subreprocesses/{subreprocess}', 'SubReprocessController@destroy')->name('subreprocess.destroy')->middleware('permission:subreprocesses.destroy');
 
     Route::get('/subreprocesses/{subreprocess}/edit', 'SubReprocessController@edit')->name('subreprocess.edit')->middleware('permission:subreprocesses.edit');
+
+    // camarar subreprocess
+     Route::get('/camarasubreprocess', 'SubReprocessController@getsubreprocess')->name('subreprocess.getsubreprocess')->middleware('permission:dispatch.index');
 
     // lote
     Route::group(['middleware' => 'auth'], function () {
@@ -411,6 +415,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dispatch/{dispatch}/edit', 'DispatchController@edit')->name('dispatch.edit')->middleware('permission:dispatch.edit');
 
     Route::get('/camara', 'DispatchController@getSubprocess')->name('dispatch.getProcess')->middleware('permission:dispatch.index');
+
 
     Route::get('dispatch-list', 'DispatchController@getData');
 

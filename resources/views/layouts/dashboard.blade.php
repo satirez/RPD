@@ -251,8 +251,9 @@
             <h6 class="collapse-header">Custom Components:</h6>
             @can('dispatch.index')
             <a class="collapse-item" href="{{ url ('camara') }}">Producto terminado</a>
-
-            <a class="collapse-item" href="{{ url ('RPcamara') }}">En Tránsito Terminado</a>
+            @endcan
+            @can('subreprocess.camarasubreprocess')
+            <a class="collapse-item" href="{{ url ('camarasubreprocess') }}">Reprocesados</a>
             @endcan
             @can('lotes.camaralote')
             <a class="collapse-item" href="{{ url ('camaralote') }}">Paletizados</a>

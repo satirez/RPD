@@ -161,12 +161,16 @@ class ReceptionController extends Controller
     public function dailytotal(Request $request)
     {
         $q = Input::post('date');
+                
 
-        $from = date('Y-m-d'.' 07:00:00', time()); //Fecha inicio
-        $to = date('Y-m-d'.' 06:59:59', time());  //Fecha término
-
+        $oneday = strtotime ( '+1 day' , strtotime ($q) );
+        $oneday = date( 'Y-m-d' , $oneday );
         
-        $receptions = Reception::whereDate('created_at', '=', $q)->whereBetween('created_at', array($from, $to))->first();
+        $from = date($q .' 07:00:00', time()); //Fecha inicio
+        $to = date($oneday .' 07:00:00', time()); //Fecha inicio
+
+        $receptions = Reception::whereDate('created_at', $q)->get();
+    
         $listProviders = Providers::OrderBy('id', 'DES')->get();
         $neto = Reception::whereDate('created_at', '=', $q)->sum('netweight');
         $bruto = Reception::whereDate('created_at', '=', $q)->sum('grossweight');
@@ -374,7 +378,7 @@ class ReceptionController extends Controller
         $reception = Reception::find($reception->input('id'));
         $rejected = Reception::where('id', $reception)->get('rejected');
 
-        dd($reception);
+   
         if ($rejected == 1) {
             Reception::where('id', $reception)->update(['available' => 0]);
         } elseif ($rejected == 0) {

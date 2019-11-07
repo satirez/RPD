@@ -62,7 +62,7 @@
 					<div class="float-left">
                     {{ $processPending->render() }}
                 </div>
-                </table>
+                </table> 
         
                 <div>
                 <table class="table table-bordered">

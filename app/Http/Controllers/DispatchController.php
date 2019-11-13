@@ -26,6 +26,16 @@ class DispatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function delete()
+    {
+    
+        $despachos = Dispatch::all();
+
+        return view('dispatch.delete', compact('despachos'));
+    }
+
+
     public function index()
     {
         $despachos = Dispatch::all();

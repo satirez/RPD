@@ -22,6 +22,16 @@ class ProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function delete(){
+        $countSubProcess = SubProcess::where('id')->count();
+        $processes = Process::where('available', 1)->orderBy('id', 'ASC')->paginate(100);
+        $historico = Process::orderBy('id', 'ASC')->paginate(100);
+        return view('process.processes.delete', compact('processes', 'countSubProcess'));
+
+        
+    }
     public function index()
     {
         $countSubProcess = SubProcess::where('id')->count();
@@ -168,7 +178,7 @@ class ProcessController extends Controller
      */
     public function destroy(Process $process)
     {
-        $process->delete();
+        $process->delete('cascade');
 
         return back()->with('info', 'Eliminado con exito');
     }

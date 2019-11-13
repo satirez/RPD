@@ -82,8 +82,11 @@ Route::middleware('auth')->group(function () {
     //ruta 		//nombre de ruta 	//Permiso
     Route::post('/receptions/store', 'ReceptionController@store')->name('receptions.store')
         ->middleware('permission:receptions.create');
+            Route::get('/receptions/delete', 'ReceptionController@delete')->name('receptions.delete')
+        ->middleware('permission:receptions.delete');    
     Route::get('/receptions', 'ReceptionController@index')->name('receptions.index')
         ->middleware('permission:receptions.index');
+
 
     Route::get('/inprocess', 'ReceptionController@inprocess')->name('receptions.inprocess'); //agregar permiso
 
@@ -152,6 +155,8 @@ Route::middleware('auth')->group(function () {
 
     //Process
     //ruta 		//referencia de la ruta 	//con la función...
+     Route::get('/processes/delete', 'ProcessController@delete')->name('process.processes.delete')
+        ->middleware('permission:process.processes.delete');  
 
     Route::get('/processes/create', 'ProcessController@create')->name('process.processes.create')->middleware('permission:process.processes.create');
     Route::post('/processes/store', 'ProcessController@store')->name('process.processes.store')->middleware('permission:process.processes.create');
@@ -179,6 +184,10 @@ Route::middleware('auth')->group(function () {
 
     // resubproceso
 
+    Route::get('/subprocess/delete', 'SubProcessController@delete')->name('subprocess.delete')->middleware('permission:subprocess.delete');
+      Route::get('/subreprocesses/delete', 'SubReprocessController@delete')->name('subreprocess.delete')
+        ->middleware('permission:subreprocess.delete');
+        
     Route::get('/subreprocesses/create/{reprocess_id}', 'SubReprocessController@create')->name('subreprocess.create')->middleware('permission:subreprocesses.create');
     Route::post('/subreprocesses/store', 'SubReprocessController@store')->name('subreprocess.store')->middleware('permission:subreprocesses.create');
     Route::get('/subreprocesses', 'SubReprocessController@index')->name('subreprocess.index')->middleware('permission:subreprocesses.index');
@@ -193,9 +202,13 @@ Route::middleware('auth')->group(function () {
      Route::get('/camarasubreprocess', 'SubReprocessController@getsubreprocess')->name('subreprocess.getsubreprocess')->middleware('permission:dispatch.index');
 
     // lote
+     Route::get('/lotes/delete', 'LoteController@delete')->name('lotes.delete')
+        ->middleware('permission:lotes.delete');
+    });
     Route::group(['middleware' => 'auth'], function () {
         Route::resource('lotes', 'LoteController')->names('lotes')->parameters(['lotes' => 'lote']);
-    });
+
+    
 
     Route::post('/lotescreate', 'LoteController@create')->name('lote.createrial');
 
@@ -402,6 +415,9 @@ Route::middleware('auth')->group(function () {
     //Despachos
 
     Route::post('/dispatch/store', 'DispatchController@store')->name('dispatch.store')->middleware('permission:dispatch.create');
+
+     Route::get('/dispatch/delete', 'DispatchController@delete')->name('dispatch.delete')
+        ->middleware('permission:dispatch.delete');
 
     Route::get('/dispatch', 'DispatchController@index')->name('dispatch.index')->middleware('permission:dispatch.index');
 

@@ -80,6 +80,46 @@
           </div>
         </div>
       </li>
+        <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#delete"
+          aria-expanded="true" aria-controls="collapseReport">
+          <i class="fas fa-fw fa-pallet" style="color:#FFEC00"></i>
+          <span>Panel De Eliminación:</span></a>
+        </a>
+        <div id="delete" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Seleccione:</h6>
+              <!-- Usuarios -->
+            @can('receptions.delete')
+            <a class="collapse-item" href="{{ url ('receptions/delete') }}">Recepcion</a>
+
+            @endcan  
+            @can('process.processes.delete')
+            <a class="collapse-item" href="{{ url ('processes/delete') }}">Proceso</a>
+
+            @endcan  
+            @can('subprocesses.delete')
+            <a class="collapse-item" href="{{ url ('subprocess/delete') }}">Producto sin Terminar</a>
+
+            @endcan  
+            @can('lotes.delete')
+            <a class="collapse-item" href="{{ url ('lotes/delete') }}">Productos palletizados</a>
+
+            @endcan 
+            @can('dispatch.delete')
+            <a class="collapse-item" href="{{ url ('dispatch/delete') }}">Despacho</a>
+
+            @endcan
+              @can('subreprocess.delete')
+            <a class="collapse-item" href="{{ url ('subreprocesses/delete') }}">Reprocesados</a>
+
+            @endcan  
+          </div>
+        </div>
+      </li>
+
+
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -288,7 +328,7 @@
 
       @endcan
 
-  <
+  
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

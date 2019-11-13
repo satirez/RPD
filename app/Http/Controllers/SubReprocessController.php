@@ -22,6 +22,14 @@ class SubReprocessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+      public function delete()
+    {
+    
+        $subreprocesses = SubReprocess::all();
+
+        return view('subreprocess.delete', compact('subreprocesses'));
+    }
     public function index()
     {
     }
@@ -258,7 +266,11 @@ class SubReprocessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SubReprocess $subreprocess)
     {
+
+        $subreprocess->delete();
+
+        return back()->with('info', 'Eliminado con exito');
     }
 }

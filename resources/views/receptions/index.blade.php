@@ -35,22 +35,24 @@
 
                                 <thead>
                                     <tr>
-                                        <th>Imprimir</th>
-                                        <th>Fecha Ingreso</th>
-                                        <th>N° de tarja</th>
-                                        <th>Productor</th>
-                                        <th>Calidad</th>
-                                        <th>Fruta</th>
-                                        <th>Variedad</th>
-                                        <th>Cantidad de bandejas</th>
-                                        <th>Peso neto</th>
-                                        <th>Peso bruto</th>
-                                        <th>Ver</th>
+                                        <th scope="col" >Imprimir</th>
+                                        <th scope="col" >Fecha Ingreso</th>
+                                        <th scope="col" >N° de tarja</th>
+                                        <th scope="col" >Productor</th>
+                                        <th scope="col" >Calidad</th>
+                                        <th scope="col" >Fruta</th>
+                                        <th scope="col" >Variedad</th>
+                                        <th scope="col" >Cantidad de bandejas</th>
+                                        <th scope="col" >Peso neto</th>
+                                        <th scope="col" >Peso bruto</th>
+                                        <th scope="col" >Ver</th>
+                                       
 
                                        
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                 </tbody>
                                 <tfoot>
 
@@ -79,6 +81,31 @@
 
 
             var table = $('#laravel_datatable3').DataTable({
+                 "language":    {
+                    "sProcessing":     "Procesando...",
+                    "sLengthMenu":     "Mostrar _MENU_ registros",
+                    "sZeroRecords":    "No se encontraron resultados",
+                    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix":    "",
+                    "sSearch":         "Buscar:",
+                    "sUrl":            "",
+                    "sInfoThousands":  ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst":    "Primero",
+                        "sLast":     "Último",
+                        "sNext":     "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                },
+
                 processing: true,
                 serverSide: true,
                        
@@ -123,7 +150,7 @@
                                     return data;
                                     },
                      },
-
+                    
               
                 ]
          });

@@ -22,6 +22,14 @@ class SubProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function delete(){
+                $subprocesses = SubProcess::paginate(50);
+
+        return view('subprocess.delete', compact('subprocesses'));
+
+        
+    }
     public function index()
     {
         $subprocesses = SubProcess::paginate(50);
@@ -75,7 +83,7 @@ class SubProcessController extends Controller
         $subprocesses = SubProcess::where('process_id', $idsad)->where('rejected', 0)->paginate();
 
         //formato y peso para la vista
-        $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');
+        $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight', 'id');
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
         $listFruits = Fruit::OrderBy('id', 'DES')->get();
@@ -214,7 +222,10 @@ class SubProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubProcess $subProcess)
+    public function destroy(SubProcess $subprocess)
     {
+        $subprocess->delete();
+
+        return back()->with('info', 'Eliminado con exito');
     }
 }

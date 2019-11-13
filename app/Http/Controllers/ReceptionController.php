@@ -26,6 +26,18 @@ class ReceptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function delete(){
+        //sin procesar
+        $receptions = Reception::where('available', 1)->paginate();
+        $receptionWeight = Reception::where('available', 1)->sum('netweight');
+        $receptionQuantity = Reception::where('available', 1)->sum('quantity');
+        $receptionCount = Reception::where('available', 1)->count();
+        $historico = Reception::paginate(100);
+
+        return view('receptions.delete', compact('receptions', 'receptionWeight', 'receptionQuantity', 'receptionCount'));
+
+        
+    }
     public function index()
     {
         //sin procesar

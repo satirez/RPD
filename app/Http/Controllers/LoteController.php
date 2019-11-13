@@ -22,6 +22,17 @@ class LoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function delete()
+    {
+    
+        $lotes = Lote::paginate(50);
+
+        return view('lotes.delete', compact('lotes'));
+    }
+
+        
+    
     public function index()
     {
         $lotes = Lote::paginate();

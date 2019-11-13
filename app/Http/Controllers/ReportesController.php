@@ -14,6 +14,8 @@ use App\Http\Controllers\Controller;
 
 class ReportesController extends Controller
 {
+
+    
     public function reporteProcesoDaily()
     {
 

@@ -67,18 +67,20 @@
           <i class="far fa-calendar-check" style="color:#44D829"></i>
           <span>Aseguramiento Calidad</span>
         </a>
+       
         <div id="collapseone" class="collapse" aria-labelledby="headingone" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Componentes:</h6>
-
+             @can('auditoria.index')
             <a class="collapse-item" href="{{ url ('auditoria/rejected') }}">Proceso</a>
 
             <a class="collapse-item" href="{{ url ('auditoria/rejectedLote') }}">Producto Terminado</a>
 
             <a class="collapse-item" href="{{ url ('auditoria/rejectedReception') }}">Recepción</a>
-
+            @endcan
           </div>
         </div>
+       
       </li>
         <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -95,23 +97,23 @@
             <a class="collapse-item" href="{{ url ('receptions/delete') }}">Recepcion</a>
 
             @endcan  
-            @can('process.processes.delete')
+            @can('receptions.delete')
             <a class="collapse-item" href="{{ url ('processes/delete') }}">Proceso</a>
 
             @endcan  
-            @can('subprocesses.delete')
+            @can('receptions.delete')
             <a class="collapse-item" href="{{ url ('subprocess/delete') }}">Producto sin Terminar</a>
 
             @endcan  
-            @can('lotes.delete')
+            @can('receptions.delete')
             <a class="collapse-item" href="{{ url ('lotes/delete') }}">Productos palletizados</a>
 
             @endcan 
-            @can('dispatch.delete')
+            @can('receptions.delete')
             <a class="collapse-item" href="{{ url ('dispatch/delete') }}">Despacho</a>
 
             @endcan
-              @can('subreprocess.delete')
+              @can('receptions.delete')
             <a class="collapse-item" href="{{ url ('subreprocesses/delete') }}">Reprocesados</a>
 
             @endcan  
@@ -138,7 +140,7 @@
 
             @endcan
             <!-- Roles -->
-            @can('roles.index')
+            @can('users.index')
             <a class="collapse-item" href="{{ url ('roles') }}">Roles de usuario</a>
             @endcan
           </div>
@@ -163,63 +165,63 @@
             @endcan
 
             <!-- Motivos de rechazo -->
-            @can('admin.rejecteds.index')
+            @can('admin.supplies.index')
             <a class="collapse-item" href="{{ url ('rejecteds') }}">Rechazos</a>
             @endcan
 
             <!-- Proveedores -->
-            @can('admin.providers.index')
+            @can('admin.supplies.index')
             <a class="collapse-item" href="{{ url ('providers') }}">Productores</a>
 
             @endcan
 
             <!-- Quality -->
-            @can('admin.quality.index')
+            @can('admin.supplies.index')
 
             <a class="collapse-item" href="{{ url ('quality') }}">Calidad</a>
 
             @endcan
 
             <!-- Exportadores -->
-            @can('admin.exporters.index')
+            @can('admin.supplies.index')
 
             <a class="collapse-item" href="{{ url ('exporters') }}">Exportadores</a>
 
             @endcan
             <!-- Tipos Formato -->
-            @can('admin.formats.index')
+            @can('admin.supplies.index')
             <a class="collapse-item" href="{{ url ('formats') }}">Formato de Caja</a>
 
             @endcan
             <!-- Estatus -->
-            @can('admin.statuses.index')
+            @can('admin.supplies.index')
             <a class="collapse-item" href="{{ url ('statuses') }}">Estatus de Fruta</a>
             @endcan
 
             <!-- Tipos Frutas -->
-            @can('admin.fruits.index')
+            @can('admin.supplies.index')
             <a class="collapse-item" href="{{ url ('fruits') }}">Fruta</a>
             @endcan
 
             <!-- Tipos variedades -->
-            @can('admin.varieties.index')
+            @can('admin.supplies.index')
             <a class="collapse-item" href="{{ url ('varieties') }}">Variedad de fruta</a>
             @endcan
 
             <!-- Tipos despacho -->
-            @can('admin.tipodispatches.index')
+            @can('admin.supplies.index')
             <a class="collapse-item" href="{{ url ('tipodispatches') }}">Tipo de despacho</a>
             @endcan
 
             <!-- Tipos despacho -->
-            @can('admin.tipotransportes.index')
+            @can('admin.supplies.index')
             <a class="collapse-item" href="{{ url ('tipotransportes') }}">Tipo de Transporte</a>
             @endcan
 
 
 
             <!--  Temporada -->
-            @can('admin.seasons.index')
+            @can('admin.supplies.index')
             <a class="collapse-item" href="{{ url ('seasons') }}">Temporada</a>
             @endcan
 
@@ -263,7 +265,7 @@
             <a class="collapse-item" href="{{ url ('processes') }}">Proceso</a>
             @endcan
 
-            @can('lotes.index')
+            @can('process.processes.index')
             <a class="collapse-item" href="{{ url ('lotes') }}">Lotes</a>
             @endcan
 
@@ -288,14 +290,12 @@
         </a>
         <div id="collapseReport10" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            @can('dispatch.index')
+            <h6 class="collapse-header">Camara:</h6>
+            @can('lotes.index')
             <a class="collapse-item" href="{{ url ('camara') }}">Producto terminado</a>
-            @endcan
-            @can('subreprocess.camarasubreprocess')
+          
             <a class="collapse-item" href="{{ url ('camarasubreprocess') }}">Reprocesados</a>
-            @endcan
-            @can('lotes.camaralote')
+            
             <a class="collapse-item" href="{{ url ('camaralote') }}">Paletizados</a>
             @endcan
          
@@ -344,7 +344,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
 
             <h6 class="collapse-header">Recepción:</h6>
-
+            @can('receptions.receptionsdaily')
             <a class="collapse-item" href="{{ url ('receptionsdaily') }}">Reporte por Fecha</a>
             <a class="collapse-item" href="{{ url ('receptionsperfruit') }}">Reporte por Fruta</a>
             <a class="collapse-item" href="{{ url ('receptionsperproductor') }}">Reporte por Productor</a>
@@ -366,7 +366,7 @@
             <a class="collapse-item" href="{{ Route ('reporteDespachoDaily') }}">Despachos Realizados</a>
             
             <div class="dropdown-divider"></div>
-
+            @endcan
           </div>
         </div>
 

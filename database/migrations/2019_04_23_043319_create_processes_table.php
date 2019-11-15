@@ -23,10 +23,10 @@ class CreateProcessesTable extends Migration
             $table->integer('quality_id')->unsigned();
             $table->integer('status_id')->unsigned();
 
-            $table->foreign('fruit_id')->references('id')->on('fruits');
-            $table->foreign('variety_id')->references('id')->on('varieties');
-            $table->foreign('quality_id')->references('id')->on('qualities');
-            $table->foreign('status_id')->references('id')->on('statuses');
+            $table->foreign('fruit_id')->references('id')->on('fruits')->onDelete('cascade');
+            $table->foreign('variety_id')->references('id')->on('varieties')->onDelete('cascade');
+            $table->foreign('quality_id')->references('id')->on('qualities')->onDelete('cascade');
+            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
 
             $table->timestamps();
         });

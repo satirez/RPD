@@ -31,11 +31,11 @@ class CreateLotesTable extends Migration
             
             $table->Boolean('rep')->default('0');
         
-            $table->foreign('status_id')->references('id')->on('statuses');
-            $table->foreign('fruit_id')->references('id')->on('fruits');
-            $table->foreign('variety_id')->references('id')->on('varieties');
-            $table->foreign('quality_id')->references('id')->on('qualities');
-            $table->foreign('format_id')->references('id')->on('formats');
+            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
+            $table->foreign('fruit_id')->references('id')->on('fruits')->onDelete('cascade');
+            $table->foreign('variety_id')->references('id')->on('varieties')->onDelete('cascade');
+            $table->foreign('quality_id')->references('id')->on('qualities')->onDelete('cascade');
+            $table->foreign('format_id')->references('id')->on('formats')->onDelete('cascade');
 
             $table->Boolean('rejected')->default('0');
 

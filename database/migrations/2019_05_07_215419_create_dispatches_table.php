@@ -39,12 +39,12 @@ class CreateDispatchesTable extends Migration
             $table->integer('variety_id')->unsigned();
             $table->integer('quality_id')->unsigned();
             $table->integer('format_id')->unsigned();
-            $table->foreign('fruit_id')->references('id')->on('fruits');
-            $table->foreign('variety_id')->references('id')->on('varieties');
-            $table->foreign('quality_id')->references('id')->on('qualities');
-            $table->foreign('format_id')->references('id')->on('formats');
+            $table->foreign('fruit_id')->references('id')->on('fruits')->onDelete('cascade');
+            $table->foreign('variety_id')->references('id')->on('varieties')->onDelete('cascade');
+            $table->foreign('quality_id')->references('id')->on('qualities')->onDelete('cascade');
+            $table->foreign('format_id')->references('id')->on('formats')->onDelete('cascade');
             $table->integer('status_id')->unsigned();
-            $table->foreign('status_id')->references('id')->on('statuses');
+            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
            
 
             $table->String('puerto_salida');
@@ -59,7 +59,7 @@ class CreateDispatchesTable extends Migration
             $table->Boolean('rejected')->default('0');
 
             $table->integer('reason')->unsigned()->nullable();
-            $table->foreign('reason')->references('id')->on('motivorejecteds');
+            $table->foreign('reason')->references('id')->on('motivorejecteds')->onDelete('cascade');
             $table->String('comment')->nullable();
 
             $table->timestamps();

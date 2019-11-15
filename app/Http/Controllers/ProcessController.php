@@ -25,10 +25,10 @@ class ProcessController extends Controller
 
 
     public function delete(){
-        $countSubProcess = SubProcess::where('id')->count();
-        $processes = Process::where('available', 1)->orderBy('id', 'ASC')->paginate(100);
-        $historico = Process::orderBy('id', 'ASC')->paginate(100);
-        return view('process.processes.delete', compact('processes', 'countSubProcess'));
+      
+        $processes = Process::where('available', 1)->orderBy('id', 'ASC')->paginate(50);
+       
+        return view('process.processes.delete', compact('processes' ));
 
         
     }
@@ -128,7 +128,7 @@ class ProcessController extends Controller
             })->editColumn('status', function ($process) {
                 return $process->status->name;
             })->make(true);
-    }
+  }
     /**
      * Display the specified resource.
      *
@@ -139,8 +139,8 @@ class ProcessController extends Controller
     public function show(Process $process)
     {
         // $receptions = Process_Reception::where('process_id',$process1)->get();
-        $receptions = Process::find($process);
-        $subprocess = SubProcess::where('process_id', $process->id)->get();
+            $receptions = Process::find($process);
+            $subprocess = SubProcess::where('process_id', $process->id)->get();
         return view('process.processes.show', compact('process', 'subprocess'));
     }
     /**
@@ -178,7 +178,7 @@ class ProcessController extends Controller
      */
     public function destroy(Process $process)
     {
-        $process->delete('cascade');
+        $process->delete();
 
         return back()->with('info', 'Eliminado con exito');
     }

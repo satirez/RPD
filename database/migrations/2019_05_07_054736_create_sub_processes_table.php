@@ -23,19 +23,19 @@ class CreateSubProcessesTable extends Migration
             $table->foreign('process_id')->references('id')->on('processes');
 
             $table->Integer('format_id')->unsigned();
-            $table->foreign('format_id')->references('id')->on('formats')->onDelete('cascade');;
+            $table->foreign('format_id')->references('id')->on('formats')->onDelete('cascade');
     
             $table->Integer('quality_id')->unsigned();
-            $table->foreign('quality_id')->references('id')->on('qualities');
+            $table->foreign('quality_id')->references('id')->on('qualities')->onDelete('cascade');
 
             $table->Integer('fruit_id')->unsigned();
-            $table->foreign('fruit_id')->references('id')->on('fruits');
+            $table->foreign('fruit_id')->references('id')->on('fruits')->onDelete('cascade');
 
             $table->Integer('variety_id')->unsigned();
-            $table->foreign('variety_id')->references('id')->on('varieties');
+            $table->foreign('variety_id')->references('id')->on('varieties')->onDelete('cascade');
 
             $table->Integer('status_id')->unsigned();
-            $table->foreign('status_id')->references('id')->on('statuses');
+            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
 
             $table->Integer('quantity');
             
@@ -48,7 +48,7 @@ class CreateSubProcessesTable extends Migration
             $table->Boolean('rep')->default('0');
 
             $table->integer('reason')->unsigned()->nullable();
-            $table->foreign('reason')->references('id')->on('motivorejecteds');
+            $table->foreign('reason')->references('id')->on('motivorejecteds')->onDelete('cascade');
             $table->String('comment')->nullable();
 
             $table->String('folioStart');

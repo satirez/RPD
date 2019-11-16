@@ -82,8 +82,8 @@
 				</div>
 				<div class="col-md-2">
 					<div class="form-group">
-						<label> Kg Procesados </label>
-						<input name="weight" class="form-control" id="weight" onkeyup="this.onchange();"
+						<label hidden > Kg Procesados </label>
+						<input hidden name="weight" class="form-control" id="weight" onkeyup="this.onchange();"
 							onpaste="this.onchange();" oninput="this.onchange();" onchange="validacion()" type="number"
 							readonly>
 					</div>

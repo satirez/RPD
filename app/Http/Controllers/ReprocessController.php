@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Reprocess;
 use App\Process;
+use App\Fruit;
+use App\Variety;
+use App\Quality;
+
 use App\Lote;
 use App\SubProcess;
+use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 
 class ReprocessController extends Controller
@@ -33,7 +38,7 @@ class ReprocessController extends Controller
     {
         $processeslist = Process::paginate();
 
-        $reprocessPending = ReProcess::where('available', 1)->paginate(10);
+        $reprocessPending = Reprocess::where('available', 1)->paginate(10);
 
         $lotes = Lote::orderBy('id', 'DES')->where('available', 1)->where('format_id', '!=', 5)->where('rejected', 0)->paginate(10);
 
@@ -111,7 +116,7 @@ class ReprocessController extends Controller
                 'identificador' => $identificador
             ];
       
-            $reprocess = ReProcess::create($reprocess);
+            $reprocess = Reprocess::create($reprocess);
             //se establece la relacion con lotes y su tabla Pivote reprocess_subprocess
             $reprocess->subprocess()->attach($request->get('subprocess'));
             //se obtiene el id del reproceso que se creó
@@ -142,13 +147,13 @@ class ReprocessController extends Controller
 
     public function getData()
     {  //devolver todos los processos disponibles
-        $reprocess = Reprocess::where('available', 0)->with([
+        $reprocesses = Reprocess::where('available', 1)->with([
             'fruit',
             'quality',
             'varieties',
         ]);
 
-        return Datatables::of($reprocess)
+        return Datatables::of($reprocesses)
             ->addColumn('fruit', function ($reprocess) {
                 return $reprocess->fruit->specie;
             })->editColumn('quality', function ($reprocess) {

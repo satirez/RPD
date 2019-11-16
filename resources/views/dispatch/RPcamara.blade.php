@@ -6,7 +6,7 @@
         <div class=" ">    
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4 style="text-align:center;">Camara de Producto Terminado Sin Paletizar:</h4>
+                            <h4 style="text-align:center;">Camara de Producto Terminado Sin Paletizarxddd:</h4>
                         
                     
                 </div>
@@ -69,6 +69,11 @@
              
              iDisplayLength: 100,
              order: [[ 0, 'desc' ]],
+                     dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    },
            
             
             

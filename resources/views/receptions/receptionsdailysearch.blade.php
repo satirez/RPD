@@ -65,7 +65,7 @@
                             @empty
                             <h1 class="alert alert-danger text-center"> No hay reporte </h1>
                             @endforelse
-                       
+
                         </tbody>
                     </table>
                     <table class="table responsive">

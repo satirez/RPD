@@ -37,7 +37,13 @@
                                          </div>
                                      </div>
              
-                           
+                           <div class="col-md-4">
+                                            <div class="form-group">
+                                             {{ Form::label('quality_id', 'Calidad') }}
+                                            {{Form::select('quality_id', $qualities, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+                                            </div>
+                                        </div>         
+                
              
                                  <div class="col-md-6 mt-4">
                                  

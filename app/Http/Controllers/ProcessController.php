@@ -26,7 +26,7 @@ class ProcessController extends Controller
 
     public function delete(){
       
-        $processes = Process::where('available', 1)->orderBy('id', 'ASC')->paginate(50);
+        $processes = Process::where('available', 0)->orderBy('id', 'ASC')->paginate(50);
        
         return view('process.processes.delete', compact('processes' ));
 

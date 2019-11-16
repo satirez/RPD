@@ -28,15 +28,17 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table id="laravel_datatable" style="width:100%" class=" cell-border order-column">
+                    <table id="laravel_datatable12333" style="width:100%" class=" cell-border order-column">
                         <thead>
                             <tr>
                                 <th>Codigo de pallet procesado</th>
                                 <th>Creado</th>
                                 <th>Fruta</th>
+                                <th>Calidad</th>
                                 <th>Variedad</th>
+                                <th>Buscar</th>
 
-                                <th colspan="auto">&nbsp;</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -46,8 +48,8 @@
                 <script>
                 $(document).ready(function() {
 
-                    $('#laravel_datatable thead tr').clone(true).appendTo('#laravel_datatable thead');
-                    $('#laravel_datatable thead tr:eq(1) th').each(function(i) {
+                    $('#laravel_datatable12333 thead tr').clone(true).appendTo('#laravel_datatable12333 thead');
+                    $('#laravel_datatable12333 thead tr:eq(1) th').each(function(i) {
                         var title = $(this).text();
                         $(this).html('<input  class="form-control" type="text" placeholder="Buscar ' +
                             title + '" />');
@@ -62,7 +64,7 @@
                         });
                     });
 
-                    var table = $('#laravel_datatable').DataTable({
+                    var table = $('#laravel_datatable12333').DataTable({
                         reprocessing: true,
                         serverSide: true,
                         language: {
@@ -96,18 +98,6 @@
                                 name: 'varieties.variety'
                             },
                             
-                            {
-                                "data": 'id',
-                                "render": function(data, type, row, meta) {
-                                    if (type === 'display') {
-                                        data =
-                                            '<a class="btn-sm btn btn-warning" href="reprocesses/' +
-                                            data + '">Detalle</a>';
-                                    }
-
-                                    return data;
-                                }
-                            }
 
                         ],
 

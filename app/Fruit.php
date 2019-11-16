@@ -19,6 +19,10 @@ class Fruit extends Model
      public function subprocesses(){
         return $this->hasMany(SubProcess::class);
     }
+
+      public function reprocesses(){
+        return $this->hasMany(Reprocess::class);
+    }
    
      public function dispatch(){
         return $this->hasMany(Dispatch::class);

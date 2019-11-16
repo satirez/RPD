@@ -26,16 +26,6 @@ class DispatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-     public function delete()
-    {
-    
-        $despachos = Dispatch::all();
-
-        return view('dispatch.delete', compact('despachos'));
-    }
-
-
     public function index()
     {
         $despachos = Dispatch::all();
@@ -113,7 +103,7 @@ class DispatchController extends Controller
         //cambiar el formato
         // $subprocesses = SubProcess::orderBy('id', 'DES')->where('available','!0' ,'&&', 'format_id', !6)->get();
 
-        $lotes = Lote::orderBy('id', 'DES')->where('available', 1)->paginate(10);
+        $lotes = Lote::orderBy('id', 'DES')->where('available', 1)->paginate(100);
 
         $listexporter = Exporter::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = Rejected::OrderBy('id', 'ASC')->pluck('reason', 'id');

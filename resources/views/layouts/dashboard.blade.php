@@ -356,10 +356,10 @@
             <a class="collapse-item" href="{{ Route ('reporteProcesoFruit') }}">Reporte por Fruta</a>
           
             <div class="dropdown-divider"></div>
-            <h6 class="collapse-header">Camara:</h6>
+<!--              <h6 class="collapse-header">Camara:</h6>
             <a class="collapse-item" href="{{ Route ('reporteProcesoDaily') }}">Total de Productos</a>
             <a class="collapse-item" href="{{ Route ('reporteProcesoFruit') }}">Reporte por Fruta</a>
-            
+            --> 
             <div class="dropdown-divider"></div>
             <h6 class="collapse-header ">Despacho:</h6>
 

@@ -22,17 +22,6 @@ class LoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function delete()
-    {
-    
-        $lotes = Lote::paginate(50);
-
-        return view('lotes.delete', compact('lotes'));
-    }
-
-        
-    
     public function index()
     {
         $lotes = Lote::paginate();
@@ -56,7 +45,6 @@ class LoteController extends Controller
             ->where('format_id', '!=', 5)
             ->where('rejected', 0)
             ->where('fruit_id', $request->fruit_id)
-            ->where('variety_id', $request->variety_id)
             ->where('quality_id', $request->quality_id)->paginate(10);
         } else {
             $coleccion = SubProcess::orderBy('id', 'DES')
@@ -64,7 +52,6 @@ class LoteController extends Controller
             ->where('format_id', '!=', 5)
             ->where('rejected', 0)
             ->where('fruit_id', $request->fruit_id)
-            ->where('variety_id', $request->variety_id)
             ->where('quality_id', $request->quality_id)->paginate(10);
         }
 
@@ -84,11 +71,9 @@ class LoteController extends Controller
     {
         $fruits = Fruit::OrderBy('id', 'DES')->get();
 
-        $varieties = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
-
         $qualities = Quality::pluck('name', 'id');
 
-        return view('lotes.partials.form', compact('varieties', 'fruits', 'qualities'));
+        return view('lotes.partials.form', compact( 'fruits', 'qualities'));
     }
 
     public function byFruit($id)
@@ -226,7 +211,7 @@ class LoteController extends Controller
     {
         $subprocess = DB::table('lote_sub_process')->where('lote_id', $lote->id)->get();
         $lotes = Lote::where('id', $lote->id)->get();
-        dd($lotes);
+       
 
         return view('lotes.show', compact('subprocess', 'lotes'));
     }

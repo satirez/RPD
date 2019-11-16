@@ -26,9 +26,9 @@ class HomeController extends Controller
     {
         $today = Carbon::today();
         //cuenta todas las recepciones de hoy
-        $cuentaProcess = Process::count();
-        $cuentaReception = Reception::count();
-        $cuentaDispatch = Dispatch::count();
+        $cuentaProcess = Process::whereDate('created_at', $today)->count('id');
+        $cuentaReception = Reception::whereDate('created_at', $today)->count('id');
+        $cuentaDispatch = Dispatch::whereDate('created_at', $today)->count('id');
 
         return view('home', compact('cuentaReception', 'cuentaDispatch', 'cuentaProcess'));
     }

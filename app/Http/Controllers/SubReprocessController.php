@@ -22,14 +22,6 @@ class SubReprocessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-      public function delete()
-    {
-    
-        $subreprocesses = SubReprocess::all();
-
-        return view('subreprocess.delete', compact('subreprocesses'));
-    }
     public function index()
     {
     }
@@ -41,6 +33,7 @@ class SubReprocessController extends Controller
      */
     public function create($reprocess_id)
     {
+        
         $last = SubReprocess::OrderBy('id', 'DES')->first();
         if ($last == null) {
             $lastid = 1;
@@ -74,7 +67,7 @@ class SubReprocessController extends Controller
             $subprocesses = SubReprocess::where('reprocess_id', $reprocess_id)->where('rejected', 0)->paginate();
 
             //formato y peso para la vista
-            $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');
+            $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'id');
             $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
             $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
             $listFruits = Fruit::OrderBy('id', 'DES')->get();
@@ -107,7 +100,7 @@ class SubReprocessController extends Controller
             $subprocesses = SubReprocess::where('reprocess_id', $reprocess_id)->where('rejected', 0)->paginate();
 
             //formato y peso para la vista
-            $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight');
+            $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'id');
             $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
             $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
             $listFruits = Fruit::OrderBy('id', 'DES')->get();
@@ -180,21 +173,22 @@ class SubReprocessController extends Controller
 
     public function store(Request $request)
     {
-
+   
         //validacion y desactivacion de un reproceso
-        if ($request->format_id === '1.000') {
-            $idReProcess = $request->get('reprocess_id'); //id de proceso
+        if ($request->format_id == '5') {
 
-            $weightFormat = $request->get('format_id'); //se obtiene el peso del formato
-            $formatId = Format::where('weight', $weightFormat)->first()->id; //obtener el id de formato
-
-            $request['format_id'] = $formatId; //se le pasa el nuevo parametro (id) a format_id del request!
-
+            $idReProcess = $request->get('reprocess_id'); //id de reproceso
+            
+            $format_id = $request->get('format_id'); //se obtiene el id
+            $quantity = $request->get('quantity'); //se obtiene el id
+            $formatWeight = Format::where('id', $format_id)->first()->weight;
+            $weight = $formatWeight * $quantity;
+            
             $fruit_id = ReProcess::where('id', $idReProcess)->first()->fruit_id;
             $variety_id = ReProcess::where('id', $idReProcess)->first()->variety_id;
             $status_id = ReProcess::where('id', $idReProcess)->first()->status_id;
-
-            $request->merge(['fruit_id' => $fruit_id, 'variety_id' => $variety_id, 'status_id' => $status_id]);
+            
+            $request->merge(['fruit_id' => $fruit_id, 'variety_id' => $variety_id, 'status_id' => $status_id, 'weight' => $weight]);
 
             //desactivacion de reproceso
             SubReProcess::create($request->all());
@@ -204,10 +198,12 @@ class SubReprocessController extends Controller
         } else {
             $idReProcess = $request->get('reprocess_id'); //id de reproceso
 
-            $weightFormat = $request->get('format_id'); //se obtiene el peso del formato
-            $formatId = Format::where('weight', $weightFormat)->first()->id; //obtener el id de formato
-
-            $request['format_id'] = $formatId; //se le pasa el nuevo parametro (id) a format_id del request!
+            $idReProcess = $request->get('reprocess_id'); //id de reproceso
+            
+            $format_id = $request->get('format_id');//se obtiene el id
+            $quantity = $request->get('quantity'); //se obtiene el id
+            $formatWeight = Format::where('id', $format_id)->first()->weight;
+            $weight = $formatWeight * $quantity;
 
             $fruit_id = Reprocess::where('id', $idReProcess)->first()->fruit_id;
             $variety_id = Reprocess::where('id', $idReProcess)->first()->variety_id;
@@ -217,7 +213,8 @@ class SubReprocessController extends Controller
                 'fruit_id' => $fruit_id,
                 'variety_id' => $variety_id,
                 'status_id' => $status_id,
-                'reprocess_id' => $idReProcess, ]);
+                'reprocess_id' => $idReProcess,
+                'weight' => $weight]);
 
             SubReprocess::create($request->all());
 
@@ -266,11 +263,7 @@ class SubReprocessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubReprocess $subreprocess)
+    public function destroy($id)
     {
-
-        $subreprocess->delete();
-
-        return back()->with('info', 'Eliminado con exito');
     }
 }

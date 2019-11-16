@@ -23,6 +23,10 @@ class Variety extends Model
      public function subprocess(){
         return $this->hasMany(SubProcess::class);
     }
+
+     public function reprocesses(){
+        return $this->hasMany(Reprocess::class);
+    }
     
     public function lote(){
         return $this->hasMany(Lote::class);

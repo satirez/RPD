@@ -69,6 +69,10 @@
              
              iDisplayLength: 100,
              order: [[ 0, 'desc' ]],
+                                     dom: 'Bfrtip',
+        buttons: [
+          'excel'
+        ],
            
             
             

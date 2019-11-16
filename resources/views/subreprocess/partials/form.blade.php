@@ -219,6 +219,7 @@
 			validacion(kgProcesado);
 			validacionTrash(kgProcesado);
 	}
+	
 	function validacion(kgProcesado){
 		var acumWeight = {{ $acumWeight }};
 		var sum = acumWeight + kgProcesado;
@@ -233,6 +234,7 @@
 
 		}
 	}
+	
 		function validacionTrash(kgProcesado){
 
 		if(document.getElementById('formatWeight').value === '1.000'){
@@ -242,7 +244,7 @@
 			}
 
 		}
-	}
+	}.
 	
 	
 

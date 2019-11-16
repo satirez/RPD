@@ -68,7 +68,7 @@
 
 								<tr>
 									<td>
-										<input type="checkbox" name="subprocess[]" value="{{ $subprocess->id }} ">
+										<input type="checkbox" required name="subprocess[]" value="{{ $subprocess->id }} ">
 									</td>
 									<td>{{ $subprocess->tarja }}</td>
 									<td>{{ $subprocess->quality->name }}</td>

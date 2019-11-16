@@ -45,16 +45,6 @@
 														</div>
 														<div class="col-md-4">
 															<div class="form-group">
-																<label for="variety_id">Variedad</label>
-																<select class="form-control" name="variety_id" id="variety_id" required>
-																	<option value=""> Variedad de Fruta </option>
-																</select>
-															</div>
-														</div>
-
-
-														<div class="col-md-4">
-															<div class="form-group">
 																{{ Form::label('quality_id', 'Calidad') }}
 																{{Form::select('quality_id', $qualities, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 															</div>
@@ -113,24 +103,7 @@
 							$('#fruit_id').on('change', onSelectProyectChange);
 						});
 					
-						function onSelectProyectChange(){
-							var fruit_id = $(this).val();
-							
-							if(! fruit_id){
-								$('#variety_id').html('<Option value="">Seleccione Variedad</Option>');
-									return;
-							}
-							// ajax
-					
-							$.get('/api/fruit/'+fruit_id+'/variedad', function(data){
-					
-								var html_select = '<Option value="">Seleccione Variedad</Option>';
-								for(var i=0; i<data.length; ++i)
-									html_select += '<Option value="'+data[i].id+'">'+data[i].variety+'</option>';
-								$('#variety_id').html(html_select);
-							});
-						}
-					
+
 					
 					</script>
 

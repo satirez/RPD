@@ -25,13 +25,13 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('planilla_dispatch', 'Numero de Planilla de despacho') }}
-					{{ Form::text('planilla_dispatch', null, ['class' => 'form-control ']) }}
+					{{ Form::text('planilla_dispatch', null, ['class' => 'form-control ','required']) }}
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('numero_guia', 'Numero de Guia') }}
-					{{ Form::text('numero_guia', null, ['class' => 'form-control ']) }}
+					{{ Form::text('numero_guia', null, ['class' => 'form-control ','required']) }}
 				</div>
 			</div>
 
@@ -45,8 +45,6 @@
 						{{Form::select('season_id', $listSeasons, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
 					</div>
 				</div>
-
-				
 
 
 			</div>
@@ -79,7 +77,7 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('nombre_chofer', 'Nombre del Chofer') }}
-					{{ Form::text('nombre_chofer', null, ['class' => 'form-control ']) }}
+					{{ Form::text('nombre_chofer', null, ['class' => 'form-control ','required']) }}
 				</div>
 			</div>
 
@@ -89,19 +87,19 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('patente_vehiculo', 'Patente del Vehiculo') }}
-					{{ Form::text('patente_vehiculo', null, ['class' => 'form-control ']) }}
+					{{ Form::text('patente_vehiculo', null, ['class' => 'form-control ','required']) }}
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('patente_rampla', 'Patente de la Rampla') }}
-					{{ Form::text('patente_rampla', null, ['class' => 'form-control ']) }}
+					{{ Form::text('patente_rampla', null, ['class' => 'form-control ','required']) }}
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('numero_contenedor', 'Numero del Contenedor') }}
-					{{ Form::text('numero_contenedor', null, ['class' => 'form-control ']) }}
+					{{ Form::text('numero_contenedor', null, ['class' => 'form-control ','required']) }}
 				</div>
 			</div>
 		</div>
@@ -110,13 +108,13 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('consignatario', 'Nombre Del Consignatario') }}
-					{{ Form::text('consignatario', null, ['class' => 'form-control ']) }}
+					{{ Form::text('consignatario', null, ['class' => 'form-control ','required']) }}
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="form-group">
 					{{ Form::label('puerto_salida', 'Puerto De Salida') }}
-					{{ Form::text('puerto_salida', null, ['class' => 'form-control ']) }}
+					{{ Form::text('puerto_salida', null, ['class' => 'form-control ','required']) }}
 				</div>
 			</div>
 			
@@ -175,7 +173,7 @@
 									@forelse($lotes as $lote)
 									<tr>
 										<td> 
-											<input type="checkbox" name="lotes[]" value="{{ $lote->id }}"> 
+											<input type="checkbox" required name="lotes[]" value="{{ $lote->id }}"> 
 										</td>
 
 										<td>{{ $lote->numero_lote }}</td>

@@ -14,6 +14,7 @@ class CreateProcessesTable extends Migration
     public function up()
     {
         Schema::create('processes', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->String('tarja_proceso');
             $table->Boolean('available')->default('1');
@@ -22,6 +23,7 @@ class CreateProcessesTable extends Migration
             $table->integer('variety_id')->unsigned();
             $table->integer('quality_id')->unsigned();
             $table->integer('status_id')->unsigned();
+
 
             $table->foreign('fruit_id')->references('id')->on('fruits')->onDelete('cascade');
             $table->foreign('variety_id')->references('id')->on('varieties')->onDelete('cascade');

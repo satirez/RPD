@@ -10,7 +10,7 @@
                     <h4 style="text-align:center;">Detalle de Recepcion
                    @can('receptions.edit')
                    <a class="btn btn-sm btn-danger pull-left " href="{{ Route ('receptions.index') }}"> Salir </a>
-                    <a href="{{ Route('receptions.edit', $reception->id) }}" class="btn btn-sm btn-info pull-right">Editar</a>
+
                     @endcan
                     </h4>
                 </div>

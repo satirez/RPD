@@ -59,8 +59,9 @@ class ReceptionController extends Controller
     public function receptionsperfruit()
     {
         $fruits = Fruit::all();
+         $qualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
 
-        return view('receptions.receptionsperfruit', compact('fruits'));
+        return view('receptions.receptionsperfruit', compact('fruits','qualities'));
     }
 
     public function receptionsperproductor()
@@ -193,12 +194,14 @@ class ReceptionController extends Controller
     public function fruittotal(Request $request)
     {
         $q = Input::post('fruit_id');
-        $receptions = Reception::where('fruit_id', $q)->get();
-        $neto = Reception::where('fruit_id', $q)->sum('netweight');
-        $bruto = Reception::where('fruit_id', $q)->sum('grossweight');
+        $qq = Input::post('quality_id');
+        $receptions = Reception::where('fruit_id', $q)->where('quality_id', $qq)->get();
+        $neto = Reception::where('fruit_id', $q)->where('quality_id', $qq)->sum('netweight');
+        $bruto = Reception::where('fruit_id', $q)->where('quality_id', $qq)->sum('grossweight');
         $fruits = Fruit::all();
+         $qualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
 
-        return view('receptions.receptionsperfruitsearch', compact('receptions', 'neto', 'bruto', 'fruits'));
+        return view('receptions.receptionsperfruitsearch', compact('receptions', 'neto', 'bruto', 'fruits','qualities'));
     }
 
     public function productortotal(Request $request)

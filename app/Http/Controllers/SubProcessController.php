@@ -22,14 +22,6 @@ class SubProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function delete(){
-                $subprocesses = SubProcess::paginate(50);
-
-        return view('subprocess.delete', compact('subprocesses'));
-
-        
-    }
     public function index()
     {
         $subprocesses = SubProcess::paginate(50);
@@ -55,6 +47,7 @@ class SubProcessController extends Controller
     public function create($id)
     {
         //obtener la ultima id
+        
         $last = SubProcess::OrderBy('id', 'DES')->first();
         if ($last == null) {
             $lastid = 1;
@@ -83,7 +76,7 @@ class SubProcessController extends Controller
         $subprocesses = SubProcess::where('process_id', $idsad)->where('rejected', 0)->paginate();
 
         //formato y peso para la vista
-        $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'weight', 'id');
+        $listFormat = Format::OrderBy('id', 'DES')->pluck('name', 'id');
         $listQualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $listRejecteds = motivorejected::OrderBy('id', 'ASC')->pluck('name', 'id');
         $listFruits = Fruit::OrderBy('id', 'DES')->get();
@@ -136,18 +129,21 @@ class SubProcessController extends Controller
     public function store(Request $request)
     {
         //validacion y desactivacion de un proceso
-        if ($request->format_id === '1.000') {
+        
+        if ($request->format_id === '5') {
+            
             $idProcess = $request->get('process_id');
             //FINALIZAR UN PROCESO
-            $weightFormat = $request->get('format_id');
-            $formatId = Format::where('weight', $weightFormat)->first()->id; //obtener el id segun el peso que se obtiene del requesta
-            $request['format_id'] = $formatId; //se le pasa el nuevo parametro (id) a format_id del request!
+            $format_id = $request->get('format_id');
+            $quantity = $request->get('quantity');
+            $formatWeight = Format::where('id', $format_id)->first()->weight;
+            $weight = $formatWeight * $quantity;
 
             $fruit_id = Process::where('id', $idProcess)->first()->fruit_id;
             $status_id = Process::where('id', $idProcess)->first()->status_id;
             $variety_id = Process::where('id', $idProcess)->first()->variety_id;
 
-            $request->merge(['fruit_id' => $fruit_id, 'variety_id' => $variety_id, 'status_id' => $status_id]);
+            $request->merge(['fruit_id' => $fruit_id, 'variety_id' => $variety_id, 'status_id' => $status_id, 'weight' => $weight]);
 
             SubProcess::create($request->all());
 
@@ -157,19 +153,18 @@ class SubProcessController extends Controller
 
             return redirect()->route('process.processes.index')->with('info', 'Proceso finalizado con exito');
         } else {
-            //query pa pasar el peso de formato y sacarle su id y validar lo que se ha usado
-
-            $getFormatId = $request->get('format_id');
             $idProcess = $request->get('process_id');
+            
+            $format_id = $request->get('format_id');
+            $quantity = $request->get('quantity');
+            $formatWeight = Format::where('id', $format_id)->first()->weight;
+            $weight = $formatWeight * $quantity;
 
             $fruit_id = Process::where('id', $idProcess)->first()->fruit_id;
             $variety_id = Process::where('id', $idProcess)->first()->variety_id;
             $status_id = Process::where('id', $idProcess)->first()->status_id;
 
-            $idFormat = Format::where('weight', $getFormatId)->first()->id;
-            $request['format_id'] = $idFormat;
-
-            $request->merge(['fruit_id' => $fruit_id, 'variety_id' => $variety_id, 'status_id' => $status_id]);
+            $request->merge(['fruit_id' => $fruit_id, 'variety_id' => $variety_id, 'status_id' => $status_id, 'weight' => $weight]);
 
             SubProcess::create($request->all());
 
@@ -222,10 +217,7 @@ class SubProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubProcess $subprocess)
+    public function destroy(SubProcess $subProcess)
     {
-        $subprocess->delete();
-
-        return back()->with('info', 'Eliminado con exito');
     }
 }

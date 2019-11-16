@@ -37,20 +37,18 @@
                                             </div>
                                         </div>
                 
-                              <div class="col-md-4">
-                                     <div class="form-group">
-                                          <label for="variety_id">Variedad</label>
-                                          <select class="form-control" name="variety_id" id="variety_id" required>
-                                            <option value=""> Variedad de Fruta </option>
-                                         </select>
-                                     </div>
-                                    </div>          
+                                         <div class="col-md-4">
+                                            <div class="form-group">
+                                             {{ Form::label('quality_id', 'Calidad') }}
+                                            {{Form::select('quality_id', $qualities, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+                                            </div>
+                                        </div>         
                 
                                     <div class="col-md-6 mt-4">
                                     
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary">
-                                                    <span class="fas fa-search"></span> Buscar
+                                                    <span class="fas fa-search"></span> Calcular Total
                                                 </button>
                                             </div>
                 
@@ -65,78 +63,49 @@
 
                 <div class="table-responsive">
                     <table class="table table-hover">
-                        <thead>
-                            <tr class="">
-
-                                <th>Kilos Procesados</th>
-                                <th>Kilos de P. Final</th>
-                                <th>Fruta - variedad</th>
-
-
+                        <thead >
+                            <tr >
+                                <td><strong>Tarja</strong></td>
+                                <td ><strong>Fruta y Variedad</strong></td>
+                                <td><strong>Calidad</strong></td>
+                                <td><strong>Peso</strong></td>
+                                
                                 <th colspan="auto">&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
-
-                            @forelse($processes as $processe)
+                             @forelse($processes as $process)
                             <tr>
-                                <td>{{ $processe->grossweight  }} Kg.</td>
-                                <td>{{ $processe->netweight  }} Kg.</td>
-                                <td>{{ $processe->fruit->specie  }} - {{$processe->varieties->variety}} </td>
+                                
+                                <td>{{$process->tarja}} </td>
+                                <td>{{ $process->fruit->specie  }} - {{$process->varieties->variety}} </td>
+                                <td>{{$process->quality->name}} </td>
+                                <td>{{$process->weight}} </td>
+                               
 
                             </tr>
                             @empty
                             <h1 class="alert alert-danger text-center"> No hay reporte </h1>
                             @endforelse
 
+                            <tr>
+                                                   <h3> Total </h3>
+                        <tr style="font-size:24px">
+
+                            <td><strong>Total de kilos Procesado: {{ $sum}}</strong>  </td>
+                        </tr>
+                            </tr>
+
                         </tbody>
                     </table>
                     <table class="table responsive">
-                        <h3> Total </h3>
-                        <tr style="font-size:24px">
-                            <td> Bruto: {{ $processes->sum('grossweight') }} </td>
-                            <td> Neto: {{ $processes->sum('netweight') }} </td>
-                        </tr>
+
                     </table>
-                    <script type="text/javascript">
-                        $(document).ready(function (){
-                        $('.input-number').keyup(function (){
-                            this.value = (this.value + '').replace(/[^.x0-9]/g, '');
-                        });
-                        });
-                    
-                    
-                    
-                        $(function(){
-                            $('#fruit_id').on('change', onSelectProyectChange);
-                        });
-                    
-                        function onSelectProyectChange(){
-                            var fruit_id = $(this).val();
-                            
-                            if(! fruit_id){
-                                $('#variety_id').html('<Option value="">Seleccione Variedad</Option>');
-                                    return;
-                            }
-                            // ajax
-                    
-                            $.get('/api/fruit/'+fruit_id+'/variedad', function(data){
-                    
-                                var html_select = '<Option value="">Seleccione Variedad</Option>';
-                                for(var i=0; i<data.length; ++i)
-                                    html_select += '<Option value="'+data[i].id+'">'+data[i].variety+'</option>';
-                                $('#variety_id').html(html_select);
-                            });
-                        }
-                    
-                    
-                    </script>
+                   
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-</div>
-</div>
+
 @endsection

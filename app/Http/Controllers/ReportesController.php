@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Process;
+use App\SubProcess;
 use App\Fruit;
 use App\Providers;
 use App\Variety;
 use App\Dispatch;
-
+use App\Quality;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
+use DB;
 
 class ReportesController extends Controller
 {
-
-    
     public function reporteProcesoDaily()
     {
 
@@ -25,31 +25,48 @@ class ReportesController extends Controller
     public function reporteProcesoDailySearch()
     {
         $q = Input::post('date');
-        $processes = Process::whereDate('created_at', '=', $q)->get();
 
-        return view('reportes.procesoDailySearch', compact('processes'));
+        // consulta inner join (sub_process) unido (process);
+        
+        $processes = DB::table('processes')->join('sub_processes',
+        'sub_processes.process_id',
+        '=', 'processes.id')
+        ->whereDate('processes.created_at', '=', $q)
+        ->select('processes.fruit_id', 'processes.variety_id', 'sub_processes.weight', 'processes.tarja_proceso', 'sub_processes.tarja')->get();
+        
+        $sum = DB::table('processes')->join('sub_processes',
+        'sub_processes.process_id',
+        '=', 'processes.id')
+        ->whereDate('processes.created_at', '=', $q)
+        ->sum('sub_processes.weight');
+
+        return view('reportes.procesoDailySearch', compact('processes', 'sum'));
     }
 
     public function reporteProcesoFruit()
     {
         $fruits = Fruit::all();
+        $qualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
+        
 
-        return view('reportes.procesoFruit', compact('fruits'));
+        return view('reportes.procesoFruit', compact('fruits','qualities'));
     }
 
     public function reporteProcesoFruitSearch()
     {
 
-       $q = Input::post('variety_id');
+
+        $q = Input::post('quality_id');
         $qq = Input::post('fruit_id');
         
-        $processes = Process::where('fruit_id', $q)->where('variety_id',$qq)->get();
-        $fruits = Fruit::OrderBy('id', 'DES')->get();
+        $processes = SubProcess::where('quality_id', $q)->where('fruit_id', $qq)->get();
+        $sum = SubProcess::where('quality_id', $q)->where('fruit_id', $qq)->sum('weight');
 
+        $fruits = Fruit::OrderBy('id', 'DES')->get();
+        $qualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
         $varieties = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
 
-
-        return view('reportes.procesoFruitSearch', compact('processes', 'fruits','varieties'));
+        return view('reportes.procesoFruitSearch', compact('sum', 'fruits','varieties','qualities','processes'));
     }
 
     public function reporteProcesoProvider()
@@ -80,6 +97,7 @@ class ReportesController extends Controller
         $q = Input::post('date');
         $dispatchs = Dispatch::whereDate('created_at', '=', $q)->get();
 
+
         return view('reportes.dispatchDailySearch', compact('dispatchs'));
     }
 
@@ -92,10 +110,16 @@ class ReportesController extends Controller
 
     public function reporteDespachoFruitSearch()
     {
-        dd('NO HAY FRUTA EN DESPACHO...');
-        $q = Input::post('fruit_id');
-        $dispatchs = Dispatch::where('fruit_id', $q)->get();
-        $fruits = Fruit::all();
+    
+          $q = Input::post('quality_id');
+        $qq = Input::post('fruit_id');
+        
+        $dispatchs = Dispatch::where('quality_id', $q)->where('fruit_id', $qq)->get();
+        $sum = Dispatch::where('quality_id', $q)->where('fruit_id', $qq)->sum('weight');
+
+        $fruits = Fruit::OrderBy('id', 'DES')->get();
+        $qualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
+        $varieties = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
 
         return view('reportes.dispatchFruitSearch', compact('dispatchs', 'fruits'));
     }

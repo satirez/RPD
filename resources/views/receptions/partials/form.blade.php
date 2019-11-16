@@ -10,9 +10,9 @@
         var palet_weight = document.getElementById('palet_weight').value;
 
         //Calcular peso neto
-        var result = (Number(txtFirstNo)-(Number(txtThirdNo) * Number(txtSecondNo)))-Number(palet_weight);
+        var result =  Math.round((Number(txtFirstNo)-(Number(txtThirdNo) * Number(txtSecondNo)))-Number(palet_weight));
 		//Calcular peso medio por bandeja
-		var result2 = (Number(txtFirstNo)/(Number(txtThirdNo)));
+		var result2 = Math.round((Number(txtFirstNo)/(Number(txtThirdNo))));
 
        	if(result > 0){
  			if (!isNaN(result)) {

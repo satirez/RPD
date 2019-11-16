@@ -20,6 +20,9 @@ class Quality extends Model
     {
         return $this->belongsTo(SubProcess::class);
     }
+     public function reprocesses(){
+        return $this->hasMany(Reprocess::class);
+    }
 
     public function lotes()
     {

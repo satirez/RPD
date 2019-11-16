@@ -18,8 +18,8 @@
                 <br>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h4 style="text-align:center;">Total de Kilos Recepcionados: <strong
-                                style="color:green;">{{ $receptionWeight}}Kg</strong></h4>
+                        <h4 style="text-align:center;">Total de Kilos en Recepción: <strong
+                                style="color:green;">{{ round($receptionWeight)}}Kg</strong></h4>
 
                     </div>
                 </div>
@@ -35,24 +35,22 @@
 
                                 <thead>
                                     <tr>
-                                        <th scope="col" >Imprimir</th>
-                                        <th scope="col" >Fecha Ingreso</th>
-                                        <th scope="col" >NÂ° de tarja</th>
-                                        <th scope="col" >Productor</th>
-                                        <th scope="col" >Calidad</th>
-                                        <th scope="col" >Fruta</th>
-                                        <th scope="col" >Variedad</th>
-                                        <th scope="col" >Cantidad de bandejas</th>
-                                        <th scope="col" >Peso neto</th>
-                                        <th scope="col" >Peso bruto</th>
-                                        <th scope="col" >Ver</th>
-                                       
+                                        <th>Imprimir</th>
+                                        <th>Fecha Ingreso</th>
+                                        <th>N¡Æ de tarja</th>
+                                        <th>Productor</th>
+                                        <th>Calidad</th>
+                                        <th>Fruta</th>
+                                        <th>Variedad</th>
+                                        <th>Cantidad de bandejas</th>
+                                        <th>Peso neto</th>
+                                        <th>Peso bruto</th>
+                                        <th>Ver</th>
 
                                        
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                 </tbody>
                                 <tfoot>
 
@@ -81,34 +79,12 @@
 
 
             var table = $('#laravel_datatable3').DataTable({
-                 "language":    {
-                    "sProcessing":     "Procesando...",
-                    "sLengthMenu":     "Mostrar _MENU_ registros",
-                    "sZeroRecords":    "No se encontraron resultados",
-                    "sEmptyTable":     "NingÃºn dato disponible en esta tabla",
-                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix":    "",
-                    "sSearch":         "Buscar:",
-                    "sUrl":            "",
-                    "sInfoThousands":  ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst":    "Primero",
-                        "sLast":     "Ãšltimo",
-                        "sNext":     "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-                },
-
                 processing: true,
                 serverSide: true,
-                       
+                        dom: 'Bfrtip',
+        buttons: [
+          'excel'
+        ],
                
                 order: [[ 0, 'desc' ]], //cambiar dspues
                 iDisplayLength: 100,
@@ -150,7 +126,7 @@
                                     return data;
                                     },
                      },
-                    
+
               
                 ]
          });

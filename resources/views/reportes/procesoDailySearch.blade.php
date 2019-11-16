@@ -44,33 +44,29 @@
                             <tr class="">
 
                                 <th>Kilos Procesados</th>
-                                <th>Kilos de P. Final</th>
-                                <th>Fruta - variedad</th>
-
-
+                                <th>Tarja</th>
+                                <th>N° Proceso</th>
+ 
                                 <th colspan="auto">&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
-
                             @forelse($processes as $processe)
                             <tr>
-                                <td>{{ $processe->grossweight  }} Kg.</td>
-                                <td>{{ $processe->netweight  }} Kg.</td>
-                                <td>{{ $processe->fruit->specie  }} - {{$processe->varieties->variety}} </td>
-
+                                <td>{{ $processe->weight  }} Kg.</td>
+                                <td>{{ $processe->tarja  }} </td>
+                                <td>{{ $processe->tarja_proceso  }} </td>
+ 
                             </tr>
                             @empty
                             <h1 class="alert alert-danger text-center"> No hay reporte </h1>
-                            @endforelse
-
+                            @endif
                         </tbody>
                     </table>
                     <table class="table responsive">
                         <h3> Total </h3>
                         <tr style="font-size:24px">
-                            <td> Bruto: {{ $processes->sum('grossweight') }} </td>
-                            <td> Neto: {{ $processes->sum('netweight') }} </td>
+                            <td> Kilos: {{ $sum }} </td>
                         </tr>
                     </table>
                 </div>

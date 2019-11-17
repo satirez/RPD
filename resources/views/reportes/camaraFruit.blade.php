@@ -15,17 +15,17 @@
         <div class="col-md-10 col-md-offset-1 ">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 style="text-align:center;"> Seleccion de fruta:
+                    <h4 style="text-align:center;"> Filtro Fruta y Calidad:
 
                 </div>
 
-
+                <br>
                 <form method="POST" action="{{ route('reporteDespachoFruitSearch') }}">
                     @csrf
 
-                    <div class="col-md-12">
+                    <div class="container">
                             <div class="row">
-                                 <div class="col-md-4">
+                                        <div class="col-sm">
                                          <div class="form-group">
                                              <label for="fruit_id">Fruta</label>
                                              <select class="form-control" name="fruit_id" id="fruit_id">
@@ -37,17 +37,19 @@
                                          </div>
                                      </div>
              
-                                <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                {{ Form::label('quality_id', 'Calidad') }}
-                                                                {{Form::select('quality_id', $qualities, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
-                                                            </div>
-                                                        </div>                   
+                                    <div class="col-sm">
+                                             <div class="form-group">
+                                           {{ Form::label('quality_id', 'Calidad') }}
+                                            {{Form::select('quality_id', $qualities, null, ['class' => 'form-control','required', 'placeholder'=>'Seleccione una opción'])}}
+                                                </div>
+                                    </div>                   
              
-                                 <div class="col-md-6 mt-4">
+                                 
                                  
              
-                                 <div class="col-md-6 mt-4">
+                                 
+                            </div>
+                            <div class="col-sm">
                                  
                                          <div class="form-group">
                                              <button type="submit" class="btn btn-primary">
@@ -56,7 +58,6 @@
                                          </div>
              
                                      </div>
-                            </div>
                      </div>
                 </form>
 

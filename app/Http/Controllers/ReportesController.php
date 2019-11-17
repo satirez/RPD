@@ -9,6 +9,7 @@ use App\Providers;
 use App\Variety;
 use App\Dispatch;
 use App\Quality;
+use App\Lote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
@@ -104,24 +105,25 @@ class ReportesController extends Controller
     public function reporteDespachoFruit()
     {
         $fruits = Fruit::all();
+        $qualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
 
-        return view('reportes.dispatchFruit', compact('fruits'));
+        return view('reportes.dispatchFruit', compact('fruits','qualities'));
     }
 
     public function reporteDespachoFruitSearch()
     {
     
-          $q = Input::post('quality_id');
+        $q = Input::post('quality_id');
         $qq = Input::post('fruit_id');
         
         $dispatchs = Dispatch::where('quality_id', $q)->where('fruit_id', $qq)->get();
-        $sum = Dispatch::where('quality_id', $q)->where('fruit_id', $qq)->sum('weight');
-
+       
+        $palletWeight = Lote::where('quality_id', $q)->where('fruit_id', $qq)->sum('palletWeight');
         $fruits = Fruit::OrderBy('id', 'DES')->get();
         $qualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
-        $varieties = Variety::OrderBy('id', 'DES')->pluck('variety', 'id');
+      
 
-        return view('reportes.dispatchFruitSearch', compact('dispatchs', 'fruits'));
+        return view('reportes.dispatchFruitSearch', compact('dispatchs', 'fruits','qualities','sum','palletWeight','bruto'));
     }
 
     public function reporteDespachoProvider()
@@ -138,5 +140,29 @@ class ReportesController extends Controller
         $listProviders = Providers::OrderBy('id', 'DES')->get();
 
         return view('reportes.dispatchProviderSearch', compact('dispatchs', 'listProviders'));
+    }
+
+     public function reporteCamaraFruit()
+    {
+        $fruits = Fruit::all();
+        $qualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
+
+        return view('reportes.camaraFruit', compact('fruits','qualities'));
+    }
+
+    public function reporteCamaraFruitSearch()
+    {
+    
+        $q = Input::post('quality_id');
+        $qq = Input::post('fruit_id');
+        
+        $dispatchs = Dispatch::where('quality_id', $q)->where('fruit_id', $qq)->get();
+       
+        $palletWeight = Lote::where('quality_id', $q)->where('fruit_id', $qq)->sum('palletWeight');
+        $fruits = Fruit::OrderBy('id', 'DES')->get();
+        $qualities = Quality::OrderBy('id', 'DES')->pluck('name', 'id');
+      
+
+        return view('reportes.camaraFruitSearch', compact('dispatchs', 'fruits','qualities','sum','palletWeight','bruto'));
     }
 }

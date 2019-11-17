@@ -356,14 +356,15 @@
             <a class="collapse-item" href="{{ Route ('reporteProcesoFruit') }}">Reporte por Fruta</a>
           
             <div class="dropdown-divider"></div>
-<!--              <h6 class="collapse-header">Camara:</h6>
-            <a class="collapse-item" href="{{ Route ('reporteProcesoDaily') }}">Total de Productos</a>
-            <a class="collapse-item" href="{{ Route ('reporteProcesoFruit') }}">Reporte por Fruta</a>
-            --> 
+            <h6 class="collapse-header">Camara:</h6>
+            
+            <a class="collapse-item" href="{{ Route ('reporteCamaraFruit') }}">Reporte por Fruta</a>
+            
             <div class="dropdown-divider"></div>
             <h6 class="collapse-header ">Despacho:</h6>
 
             <a class="collapse-item" href="{{ Route ('reporteDespachoDaily') }}">Despachos Realizados</a>
+            <a class="collapse-item" href="{{ Route ('reporteDespachoFruit') }}">Fruta despachada</a>
             
             <div class="dropdown-divider"></div>
             @endcan

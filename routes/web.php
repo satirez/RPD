@@ -181,6 +181,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/dispatchProviderSearch', 'ReportesController@reporteDespachoProviderSearch')->name('reporteDespachoProviderSearch')->middleware('permission:receptions.receptionsdaily');  
 
+    Route::get('/camaraFruit', 'ReportesController@reporteCamaraFruit')->name('reporteCamaraFruit')->middleware('permission:receptions.receptionsdaily');  
+ Route::post('/camaraFruitSearch', 'ReportesController@reporteCamaraFruitSearch')->name('reporteCamaraFruitSearch')->middleware('permission:receptions.receptionsdaily');  
+
     // END REPORTES
 
     Route::get('/printreception/{reception}', 'ReceptionController@print')->name('receptions.print');

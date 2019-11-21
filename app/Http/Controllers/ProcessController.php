@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use App\Process;
 use Illuminate\Http\Request;
@@ -178,8 +179,26 @@ class ProcessController extends Controller
      */
     public function destroy(Process $process)
     {
+
+        //se obtienen los subprocesos
+        $subprocess = SubProcess::where('process_id', $process->id)->get();
+
+        //se borran todas las weas 
+        foreach($subprocess as $subproces){
+            SubProcess::Where('id',$subproces->id)->delete();
+        }
+
+        //se buscan las id de todas las relaciones con el proceso actual
+        $searchs = DB::table('process__receptions')->where('process_id',$process->id)->get();
+        
+        //se cambia el estado de las recepciones para usarlar nuevamente
+        foreach($searchs as $busqueda){
+            Reception::where('id', $busqueda->reception_id)->update(['available' => 1]);
+        }
+        //se borra el proceso
         $process->delete();
 
+        //devuelve a la vista
         return back()->with('info', 'Eliminado con exito');
     }
 }
